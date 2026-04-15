@@ -1,0 +1,81 @@
+import Link from "next/link"
+
+export function Footer() {
+  return (
+    <footer>
+      <div className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-16 md:grid-cols-3">
+          <div>
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Connect
+            </span>
+            <h3 className="mt-4 font-display text-3xl text-cream">Contact</h3>
+            <div className="mt-6 space-y-3 text-tan">
+              <p>(412) 391-2752</p>
+              <p>info@butcherandtherye.com</p>
+              <div className="flex gap-6">
+                {["Instagram", "Facebook"].map((social) => (
+                  <Link
+                    key={social}
+                    href="#"
+                    className="text-amber transition-colors hover:text-cream"
+                  >
+                    {social}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div>
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Find Us
+            </span>
+            <h3 className="mt-4 font-display text-3xl text-cream">Location</h3>
+            <div className="mt-6 space-y-3 text-tan">
+              <p>2195 Penn Avenue</p>
+              <p>Pittsburgh, PA 15222</p>
+              <Link
+                href="#"
+                className="text-amber transition-colors hover:text-cream"
+              >
+                Get directions
+              </Link>
+            </div>
+          </div>
+          <div>
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Visit
+            </span>
+            <h3 className="mt-4 font-display text-3xl text-cream">Hours</h3>
+            <div className="mt-6 space-y-3 text-tan">
+              <div className="flex justify-between">
+                <span>Monday – Thursday</span>
+                <span>5pm – 11pm</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Friday – Saturday</span>
+                <span>5pm – 12am</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Sunday</span>
+                <span>4pm – 10pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-cream/10 bg-charcoal px-8 py-8 md:px-16">
+        <div className="mx-auto flex max-w-7xl items-center justify-between text-xs text-tan/40">
+          <p>© {new Date().getFullYear()} Butcher and the Rye. All rights reserved.</p>
+          <Link
+            href="https://briggsdavis.com"
+            target="_blank"
+            className="transition-colors hover:text-cream"
+          >
+            Made by Briggs Davis
+          </Link>
+        </div>
+      </div>
+    </footer>
+  )
+}
