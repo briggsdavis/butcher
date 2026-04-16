@@ -207,46 +207,38 @@ export default function Home() {
           <h2 className="mt-4 font-display text-5xl text-cream md:text-7xl">
             A glimpse <span className="text-tan italic">inside</span>
           </h2>
-          <div className="mt-20 grid gap-4 md:grid-cols-3 md:grid-rows-2">
-            {[
-              {
-                src: "/bar-brass-glow.jpg",
-                alt: "The bar",
-                classes: "md:row-span-2",
-              },
-              {
-                src: "/plated-entree.jpg",
-                alt: "Plated dish",
-                classes: "aspect-[4/5]",
-              },
-              {
-                src: "/candlelit-tables.jpg",
-                alt: "Dining room",
-                classes: "aspect-[4/5]",
-              },
-              {
-                src: "/whiskey-pour.jpg",
-                alt: "Whiskey pour",
-                classes: "aspect-[4/5]",
-              },
-              {
-                src: "/bartender-at-work.jpg",
-                alt: "Bartender",
-                classes: "aspect-[4/5]",
-              },
-            ].map((photo) => (
-              <div
-                key={photo.src}
-                className={`relative overflow-hidden ${photo.classes}`}
-              >
+          <div className="mt-20 space-y-8">
+            <div className="flex flex-wrap items-end justify-center gap-8">
+              {[
+                { src: "/entree.png", alt: "Plated dish", w: 1652, h: 1924 },
+                { src: "/glow.png", alt: "The bar", w: 1803, h: 2003 },
+                { src: "/whiskey.png", alt: "Whiskey pour", w: 1579, h: 1996 },
+              ].map((photo) => (
                 <Image
+                  key={photo.src}
                   src={photo.src}
                   alt={photo.alt}
-                  fill
-                  className="object-cover"
+                  width={photo.w}
+                  height={photo.h}
+                  className="h-56 w-auto object-contain md:h-80"
                 />
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="flex flex-wrap items-end justify-center gap-8">
+              {[
+                { src: "/bartender.png", alt: "Bartender", w: 1208, h: 1662 },
+                { src: "/tables.png", alt: "Dining room", w: 2168, h: 1922 },
+              ].map((photo) => (
+                <Image
+                  key={photo.src}
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={photo.w}
+                  height={photo.h}
+                  className="h-56 w-auto object-contain md:h-80"
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
