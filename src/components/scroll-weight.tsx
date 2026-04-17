@@ -16,7 +16,8 @@ export function ScrollWeight() {
       e.preventDefault()
       if (!active) currentY = window.scrollY
       const max = document.documentElement.scrollHeight - window.innerHeight
-      targetY = Math.max(0, Math.min(targetY + e.deltaY * 0.85, max))
+      // No speed reduction — just a very light smooth tail
+      targetY = Math.max(0, Math.min(targetY + e.deltaY, max))
       if (!active) {
         active = true
         requestAnimationFrame(loop)
@@ -24,7 +25,7 @@ export function ScrollWeight() {
     }
 
     const loop = () => {
-      currentY = lerp(currentY, targetY, 0.09)
+      currentY = lerp(currentY, targetY, 0.5)
       window.scrollTo(0, currentY)
       if (Math.abs(targetY - currentY) > 0.5) {
         requestAnimationFrame(loop)
@@ -34,7 +35,6 @@ export function ScrollWeight() {
       }
     }
 
-    // Keep in sync with keyboard/scrollbar scrolling
     const onScroll = () => {
       if (!active) {
         targetY = window.scrollY

@@ -49,8 +49,13 @@ export function Nav() {
           Butcher & the Rye
         </Link>
 
-        {/* Right spacer keeps title centered */}
-        <div className="relative z-10 ml-auto w-6" />
+        {/* Reserve — top right */}
+        <Link
+          href="/#reservations"
+          className="relative z-10 ml-auto hidden border border-white/50 px-5 py-2 text-xs tracking-[0.25em] text-white uppercase transition-colors hover:border-amber hover:text-amber md:block"
+        >
+          Reserve
+        </Link>
       </nav>
 
       {/* Full-screen overlay menu */}
@@ -59,17 +64,23 @@ export function Nav() {
           className="fixed inset-0 z-[100] flex flex-col bg-charcoal"
           style={{ animation: "overlayIn 0.3s ease both" }}
         >
-          {/* Close — same position as hamburger */}
+          {/* Close */}
           <button
             onClick={() => setOpen(false)}
             aria-label="Close navigation"
             className="absolute left-8 top-7 z-10 flex h-6 w-6 items-center justify-center md:left-16"
           >
-            <span className="absolute block h-px w-5 bg-cream/60 transition-colors hover:bg-cream" style={{ transform: "rotate(45deg)" }} />
-            <span className="absolute block h-px w-5 bg-cream/60 transition-colors hover:bg-cream" style={{ transform: "rotate(-45deg)" }} />
+            <span
+              className="absolute block h-px w-5 bg-cream/60"
+              style={{ transform: "rotate(45deg)" }}
+            />
+            <span
+              className="absolute block h-px w-5 bg-cream/60"
+              style={{ transform: "rotate(-45deg)" }}
+            />
           </button>
 
-          {/* Menu items — right-aligned, numbered */}
+          {/* Menu items — right-aligned, numbered, slide left on hover */}
           <div className="flex flex-1 flex-col justify-center pr-12 md:pr-28 lg:pr-40">
             {MENU_LINKS.map((link, i) => (
               <Link
@@ -81,12 +92,16 @@ export function Nav() {
                   animation: `menuItemIn 0.55s ease ${0.06 + i * 0.07}s both`,
                 }}
               >
-                <span className="mr-3 font-sans text-xs text-cream/25 transition-colors group-hover:text-amber/50">
-                  {link.num}
-                </span>
-                <span className="font-display text-5xl leading-none text-cream transition-colors group-hover:text-amber md:text-7xl lg:text-8xl">
-                  {link.label}
-                </span>
+                {/* Slide both number + label together on hover */}
+                <div className="flex items-baseline gap-3 transition-transform duration-300 ease-out group-hover:-translate-x-4">
+                  <span className="font-sans text-xs text-cream/25">
+                    {link.num}
+                  </span>
+                  {/* 20% smaller: 5xl→2.4rem, 7xl→3.6rem, 8xl→4.8rem */}
+                  <span className="font-display leading-none text-cream text-[2.4rem] md:text-[3.6rem] lg:text-[4.8rem]">
+                    {link.label}
+                  </span>
+                </div>
               </Link>
             ))}
           </div>

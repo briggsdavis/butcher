@@ -4,15 +4,15 @@ import { useEffect } from "react"
 
 export function PageEffects() {
   useEffect(() => {
-    // Fade-in on scroll via IntersectionObserver
-    const observer = new IntersectionObserver(
+    // ── Fade-in on scroll ──────────────────────────────────────────────────
+    const fadeObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const el = entry.target as HTMLElement
             el.style.transitionDelay = `${el.dataset.delay ?? "0"}ms`
             el.classList.add("in-view")
-            observer.unobserve(el)
+            fadeObserver.unobserve(el)
           }
         })
       },
@@ -21,9 +21,26 @@ export function PageEffects() {
 
     document
       .querySelectorAll("[data-animate]")
-      .forEach((el) => observer.observe(el))
+      .forEach((el) => fadeObserver.observe(el))
 
-    // Parallax on scroll
+    // ── Wipe-up section reveal ─────────────────────────────────────────────
+    const wipeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            ;(entry.target as HTMLElement).classList.add("wiped")
+            wipeObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.04 },
+    )
+
+    document
+      .querySelectorAll("[data-wipe]")
+      .forEach((el) => wipeObserver.observe(el))
+
+    // ── Parallax on scroll ─────────────────────────────────────────────────
     const parallaxEls = Array.from(
       document.querySelectorAll<HTMLElement>("[data-parallax]"),
     )
@@ -35,10 +52,9 @@ export function PageEffects() {
         const speed = parseFloat(el.dataset.parallaxSpeed ?? "0.15")
 
         if (el.dataset.parallax === "hero-bg") {
-          // Hero image moves down slower than scroll (classic parallax)
+          // Simple translateY — no scale needed (parent uses % overflow for buffer)
           el.style.transform = `translateY(${window.scrollY * speed}px)`
         } else {
-          // General sections: move relative to viewport center for depth
           const rect = el.getBoundingClientRect()
           const elMid = rect.top + rect.height / 2
           el.style.transform = `translateY(${(viewMid - elMid) * speed}px)`
@@ -50,7 +66,8 @@ export function PageEffects() {
     onScroll()
 
     return () => {
-      observer.disconnect()
+      fadeObserver.disconnect()
+      wipeObserver.disconnect()
       window.removeEventListener("scroll", onScroll)
     }
   }, [])

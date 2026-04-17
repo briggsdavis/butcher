@@ -45,10 +45,12 @@ export default function Home() {
     <>
       {/* ── Hero ── */}
       <section className="relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
+        {/* Extended top/bottom (30% total) absorbs the parallax offset gap */}
         <div
           data-parallax="hero-bg"
-          data-parallax-speed="0.2"
-          className="absolute inset-0 scale-[1.25]"
+          data-parallax-speed="0.15"
+          className="absolute inset-x-0"
+          style={{ top: "-15%", bottom: "-15%" }}
         >
           <Image
             src="/warm-dining-room.jpg"
@@ -90,7 +92,7 @@ export default function Home() {
       </section>
 
       {/* ── About ── */}
-      <section className="relative overflow-hidden bg-charcoal py-32 md:py-48">
+      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
         <div
           data-parallax="content"
           data-parallax-speed="0.06"
@@ -146,7 +148,7 @@ export default function Home() {
       </section>
 
       {/* ── Menu Highlights ── */}
-      <section className="bg-oxblood py-32 md:py-48">
+      <section data-wipe className="bg-oxblood py-32 md:py-48">
         <div
           data-parallax="content"
           data-parallax-speed="0.05"
@@ -197,7 +199,7 @@ export default function Home() {
       </section>
 
       {/* ── Cocktails & Spirits ── */}
-      <section className="relative bg-charcoal py-32 md:py-48">
+      <section data-wipe className="relative bg-charcoal py-32 md:py-48">
         <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
           <div
             data-parallax="content"
@@ -269,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* ── Gallery ── */}
-      <section className="bg-oxblood/80 py-32 md:py-48">
+      <section data-wipe className="bg-oxblood/80 py-32 md:py-48">
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="flex items-center gap-6">
             <span className="block h-px flex-1 bg-amber/25" />
@@ -336,6 +338,7 @@ export default function Home() {
       {/* ── Reservations ── */}
       <section
         id="reservations"
+        data-wipe
         className="relative flex items-center justify-center bg-charcoal py-32 md:py-48"
       >
         <div

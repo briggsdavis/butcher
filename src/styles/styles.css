@@ -47,6 +47,25 @@ html {
   }
 }
 
+/* ── Section wipe-up reveal ── */
+/*
+ * Sections start with their layout offset cancelled by the matching transform
+ * (net visual position = natural). On .wiped, the transform goes to 0, rising
+ * the section by --wipe-amt to gently cover the previous section's bottom.
+ */
+[data-wipe] {
+  --wipe-amt: 2.5rem;
+  margin-top: calc(-1 * var(--wipe-amt));
+  position: relative;
+  transform: translateY(var(--wipe-amt));
+  transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+[data-wipe].wiped {
+  transform: translateY(0);
+}
+
 /* ── Nav overlay animations ── */
 @keyframes overlayIn {
   from {
