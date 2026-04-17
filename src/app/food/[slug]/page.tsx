@@ -1,5 +1,5 @@
 import slugify from "@sindresorhus/slugify"
-import { ArrowLeft, Heart, MessageCircle } from "lucide-react"
+import { ArrowLeft, Heart } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -34,25 +34,19 @@ export default async function FoodDetail({
   const item = getItem(slug)
   if (!item) notFound()
 
+  const details = [
+    { label: "Course", value: item.category },
+    { label: "Price", value: `$${item.price}` },
+    { label: "Guests Loved", value: `${item.likes}` },
+  ]
+
   return (
     <>
-      {/* ── Back ── */}
-      <div className="bg-charcoal px-8 pt-28 md:px-16">
-        <div className="mx-auto flex max-w-5xl">
-          <Link
-            href="/food"
-            className="flex items-center gap-2 text-sm leading-none tracking-[0.2em] text-tan uppercase transition-colors hover:text-cream"
-          >
-            <ArrowLeft className="size-4" />
-            Back to menu
-          </Link>
-        </div>
-      </div>
-
-      {/* ── Hero Image ── */}
-      <section className="bg-charcoal px-8 pt-8 md:px-16">
-        <div className="mx-auto max-w-5xl">
-          <div className="relative aspect-[16/9] overflow-hidden">
+      {/* ── Split layout: image left / details right ── */}
+      <section className="bg-charcoal px-8 pt-28 pb-16 md:px-16 md:pt-36 md:pb-24">
+        <div className="grid md:grid-cols-2 md:gap-16">
+          {/* ── Left: image ── */}
+          <div className="relative min-h-[55vw] md:min-h-0">
             <Image
               src={`/food/${slug}.jpg`}
               alt={item.name}
@@ -60,45 +54,93 @@ export default async function FoodDetail({
               priority
               className="object-cover"
             />
-          </div>
-        </div>
-      </section>
+            {/* Bottom gradient for caption legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
 
-      {/* ── Details ── */}
-      <section className="bg-charcoal px-8 pt-12 pb-16 md:px-16">
-        <div className="mx-auto max-w-5xl">
-          <span className="text-xs tracking-[0.3em] text-amber uppercase">
-            {item.category}
-          </span>
-          <h1 className="mt-3 font-display text-5xl text-cream md:text-7xl">
-            {item.name}
-          </h1>
-          {item.description && (
-            <p className="mt-4 max-w-xl text-lg text-tan">
-              {item.description}
-            </p>
-          )}
-          <div className="mt-8 flex items-center gap-8">
-            <span className="font-display text-3xl text-amber">
-              ${item.price}
-            </span>
-            <button className="flex items-center gap-2 text-tan/60 transition-colors hover:text-amber">
-              <Heart className="size-5" />
-              <span className="text-sm">{item.likes}</span>
-            </button>
+            {/* Caption */}
+            <div className="absolute bottom-0 left-0 p-6 md:p-8">
+              <p className="font-cursive text-xl text-cream md:text-2xl">
+                {item.name}
+              </p>
+              <span className="mt-2 block text-amber/70">✦</span>
+            </div>
+          </div>
+
+          {/* ── Right: details ── */}
+          <div className="flex flex-col justify-center pt-10 md:pt-0">
+            {/* Back */}
+            <Link
+              href="/food"
+              className="mb-10 flex w-fit items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
+            >
+              <ArrowLeft className="size-3.5" />
+              Back to menu
+            </Link>
+
+            {/* Category with decorative line */}
+            <div className="flex items-center gap-4">
+              <span className="block h-px w-8 shrink-0 bg-amber/50" />
+              <span className="text-xs tracking-[0.3em] text-amber uppercase">
+                {item.category}
+              </span>
+            </div>
+
+            {/* Name */}
+            <h1 className="mt-4 font-display leading-tight text-cream text-[1.8rem] md:text-[2.4rem] lg:text-[3rem]">
+              {item.name}
+            </h1>
+
+            {/* Description */}
+            {item.description && (
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-tan">
+                {item.description}
+              </p>
+            )}
+
+            {/* Detail rows */}
+            <div className="mt-10 border-t border-cream/10">
+              {details.map(({ label, value }) => (
+                <div
+                  key={label}
+                  className="flex items-center justify-between border-b border-cream/10 py-5"
+                >
+                  <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
+                    {label}
+                    <span className="mx-3 text-cream/20">—</span>
+                    {value}
+                  </span>
+                  <span className="text-lg text-cream/20">+</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Reserve CTA */}
+            <div className="mt-10">
+              <Link
+                href="/#reservations"
+                className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
+              >
+                Reserve a Table
+                <Heart className="size-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── Comments ── */}
       <section className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
-        <div className="mx-auto max-w-5xl">
-          <div className="flex items-center gap-3">
-            <MessageCircle className="size-5 text-amber" />
-            <h2 className="font-display text-3xl text-cream">Comments</h2>
+        <div>
+          {/* Section label */}
+          <div className="flex items-center gap-4">
+            <span className="block h-px w-8 shrink-0 bg-amber/40" />
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Guest Notes
+            </span>
           </div>
+          <h2 className="mt-3 font-display text-3xl text-cream">Comments</h2>
 
-          {/* Comment Input */}
+          {/* Comment input */}
           <div className="mt-8 border-b border-cream/10 pb-8">
             <textarea
               placeholder="Share your thoughts on this dish..."
@@ -106,14 +148,14 @@ export default async function FoodDetail({
               rows={3}
             />
             <div className="mt-4 flex justify-end">
-              <button className="bg-amber px-6 py-2 text-xs tracking-[0.3em] text-charcoal uppercase transition-colors hover:bg-amber/80">
+              <button className="bg-amber px-6 py-2 text-xs tracking-[0.3em] text-charcoal uppercase transition-colors hover:bg-cream">
                 Post
               </button>
             </div>
           </div>
 
-          {/* Placeholder Comments */}
-          <div className="mt-8 space-y-8">
+          {/* Placeholder comments */}
+          <div className="mt-8 space-y-0">
             {[
               {
                 name: "Sarah M.",
@@ -133,7 +175,7 @@ export default async function FoodDetail({
             ].map((comment) => (
               <div
                 key={comment.name}
-                className="border-b border-cream/10 pb-8"
+                className="border-b border-cream/10 py-8"
               >
                 <div className="flex items-baseline justify-between">
                   <span className="font-display text-lg text-cream">

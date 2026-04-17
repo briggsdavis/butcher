@@ -4,8 +4,8 @@ export function Footer() {
   return (
     <footer>
       <div className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-16 md:grid-cols-3">
-          <div>
+        <div className="grid md:grid-cols-3 md:divide-x md:divide-cream/10">
+          <div className="pb-12 md:pb-0 md:pr-16">
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Connect
             </span>
@@ -26,7 +26,8 @@ export function Footer() {
               </div>
             </div>
           </div>
-          <div>
+
+          <div className="border-t border-cream/10 py-12 md:border-t-0 md:px-16 md:py-0">
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Find Us
             </span>
@@ -42,7 +43,8 @@ export function Footer() {
               </Link>
             </div>
           </div>
-          <div>
+
+          <div className="border-t border-cream/10 pt-12 md:border-t-0 md:pl-16 md:pt-0">
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Visit
             </span>
@@ -64,9 +66,13 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-cream/10 bg-charcoal px-8 py-8 md:px-16">
-        <div className="mx-auto flex max-w-7xl items-center justify-between text-xs text-tan/40">
-          <p>© {new Date().getFullYear()} Butcher and the Rye. All rights reserved.</p>
+
+      <div className="border-t border-cream/10 bg-oxblood px-8 py-6 md:px-16">
+        <div className="flex items-center justify-between text-xs text-tan/40">
+          <p>
+            © {new Date().getFullYear()} Butcher and the Rye. All rights
+            reserved.
+          </p>
           <Link
             href="https://briggsdavis.com"
             target="_blank"

@@ -3,6 +3,9 @@ import { Cedarville_Cursive, DM_Sans, Libre_Baskerville } from "next/font/google
 import { ReactNode } from "react"
 import { Footer } from "~/components/footer"
 import { Nav } from "~/components/nav"
+import { PageEffects } from "~/components/page-effects"
+import { PageTransition } from "~/components/page-transition"
+import { SmoothScroll } from "~/components/smooth-scroll"
 import "~/styles/styles.css"
 
 const cursive = Cedarville_Cursive({ weight: "400", variable: "--font-cursive" })
@@ -23,8 +26,10 @@ export default function Layout({ children }: { children: ReactNode }) {
       className={`${cursive.variable} ${display.variable} ${sans.variable} antialiased`}
     >
       <body className="bg-charcoal font-sans text-cream">
+        <SmoothScroll />
+        <PageEffects />
         <Nav />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
       </body>
     </html>
