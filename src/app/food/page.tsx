@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Food",
 }
 
-function MenuCard({ item }: { item: MenuItem }) {
+function MenuCard({ item, dark }: { item: MenuItem; dark: boolean }) {
   const slug = slugify(item.name)
   return (
     <Link href={`/food/${slug}`} className="group">
@@ -28,49 +28,39 @@ function MenuCard({ item }: { item: MenuItem }) {
       </div>
       <div className="mt-4">
         <div className="flex items-baseline justify-between">
-          <h3 className="font-display text-2xl text-cream transition-colors group-hover:text-amber">
+          <h3
+            className={`font-display text-[1.2rem] transition-colors ${
+              dark
+                ? "text-cream group-hover:text-amber"
+                : "text-charcoal group-hover:text-oxblood"
+            }`}
+          >
             {item.name}
           </h3>
-          <span className="font-display text-xl text-amber">
+          <span
+            className={`font-display text-base ${dark ? "text-amber" : "text-oxblood"}`}
+          >
             ${item.price}
           </span>
         </div>
         {item.description && (
-          <p className="mt-1 text-sm text-tan">{item.description}</p>
+          <p
+            className={`mt-1 text-sm ${dark ? "text-tan" : "text-charcoal/60"}`}
+          >
+            {item.description}
+          </p>
         )}
       </div>
     </Link>
   )
 }
 
-function MenuSection({
-  label,
-  title,
-  items,
-}: {
-  label: string
-  title: string
-  items: MenuItem[]
-}) {
-  return (
-    <div>
-      <div className="flex items-center gap-4">
-        <span className="block h-px w-8 shrink-0 bg-amber/50" />
-        <span className="text-xs tracking-[0.3em] text-amber uppercase">
-          {label}
-        </span>
-      </div>
-      <h2 className="mt-4 font-display text-5xl text-cream md:text-7xl">
-        {title}
-      </h2>
-      <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-2">
-        {items.map((item) => (
-          <MenuCard key={item.name} item={item} />
-        ))}
-      </div>
-    </div>
-  )
-}
+const MENU_SECTIONS = [
+  { label: "To Begin", title: "Starters", items: STARTERS, dark: false },
+  { label: "The Main Event", title: "Entrées", items: MAINS, dark: true },
+  { label: "On the Side", title: "Sides", items: SIDES, dark: false },
+  { label: "To Finish", title: "Desserts", items: DESSERTS, dark: true },
+]
 
 export default function Food() {
   return (
@@ -96,27 +86,68 @@ export default function Food() {
 
       <MenuNav />
 
-      {/* ── Menu Sections ── */}
-      <section className="bg-charcoal py-24 md:py-32">
-        <div className="mx-auto flex max-w-7xl flex-col gap-32 px-8 md:px-16">
-          <MenuSection label="To Begin" title="Starters" items={STARTERS} />
-          <MenuSection label="The Main Event" title="Entrées" items={MAINS} />
-          <MenuSection label="On the Side" title="Sides" items={SIDES} />
-          <MenuSection label="To Finish" title="Desserts" items={DESSERTS} />
-        </div>
-      </section>
+      {/* ── Menu Sections — alternating oxblood / cream ── */}
+      {MENU_SECTIONS.map(({ label, title, items, dark }) => (
+        <section
+          key={title}
+          data-wipe
+          className={`py-24 md:py-32 ${dark ? "bg-oxblood" : "bg-cream"}`}
+        >
+          <div className="mx-auto max-w-7xl px-8 md:px-16">
+            <div data-animate="" className="flex items-center gap-4">
+              <span
+                className={`block h-px w-8 shrink-0 ${dark ? "bg-amber/50" : "bg-oxblood/30"}`}
+              />
+              <span
+                className={`text-xs tracking-[0.3em] uppercase ${dark ? "text-amber" : "text-oxblood"}`}
+              >
+                {label}
+              </span>
+            </div>
+            <h2
+              data-animate=""
+              data-delay="100"
+              className={`mt-4 font-display text-5xl md:text-7xl ${dark ? "text-cream" : "text-charcoal"}`}
+            >
+              {title}
+            </h2>
+            <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-2">
+              {items.map((item, i) => (
+                <div
+                  key={item.name}
+                  data-animate=""
+                  data-delay={String(180 + i * 70)}
+                >
+                  <MenuCard item={item} dark={dark} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
 
       {/* ── CTA ── */}
-      <section className="bg-cream py-24 md:py-32">
+      <section data-wipe className="bg-cream py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-8 text-center md:px-16">
-          <h2 className="font-display text-4xl text-charcoal md:text-6xl">
+          <h2
+            data-animate=""
+            className="font-display text-4xl text-charcoal md:text-6xl"
+          >
             Ready to <span className="italic text-oxblood">dine</span>?
           </h2>
-          <p className="mx-auto mt-6 max-w-md text-charcoal/60">
+          <p
+            data-animate=""
+            data-delay="100"
+            className="mx-auto mt-6 max-w-md text-charcoal/60"
+          >
             Pair your meal with something from our cocktail bar or curated
             spirits collection.
           </p>
-          <div className="mt-12 flex flex-wrap justify-center gap-6 [&>a]:w-60 [&>a]:text-center">
+          <div
+            data-animate=""
+            data-delay="220"
+            className="mt-12 flex flex-wrap justify-center gap-6 [&>a]:w-60 [&>a]:text-center"
+          >
             <Link
               href="/beverages"
               className="border border-charcoal/20 px-8 py-4 text-xs tracking-[0.3em] text-charcoal uppercase transition-colors hover:border-oxblood hover:text-oxblood"

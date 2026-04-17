@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 const BEVERAGES = [
   {
     category: "Cocktails",
+    label: "Crafted",
     items: [
       { name: "Old Fashioned", notes: "Bourbon, demerara, Angostura, orange", price: "16" },
       { name: "Rye Negroni", notes: "Rye, Campari, sweet vermouth, expressed orange", price: "15" },
@@ -19,6 +20,7 @@ const BEVERAGES = [
   },
   {
     category: "Wine — Red",
+    label: "The Cellar",
     items: [
       { name: "Caymus Cabernet Sauvignon", notes: "Napa Valley, 2021", price: "24" },
       { name: "Château Pichon Baron", notes: "Pauillac, Bordeaux, 2018", price: "38" },
@@ -26,7 +28,8 @@ const BEVERAGES = [
     ],
   },
   {
-    category: "Wine — White & Sparkling",
+    category: "White & Sparkling",
+    label: "Light & Bright",
     items: [
       { name: "Rombauer Chardonnay", notes: "Carneros, Napa, 2022", price: "18" },
       { name: "Whispering Angel Rosé", notes: "Provence, France, 2023", price: "16" },
@@ -35,6 +38,7 @@ const BEVERAGES = [
   },
   {
     category: "Non-Alcoholic",
+    label: "Zero Proof",
     items: [
       { name: "House Lemonade", notes: "Fresh-squeezed, thyme, sea salt", price: "7" },
       { name: "Sparkling Water", notes: "San Pellegrino, 750ml", price: "6" },
@@ -66,38 +70,66 @@ export default function Beverages() {
 
       <MenuNav />
 
-      <section className="bg-charcoal py-24 md:py-32">
-        <div className="mx-auto flex max-w-7xl flex-col gap-24 px-8 md:px-16">
-          {BEVERAGES.map(({ category, items }) => (
-            <div key={category}>
-              <div className="flex items-center gap-4">
-                <span className="block h-px w-8 shrink-0 bg-amber/50" />
-                <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                  {category}
+      {BEVERAGES.map(({ category, label, items }, bi) => {
+        const dark = bi % 2 === 0
+        return (
+          <section
+            key={category}
+            data-wipe
+            className={`py-24 md:py-32 ${dark ? "bg-cream" : "bg-oxblood"}`}
+          >
+            <div className="mx-auto max-w-7xl px-8 md:px-16">
+              <div data-animate="" className="flex items-center gap-4">
+                <span
+                  className={`block h-px w-8 shrink-0 ${dark ? "bg-oxblood/30" : "bg-amber/50"}`}
+                />
+                <span
+                  className={`text-xs tracking-[0.3em] uppercase ${dark ? "text-oxblood" : "text-amber"}`}
+                >
+                  {label}
                 </span>
               </div>
-              <div className="mt-8 divide-y divide-cream/10 border-t border-cream/10">
-                {items.map((item) => (
+              <h2
+                data-animate=""
+                data-delay="100"
+                className={`mt-4 font-display text-5xl md:text-7xl ${dark ? "text-charcoal" : "text-cream"}`}
+              >
+                {category}
+              </h2>
+              <div
+                className={`mt-10 divide-y border-t ${dark ? "divide-charcoal/10 border-charcoal/10" : "divide-cream/10 border-cream/10"}`}
+              >
+                {items.map((item, i) => (
                   <div
                     key={item.name}
+                    data-animate=""
+                    data-delay={String(180 + i * 60)}
                     className="flex items-baseline justify-between py-5"
                   >
                     <div>
-                      <span className="font-display text-xl text-cream">
+                      <span
+                        className={`font-display text-base ${dark ? "text-charcoal" : "text-cream"}`}
+                      >
                         {item.name}
                       </span>
-                      <span className="ml-4 text-xs text-tan/50">{item.notes}</span>
+                      <span
+                        className={`ml-4 text-xs ${dark ? "text-charcoal/45" : "text-tan/50"}`}
+                      >
+                        {item.notes}
+                      </span>
                     </div>
-                    <span className="font-display text-lg text-amber">
+                    <span
+                      className={`font-display text-[0.9rem] ${dark ? "text-oxblood" : "text-amber"}`}
+                    >
                       ${item.price}
                     </span>
                   </div>
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+        )
+      })}
     </>
   )
 }
