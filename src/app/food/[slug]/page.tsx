@@ -130,7 +130,7 @@ export default async function FoodDetail({
 
       {/* ── Comments ── */}
       <section className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
-        <div className="mx-auto max-w-7xl">
+        <div>
           {/* Section label */}
           <div className="flex items-center gap-4">
             <span className="block h-px w-8 shrink-0 bg-amber/40" />

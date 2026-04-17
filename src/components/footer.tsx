@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer>
       <div className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl md:grid-cols-3 md:divide-x md:divide-cream/10">
+        <div className="grid md:grid-cols-3 md:divide-x md:divide-cream/10">
           <div className="pb-12 md:pb-0 md:pr-16">
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Connect
@@ -68,7 +68,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-cream/10 bg-oxblood px-8 py-6 md:px-16">
-        <div className="mx-auto flex max-w-7xl items-center justify-between text-xs text-tan/40">
+        <div className="flex items-center justify-between text-xs text-tan/40">
           <p>
             © {new Date().getFullYear()} Butcher and the Rye. All rights
             reserved.
