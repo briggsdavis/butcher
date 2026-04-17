@@ -12,10 +12,6 @@
   --color-charcoal: #1a1210;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* ── Scroll-triggered fade-in ── */
 [data-animate] {
   opacity: 0;

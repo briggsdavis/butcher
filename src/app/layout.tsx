@@ -4,7 +4,6 @@ import { ReactNode } from "react"
 import { Footer } from "~/components/footer"
 import { Nav } from "~/components/nav"
 import { PageEffects } from "~/components/page-effects"
-import { ScrollWeight } from "~/components/scroll-weight"
 import "~/styles/styles.css"
 
 const cursive = Cedarville_Cursive({ weight: "400", variable: "--font-cursive" })
@@ -25,7 +24,6 @@ export default function Layout({ children }: { children: ReactNode }) {
       className={`${cursive.variable} ${display.variable} ${sans.variable} antialiased`}
     >
       <body className="bg-charcoal font-sans text-cream">
-        <ScrollWeight />
         <PageEffects />
         <Nav />
         {children}
