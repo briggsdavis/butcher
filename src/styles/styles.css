@@ -11,3 +11,59 @@
   --color-tan: #c4a882;
   --color-charcoal: #1a1210;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Scroll-triggered fade-in ── */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+[data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Parallax performance ── */
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ── Hero load animation ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Nav overlay animations ── */
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes menuItemIn {
+  from {
+    opacity: 0;
+    transform: translateX(44px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
