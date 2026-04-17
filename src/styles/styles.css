@@ -62,7 +62,7 @@
   transform: translateY(0);
 }
 
-/* ── Page transition blur-in ── */
+/* ── Page transition blur-in / blur-out ── */
 @keyframes pageIn {
   from {
     opacity: 0;
@@ -74,8 +74,24 @@
   }
 }
 
+@keyframes pageOut {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
 .page-transition {
   animation: pageIn 0.4s ease-out both;
+}
+
+.page-transition-out {
+  animation: pageOut 0.3s ease-in both;
+  pointer-events: none;
 }
 
 /* ── Staff page animations ── */
