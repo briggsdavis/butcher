@@ -12,7 +12,8 @@ const MENU_PAGES = [
 export function MenuNav() {
   const pathname = usePathname()
   return (
-    <div className="sticky top-0 z-40 grid grid-cols-3 justify-items-center border-y border-cream/10 bg-charcoal px-8 py-4">
+    <div className="sticky top-0 z-40 flex justify-center border-y border-cream/10 bg-charcoal px-8 py-4">
+      <div className="grid w-72 grid-cols-3 justify-items-center">
       {MENU_PAGES.map(({ href, label }) => {
         const active = pathname === href
         return (
@@ -29,6 +30,7 @@ export function MenuNav() {
           </Link>
         )
       })}
+      </div>
     </div>
   )
 }
