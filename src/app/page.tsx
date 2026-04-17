@@ -45,7 +45,6 @@ export default function Home() {
     <>
       {/* ── Hero ── */}
       <section className="relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
-        {/* Parallax image wrapper — scaled up to absorb offset */}
         <div
           data-parallax="hero-bg"
           data-parallax-speed="0.2"
@@ -61,9 +60,13 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/55 to-transparent" />
         <div className="relative z-10 max-w-3xl px-8 pb-24 text-center md:px-16">
+          {/* 20% smaller than previous text-7xl / text-9xl */}
           <h1
-            className="font-display text-7xl leading-none tracking-tight text-cream md:text-9xl"
-            style={{ animation: "fadeInUp 1s ease 0.15s both" }}
+            className="font-display leading-none tracking-tight text-cream"
+            style={{
+              fontSize: "clamp(3rem, 8vw, 6.4rem)",
+              animation: "fadeInUp 1s ease 0.15s both",
+            }}
           >
             Butcher
             <br />
@@ -94,12 +97,12 @@ export default function Home() {
           className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16"
         >
           <div className="flex flex-col justify-center">
-            <span
-              data-animate=""
-              className="text-xs tracking-[0.3em] text-amber uppercase"
-            >
-              Our Story
-            </span>
+            <div data-animate="" className="flex items-center gap-4">
+              <span className="block h-px w-10 shrink-0 bg-amber/50" />
+              <span className="text-xs tracking-[0.3em] text-amber uppercase">
+                Our Story
+              </span>
+            </div>
             <h2
               data-animate=""
               data-delay="100"
@@ -150,12 +153,12 @@ export default function Home() {
           className="mx-auto max-w-7xl px-8 md:px-16"
         >
           <div className="mb-20 max-w-xl">
-            <span
-              data-animate=""
-              className="text-xs tracking-[0.3em] text-amber uppercase"
-            >
-              From the Kitchen
-            </span>
+            <div data-animate="" className="flex items-center gap-4">
+              <span className="block h-px w-10 shrink-0 bg-amber/50" />
+              <span className="text-xs tracking-[0.3em] text-amber uppercase">
+                From the Kitchen
+              </span>
+            </div>
             <h2
               data-animate=""
               data-delay="100"
@@ -196,7 +199,6 @@ export default function Home() {
       {/* ── Cocktails & Spirits ── */}
       <section className="relative bg-charcoal py-32 md:py-48">
         <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
-          {/* Parallax wrapper around the polaroid — no CSS rotation here to avoid conflict */}
           <div
             data-parallax="content"
             data-parallax-speed="0.14"
@@ -219,12 +221,12 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col justify-center">
-            <span
-              data-animate=""
-              className="text-xs tracking-[0.3em] text-amber uppercase"
-            >
-              Cocktails & Spirits
-            </span>
+            <div data-animate="" className="flex items-center gap-4">
+              <span className="block h-px w-10 shrink-0 bg-amber/50" />
+              <span className="text-xs tracking-[0.3em] text-amber uppercase">
+                Cocktails & Spirits
+              </span>
+            </div>
             <h2
               data-animate=""
               data-delay="100"
@@ -248,11 +250,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div
-              data-animate=""
-              data-delay="550"
-              className="mt-16 flex gap-6"
-            >
+            <div data-animate="" data-delay="550" className="mt-16 flex gap-6">
               <Link
                 href="/beverages"
                 className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
@@ -273,16 +271,17 @@ export default function Home() {
       {/* ── Gallery ── */}
       <section className="bg-oxblood/80 py-32 md:py-48">
         <div className="mx-auto max-w-7xl px-8 md:px-16">
-          <span
-            data-animate=""
-            className="text-xs tracking-[0.3em] text-amber uppercase"
-          >
-            The Atmosphere
-          </span>
+          <div data-animate="" className="flex items-center gap-6">
+            <span className="block h-px flex-1 bg-amber/25" />
+            <span className="shrink-0 text-xs tracking-[0.3em] text-amber uppercase">
+              The Atmosphere
+            </span>
+            <span className="block h-px flex-1 bg-amber/25" />
+          </div>
           <h2
             data-animate=""
             data-delay="100"
-            className="mt-4 font-display text-5xl text-cream md:text-7xl"
+            className="mt-4 text-center font-display text-5xl text-cream md:text-7xl"
           >
             A glimpse <span className="text-tan italic">inside</span>
           </h2>
@@ -347,12 +346,13 @@ export default function Home() {
           <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--color-oxblood)_0%,_transparent_70%)]" />
         </div>
         <div className="relative z-10 text-center">
-          <span
-            data-animate=""
-            className="text-xs tracking-[0.3em] text-amber uppercase"
-          >
-            Join Us
-          </span>
+          <div data-animate="" className="flex items-center justify-center gap-6">
+            <span className="block h-px w-12 shrink-0 bg-amber/30" />
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Join Us
+            </span>
+            <span className="block h-px w-12 shrink-0 bg-amber/30" />
+          </div>
           <h2
             data-animate=""
             data-delay="100"

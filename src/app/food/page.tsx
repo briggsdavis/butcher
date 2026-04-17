@@ -53,9 +53,12 @@ function MenuSection({
 }) {
   return (
     <div>
-      <span className="text-xs tracking-[0.3em] text-amber uppercase">
-        {label}
-      </span>
+      <div className="flex items-center gap-4">
+        <span className="block h-px w-8 shrink-0 bg-amber/50" />
+        <span className="text-xs tracking-[0.3em] text-amber uppercase">
+          {label}
+        </span>
+      </div>
       <h2 className="mt-4 font-display text-5xl text-cream md:text-7xl">
         {title}
       </h2>
@@ -74,9 +77,12 @@ export default function Food() {
       {/* ── Header ── */}
       <section className="flex flex-col justify-end bg-oxblood px-8 pt-32 pb-20 md:px-16 md:pt-48 md:pb-32">
         <div className="mx-auto w-full max-w-7xl">
-          <span className="text-xs tracking-[0.3em] text-amber uppercase">
-            The Menu
-          </span>
+          <div className="flex items-center gap-4">
+            <span className="block h-px w-8 shrink-0 bg-amber/50" />
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              The Menu
+            </span>
+          </div>
           <h1 className="mt-4 font-display text-6xl leading-none text-cream md:text-9xl">
             Food
           </h1>
