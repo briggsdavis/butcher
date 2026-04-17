@@ -78,6 +78,33 @@
   animation: pageIn 0.4s ease-out both;
 }
 
+/* ── Staff page animations ── */
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+  66% {
+    transform: translateY(6px) rotate(-1deg);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.staff-float {
+  animation: floatSlow 9s ease-in-out infinite;
+}
+
 /* ── Nav overlay animations ── */
 @keyframes overlayIn {
   from {
