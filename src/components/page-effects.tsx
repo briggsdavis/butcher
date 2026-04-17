@@ -1,8 +1,11 @@
 "use client"
 
+import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 
 export function PageEffects() {
+  const pathname = usePathname()
+
   useEffect(() => {
     // ── Fade-in on scroll ──────────────────────────────────────────────────
     const fadeObserver = new IntersectionObserver(
@@ -70,7 +73,7 @@ export function PageEffects() {
       wipeObserver.disconnect()
       window.removeEventListener("scroll", onScroll)
     }
-  }, [])
+  }, [pathname])
 
   return null
 }
