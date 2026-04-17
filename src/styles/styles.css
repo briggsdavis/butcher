@@ -62,7 +62,7 @@
   transform: translateY(0);
 }
 
-/* ── Page transition blur-in ── */
+/* ── Page transition blur-in / blur-out ── */
 @keyframes pageIn {
   from {
     opacity: 0;
@@ -74,8 +74,51 @@
   }
 }
 
+@keyframes pageOut {
+  from {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
 .page-transition {
   animation: pageIn 0.4s ease-out both;
+}
+
+.page-transition-out {
+  animation: pageOut 0.3s ease-in both;
+  pointer-events: none;
+}
+
+/* ── Staff page animations ── */
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+  66% {
+    transform: translateY(6px) rotate(-1deg);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.staff-float {
+  animation: floatSlow 9s ease-in-out infinite;
 }
 
 /* ── Nav overlay animations ── */
