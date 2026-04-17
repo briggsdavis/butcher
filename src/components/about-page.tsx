@@ -283,7 +283,7 @@ export function AboutPage() {
         style={{ minHeight: "80vh" }}
       >
         <div
-          data-parallax="hero-bg"
+          data-parallax="image-break"
           data-parallax-speed="0.1"
           className="absolute inset-x-0"
           style={{ top: "-10%", bottom: "-10%" }}
