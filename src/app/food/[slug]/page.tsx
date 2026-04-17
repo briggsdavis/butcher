@@ -86,7 +86,7 @@ export default async function FoodDetail({
             </div>
 
             {/* Name */}
-            <h1 className="mt-4 font-display leading-tight text-cream text-[1.8rem] md:text-[2.4rem] lg:text-[3rem]">
+            <h1 className="mt-4 font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
               {item.name}
             </h1>
 
@@ -173,10 +173,7 @@ export default async function FoodDetail({
                 text: "Had this on our anniversary dinner. The presentation alone was stunning.",
               },
             ].map((comment) => (
-              <div
-                key={comment.name}
-                className="border-b border-cream/10 py-8"
-              >
+              <div key={comment.name} className="border-b border-cream/10 py-8">
                 <div className="flex items-baseline justify-between">
                   <span className="font-display text-lg text-cream">
                     {comment.name}

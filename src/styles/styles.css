@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+  button {
+    @apply cursor-pointer disabled:cursor-not-allowed;
+  }
+}
+
 @theme inline {
   --font-cursive: var(--font-cursive);
   --font-display: var(--font-display);

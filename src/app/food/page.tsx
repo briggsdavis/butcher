@@ -133,7 +133,7 @@ export default function Food() {
             data-animate=""
             className="font-display text-4xl text-charcoal md:text-6xl"
           >
-            Ready to <span className="italic text-oxblood">dine</span>?
+            Ready to <span className="text-oxblood italic">dine</span>?
           </h2>
           <p
             data-animate=""

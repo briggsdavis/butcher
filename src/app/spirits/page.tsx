@@ -10,8 +10,16 @@ const SPIRITS = [
     category: "Whiskey",
     label: "The Cellar",
     items: [
-      { name: "Pappy Van Winkle 15yr", notes: "Buffalo, Kentucky", price: "65" },
-      { name: "Blanton's Original", notes: "Buffalo Trace, Kentucky", price: "22" },
+      {
+        name: "Pappy Van Winkle 15yr",
+        notes: "Buffalo, Kentucky",
+        price: "65",
+      },
+      {
+        name: "Blanton's Original",
+        notes: "Buffalo Trace, Kentucky",
+        price: "22",
+      },
       { name: "Hibiki 17yr", notes: "Suntory, Japan", price: "38" },
       { name: "Ardbeg 10yr", notes: "Islay, Scotland", price: "18" },
       { name: "Buffalo Trace", notes: "Buffalo Trace, Kentucky", price: "12" },
@@ -30,7 +38,11 @@ const SPIRITS = [
     category: "Rum & Mezcal",
     label: "Smoke & Cane",
     items: [
-      { name: "Diplomatico Reserva Exclusiva", notes: "Venezuela, 12yr", price: "16" },
+      {
+        name: "Diplomatico Reserva Exclusiva",
+        notes: "Venezuela, 12yr",
+        price: "16",
+      },
       { name: "El Silencio Espadin", notes: "Oaxaca, Mexico", price: "13" },
       { name: "Banhez Ensemble", notes: "Oaxaca, Mexico", price: "15" },
     ],
@@ -60,8 +72,8 @@ export default function Spirits() {
             Spirits
           </h1>
           <p className="mt-6 max-w-lg text-lg text-tan">
-            A thoughtfully assembled collection of world-class whiskeys,
-            gins, and rare pours — served neat, on rocks, or in classic form.
+            A thoughtfully assembled collection of world-class whiskeys, gins,
+            and rare pours — served neat, on rocks, or in classic form.
           </p>
         </div>
       </section>

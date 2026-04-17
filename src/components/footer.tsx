@@ -5,7 +5,7 @@ export function Footer() {
     <footer>
       <div className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
         <div className="grid md:grid-cols-3 md:divide-x md:divide-cream/10">
-          <div className="pb-12 md:pb-0 md:pr-16">
+          <div className="pb-12 md:pr-16 md:pb-0">
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Connect
             </span>
@@ -44,7 +44,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="border-t border-cream/10 pt-12 md:border-t-0 md:pl-16 md:pt-0">
+          <div className="border-t border-cream/10 pt-12 md:border-t-0 md:pt-0 md:pl-16">
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Visit
             </span>

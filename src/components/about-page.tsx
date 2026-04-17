@@ -66,15 +66,15 @@ export function AboutPage() {
           >
             Where Craft
             <br />
-            <span className="italic text-amber">Meets</span> Tradition
+            <span className="text-amber italic">Meets</span> Tradition
           </h1>
           <p
             className="mt-6 max-w-md text-lg leading-relaxed text-tan"
             style={{ animation: "fadeInUp 1s ease 0.6s both" }}
           >
-            A storied table in Pittsburgh&rsquo;s Penn Avenue corridor, built on the
-            belief that extraordinary evenings begin with extraordinary people
-            and uncompromising craft.
+            A storied table in Pittsburgh&rsquo;s Penn Avenue corridor, built on
+            the belief that extraordinary evenings begin with extraordinary
+            people and uncompromising craft.
           </p>
         </div>
       </section>
@@ -84,7 +84,10 @@ export function AboutPage() {
        * Inspired by Screenshot 1: large headline left, overlapping image
        * collage right, rotating ring badge bottom-right of images.
        */}
-      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
+      >
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div className="grid items-start gap-20 md:grid-cols-[1.2fr_1fr] md:gap-16">
             {/* Left: copy */}
@@ -103,7 +106,7 @@ export function AboutPage() {
                 Born from
                 <br />a reverence
                 <br />
-                <span className="italic text-tan">for craft</span>
+                <span className="text-tan italic">for craft</span>
               </h2>
               <p
                 data-animate=""
@@ -131,8 +134,8 @@ export function AboutPage() {
                 className="mt-10 border-l-2 border-amber/30 pl-6"
               >
                 <p className="font-cursive text-2xl leading-relaxed text-cream/70">
-                  &ldquo;The kind of place you come back to not just for the food,
-                  but for how it makes you feel.&rdquo;
+                  &ldquo;The kind of place you come back to not just for the
+                  food, but for how it makes you feel.&rdquo;
                 </p>
               </blockquote>
             </div>
@@ -163,7 +166,7 @@ export function AboutPage() {
               </div>
               {/* Rotating text ring (Screenshot 1 inspired) */}
               <div
-                className="absolute -bottom-14 right-0 z-10 h-28 w-28 text-amber/30 md:h-32 md:w-32"
+                className="absolute right-0 -bottom-14 z-10 h-28 w-28 text-amber/30 md:h-32 md:w-32"
                 style={{ animation: "spin 20s linear infinite" }}
                 aria-hidden="true"
               >
@@ -186,7 +189,10 @@ export function AboutPage() {
       </section>
 
       {/* ── 3. OUR VALUES ── */}
-      <section data-wipe className="relative overflow-hidden bg-oxblood py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-oxblood py-32 md:py-48"
+      >
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-20 flex items-center gap-4">
             <span className="block h-px w-10 shrink-0 bg-amber/50" />
@@ -203,7 +209,7 @@ export function AboutPage() {
           >
             {/* Ghost number clipped at bottom-right — below the text */}
             <div
-              className="pointer-events-none absolute -bottom-10 right-0 select-none font-display leading-none text-cream/[0.04]"
+              className="pointer-events-none absolute right-0 -bottom-10 font-display leading-none text-cream/[0.04] select-none"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
@@ -214,10 +220,10 @@ export function AboutPage() {
                 Excellence
               </h3>
               <p className="mt-2 text-lg leading-relaxed text-tan">
-                We hold every plate and every pour to the same exacting standard.
-                No table is less important than another. No dish leaves our kitchen
-                without meeting the mark. Excellence isn&rsquo;t an aspiration here
-                — it&rsquo;s the minimum.
+                We hold every plate and every pour to the same exacting
+                standard. No table is less important than another. No dish
+                leaves our kitchen without meeting the mark. Excellence
+                isn&rsquo;t an aspiration here — it&rsquo;s the minimum.
               </p>
             </div>
           </div>
@@ -229,7 +235,7 @@ export function AboutPage() {
             className="relative mb-16 overflow-hidden border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
           >
             <div
-              className="pointer-events-none absolute -bottom-10 -left-4 select-none font-display leading-none text-cream/[0.04]"
+              className="pointer-events-none absolute -bottom-10 -left-4 font-display leading-none text-cream/[0.04] select-none"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
@@ -242,8 +248,8 @@ export function AboutPage() {
               <p className="mt-6 text-lg leading-relaxed text-tan">
                 Every technique here is learned the slow way. Our chefs
                 apprenticed under demanding kitchens. Our bartenders spent years
-                studying whiskey before touching our bar. There are no shortcuts,
-                and we wouldn&rsquo;t have it any other way.
+                studying whiskey before touching our bar. There are no
+                shortcuts, and we wouldn&rsquo;t have it any other way.
               </p>
             </div>
           </div>
@@ -255,7 +261,7 @@ export function AboutPage() {
             className="relative overflow-hidden border-t border-cream/10 pt-12 md:w-3/5"
           >
             <div
-              className="pointer-events-none absolute -bottom-10 -right-4 select-none font-display leading-none text-cream/[0.04]"
+              className="pointer-events-none absolute -right-4 -bottom-10 font-display leading-none text-cream/[0.04] select-none"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
@@ -267,9 +273,9 @@ export function AboutPage() {
               </h3>
               <p className="mt-6 text-lg leading-relaxed text-tan">
                 The meal is the occasion. The experience is the memory. We study
-                our guests — their preferences, their celebrations, their habits.
-                Hospitality at Butcher and the Rye means you never have to ask
-                twice.
+                our guests — their preferences, their celebrations, their
+                habits. Hospitality at Butcher and the Rye means you never have
+                to ask twice.
               </p>
             </div>
           </div>
@@ -311,7 +317,10 @@ export function AboutPage() {
        * Right column uses circular portrait frames inspired by Screenshot 2's
        * "Our Bestsellers" product circle grid.
        */}
-      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
+      >
         <div
           data-parallax="content"
           data-parallax-speed="0.06"
@@ -335,7 +344,7 @@ export function AboutPage() {
                 <br />
                 behind
                 <br />
-                <span className="italic text-tan">the craft</span>
+                <span className="text-tan italic">the craft</span>
               </h2>
               <p
                 data-animate=""
@@ -343,8 +352,8 @@ export function AboutPage() {
                 className="mt-8 text-lg leading-relaxed text-tan"
               >
                 Our team brings decades of combined experience from some of the
-                country&rsquo;s finest kitchens, bars, and dining rooms. They are
-                passionate, rigorously trained, and united by one shared
+                country&rsquo;s finest kitchens, bars, and dining rooms. They
+                are passionate, rigorously trained, and united by one shared
                 devotion: excellence at every table, every night.
               </p>
               <Link
@@ -368,12 +377,14 @@ export function AboutPage() {
                   className="flex flex-col items-center text-center"
                 >
                   <div className="relative mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-amber/20 bg-gradient-to-br from-oxblood via-[#2a1015] to-charcoal">
-                    <span className="select-none font-display text-2xl text-amber/50">
+                    <span className="font-display text-2xl text-amber/50 select-none">
                       {member.initials}
                     </span>
-                    <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-amber/10" />
+                    <div className="absolute inset-0 rounded-full ring-1 ring-amber/10 ring-inset" />
                   </div>
-                  <p className="font-display text-xl text-cream">{member.name}</p>
+                  <p className="font-display text-xl text-cream">
+                    {member.name}
+                  </p>
                   <p className="mt-1 text-[10px] tracking-[0.2em] text-amber uppercase">
                     {member.role}
                   </p>
@@ -393,7 +404,10 @@ export function AboutPage() {
       </section>
 
       {/* ── 6. MENU HIGHLIGHTS ── */}
-      <section data-wipe className="relative overflow-hidden bg-oxblood py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-oxblood py-32 md:py-48"
+      >
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div className="mb-20 max-w-xl">
             <div data-animate="" className="flex items-center gap-4">
@@ -425,8 +439,8 @@ export function AboutPage() {
                 Bone-In Ribeye
               </h3>
               <p className="max-w-sm text-lg leading-relaxed text-tan">
-                Dry-aged 45 days, served with roasted marrow butter and
-                hand-cut truffle fries.
+                Dry-aged 45 days, served with roasted marrow butter and hand-cut
+                truffle fries.
               </p>
               <p className="mt-6 font-display text-3xl text-amber">$68</p>
             </div>
@@ -445,7 +459,7 @@ export function AboutPage() {
             <div
               data-animate=""
               data-delay="150"
-              className="border-b border-cream/10 py-10 md:border-b-0 md:border-r md:pr-16"
+              className="border-b border-cream/10 py-10 md:border-r md:border-b-0 md:pr-16"
             >
               <p className="mb-3 text-xs tracking-[0.3em] text-amber/60 uppercase">
                 Dessert
@@ -454,7 +468,8 @@ export function AboutPage() {
                 Bourbon Crème Brûlée
               </h3>
               <p className="leading-relaxed text-tan">
-                Housemade vanilla custard, Jefferson&rsquo;s Reserve, torched to order.
+                Housemade vanilla custard, Jefferson&rsquo;s Reserve, torched to
+                order.
               </p>
               <p className="mt-4 font-display text-2xl text-amber">$14</p>
             </div>
@@ -506,7 +521,10 @@ export function AboutPage() {
        * Large italic serif text, centered, with a small label above and a text
        * link below.
        */}
-      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
+      >
         <div
           data-parallax="content"
           data-parallax-speed="0.05"
@@ -540,7 +558,10 @@ export function AboutPage() {
       </section>
 
       {/* ── 8. PROVENANCE / SOURCING ── */}
-      <section data-wipe className="relative overflow-hidden bg-cream py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-cream py-32 md:py-48"
+      >
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div className="mb-20">
             <div data-animate="" className="flex items-center gap-4">
@@ -556,7 +577,7 @@ export function AboutPage() {
             >
               Where it
               <br />
-              <span className="italic text-oxblood">comes from</span>
+              <span className="text-oxblood italic">comes from</span>
             </h2>
           </div>
 
@@ -596,7 +617,10 @@ export function AboutPage() {
           <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--color-oxblood)_0%,_transparent_70%)]" />
         </div>
         <div className="relative z-10 text-center">
-          <div data-animate="" className="flex items-center justify-center gap-6">
+          <div
+            data-animate=""
+            className="flex items-center justify-center gap-6"
+          >
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Join Us
@@ -610,7 +634,7 @@ export function AboutPage() {
           >
             Reserve your
             <br />
-            <span className="italic text-tan">evening</span>
+            <span className="text-tan italic">evening</span>
           </h2>
           <p
             data-animate=""

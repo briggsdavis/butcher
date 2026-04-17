@@ -44,7 +44,7 @@ export function Nav() {
         {/* Centered title */}
         <Link
           href="/"
-          className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-display text-xl tracking-widest text-white uppercase md:text-2xl"
+          className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 font-display text-xl tracking-widest whitespace-nowrap text-white uppercase md:text-2xl"
         >
           Butcher & the Rye
         </Link>
@@ -68,7 +68,7 @@ export function Nav() {
           <button
             onClick={() => setOpen(false)}
             aria-label="Close navigation"
-            className="absolute left-8 top-7 z-10 flex h-6 w-6 items-center justify-center md:left-16"
+            className="absolute top-7 left-8 z-10 flex h-6 w-6 items-center justify-center md:left-16"
           >
             <span
               className="absolute block h-px w-5 bg-cream/60"
@@ -87,7 +87,7 @@ export function Nav() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="group flex items-baseline justify-end py-2 md:py-3"
+                className="group flex items-baseline self-end py-2 md:py-3"
                 style={{
                   animation: `menuItemIn 0.55s ease ${0.06 + i * 0.07}s both`,
                 }}
@@ -98,7 +98,7 @@ export function Nav() {
                     {link.num}
                   </span>
                   {/* 35% smaller from original: 5xl→2.04rem, 7xl→3.06rem, 8xl→4.08rem */}
-                  <span className="font-display leading-none text-cream text-[2.04rem] md:text-[3.06rem] lg:text-[4.08rem]">
+                  <span className="font-display text-[2.04rem] leading-none text-cream md:text-[3.06rem] lg:text-[4.08rem]">
                     {link.label}
                   </span>
                 </div>

@@ -10,20 +10,52 @@ const BEVERAGES = [
     category: "Cocktails",
     label: "Crafted",
     items: [
-      { name: "Old Fashioned", notes: "Bourbon, demerara, Angostura, orange", price: "16" },
-      { name: "Rye Negroni", notes: "Rye, Campari, sweet vermouth, expressed orange", price: "15" },
-      { name: "Smoked Manhattan", notes: "Bulleit Rye, Carpano Antica, cherry bitters", price: "18" },
-      { name: "Paper Plane", notes: "Bourbon, Aperol, Amaro Nonino, lemon", price: "16" },
-      { name: "Butcher's Mule", notes: "Vodka, ginger beer, lime, house bitters", price: "13" },
-      { name: "Seasonal Spritz", notes: "Ask your server for today's selection", price: "14" },
+      {
+        name: "Old Fashioned",
+        notes: "Bourbon, demerara, Angostura, orange",
+        price: "16",
+      },
+      {
+        name: "Rye Negroni",
+        notes: "Rye, Campari, sweet vermouth, expressed orange",
+        price: "15",
+      },
+      {
+        name: "Smoked Manhattan",
+        notes: "Bulleit Rye, Carpano Antica, cherry bitters",
+        price: "18",
+      },
+      {
+        name: "Paper Plane",
+        notes: "Bourbon, Aperol, Amaro Nonino, lemon",
+        price: "16",
+      },
+      {
+        name: "Butcher's Mule",
+        notes: "Vodka, ginger beer, lime, house bitters",
+        price: "13",
+      },
+      {
+        name: "Seasonal Spritz",
+        notes: "Ask your server for today's selection",
+        price: "14",
+      },
     ],
   },
   {
     category: "Wine — Red",
     label: "The Cellar",
     items: [
-      { name: "Caymus Cabernet Sauvignon", notes: "Napa Valley, 2021", price: "24" },
-      { name: "Château Pichon Baron", notes: "Pauillac, Bordeaux, 2018", price: "38" },
+      {
+        name: "Caymus Cabernet Sauvignon",
+        notes: "Napa Valley, 2021",
+        price: "24",
+      },
+      {
+        name: "Château Pichon Baron",
+        notes: "Pauillac, Bordeaux, 2018",
+        price: "38",
+      },
       { name: "Meiomi Pinot Noir", notes: "California, 2022", price: "15" },
     ],
   },
@@ -31,18 +63,38 @@ const BEVERAGES = [
     category: "White & Sparkling",
     label: "Light & Bright",
     items: [
-      { name: "Rombauer Chardonnay", notes: "Carneros, Napa, 2022", price: "18" },
-      { name: "Whispering Angel Rosé", notes: "Provence, France, 2023", price: "16" },
-      { name: "Ruinart Blanc de Blancs", notes: "Champagne, France, NV", price: "32" },
+      {
+        name: "Rombauer Chardonnay",
+        notes: "Carneros, Napa, 2022",
+        price: "18",
+      },
+      {
+        name: "Whispering Angel Rosé",
+        notes: "Provence, France, 2023",
+        price: "16",
+      },
+      {
+        name: "Ruinart Blanc de Blancs",
+        notes: "Champagne, France, NV",
+        price: "32",
+      },
     ],
   },
   {
     category: "Non-Alcoholic",
     label: "Zero Proof",
     items: [
-      { name: "House Lemonade", notes: "Fresh-squeezed, thyme, sea salt", price: "7" },
+      {
+        name: "House Lemonade",
+        notes: "Fresh-squeezed, thyme, sea salt",
+        price: "7",
+      },
       { name: "Sparkling Water", notes: "San Pellegrino, 750ml", price: "6" },
-      { name: "Cold Brew Coffee", notes: "Single origin, unsweetened", price: "6" },
+      {
+        name: "Cold Brew Coffee",
+        notes: "Single origin, unsweetened",
+        price: "6",
+      },
     ],
   },
 ]
@@ -62,8 +114,8 @@ export default function Beverages() {
             Beverages
           </h1>
           <p className="mt-6 max-w-lg text-lg text-tan">
-            Cocktails crafted with intention, wines chosen for the table,
-            and non-alcoholic options that stand on their own.
+            Cocktails crafted with intention, wines chosen for the table, and
+            non-alcoholic options that stand on their own.
           </p>
         </div>
       </section>

@@ -92,7 +92,10 @@ export default function Home() {
       </section>
 
       {/* ── About ── */}
-      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
+      >
         <div
           data-parallax="content"
           data-parallax-speed="0.06"
@@ -201,12 +204,8 @@ export default function Home() {
       {/* ── Cocktails & Spirits ── */}
       <section data-wipe className="relative bg-charcoal py-32 md:py-48">
         <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
-          <div
-            data-parallax="content"
-            data-parallax-speed="0.14"
-            data-animate=""
-          >
-            <div className="self-center -rotate-2 bg-cream p-4 pb-0 shadow-2xl md:p-6 md:pb-0">
+          <div data-animate="">
+            <div className="-rotate-2 self-center bg-cream p-4 pb-0 shadow-2xl md:p-6 md:pb-0">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
                   src="/craft-old-fashioned.jpg"
@@ -289,8 +288,6 @@ export default function Home() {
           </h2>
           <div className="mt-20 space-y-8">
             <div
-              data-parallax="content"
-              data-parallax-speed="0.08"
               data-animate=""
               data-delay="150"
               className="flex flex-wrap items-end justify-center gap-8"
@@ -311,8 +308,6 @@ export default function Home() {
               ))}
             </div>
             <div
-              data-parallax="content"
-              data-parallax-speed="0.12"
               data-animate=""
               data-delay="250"
               className="flex flex-wrap items-end justify-center gap-8"
@@ -349,7 +344,10 @@ export default function Home() {
           <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--color-oxblood)_0%,_transparent_70%)]" />
         </div>
         <div className="relative z-10 text-center">
-          <div data-animate="" className="flex items-center justify-center gap-6">
+          <div
+            data-animate=""
+            className="flex items-center justify-center gap-6"
+          >
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
               Join Us

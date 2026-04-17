@@ -8,7 +8,7 @@ import { STAFF } from "~/data/staff"
 export function StaffPage() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [revealed, setRevealed] = useState<boolean[]>(() =>
-    new Array(STAFF.length).fill(false),
+    Array.from({ length: STAFF.length }, () => false),
   )
   const sectionRefs = useRef<(HTMLElement | null)[]>([])
 
@@ -50,13 +50,16 @@ export function StaffPage() {
          * px-8 md:px-16 aligns content left edge with the nav hamburger button.
          * pt-24 clears the absolute-positioned nav bar (~62px tall).
          */}
-        <aside className="relative overflow-hidden bg-oxblood px-8 pb-16 pt-24 md:sticky md:top-0 md:flex md:h-screen md:w-[42%] md:flex-col md:justify-between md:px-16 md:pb-16 md:pt-24">
+        <aside className="relative overflow-hidden bg-oxblood px-8 pt-24 pb-16 md:sticky md:top-0 md:flex md:h-screen md:w-[42%] md:flex-col md:justify-between md:px-16 md:pt-24 md:pb-16">
           {/* Ambient decorative layer */}
-          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div
+            className="pointer-events-none absolute inset-0"
+            aria-hidden="true"
+          >
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(213,137,54,0.1)_0%,_transparent_65%)]" />
-            <div className="staff-float absolute right-0 top-24 h-56 w-px bg-gradient-to-b from-transparent via-amber/20 to-transparent" />
+            <div className="staff-float absolute top-24 right-0 h-56 w-px bg-gradient-to-b from-transparent via-amber/20 to-transparent" />
             <div
-              className="staff-float absolute bottom-28 right-8 h-36 w-px bg-gradient-to-b from-transparent via-amber/10 to-transparent"
+              className="staff-float absolute right-8 bottom-28 h-36 w-px bg-gradient-to-b from-transparent via-amber/10 to-transparent"
               style={{ animationDelay: "3.2s" }}
             />
             <div
@@ -64,7 +67,7 @@ export function StaffPage() {
               style={{ animationDelay: "1.6s" }}
             />
             <div
-              className="staff-float absolute right-14 top-52 size-1.5 rotate-45 bg-amber/20"
+              className="staff-float absolute top-52 right-14 size-1.5 rotate-45 bg-amber/20"
               style={{ animationDelay: "4.1s" }}
             />
           </div>
@@ -78,7 +81,10 @@ export function StaffPage() {
               </span>
             </div>
 
-            <h1 className="font-display leading-tight text-cream" style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.4rem)" }}>
+            <h1
+              className="font-display leading-tight text-cream"
+              style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.4rem)" }}
+            >
               The People
               <br />
               <span
@@ -160,7 +166,9 @@ export function StaffPage() {
               {/* Top rule */}
               <div
                 className={`mb-8 h-px w-14 origin-left bg-amber/30 transition-all duration-700 ${
-                  revealed[i] ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
+                  revealed[i]
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0"
                 }`}
               />
 
@@ -177,7 +185,9 @@ export function StaffPage() {
                   {/* Outer accent border */}
                   <div
                     className={`absolute -inset-[7px] rounded-sm border border-amber/20 transition-all duration-700 ${
-                      revealed[i] ? "scale-100 opacity-100" : "scale-95 opacity-0"
+                      revealed[i]
+                        ? "scale-100 opacity-100"
+                        : "scale-95 opacity-0"
                     }`}
                     style={{ transitionDelay: "320ms" }}
                   />
@@ -197,7 +207,7 @@ export function StaffPage() {
                       className="object-cover object-top"
                     />
                     {/* Bottom fade */}
-                    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-charcoal/20 to-transparent" />
+                    <div className="absolute right-0 bottom-0 left-0 h-16 bg-gradient-to-t from-charcoal/20 to-transparent" />
                   </div>
                 </div>
               </div>
@@ -265,7 +275,7 @@ export function StaffPage() {
           <h2 className="font-display text-5xl leading-tight text-charcoal md:text-7xl">
             Reserve your
             <br />
-            <span className="italic text-oxblood">evening</span>
+            <span className="text-oxblood italic">evening</span>
           </h2>
           <p className="mx-auto mt-8 max-w-md text-lg text-charcoal/60">
             Our team is ready to welcome you. Book your table at Butcher and the

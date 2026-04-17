@@ -1,5 +1,9 @@
 import { Metadata } from "next"
-import { Cedarville_Cursive, DM_Sans, Libre_Baskerville } from "next/font/google"
+import {
+  Cedarville_Cursive,
+  DM_Sans,
+  Libre_Baskerville,
+} from "next/font/google"
 import { ReactNode } from "react"
 import { Footer } from "~/components/footer"
 import { Nav } from "~/components/nav"
@@ -8,7 +12,10 @@ import { PageTransition } from "~/components/page-transition"
 import { SmoothScroll } from "~/components/smooth-scroll"
 import "~/styles/styles.css"
 
-const cursive = Cedarville_Cursive({ weight: "400", variable: "--font-cursive" })
+const cursive = Cedarville_Cursive({
+  weight: "400",
+  variable: "--font-cursive",
+})
 const display = Libre_Baskerville({ variable: "--font-display" })
 const sans = DM_Sans({ variable: "--font-sans" })
 
