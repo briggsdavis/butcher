@@ -3,6 +3,7 @@ import { Heart } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { MenuNav } from "~/components/menu-nav"
 import { DESSERTS, MAINS, MenuItem, SIDES, STARTERS } from "~/data/food"
 
 export const metadata: Metadata = {
@@ -92,6 +93,8 @@ export default function Food() {
           </p>
         </div>
       </section>
+
+      <MenuNav />
 
       {/* ── Menu Sections ── */}
       <section className="bg-charcoal py-24 md:py-32">

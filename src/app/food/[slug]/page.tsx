@@ -43,40 +43,35 @@ export default async function FoodDetail({
   return (
     <>
       {/* ── Split layout: image left / details right ── */}
-      <section className="relative min-h-screen bg-charcoal">
-        <div className="grid min-h-screen md:grid-cols-2">
+      <section className="bg-charcoal px-8 pt-28 pb-16 md:px-16 md:pt-36 md:pb-24">
+        <div className="grid md:grid-cols-2 md:gap-16">
           {/* ── Left: image ── */}
-          <div className="relative flex min-h-[55vw] items-center justify-center p-10 md:min-h-screen md:p-14">
-            <div className="relative h-full w-full overflow-hidden" style={{ minHeight: "inherit" }}>
-              <Image
-                src={`/food/${slug}.jpg`}
-                alt={item.name}
-                fill
-                priority
-                className="object-cover"
-              />
-              {/* Bottom gradient for caption legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+          <div className="relative min-h-[55vw] md:min-h-0">
+            <Image
+              src={`/food/${slug}.jpg`}
+              alt={item.name}
+              fill
+              priority
+              className="object-cover"
+            />
+            {/* Bottom gradient for caption legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
 
-              {/* Caption */}
-              <div className="absolute bottom-0 left-0 p-6 md:p-10">
-                <p className="font-cursive text-xl text-cream md:text-2xl">
-                  {item.name}
-                </p>
-                <span className="mt-2 block text-amber/70">✦</span>
-              </div>
+            {/* Caption */}
+            <div className="absolute bottom-0 left-0 p-6 md:p-8">
+              <p className="font-cursive text-xl text-cream md:text-2xl">
+                {item.name}
+              </p>
+              <span className="mt-2 block text-amber/70">✦</span>
             </div>
           </div>
 
-          {/* Vertical divider */}
-          <div className="absolute left-1/2 top-0 hidden h-full w-px bg-cream/10 md:block" />
-
           {/* ── Right: details ── */}
-          <div className="flex flex-col justify-center px-8 py-16 md:px-16 md:py-24 md:pt-32">
+          <div className="flex flex-col justify-center pt-10 md:pt-0">
             {/* Back */}
             <Link
               href="/food"
-              className="mb-12 flex w-fit items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
+              className="mb-10 flex w-fit items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
             >
               <ArrowLeft className="size-3.5" />
               Back to menu
@@ -102,7 +97,7 @@ export default async function FoodDetail({
               </p>
             )}
 
-            {/* Detail rows — inspired by reference design */}
+            {/* Detail rows */}
             <div className="mt-10 border-t border-cream/10">
               {details.map(({ label, value }) => (
                 <div
