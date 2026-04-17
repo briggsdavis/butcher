@@ -50,7 +50,7 @@ export function AboutPage() {
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
-        <div className="relative z-10 w-full max-w-7xl px-8 pb-24 md:px-16">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-24 md:px-16">
           <p
             className="mb-5 text-xs tracking-[0.3em] text-amber uppercase"
             style={{ animation: "fadeInUp 1s ease 0.15s both" }}
@@ -199,72 +199,79 @@ export function AboutPage() {
           <div
             data-animate=""
             data-delay="0"
-            className="relative mb-16 grid items-start gap-8 border-t border-cream/10 pt-12 md:grid-cols-2 md:gap-16"
+            className="relative mb-16 overflow-hidden border-t border-cream/10 pt-12"
           >
+            {/* Ghost number clipped at bottom-right — below the text */}
             <div
-              className="pointer-events-none absolute -top-6 right-0 select-none font-display leading-none text-cream/[0.05]"
+              className="pointer-events-none absolute -bottom-10 right-0 select-none font-display leading-none text-cream/[0.04]"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
               01
             </div>
-            <h3 className="font-display text-6xl text-cream md:text-7xl">
-              Excellence
-            </h3>
-            <p className="mt-2 text-lg leading-relaxed text-tan">
-              We hold every plate and every pour to the same exacting standard.
-              No table is less important than another. No dish leaves our kitchen
-              without meeting the mark. Excellence isn&rsquo;t an aspiration here
-              — it&rsquo;s the minimum.
-            </p>
+            <div className="relative z-10 grid items-start gap-8 md:grid-cols-2 md:gap-16">
+              <h3 className="font-display text-6xl text-cream md:text-7xl">
+                Excellence
+              </h3>
+              <p className="mt-2 text-lg leading-relaxed text-tan">
+                We hold every plate and every pour to the same exacting standard.
+                No table is less important than another. No dish leaves our kitchen
+                without meeting the mark. Excellence isn&rsquo;t an aspiration here
+                — it&rsquo;s the minimum.
+              </p>
+            </div>
           </div>
 
           {/* Value 2 — offset right */}
           <div
             data-animate=""
             data-delay="150"
-            className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
+            className="relative mb-16 overflow-hidden border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
           >
             <div
-              className="pointer-events-none absolute -top-6 -left-8 select-none font-display leading-none text-cream/[0.05]"
+              className="pointer-events-none absolute -bottom-10 -left-4 select-none font-display leading-none text-cream/[0.04]"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
               02
             </div>
-            <h3 className="font-display text-6xl text-cream md:text-7xl">
-              Craft
-            </h3>
-            <p className="mt-6 text-lg leading-relaxed text-tan">
-              Every technique here is learned the slow way. Our chefs
-              apprenticed under demanding kitchens. Our bartenders spent years
-              studying whiskey before touching our bar. There are no shortcuts,
-              and we wouldn&rsquo;t have it any other way.
-            </p>
+            <div className="relative z-10">
+              <h3 className="font-display text-6xl text-cream md:text-7xl">
+                Craft
+              </h3>
+              <p className="mt-6 text-lg leading-relaxed text-tan">
+                Every technique here is learned the slow way. Our chefs
+                apprenticed under demanding kitchens. Our bartenders spent years
+                studying whiskey before touching our bar. There are no shortcuts,
+                and we wouldn&rsquo;t have it any other way.
+              </p>
+            </div>
           </div>
 
           {/* Value 3 — offset left */}
           <div
             data-animate=""
             data-delay="300"
-            className="relative border-t border-cream/10 pt-12 md:w-3/5"
+            className="relative overflow-hidden border-t border-cream/10 pt-12 md:w-3/5"
           >
             <div
-              className="pointer-events-none absolute -top-6 -right-4 select-none font-display leading-none text-cream/[0.05]"
+              className="pointer-events-none absolute -bottom-10 -right-4 select-none font-display leading-none text-cream/[0.04]"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
               03
             </div>
-            <h3 className="font-display text-6xl text-cream md:text-7xl">
-              Hospitality
-            </h3>
-            <p className="mt-6 text-lg leading-relaxed text-tan">
-              The meal is the occasion. The experience is the memory. We study
-              our guests — their preferences, their celebrations, their habits.
-              Hospitality at Butcher and the Rye means you never have to ask
-              twice.
-            </p>
+            <div className="relative z-10">
+              <h3 className="font-display text-6xl text-cream md:text-7xl">
+                Hospitality
+              </h3>
+              <p className="mt-6 text-lg leading-relaxed text-tan">
+                The meal is the occasion. The experience is the memory. We study
+                our guests — their preferences, their celebrations, their habits.
+                Hospitality at Butcher and the Rye means you never have to ask
+                twice.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -272,8 +279,8 @@ export function AboutPage() {
       {/* ── 4. FULL-WIDTH IMAGE BREAK ── */}
       <section
         data-wipe
-        className="relative overflow-hidden"
-        style={{ height: "65vh" }}
+        className="relative overflow-hidden bg-charcoal"
+        style={{ minHeight: "80vh" }}
       >
         <div
           data-parallax="hero-bg"

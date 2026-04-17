@@ -5,6 +5,7 @@ export type StaffMember = {
   years: string
   initials: string
   specialty: string
+  headshot: string
 }
 
 export const STAFF: StaffMember[] = [
@@ -15,6 +16,7 @@ export const STAFF: StaffMember[] = [
     years: "12 years",
     initials: "MC",
     specialty: "Dry-aged beef & modern American cuisine",
+    headshot: "https://randomuser.me/api/portraits/men/42.jpg",
   },
   {
     name: "Elena Vasquez",
@@ -23,6 +25,7 @@ export const STAFF: StaffMember[] = [
     years: "8 years",
     initials: "EV",
     specialty: "Braises & whole-animal butchery",
+    headshot: "https://randomuser.me/api/portraits/women/28.jpg",
   },
   {
     name: "James O'Brien",
@@ -31,6 +34,7 @@ export const STAFF: StaffMember[] = [
     years: "15 years",
     initials: "JO",
     specialty: "Prime and Wagyu beef selection",
+    headshot: "https://randomuser.me/api/portraits/men/15.jpg",
   },
   {
     name: "Sophia Reeves",
@@ -39,6 +43,7 @@ export const STAFF: StaffMember[] = [
     years: "10 years",
     initials: "SR",
     specialty: "Whiskey-forward cocktails & house infusions",
+    headshot: "https://randomuser.me/api/portraits/women/55.jpg",
   },
   {
     name: "Dominic Rossi",
@@ -47,6 +52,7 @@ export const STAFF: StaffMember[] = [
     years: "9 years",
     initials: "DR",
     specialty: "Old World wine & American single-malt",
+    headshot: "https://randomuser.me/api/portraits/men/33.jpg",
   },
   {
     name: "Amara Washington",
@@ -55,6 +61,7 @@ export const STAFF: StaffMember[] = [
     years: "11 years",
     initials: "AW",
     specialty: "Guest experience & team development",
+    headshot: "https://randomuser.me/api/portraits/women/68.jpg",
   },
   {
     name: "Claire Fontaine",
@@ -63,6 +70,7 @@ export const STAFF: StaffMember[] = [
     years: "7 years",
     initials: "CF",
     specialty: "Seasonal tarts, chocolate & house ice cream",
+    headshot: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
     name: "Theo Nakamura",
@@ -71,5 +79,6 @@ export const STAFF: StaffMember[] = [
     years: "6 years",
     initials: "TN",
     specialty: "Wine pairing & elevated front-of-house service",
+    headshot: "https://randomuser.me/api/portraits/men/22.jpg",
   },
 ]
