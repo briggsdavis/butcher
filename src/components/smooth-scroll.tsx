@@ -1,14 +1,19 @@
 "use client"
 
 import Lenis from "lenis"
-import { useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { useEffect, useRef } from "react"
 
 export function SmoothScroll() {
+  const lenisRef = useRef<Lenis | null>(null)
+  const pathname = usePathname()
+
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.1, // 0–1: lower = more weight, 0.1 is subtle
+      lerp: 0.1,
       smoothWheel: true,
     })
+    lenisRef.current = lenis
 
     let raf: number
     const tick = (time: number) => {
@@ -20,8 +25,15 @@ export function SmoothScroll() {
     return () => {
       cancelAnimationFrame(raf)
       lenis.destroy()
+      lenisRef.current = null
     }
   }, [])
+
+  // On every navigation, tell Lenis to jump to top instantly.
+  // window.scrollTo alone doesn't work because Lenis owns the scroll target.
+  useEffect(() => {
+    lenisRef.current?.scrollTo(0, { immediate: true })
+  }, [pathname])
 
   return null
 }

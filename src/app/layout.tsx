@@ -5,7 +5,6 @@ import { Footer } from "~/components/footer"
 import { Nav } from "~/components/nav"
 import { PageEffects } from "~/components/page-effects"
 import { PageTransition } from "~/components/page-transition"
-import { ScrollReset } from "~/components/scroll-reset"
 import { SmoothScroll } from "~/components/smooth-scroll"
 import "~/styles/styles.css"
 
@@ -28,7 +27,6 @@ export default function Layout({ children }: { children: ReactNode }) {
     >
       <body className="bg-charcoal font-sans text-cream">
         <SmoothScroll />
-        <ScrollReset />
         <PageEffects />
         <Nav />
         <PageTransition>{children}</PageTransition>
