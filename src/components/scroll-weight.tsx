@@ -6,48 +6,44 @@ export function ScrollWeight() {
   useEffect(() => {
     if ("ontouchstart" in window) return
 
-    let targetY = window.scrollY
-    let currentY = window.scrollY
-    let active = false
+    let target = window.scrollY
+    let current = window.scrollY
+    let raf = 0
+    let idle = true
 
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+    const tick = () => {
+      current += (target - current) * 0.18
+      window.scrollTo(0, current)
+      if (Math.abs(target - current) > 0.5) {
+        raf = requestAnimationFrame(tick)
+      } else {
+        window.scrollTo(0, Math.round(target))
+        // Re-sync from actual position so browser max-clamping is respected
+        current = window.scrollY
+        target = current
+        idle = true
+      }
+    }
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
-      if (!active) currentY = window.scrollY
-      const max = document.documentElement.scrollHeight - window.innerHeight
-      // No speed reduction — just a very light smooth tail
-      targetY = Math.max(0, Math.min(targetY + e.deltaY, max))
-      if (!active) {
-        active = true
-        requestAnimationFrame(loop)
+      // Only sync from real scroll when we're not mid-animation
+      if (idle) {
+        current = window.scrollY
+        target = current
+        idle = false
       }
-    }
-
-    const loop = () => {
-      currentY = lerp(currentY, targetY, 0.5)
-      window.scrollTo(0, currentY)
-      if (Math.abs(targetY - currentY) > 0.5) {
-        requestAnimationFrame(loop)
-      } else {
-        currentY = targetY
-        active = false
-      }
-    }
-
-    const onScroll = () => {
-      if (!active) {
-        targetY = window.scrollY
-        currentY = window.scrollY
-      }
+      target += e.deltaY
+      // Floor at 0, no upper clamp — browser handles the max via scrollTo
+      target = Math.max(0, target)
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(tick)
     }
 
     window.addEventListener("wheel", onWheel, { passive: false })
-    window.addEventListener("scroll", onScroll, { passive: true })
-
     return () => {
       window.removeEventListener("wheel", onWheel)
-      window.removeEventListener("scroll", onScroll)
+      cancelAnimationFrame(raf)
     }
   }, [])
 
