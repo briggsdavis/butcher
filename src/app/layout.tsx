@@ -4,6 +4,7 @@ import { ReactNode } from "react"
 import { Footer } from "~/components/footer"
 import { Nav } from "~/components/nav"
 import { PageEffects } from "~/components/page-effects"
+import { PageTransition } from "~/components/page-transition"
 import { SmoothScroll } from "~/components/smooth-scroll"
 import "~/styles/styles.css"
 
@@ -28,7 +29,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <SmoothScroll />
         <PageEffects />
         <Nav />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
       </body>
     </html>

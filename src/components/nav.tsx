@@ -97,8 +97,8 @@ export function Nav() {
                   <span className="font-sans text-xs text-cream/25">
                     {link.num}
                   </span>
-                  {/* 20% smaller: 5xl→2.4rem, 7xl→3.6rem, 8xl→4.8rem */}
-                  <span className="font-display leading-none text-cream text-[2.4rem] md:text-[3.6rem] lg:text-[4.8rem]">
+                  {/* 35% smaller from original: 5xl→2.04rem, 7xl→3.06rem, 8xl→4.08rem */}
+                  <span className="font-display leading-none text-cream text-[2.04rem] md:text-[3.06rem] lg:text-[4.08rem]">
                     {link.label}
                   </span>
                 </div>

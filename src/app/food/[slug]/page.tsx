@@ -46,23 +46,25 @@ export default async function FoodDetail({
       <section className="relative min-h-screen bg-charcoal">
         <div className="grid min-h-screen md:grid-cols-2">
           {/* ── Left: image ── */}
-          <div className="relative min-h-[55vw] md:min-h-screen">
-            <Image
-              src={`/food/${slug}.jpg`}
-              alt={item.name}
-              fill
-              priority
-              className="object-cover"
-            />
-            {/* Bottom gradient for caption legibility */}
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+          <div className="relative flex min-h-[55vw] items-center justify-center p-10 md:min-h-screen md:p-14">
+            <div className="relative h-full w-full overflow-hidden" style={{ minHeight: "inherit" }}>
+              <Image
+                src={`/food/${slug}.jpg`}
+                alt={item.name}
+                fill
+                priority
+                className="object-cover"
+              />
+              {/* Bottom gradient for caption legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
 
-            {/* Caption */}
-            <div className="absolute bottom-0 left-0 p-8 md:p-12">
-              <p className="font-cursive text-2xl text-cream md:text-3xl">
-                {item.name}
-              </p>
-              <span className="mt-2 block text-amber/70">✦</span>
+              {/* Caption */}
+              <div className="absolute bottom-0 left-0 p-6 md:p-10">
+                <p className="font-cursive text-xl text-cream md:text-2xl">
+                  {item.name}
+                </p>
+                <span className="mt-2 block text-amber/70">✦</span>
+              </div>
             </div>
           </div>
 
@@ -70,7 +72,7 @@ export default async function FoodDetail({
           <div className="absolute left-1/2 top-0 hidden h-full w-px bg-cream/10 md:block" />
 
           {/* ── Right: details ── */}
-          <div className="flex flex-col justify-center px-8 py-16 md:px-14 md:py-24 md:pt-32">
+          <div className="flex flex-col justify-center px-8 py-16 md:px-16 md:py-24 md:pt-32">
             {/* Back */}
             <Link
               href="/food"
@@ -89,13 +91,13 @@ export default async function FoodDetail({
             </div>
 
             {/* Name */}
-            <h1 className="mt-4 font-display text-4xl leading-tight text-cream md:text-5xl lg:text-6xl">
+            <h1 className="mt-4 font-display leading-tight text-cream text-[1.8rem] md:text-[2.4rem] lg:text-[3rem]">
               {item.name}
             </h1>
 
             {/* Description */}
             {item.description && (
-              <p className="mt-5 max-w-sm text-base leading-relaxed text-tan">
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-tan">
                 {item.description}
               </p>
             )}
@@ -117,14 +119,11 @@ export default async function FoodDetail({
               ))}
             </div>
 
-            {/* Price + reserve CTA */}
-            <div className="mt-10 flex flex-wrap items-center gap-6">
-              <span className="font-display text-4xl text-amber">
-                ${item.price}
-              </span>
+            {/* Reserve CTA */}
+            <div className="mt-10">
               <Link
                 href="/#reservations"
-                className="flex items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
+                className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
               >
                 Reserve a Table
                 <Heart className="size-3.5" />
@@ -136,7 +135,7 @@ export default async function FoodDetail({
 
       {/* ── Comments ── */}
       <section className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-7xl">
           {/* Section label */}
           <div className="flex items-center gap-4">
             <span className="block h-px w-8 shrink-0 bg-amber/40" />
