@@ -114,14 +114,17 @@ export default async function FoodDetail({
               ))}
             </div>
 
-            {/* Reserve CTA */}
-            <div className="mt-10">
+            {/* Actions */}
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <button className="flex items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber">
+                <Heart className="size-3.5" />
+                Like this item
+              </button>
               <Link
                 href="/#reservations"
                 className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
               >
                 Reserve a Table
-                <Heart className="size-3.5" />
               </Link>
             </div>
           </div>
