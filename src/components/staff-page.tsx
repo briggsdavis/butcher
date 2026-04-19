@@ -51,39 +51,19 @@ export function StaffPage() {
          * pt-24 clears the absolute-positioned nav bar (~62px tall).
          */}
         <aside className="relative overflow-hidden bg-oxblood px-8 pt-24 pb-16 md:sticky md:top-0 md:flex md:h-screen md:w-[42%] md:flex-col md:justify-between md:px-16 md:pt-24 md:pb-16">
-          {/* Ambient decorative layer */}
-          <div
-            className="pointer-events-none absolute inset-0"
-            aria-hidden="true"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(213,137,54,0.1)_0%,_transparent_65%)]" />
-            <div className="staff-float absolute top-24 right-0 h-56 w-px bg-gradient-to-b from-transparent via-amber/20 to-transparent" />
-            <div
-              className="staff-float absolute right-8 bottom-28 h-36 w-px bg-gradient-to-b from-transparent via-amber/10 to-transparent"
-              style={{ animationDelay: "3.2s" }}
-            />
-            <div
-              className="staff-float absolute bottom-44 left-6 size-2 rotate-45 border border-amber/15"
-              style={{ animationDelay: "1.6s" }}
-            />
-            <div
-              className="staff-float absolute top-52 right-14 size-1.5 rotate-45 bg-amber/20"
-              style={{ animationDelay: "4.1s" }}
-            />
-          </div>
-
-          {/* Top content — text scaled 20% smaller than original */}
-          <div className="relative z-10">
-            <div className="mb-6 flex items-center gap-4">
+          {/* Top content */}
+          <div className="relative z-10 text-center">
+            <div className="mb-6 flex items-center justify-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-[10px] tracking-[0.3em] text-amber uppercase">
+              <span className="text-[11.5px] tracking-[0.3em] text-amber uppercase">
                 Our Staff
               </span>
+              <span className="block h-px w-10 shrink-0 bg-amber/50" />
             </div>
 
             <h1
               className="font-display leading-tight text-cream"
-              style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.4rem)" }}
+              style={{ fontSize: "clamp(2.185rem, 4.025vw, 2.76rem)" }}
             >
               The People
               <br />
@@ -98,20 +78,20 @@ export function StaffPage() {
             </h1>
 
             <div
-              className="mt-2 h-px w-14 bg-amber/35"
+              className="mx-auto mt-2 h-px w-14 bg-amber/35"
               style={{
                 animation: "drawLine 1s ease 0.7s both",
-                transformOrigin: "left",
+                transformOrigin: "center",
               }}
             />
 
-            <p className="mt-8 text-xs leading-relaxed text-tan">
+            <p className="mt-8 text-[0.86rem] leading-relaxed text-tan">
               Every dish, cocktail, and evening at Butcher and the Rye is shaped
               by people who have devoted their lives to their craft — rigorously
               trained, endlessly inspired, and driven by one goal: to give you
               something extraordinary.
             </p>
-            <p className="mt-3 text-xs leading-relaxed text-tan">
+            <p className="mt-3 text-[0.86rem] leading-relaxed text-tan">
               From our Executive Chef to our floor staff, everyone here shares
               the same relentless commitment to excellence. We don't settle for
               good. We pursue perfect, every single night.
@@ -119,7 +99,7 @@ export function StaffPage() {
           </div>
 
           {/* Progress indicator — desktop only */}
-          <div className="relative z-10 mt-12 hidden items-end gap-6 md:flex">
+          <div className="relative z-10 mt-12 hidden items-end justify-center gap-6 md:flex">
             <div className="flex flex-col items-center gap-[5px]">
               {STAFF.map((_, i) => (
                 <div
@@ -134,7 +114,7 @@ export function StaffPage() {
                 />
               ))}
             </div>
-            <div>
+            <div className="text-center">
               <p className="font-display">
                 <span
                   className="text-amber"
