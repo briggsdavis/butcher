@@ -16,6 +16,7 @@ const MENU_LINKS = [
 
 export function Nav() {
   const [open, setOpen] = useState(false)
+  const [closing, setClosing] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
@@ -23,6 +24,14 @@ export function Nav() {
       document.body.style.overflow = ""
     }
   }, [open])
+
+  function closeMenu() {
+    setClosing(true)
+    setTimeout(() => {
+      setOpen(false)
+      setClosing(false)
+    }, 300)
+  }
 
   return (
     <>
@@ -62,11 +71,13 @@ export function Nav() {
       {open && (
         <div
           className="fixed inset-0 z-[100] flex flex-col bg-charcoal"
-          style={{ animation: "overlayIn 0.3s ease both" }}
+          style={{
+            animation: `${closing ? "overlayOut" : "overlayIn"} 0.3s ease both`,
+          }}
         >
           {/* Close */}
           <button
-            onClick={() => setOpen(false)}
+            onClick={closeMenu}
             aria-label="Close navigation"
             className="absolute top-7 left-8 z-10 flex h-6 w-6 items-center justify-center md:left-16"
           >
@@ -86,7 +97,7 @@ export function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setOpen(false)}
+                onClick={closeMenu}
                 className="group flex items-baseline self-end py-2 md:py-3"
                 style={{
                   animation: `menuItemIn 0.55s ease ${0.06 + i * 0.07}s both`,
