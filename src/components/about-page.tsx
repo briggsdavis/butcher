@@ -201,11 +201,11 @@ export function AboutPage() {
             </span>
           </div>
 
-          {/* Value 1 — full width */}
+          {/* Value 1 — offset right */}
           <div
             data-animate=""
             data-delay="0"
-            className="relative mb-16 border-t border-cream/10 pt-12"
+            className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
           >
             <div
               className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
@@ -227,11 +227,11 @@ export function AboutPage() {
             </div>
           </div>
 
-          {/* Value 2 — offset right */}
+          {/* Value 2 — centered */}
           <div
             data-animate=""
             data-delay="150"
-            className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
+            className="relative mb-16 border-t border-cream/10 pt-12 md:mx-auto md:w-3/5"
           >
             <div
               className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
