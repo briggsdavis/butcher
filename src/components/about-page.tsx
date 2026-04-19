@@ -201,25 +201,24 @@ export function AboutPage() {
             </span>
           </div>
 
-          {/* Value 1 — full width, 2-col split */}
+          {/* Value 1 — full width */}
           <div
             data-animate=""
             data-delay="0"
-            className="relative mb-16 overflow-hidden border-t border-cream/10 pt-12"
+            className="relative mb-16 border-t border-cream/10 pt-12"
           >
-            {/* Ghost number clipped at bottom-right — below the text */}
             <div
-              className="pointer-events-none absolute right-0 -bottom-10 font-display leading-none text-cream/[0.04] select-none"
+              className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
               01
             </div>
-            <div className="relative z-10 grid items-start gap-8 md:grid-cols-2 md:gap-16">
+            <div className="relative z-10">
               <h3 className="font-display text-6xl text-cream md:text-7xl">
                 Excellence
               </h3>
-              <p className="mt-2 text-lg leading-relaxed text-tan">
+              <p className="mt-6 text-lg leading-relaxed text-tan">
                 We hold every plate and every pour to the same exacting
                 standard. No table is less important than another. No dish
                 leaves our kitchen without meeting the mark. Excellence
@@ -232,10 +231,10 @@ export function AboutPage() {
           <div
             data-animate=""
             data-delay="150"
-            className="relative mb-16 overflow-hidden border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
+            className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
           >
             <div
-              className="pointer-events-none absolute -bottom-10 -left-4 font-display leading-none text-cream/[0.04] select-none"
+              className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
@@ -258,10 +257,10 @@ export function AboutPage() {
           <div
             data-animate=""
             data-delay="300"
-            className="relative overflow-hidden border-t border-cream/10 pt-12 md:w-3/5"
+            className="relative border-t border-cream/10 pt-12 md:w-3/5"
           >
             <div
-              className="pointer-events-none absolute -right-4 -bottom-10 font-display leading-none text-cream/[0.04] select-none"
+              className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
               style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
               aria-hidden="true"
             >
