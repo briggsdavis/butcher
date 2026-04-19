@@ -1,9 +1,8 @@
 import slugify from "@sindresorhus/slugify"
-import { ArrowLeft } from "lucide-react"
 import { Metadata } from "next"
-import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
+import { Suspense } from "react"
+import { BeverageDetail } from "./beverage-detail"
 
 const CATEGORY_IMAGES: Record<string, string> = {
   Cocktails: "/craft-old-fashioned.jpg",
@@ -124,7 +123,7 @@ export function generateMetadata({
   })
 }
 
-export default async function BeverageDetail({
+export default async function BeverageDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -134,75 +133,13 @@ export default async function BeverageDetail({
   if (!item) notFound()
 
   const image = CATEGORY_IMAGES[item.category] ?? "/barmood.jpg"
+  const currentIndex = ALL_BEVERAGES.findIndex((i) => slugify(i.name) === slug)
+  const nextItem = ALL_BEVERAGES[currentIndex + 1] ?? null
+  const nextSlug = nextItem ? slugify(nextItem.name) : null
 
   return (
-    <>
-      {/* Full-width image */}
-      <div className="relative h-[65vh] w-full">
-        <Image
-          src={image}
-          alt={item.name}
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-charcoal" />
-      </div>
-
-      {/* Details */}
-      <section className="bg-charcoal px-8 pb-16 md:px-16 md:pb-24">
-        <div className="mx-auto max-w-2xl pt-10 md:pt-14">
-
-          <Link
-            href="/beverages"
-            className="mb-10 flex w-fit items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
-          >
-            <ArrowLeft className="size-3.5" />
-            Back to beverages
-          </Link>
-
-          <div className="flex items-center gap-4">
-            <span className="block h-px w-8 shrink-0 bg-amber/50" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              {item.category}
-            </span>
-          </div>
-
-          <h1 className="mt-4 font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
-            {item.name}
-          </h1>
-
-          <p className="mt-5 text-sm leading-relaxed text-tan">{item.notes}</p>
-
-          <div className="mt-10 border-t border-cream/10">
-            <div className="flex items-center justify-between border-b border-cream/10 py-5">
-              <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
-                Price
-                <span className="mx-3 text-cream/20">—</span>
-                ${item.price}
-              </span>
-              <span className="text-lg text-cream/20">+</span>
-            </div>
-            <div className="flex items-center justify-between border-b border-cream/10 py-5">
-              <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
-                Category
-                <span className="mx-3 text-cream/20">—</span>
-                {item.category}
-              </span>
-              <span className="text-lg text-cream/20">+</span>
-            </div>
-          </div>
-
-          <div className="mt-10">
-            <Link
-              href="/#reservations"
-              className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
-            >
-              Reserve a Table
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
+    <Suspense>
+      <BeverageDetail item={item} image={image} nextSlug={nextSlug} />
+    </Suspense>
   )
 }

@@ -53,7 +53,7 @@ export function FoodDetail({ item, slug, nextSlug }: Props) {
   return (
     <div ref={wrapperRef} className={exiting ? "food-exit" : ""}>
       {/* ── Split layout: image left / details right ── */}
-      <section className="bg-charcoal px-8 pt-28 pb-16 md:px-16 md:pt-36 md:pb-24">
+      <section className="bg-charcoal min-h-screen px-8 pt-28 pb-16 md:px-16 md:pt-36 md:pb-24">
         <div className="grid md:grid-cols-2 md:gap-16">
 
           {/* ── Left: image ── */}
