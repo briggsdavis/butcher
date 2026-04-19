@@ -1,0 +1,215 @@
+"use client"
+
+import { ArrowLeft, ArrowRight } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
+import type { MenuItem } from "~/data/food"
+
+interface Props {
+  item: MenuItem
+  slug: string
+  nextSlug: string | null
+}
+
+export function FoodDetail({ item, slug, nextSlug }: Props) {
+  const router = useRouter()
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const [likes, setLikes] = useState(item.likes)
+  const [liked, setLiked] = useState(false)
+  const [exiting, setExiting] = useState(false)
+
+  // Apply slide-in-from-right when arriving via "Next item"
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get("dir") !== "next") return
+    const el = wrapperRef.current
+    if (!el) return
+    el.classList.add("food-enter")
+    const onEnd = () => el.classList.remove("food-enter")
+    el.addEventListener("animationend", onEnd, { once: true })
+  }, [])
+
+  function handleLike() {
+    if (liked) return
+    setLikes((n) => n + 1)
+    setLiked(true)
+  }
+
+  function handleNext() {
+    if (!nextSlug || exiting) return
+    setExiting(true)
+    setTimeout(() => {
+      router.push(`/food/${nextSlug}?dir=next`)
+    }, 350)
+  }
+
+  const staticDetails = [
+    { label: "Course", value: item.category },
+    { label: "Price", value: `$${item.price}` },
+  ]
+
+  return (
+    <div ref={wrapperRef} className={exiting ? "food-exit" : ""}>
+      {/* ── Full-width image (nav overlays at z-50) ── */}
+      <div className="relative h-[65vh] w-full">
+        <Image
+          src={`/food/${slug}.jpg`}
+          alt={item.name}
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-charcoal" />
+      </div>
+
+      {/* ── Details (full-width charcoal) ── */}
+      <section className="bg-charcoal px-8 pb-16 md:px-16 md:pb-24">
+        <div className="mx-auto max-w-2xl pt-10 md:pt-14">
+
+          {/* Back / Next on the same row */}
+          <div className="mb-10 flex items-center justify-between">
+            <Link
+              href="/food"
+              className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
+            >
+              <ArrowLeft className="size-3.5" />
+              Back to menu
+            </Link>
+            {nextSlug && (
+              <button
+                onClick={handleNext}
+                disabled={exiting}
+                className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
+              >
+                Next item
+                <ArrowRight className="size-3.5" />
+              </button>
+            )}
+          </div>
+
+          {/* Name */}
+          <h1 className="font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
+            {item.name}
+          </h1>
+
+          {/* Description */}
+          {item.description && (
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-tan">
+              {item.description}
+            </p>
+          )}
+
+          {/* Detail rows */}
+          <div className="mt-10 border-t border-cream/10">
+            {staticDetails.map(({ label, value }) => (
+              <div
+                key={label}
+                className="flex items-center justify-between border-b border-cream/10 py-5"
+              >
+                <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
+                  {label}
+                  <span className="mx-3 text-cream/20">—</span>
+                  {value}
+                </span>
+                <span className="text-lg text-cream/20">+</span>
+              </div>
+            ))}
+
+            {/* Guests Loved — click to like */}
+            <button
+              onClick={handleLike}
+              className="group flex w-full items-center justify-between border-b border-cream/10 py-5 text-left transition-colors hover:border-amber/20"
+            >
+              <span
+                className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
+                  liked ? "text-amber" : "text-cream/45"
+                }`}
+              >
+                Guests Loved
+                <span className="mx-3 text-cream/20">—</span>
+                {likes}
+              </span>
+              <span
+                className={`text-base transition-all duration-300 ${
+                  liked
+                    ? "scale-110 text-amber"
+                    : "text-cream/20 group-hover:text-cream/50"
+                }`}
+              >
+                ♥
+              </span>
+            </button>
+          </div>
+
+          {/* Reserve CTA */}
+          <div className="mt-10">
+            <Link
+              href="/#reservations"
+              className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
+            >
+              Reserve a Table
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Comments ── */}
+      <section className="bg-oxblood px-8 py-16 md:px-16 md:py-24">
+        <div>
+          <div className="flex items-center gap-4">
+            <span className="block h-px w-8 shrink-0 bg-amber/40" />
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Guest Notes
+            </span>
+          </div>
+          <h2 className="mt-3 font-display text-3xl text-cream">Comments</h2>
+
+          <div className="mt-8 border-b border-cream/10 pb-8">
+            <textarea
+              placeholder="Share your thoughts on this dish..."
+              className="w-full resize-none bg-transparent text-cream placeholder:text-tan/40 focus:outline-none"
+              rows={3}
+            />
+            <div className="mt-4 flex justify-end">
+              <button className="bg-amber px-6 py-2 text-xs tracking-[0.3em] text-charcoal uppercase transition-colors hover:bg-cream">
+                Post
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-8 space-y-0">
+            {[
+              {
+                name: "Sarah M.",
+                time: "2 days ago",
+                text: "Absolutely incredible. The preparation was perfect and the flavors were unforgettable.",
+              },
+              {
+                name: "James K.",
+                time: "1 week ago",
+                text: "This is why we keep coming back. Worth every penny.",
+              },
+              {
+                name: "Elena R.",
+                time: "2 weeks ago",
+                text: "Had this on our anniversary dinner. The presentation alone was stunning.",
+              },
+            ].map((comment) => (
+              <div key={comment.name} className="border-b border-cream/10 py-8">
+                <div className="flex items-baseline justify-between">
+                  <span className="font-display text-lg text-cream">
+                    {comment.name}
+                  </span>
+                  <span className="text-xs text-tan/40">{comment.time}</span>
+                </div>
+                <p className="mt-2 text-tan">{comment.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

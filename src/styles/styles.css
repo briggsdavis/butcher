@@ -101,6 +101,27 @@
   pointer-events: none;
 }
 
+/* ── Food item slide transition ── */
+@keyframes foodExit {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(-5%); opacity: 0; }
+}
+
+@keyframes foodEnter {
+  from { transform: translateX(4%); }
+  to   { transform: translateX(0); }
+}
+
+.food-exit {
+  animation: foodExit 0.35s ease-in forwards;
+  pointer-events: none;
+}
+
+.food-enter {
+  transform: translateX(4%);
+  animation: foodEnter 0.45s ease-out forwards;
+}
+
 /* ── Staff page animations ── */
 @keyframes floatSlow {
   0%,
