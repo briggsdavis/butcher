@@ -52,21 +52,24 @@ export function FoodDetail({ item, slug, nextSlug }: Props) {
 
   return (
     <div ref={wrapperRef} className={exiting ? "food-exit" : ""}>
-      {/* ── Full-width image (nav overlays at z-50) ── */}
-      <div className="relative h-[65vh] w-full">
-        <Image
-          src={`/food/${slug}.jpg`}
-          alt={item.name}
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-charcoal" />
-      </div>
+      {/* ── Split layout: image left / details right ── */}
+      <section className="bg-charcoal px-8 pt-28 pb-16 md:px-16 md:pt-36 md:pb-24">
+        <div className="grid md:grid-cols-2 md:gap-16">
 
-      {/* ── Details (full-width charcoal) ── */}
-      <section className="bg-charcoal px-8 pb-16 md:px-16 md:pb-24">
-        <div className="mx-auto max-w-2xl pt-10 md:pt-14">
+          {/* ── Left: image ── */}
+          <div className="relative min-h-[55vw] md:min-h-0">
+            <Image
+              src={`/food/${slug}.jpg`}
+              alt={item.name}
+              fill
+              priority
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent" />
+          </div>
+
+          {/* ── Right: details ── */}
+          <div className="flex flex-col justify-center pt-10 md:pt-0">
 
           {/* Back / Next on the same row */}
           <div className="mb-10 flex items-center justify-between">
@@ -151,6 +154,7 @@ export function FoodDetail({ item, slug, nextSlug }: Props) {
             >
               Reserve a Table
             </Link>
+          </div>
           </div>
         </div>
       </section>
