@@ -122,6 +122,26 @@
   animation: foodEnter 0.45s ease-out forwards;
 }
 
+@keyframes foodExitPrev {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(5%); opacity: 0; }
+}
+
+@keyframes foodEnterPrev {
+  from { transform: translateX(-4%); }
+  to   { transform: translateX(0); }
+}
+
+.food-exit-prev {
+  animation: foodExitPrev 0.35s ease-in forwards;
+  pointer-events: none;
+}
+
+.food-enter-prev {
+  transform: translateX(-4%);
+  animation: foodEnterPrev 0.45s ease-out forwards;
+}
+
 /* ── Staff page animations ── */
 @keyframes floatSlow {
   0%,
