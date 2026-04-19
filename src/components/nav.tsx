@@ -50,6 +50,13 @@ export function Nav() {
           <span className="block h-px w-3.5 bg-white" />
         </button>
 
+        {/* Desktop quick links */}
+        <div className="relative z-10 ml-7 hidden items-center gap-6 md:flex">
+          <Link href="/food" className="text-[10px] tracking-[0.22em] text-white/60 uppercase transition-colors hover:text-amber">Food</Link>
+          <Link href="/spirits" className="text-[10px] tracking-[0.22em] text-white/60 uppercase transition-colors hover:text-amber">Spirits</Link>
+          <Link href="/beverages" className="text-[10px] tracking-[0.22em] text-white/60 uppercase transition-colors hover:text-amber">Beverages</Link>
+        </div>
+
         {/* Centered title */}
         <Link
           href="/"

@@ -2,6 +2,29 @@ import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
+const MENU_HIGHLIGHTS = [
+  {
+    name: "Bone-In Ribeye",
+    description: "Dry-aged 45 days, served with roasted marrow butter",
+    price: "68",
+  },
+  {
+    name: "Braised Short Rib",
+    description: "Red wine reduction, root vegetables, horseradish gremolata",
+    price: "42",
+  },
+  {
+    name: "Pan-Seared Duck Breast",
+    description: "Cherry gastrique, wild rice, charred broccolini",
+    price: "38",
+  },
+  {
+    name: "Grilled Lamb Chops",
+    description: "Herb crust, mint chimichurri, fingerling potatoes",
+    price: "54",
+  },
+]
+
 const FEATURED_STAFF = [
   { name: "Marcus Chen", role: "Executive Chef", initials: "MC" },
   { name: "Sophia Reeves", role: "Bar Director", initials: "SR" },
@@ -403,16 +426,17 @@ export function AboutPage() {
       </section>
 
       {/* ── 6. MENU HIGHLIGHTS ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-oxblood py-32 md:py-48"
-      >
-        <div className="mx-auto max-w-7xl px-8 md:px-16">
+      <section data-wipe className="bg-oxblood py-32 md:py-48">
+        <div
+          data-parallax="content"
+          data-parallax-speed="0.05"
+          className="mx-auto max-w-7xl px-8 md:px-16"
+        >
           <div className="mb-20 max-w-xl">
             <div data-animate="" className="flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
               <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                On the Table
+                From the Kitchen
               </span>
             </div>
             <h2
@@ -423,80 +447,34 @@ export function AboutPage() {
               The menu
             </h2>
           </div>
-
-          {/* Feature item — Bone-In Ribeye */}
+          <div className="grid gap-0 divide-y divide-cream/10">
+            {MENU_HIGHLIGHTS.map((item, i) => (
+              <div
+                key={item.name}
+                data-animate=""
+                data-delay={String(i * 80)}
+                className="group grid items-baseline gap-4 py-8 md:grid-cols-[1fr_2fr_auto]"
+              >
+                <h3 className="font-display text-3xl text-cream transition-colors group-hover:text-amber">
+                  {item.name}
+                </h3>
+                <p className="text-tan">{item.description}</p>
+                <span className="font-display text-2xl text-amber">
+                  ${item.price}
+                </span>
+              </div>
+            ))}
+          </div>
           <div
             data-animate=""
-            data-delay="0"
-            className="grid items-stretch border-t border-cream/10 md:grid-cols-[1.6fr_1fr]"
-          >
-            <div className="py-12 md:pr-16">
-              <p className="mb-4 text-xs tracking-[0.3em] text-amber/60 uppercase">
-                Signature
-              </p>
-              <h3 className="mb-5 font-display text-5xl text-cream md:text-6xl">
-                Bone-In Ribeye
-              </h3>
-              <p className="max-w-sm text-lg leading-relaxed text-tan">
-                Dry-aged 45 days, served with roasted marrow butter and hand-cut
-                truffle fries.
-              </p>
-              <p className="mt-6 font-display text-3xl text-amber">$68</p>
-            </div>
-            <div className="relative min-h-[260px] overflow-hidden">
-              <Image
-                src="/food/bone-in-ribeye.jpg"
-                alt="Bone-In Ribeye"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Two smaller items */}
-          <div className="grid border-t border-cream/10 md:grid-cols-2">
-            <div
-              data-animate=""
-              data-delay="150"
-              className="border-b border-cream/10 py-10 md:border-r md:border-b-0 md:pr-16"
-            >
-              <p className="mb-3 text-xs tracking-[0.3em] text-amber/60 uppercase">
-                Dessert
-              </p>
-              <h3 className="mb-3 font-display text-3xl text-cream">
-                Bourbon Crème Brûlée
-              </h3>
-              <p className="leading-relaxed text-tan">
-                Housemade vanilla custard, Jefferson&rsquo;s Reserve, torched to
-                order.
-              </p>
-              <p className="mt-4 font-display text-2xl text-amber">$14</p>
-            </div>
-            <div data-animate="" data-delay="250" className="py-10 md:pl-16">
-              <p className="mb-3 text-xs tracking-[0.3em] text-amber/60 uppercase">
-                Starter
-              </p>
-              <h3 className="mb-3 font-display text-3xl text-cream">
-                Charred Octopus
-              </h3>
-              <p className="leading-relaxed text-tan">
-                Smoked paprika, fingerling potato, pickled fresno, salsa verde.
-              </p>
-              <p className="mt-4 font-display text-2xl text-amber">$24</p>
-            </div>
-          </div>
-
-          {/* Page CTAs */}
-          <div
-            data-animate=""
-            data-delay="380"
+            data-delay="400"
             className="mt-16 flex flex-wrap gap-4"
           >
             <Link
               href="/food"
               className="border border-amber px-8 py-4 text-xs tracking-[0.3em] text-amber uppercase transition-colors hover:bg-amber hover:text-charcoal"
             >
-              Full Menu
+              Food
             </Link>
             <Link
               href="/spirits"
