@@ -50,15 +50,14 @@ export function StaffPage() {
          * px-8 md:px-16 aligns content left edge with the nav hamburger button.
          * pt-24 clears the absolute-positioned nav bar (~62px tall).
          */}
-        <aside className="relative overflow-hidden bg-oxblood px-8 pt-24 pb-16 md:sticky md:top-0 md:flex md:h-screen md:w-[42%] md:flex-col md:justify-between md:px-16 md:pt-24 md:pb-16">
+        <aside className="relative overflow-hidden bg-oxblood px-8 pt-24 pb-16 md:sticky md:top-0 md:flex md:h-screen md:w-[42%] md:flex-col md:justify-center md:px-16 md:pt-24 md:pb-16">
           {/* Top content */}
-          <div className="relative z-10 text-center">
-            <div className="mb-6 flex items-center justify-center gap-4">
+          <div className="relative z-10">
+            <div className="mb-6 flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
               <span className="text-[11.5px] tracking-[0.3em] text-amber uppercase">
                 Our Staff
               </span>
-              <span className="block h-px w-10 shrink-0 bg-amber/50" />
             </div>
 
             <h1
@@ -78,10 +77,10 @@ export function StaffPage() {
             </h1>
 
             <div
-              className="mx-auto mt-2 h-px w-14 bg-amber/35"
+              className="mt-2 h-px w-14 bg-amber/35"
               style={{
                 animation: "drawLine 1s ease 0.7s both",
-                transformOrigin: "center",
+                transformOrigin: "left",
               }}
             />
 
@@ -99,7 +98,7 @@ export function StaffPage() {
           </div>
 
           {/* Progress indicator — desktop only */}
-          <div className="relative z-10 mt-12 hidden items-end justify-center gap-6 md:flex">
+          <div className="relative z-10 mt-12 hidden items-end gap-6 md:flex">
             <div className="flex flex-col items-center gap-[5px]">
               {STAFF.map((_, i) => (
                 <div
@@ -114,7 +113,7 @@ export function StaffPage() {
                 />
               ))}
             </div>
-            <div className="text-center">
+            <div>
               <p className="font-display">
                 <span
                   className="text-amber"
