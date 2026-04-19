@@ -1,8 +1,18 @@
+import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
 import { MenuNav } from "~/components/menu-nav"
 
 export const metadata: Metadata = {
   title: "Beverages",
+}
+
+const CATEGORY_IMAGES: Record<string, string> = {
+  Cocktails: "/craft-old-fashioned.jpg",
+  "Wine — Red": "/whiskey-pour.jpg",
+  "White & Sparkling": "/barmood1.jpg",
+  "Non-Alcoholic": "/barmood.jpg",
 }
 
 const BEVERAGES = [
@@ -124,6 +134,7 @@ export default function Beverages() {
 
       {BEVERAGES.map(({ category, label, items }, bi) => {
         const dark = bi % 2 === 0
+        const thumb = CATEGORY_IMAGES[category] ?? "/barmood.jpg"
         return (
           <section
             key={category}
@@ -152,30 +163,50 @@ export default function Beverages() {
                 className={`mt-10 divide-y border-t ${dark ? "divide-charcoal/10 border-charcoal/10" : "divide-cream/10 border-cream/10"}`}
               >
                 {items.map((item, i) => (
-                  <div
+                  <Link
                     key={item.name}
+                    href={`/beverages/${slugify(item.name)}`}
                     data-animate=""
                     data-delay={String(180 + i * 60)}
-                    className="flex items-baseline justify-between py-5"
+                    className={`group flex items-center gap-5 py-4 transition-colors duration-200 ${
+                      dark ? "hover:bg-charcoal/[0.04]" : "hover:bg-cream/[0.04]"
+                    }`}
                   >
-                    <div>
+                    {/* Square thumbnail — scales 20% on hover */}
+                    <div className="relative size-14 shrink-0 overflow-hidden">
+                      <Image
+                        src={thumb}
+                        alt={item.name}
+                        fill
+                        className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.2]"
+                      />
+                    </div>
+
+                    {/* Name + notes */}
+                    <div className="flex flex-1 items-baseline justify-between">
+                      <div>
+                        <span
+                          className={`font-display text-base transition-colors duration-200 ${
+                            dark
+                              ? "text-charcoal group-hover:text-oxblood"
+                              : "text-cream group-hover:text-amber"
+                          }`}
+                        >
+                          {item.name}
+                        </span>
+                        <span
+                          className={`ml-4 text-xs ${dark ? "text-charcoal/45" : "text-tan/50"}`}
+                        >
+                          {item.notes}
+                        </span>
+                      </div>
                       <span
-                        className={`font-display text-base ${dark ? "text-charcoal" : "text-cream"}`}
+                        className={`font-display text-[0.9rem] ${dark ? "text-oxblood" : "text-amber"}`}
                       >
-                        {item.name}
-                      </span>
-                      <span
-                        className={`ml-4 text-xs ${dark ? "text-charcoal/45" : "text-tan/50"}`}
-                      >
-                        {item.notes}
+                        ${item.price}
                       </span>
                     </div>
-                    <span
-                      className={`font-display text-[0.9rem] ${dark ? "text-oxblood" : "text-amber"}`}
-                    >
-                      ${item.price}
-                    </span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
