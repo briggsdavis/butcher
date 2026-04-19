@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
-interface BeverageItem {
+interface SpiritItem {
   name: string
   notes: string
   price: string
@@ -14,13 +14,13 @@ interface BeverageItem {
 }
 
 interface Props {
-  item: BeverageItem
+  item: SpiritItem
   image: string
   prevSlug: string | null
   nextSlug: string | null
 }
 
-export function BeverageDetail({ item, image, prevSlug, nextSlug }: Props) {
+export function SpiritDetail({ item, image, prevSlug, nextSlug }: Props) {
   const router = useRouter()
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [exitDir, setExitDir] = useState<"next" | "prev" | null>(null)
@@ -39,13 +39,13 @@ export function BeverageDetail({ item, image, prevSlug, nextSlug }: Props) {
   function handleNext() {
     if (!nextSlug || exitDir) return
     setExitDir("next")
-    setTimeout(() => router.push(`/beverages/${nextSlug}?dir=next`), 350)
+    setTimeout(() => router.push(`/spirits/${nextSlug}?dir=next`), 350)
   }
 
   function handlePrev() {
     if (!prevSlug || exitDir) return
     setExitDir("prev")
-    setTimeout(() => router.push(`/beverages/${prevSlug}?dir=prev`), 350)
+    setTimeout(() => router.push(`/spirits/${prevSlug}?dir=prev`), 350)
   }
 
   const exitClass =
@@ -75,11 +75,11 @@ export function BeverageDetail({ item, image, prevSlug, nextSlug }: Props) {
             {/* Nav row */}
             <div className="mb-10 flex items-center justify-between">
               <Link
-                href="/beverages"
+                href="/spirits"
                 className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
               >
                 <ArrowLeft className="size-3.5" />
-                Back to beverages
+                Back to spirits
               </Link>
               <div className="flex items-center gap-6">
                 {prevSlug && (

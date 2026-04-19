@@ -10,24 +10,25 @@ import type { MenuItem } from "~/data/food"
 interface Props {
   item: MenuItem
   slug: string
+  prevSlug: string | null
   nextSlug: string | null
 }
 
-export function FoodDetail({ item, slug, nextSlug }: Props) {
+export function FoodDetail({ item, slug, prevSlug, nextSlug }: Props) {
   const router = useRouter()
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [likes, setLikes] = useState(item.likes)
   const [liked, setLiked] = useState(false)
-  const [exiting, setExiting] = useState(false)
+  const [exitDir, setExitDir] = useState<"next" | "prev" | null>(null)
 
-  // Apply slide-in-from-right when arriving via "Next item"
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    if (params.get("dir") !== "next") return
+    const dir = params.get("dir")
     const el = wrapperRef.current
-    if (!el) return
-    el.classList.add("food-enter")
-    const onEnd = () => el.classList.remove("food-enter")
+    if (!el || (dir !== "next" && dir !== "prev")) return
+    const cls = dir === "next" ? "food-enter" : "food-enter-prev"
+    el.classList.add(cls)
+    const onEnd = () => el.classList.remove(cls)
     el.addEventListener("animationend", onEnd, { once: true })
   }, [])
 
@@ -38,11 +39,15 @@ export function FoodDetail({ item, slug, nextSlug }: Props) {
   }
 
   function handleNext() {
-    if (!nextSlug || exiting) return
-    setExiting(true)
-    setTimeout(() => {
-      router.push(`/food/${nextSlug}?dir=next`)
-    }, 350)
+    if (!nextSlug || exitDir) return
+    setExitDir("next")
+    setTimeout(() => router.push(`/food/${nextSlug}?dir=next`), 350)
+  }
+
+  function handlePrev() {
+    if (!prevSlug || exitDir) return
+    setExitDir("prev")
+    setTimeout(() => router.push(`/food/${prevSlug}?dir=prev`), 350)
   }
 
   const staticDetails = [
@@ -50,8 +55,11 @@ export function FoodDetail({ item, slug, nextSlug }: Props) {
     { label: "Price", value: `$${item.price}` },
   ]
 
+  const exitClass =
+    exitDir === "next" ? "food-exit" : exitDir === "prev" ? "food-exit-prev" : ""
+
   return (
-    <div ref={wrapperRef} className={exiting ? "food-exit" : ""}>
+    <div ref={wrapperRef} className={exitClass}>
       {/* ── Split layout: image left / details right ── */}
       <section className="bg-charcoal flex min-h-screen flex-col justify-center px-8 pt-28 pb-10 md:px-16">
         <div className="grid md:grid-cols-2 md:gap-16">
@@ -71,90 +79,102 @@ export function FoodDetail({ item, slug, nextSlug }: Props) {
           {/* ── Right: details ── */}
           <div className="flex flex-col justify-center pt-10 md:pt-0">
 
-          {/* Back / Next on the same row */}
-          <div className="mb-10 flex items-center justify-between">
-            <Link
-              href="/food"
-              className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
-            >
-              <ArrowLeft className="size-3.5" />
-              Back to menu
-            </Link>
-            {nextSlug && (
-              <button
-                onClick={handleNext}
-                disabled={exiting}
-                className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
+            {/* Nav row */}
+            <div className="mb-10 flex items-center justify-between">
+              <Link
+                href="/food"
+                className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber"
               >
-                Next item
-                <ArrowRight className="size-3.5" />
-              </button>
-            )}
-          </div>
-
-          {/* Name */}
-          <h1 className="font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
-            {item.name}
-          </h1>
-
-          {/* Description */}
-          {item.description && (
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-tan">
-              {item.description}
-            </p>
-          )}
-
-          {/* Detail rows */}
-          <div className="mt-10 border-t border-cream/10">
-            {staticDetails.map(({ label, value }) => (
-              <div
-                key={label}
-                className="flex items-center justify-between border-b border-cream/10 py-5"
-              >
-                <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
-                  {label}
-                  <span className="mx-3 text-cream/20">—</span>
-                  {value}
-                </span>
-                <span className="text-lg text-cream/20">+</span>
+                <ArrowLeft className="size-3.5" />
+                Back to menu
+              </Link>
+              <div className="flex items-center gap-6">
+                {prevSlug && (
+                  <button
+                    onClick={handlePrev}
+                    disabled={!!exitDir}
+                    className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
+                  >
+                    <ArrowLeft className="size-3.5" />
+                    Prev
+                  </button>
+                )}
+                {nextSlug && (
+                  <button
+                    onClick={handleNext}
+                    disabled={!!exitDir}
+                    className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/50 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
+                  >
+                    Next
+                    <ArrowRight className="size-3.5" />
+                  </button>
+                )}
               </div>
-            ))}
+            </div>
 
-            {/* Guests Loved — click to like */}
-            <button
-              onClick={handleLike}
-              className="group flex w-full items-center justify-between border-b border-cream/10 py-5 text-left transition-colors hover:border-amber/20"
-            >
-              <span
-                className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
-                  liked ? "text-amber" : "text-cream/45"
-                }`}
-              >
-                Guests Loved
-                <span className="mx-3 text-cream/20">—</span>
-                {likes}
-              </span>
-              <span
-                className={`text-base transition-all duration-300 ${
-                  liked
-                    ? "scale-110 text-amber"
-                    : "text-cream/20 group-hover:text-cream/50"
-                }`}
-              >
-                ♥
-              </span>
-            </button>
-          </div>
+            {/* Name */}
+            <h1 className="font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
+              {item.name}
+            </h1>
 
-          {/* Reserve CTA */}
-          <div className="mt-10">
-            <Link
-              href="/#reservations"
-              className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
-            >
-              Reserve a Table
-            </Link>
-          </div>
+            {/* Description */}
+            {item.description && (
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-tan">
+                {item.description}
+              </p>
+            )}
+
+            {/* Detail rows */}
+            <div className="mt-10 border-t border-cream/10">
+              {staticDetails.map(({ label, value }) => (
+                <div
+                  key={label}
+                  className="flex items-center justify-between border-b border-cream/10 py-5"
+                >
+                  <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
+                    {label}
+                    <span className="mx-3 text-cream/20">—</span>
+                    {value}
+                  </span>
+                  <span className="text-lg text-cream/20">+</span>
+                </div>
+              ))}
+
+              {/* Guests Loved — click to like */}
+              <button
+                onClick={handleLike}
+                className="group flex w-full items-center justify-between border-b border-cream/10 py-5 text-left transition-colors hover:border-amber/20"
+              >
+                <span
+                  className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
+                    liked ? "text-amber" : "text-cream/45"
+                  }`}
+                >
+                  Guests Loved
+                  <span className="mx-3 text-cream/20">—</span>
+                  {likes}
+                </span>
+                <span
+                  className={`text-base transition-all duration-300 ${
+                    liked
+                      ? "scale-110 text-amber"
+                      : "text-cream/20 group-hover:text-cream/50"
+                  }`}
+                >
+                  ♥
+                </span>
+              </button>
+            </div>
+
+            {/* Reserve CTA */}
+            <div className="mt-10">
+              <Link
+                href="/#reservations"
+                className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
+              >
+                Reserve a Table
+              </Link>
+            </div>
           </div>
         </div>
       </section>

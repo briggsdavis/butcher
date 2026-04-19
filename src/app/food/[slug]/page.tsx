@@ -34,12 +34,14 @@ export default async function FoodDetailPage({
   if (!item) notFound()
 
   const currentIndex = ALL_FOOD.findIndex((i) => slugify(i.name) === slug)
+  const prevItem = ALL_FOOD[currentIndex - 1] ?? null
   const nextItem = ALL_FOOD[currentIndex + 1] ?? null
+  const prevSlug = prevItem ? slugify(prevItem.name) : null
   const nextSlug = nextItem ? slugify(nextItem.name) : null
 
   return (
     <Suspense>
-      <FoodDetail item={item} slug={slug} nextSlug={nextSlug} />
+      <FoodDetail item={item} slug={slug} prevSlug={prevSlug} nextSlug={nextSlug} />
     </Suspense>
   )
 }

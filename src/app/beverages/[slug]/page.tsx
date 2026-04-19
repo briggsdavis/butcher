@@ -134,12 +134,14 @@ export default async function BeverageDetailPage({
 
   const image = CATEGORY_IMAGES[item.category] ?? "/barmood.jpg"
   const currentIndex = ALL_BEVERAGES.findIndex((i) => slugify(i.name) === slug)
+  const prevItem = ALL_BEVERAGES[currentIndex - 1] ?? null
   const nextItem = ALL_BEVERAGES[currentIndex + 1] ?? null
+  const prevSlug = prevItem ? slugify(prevItem.name) : null
   const nextSlug = nextItem ? slugify(nextItem.name) : null
 
   return (
     <Suspense>
-      <BeverageDetail item={item} image={image} nextSlug={nextSlug} />
+      <BeverageDetail item={item} image={image} prevSlug={prevSlug} nextSlug={nextSlug} />
     </Suspense>
   )
 }
