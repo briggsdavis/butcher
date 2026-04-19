@@ -1,5 +1,4 @@
 import slugify from "@sindresorhus/slugify"
-import { Heart } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -13,39 +12,39 @@ export const metadata: Metadata = {
 function MenuCard({ item, dark }: { item: MenuItem; dark: boolean }) {
   const slug = slugify(item.name)
   return (
-    <Link href={`/food/${slug}`} className="group">
-      <div className="relative aspect-[3/2] overflow-hidden">
+    <Link
+      href={`/food/${slug}`}
+      className={`group -mx-3 flex items-start gap-5 rounded-sm p-3 transition-colors duration-200 ${
+        dark ? "hover:bg-white/[0.05]" : "hover:bg-black/[0.05]"
+      }`}
+    >
+      {/* Square thumbnail */}
+      <div className="relative size-[88px] shrink-0 overflow-hidden rounded-sm">
         <Image
           src={`/food/${slug}.jpg`}
           alt={item.name}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <span className="absolute right-3 bottom-3 flex items-center gap-1.5 rounded-full bg-charcoal/70 px-3 py-1 text-sm text-cream/80">
-          <Heart className="size-3.5" />
-          {item.likes}
-        </span>
       </div>
-      <div className="mt-4">
-        <div className="flex items-baseline justify-between">
+
+      {/* Text */}
+      <div className="flex-1 pt-1">
+        <div className="flex items-baseline justify-between gap-3">
           <h3
-            className={`font-display text-[1.2rem] transition-colors ${
-              dark
-                ? "text-cream group-hover:text-amber"
-                : "text-charcoal group-hover:text-oxblood"
-            }`}
+            className={`font-display text-[1.05rem] leading-snug ${dark ? "text-cream" : "text-charcoal"}`}
           >
             {item.name}
           </h3>
           <span
-            className={`font-display text-base ${dark ? "text-amber" : "text-oxblood"}`}
+            className={`shrink-0 font-display text-[0.95rem] ${dark ? "text-amber" : "text-oxblood"}`}
           >
             ${item.price}
           </span>
         </div>
         {item.description && (
           <p
-            className={`mt-1 text-sm ${dark ? "text-tan" : "text-charcoal/60"}`}
+            className={`mt-1.5 text-xs leading-relaxed ${dark ? "text-tan/80" : "text-charcoal/55"}`}
           >
             {item.description}
           </p>
@@ -111,7 +110,7 @@ export default function Food() {
             >
               {title}
             </h2>
-            <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-2">
+            <div className="mt-12 grid gap-x-6 gap-y-2 md:grid-cols-2">
               {items.map((item, i) => (
                 <div
                   key={item.name}

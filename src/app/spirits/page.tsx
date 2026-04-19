@@ -1,4 +1,6 @@
+import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
+import Link from "next/link"
 import { MenuNav } from "~/components/menu-nav"
 
 export const metadata: Metadata = {
@@ -10,16 +12,8 @@ const SPIRITS = [
     category: "Whiskey",
     label: "The Cellar",
     items: [
-      {
-        name: "Pappy Van Winkle 15yr",
-        notes: "Buffalo, Kentucky",
-        price: "65",
-      },
-      {
-        name: "Blanton's Original",
-        notes: "Buffalo Trace, Kentucky",
-        price: "22",
-      },
+      { name: "Pappy Van Winkle 15yr", notes: "Buffalo, Kentucky", price: "65" },
+      { name: "Blanton's Original", notes: "Buffalo Trace, Kentucky", price: "22" },
       { name: "Hibiki 17yr", notes: "Suntory, Japan", price: "38" },
       { name: "Ardbeg 10yr", notes: "Islay, Scotland", price: "18" },
       { name: "Buffalo Trace", notes: "Buffalo Trace, Kentucky", price: "12" },
@@ -38,11 +32,7 @@ const SPIRITS = [
     category: "Rum & Mezcal",
     label: "Smoke & Cane",
     items: [
-      {
-        name: "Diplomatico Reserva Exclusiva",
-        notes: "Venezuela, 12yr",
-        price: "16",
-      },
+      { name: "Diplomatico Reserva Exclusiva", notes: "Venezuela, 12yr", price: "16" },
       { name: "El Silencio Espadin", notes: "Oaxaca, Mexico", price: "13" },
       { name: "Banhez Ensemble", notes: "Oaxaca, Mexico", price: "15" },
     ],
@@ -110,15 +100,22 @@ export default function Spirits() {
                 className={`mt-10 divide-y border-t ${dark ? "divide-charcoal/10 border-charcoal/10" : "divide-cream/10 border-cream/10"}`}
               >
                 {items.map((item, i) => (
-                  <div
+                  <Link
                     key={item.name}
+                    href={`/spirits/${slugify(item.name)}`}
                     data-animate=""
                     data-delay={String(180 + i * 60)}
-                    className="flex items-baseline justify-between py-5"
+                    className={`group flex items-baseline justify-between py-5 transition-colors duration-200 ${
+                      dark ? "hover:text-oxblood" : "hover:text-amber"
+                    }`}
                   >
                     <div>
                       <span
-                        className={`font-display text-base ${dark ? "text-charcoal" : "text-cream"}`}
+                        className={`font-display text-base transition-colors duration-200 ${
+                          dark
+                            ? "text-charcoal group-hover:text-oxblood"
+                            : "text-cream group-hover:text-amber"
+                        }`}
                       >
                         {item.name}
                       </span>
@@ -133,7 +130,7 @@ export default function Spirits() {
                     >
                       ${item.price}
                     </span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
