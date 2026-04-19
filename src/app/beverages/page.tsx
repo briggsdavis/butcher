@@ -168,17 +168,15 @@ export default function Beverages() {
                     href={`/beverages/${slugify(item.name)}`}
                     data-animate=""
                     data-delay={String(180 + i * 60)}
-                    className={`group flex items-center gap-5 py-4 transition-colors duration-200 ${
-                      dark ? "hover:bg-charcoal/[0.04]" : "hover:bg-cream/[0.04]"
-                    }`}
+                    className="group flex items-center gap-5 py-4"
                   >
-                    {/* Square thumbnail — scales 20% on hover */}
-                    <div className="relative size-14 shrink-0 overflow-hidden">
+                    {/* Square thumbnail — container grows 15% on hover */}
+                    <div className="relative size-14 shrink-0 transition-all duration-300 ease-out group-hover:size-[64px]">
                       <Image
                         src={thumb}
                         alt={item.name}
                         fill
-                        className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.2]"
+                        className="object-cover"
                       />
                     </div>
 
