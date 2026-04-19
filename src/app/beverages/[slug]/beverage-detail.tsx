@@ -84,16 +84,8 @@ export function BeverageDetail({ item, image, nextSlug }: Props) {
               )}
             </div>
 
-            {/* Category eyebrow */}
-            <div className="flex items-center gap-4">
-              <span className="block h-px w-8 shrink-0 bg-amber/50" />
-              <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                {item.category}
-              </span>
-            </div>
-
             {/* Name */}
-            <h1 className="mt-4 font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
+            <h1 className="font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
               {item.name}
             </h1>
 

@@ -170,8 +170,8 @@ export default function Beverages() {
                     data-delay={String(180 + i * 60)}
                     className="group flex items-center gap-5 py-4"
                   >
-                    {/* Square thumbnail — container grows 15% on hover */}
-                    <div className="relative size-14 shrink-0 transition-all duration-300 ease-out group-hover:size-[64px]">
+                    {/* Square thumbnail — container grows 30% on hover */}
+                    <div className="relative size-14 shrink-0 transition-all duration-300 ease-out group-hover:size-[73px]">
                       <Image
                         src={thumb}
                         alt={item.name}
