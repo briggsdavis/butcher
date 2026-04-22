@@ -55,7 +55,7 @@ export function StaffPage() {
           <div className="relative z-10">
             <div className="mb-6 flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-[11.5px] tracking-[0.3em] text-amber uppercase">
+              <span className="text-xs tracking-[0.3em] text-amber uppercase">
                 Our Staff
               </span>
             </div>
@@ -84,13 +84,13 @@ export function StaffPage() {
               }}
             />
 
-            <p className="mt-8 text-[0.86rem] leading-relaxed text-tan">
+            <p className="mt-8 text-sm leading-relaxed text-tan">
               Every dish, cocktail, and evening at Butcher and the Rye is shaped
               by people who have devoted their lives to their craft — rigorously
               trained, endlessly inspired, and driven by one goal: to give you
               something extraordinary.
             </p>
-            <p className="mt-3 text-[0.86rem] leading-relaxed text-tan">
+            <p className="mt-3 text-sm leading-relaxed text-tan">
               From our Executive Chef to our floor staff, everyone here shares
               the same relentless commitment to excellence. We don't settle for
               good. We pursue perfect, every single night.
@@ -125,7 +125,7 @@ export function StaffPage() {
                   / {String(STAFF.length).padStart(2, "0")}
                 </span>
               </p>
-              <p className="mt-1 text-[9px] tracking-[0.2em] text-tan/60 uppercase">
+              <p className="mt-1 text-xs tracking-[0.2em] text-tan/60 uppercase">
                 {activeMember.role}
               </p>
             </div>
@@ -227,11 +227,11 @@ export function StaffPage() {
                 style={{ transitionDelay: "440ms" }}
               >
                 <div className="inline-flex items-center gap-3 border border-cream/10 px-5 py-2">
-                  <span className="text-[10px] tracking-[0.25em] text-cream/30 uppercase">
+                  <span className="text-xs tracking-[0.25em] text-cream/30 uppercase">
                     Experience
                   </span>
                   <span className="h-3 w-px bg-cream/10" />
-                  <span className="text-[10px] tracking-wider text-amber/70">
+                  <span className="text-xs tracking-wider text-amber/70">
                     {member.years}
                   </span>
                 </div>

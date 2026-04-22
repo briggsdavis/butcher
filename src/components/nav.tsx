@@ -52,9 +52,24 @@ export function Nav() {
 
         {/* Desktop quick links */}
         <div className="relative z-10 ml-7 hidden items-center gap-6 md:flex">
-          <Link href="/food" className="text-[10px] tracking-[0.22em] text-white/60 uppercase transition-colors hover:text-amber">Food</Link>
-          <Link href="/spirits" className="text-[10px] tracking-[0.22em] text-white/60 uppercase transition-colors hover:text-amber">Spirits</Link>
-          <Link href="/beverages" className="text-[10px] tracking-[0.22em] text-white/60 uppercase transition-colors hover:text-amber">Beverages</Link>
+          <Link
+            href="/food"
+            className="text-xs tracking-[0.25em] text-white/70 uppercase transition-colors hover:text-amber"
+          >
+            Food
+          </Link>
+          <Link
+            href="/spirits"
+            className="text-xs tracking-[0.25em] text-white/70 uppercase transition-colors hover:text-amber"
+          >
+            Spirits
+          </Link>
+          <Link
+            href="/beverages"
+            className="text-xs tracking-[0.25em] text-white/70 uppercase transition-colors hover:text-amber"
+          >
+            Beverages
+          </Link>
         </div>
 
         {/* Centered title */}
@@ -115,8 +130,7 @@ export function Nav() {
                   <span className="font-sans text-xs text-cream/25">
                     {link.num}
                   </span>
-                  {/* 35% smaller from original: 5xl→2.04rem, 7xl→3.06rem, 8xl→4.08rem */}
-                  <span className="font-display text-[2.04rem] leading-none text-cream md:text-[3.06rem] lg:text-[4.08rem]">
+                  <span className="font-display text-3xl leading-none text-cream md:text-5xl lg:text-6xl">
                     {link.label}
                   </span>
                 </div>

@@ -16,7 +16,11 @@ export function MenuNav() {
       {MENU_PAGES.map(({ href, label }, i) => {
         const active = pathname === href
         const align =
-          i === 0 ? "justify-self-end" : i === 2 ? "justify-self-start" : "justify-self-center"
+          i === 0
+            ? "justify-self-end"
+            : i === 2
+              ? "justify-self-start"
+              : "justify-self-center"
         return (
           <Link
             key={href}

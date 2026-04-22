@@ -199,7 +199,7 @@ export default function Beverages() {
                         </span>
                       </div>
                       <span
-                        className={`font-display text-[0.9rem] ${dark ? "text-oxblood" : "text-amber"}`}
+                        className={`font-display text-sm ${dark ? "text-oxblood" : "text-amber"}`}
                       >
                         ${item.price}
                       </span>

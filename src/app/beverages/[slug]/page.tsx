@@ -141,7 +141,12 @@ export default async function BeverageDetailPage({
 
   return (
     <Suspense>
-      <BeverageDetail item={item} image={image} prevSlug={prevSlug} nextSlug={nextSlug} />
+      <BeverageDetail
+        item={item}
+        image={image}
+        prevSlug={prevSlug}
+        nextSlug={nextSlug}
+      />
     </Suspense>
   )
 }

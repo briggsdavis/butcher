@@ -103,13 +103,23 @@
 
 /* ── Food item slide transition ── */
 @keyframes foodExit {
-  from { transform: translateX(0); opacity: 1; }
-  to   { transform: translateX(-5%); opacity: 0; }
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-5%);
+    opacity: 0;
+  }
 }
 
 @keyframes foodEnter {
-  from { transform: translateX(4%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(4%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .food-exit {
@@ -123,13 +133,23 @@
 }
 
 @keyframes foodExitPrev {
-  from { transform: translateX(0); opacity: 1; }
-  to   { transform: translateX(5%); opacity: 0; }
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(5%);
+    opacity: 0;
+  }
 }
 
 @keyframes foodEnterPrev {
-  from { transform: translateX(-4%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-4%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .food-exit-prev {

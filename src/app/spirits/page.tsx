@@ -12,8 +12,16 @@ const SPIRITS = [
     category: "Whiskey",
     label: "The Cellar",
     items: [
-      { name: "Pappy Van Winkle 15yr", notes: "Buffalo, Kentucky", price: "65" },
-      { name: "Blanton's Original", notes: "Buffalo Trace, Kentucky", price: "22" },
+      {
+        name: "Pappy Van Winkle 15yr",
+        notes: "Buffalo, Kentucky",
+        price: "65",
+      },
+      {
+        name: "Blanton's Original",
+        notes: "Buffalo Trace, Kentucky",
+        price: "22",
+      },
       { name: "Hibiki 17yr", notes: "Suntory, Japan", price: "38" },
       { name: "Ardbeg 10yr", notes: "Islay, Scotland", price: "18" },
       { name: "Buffalo Trace", notes: "Buffalo Trace, Kentucky", price: "12" },
@@ -32,7 +40,11 @@ const SPIRITS = [
     category: "Rum & Mezcal",
     label: "Smoke & Cane",
     items: [
-      { name: "Diplomatico Reserva Exclusiva", notes: "Venezuela, 12yr", price: "16" },
+      {
+        name: "Diplomatico Reserva Exclusiva",
+        notes: "Venezuela, 12yr",
+        price: "16",
+      },
       { name: "El Silencio Espadin", notes: "Oaxaca, Mexico", price: "13" },
       { name: "Banhez Ensemble", notes: "Oaxaca, Mexico", price: "15" },
     ],
@@ -126,7 +138,7 @@ export default function Spirits() {
                       </span>
                     </div>
                     <span
-                      className={`font-display text-[0.9rem] ${dark ? "text-oxblood" : "text-amber"}`}
+                      className={`font-display text-sm ${dark ? "text-oxblood" : "text-amber"}`}
                     >
                       ${item.price}
                     </span>

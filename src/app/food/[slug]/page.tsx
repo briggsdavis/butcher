@@ -41,7 +41,12 @@ export default async function FoodDetailPage({
 
   return (
     <Suspense>
-      <FoodDetail item={item} slug={slug} prevSlug={prevSlug} nextSlug={nextSlug} />
+      <FoodDetail
+        item={item}
+        slug={slug}
+        prevSlug={prevSlug}
+        nextSlug={nextSlug}
+      />
     </Suspense>
   )
 }

@@ -49,14 +49,17 @@ export function SpiritDetail({ item, image, prevSlug, nextSlug }: Props) {
   }
 
   const exitClass =
-    exitDir === "next" ? "food-exit" : exitDir === "prev" ? "food-exit-prev" : ""
+    exitDir === "next"
+      ? "food-exit"
+      : exitDir === "prev"
+        ? "food-exit-prev"
+        : ""
 
   return (
     <div ref={wrapperRef} className={exitClass}>
       {/* ── Split layout: image left / details right ── */}
-      <section className="bg-charcoal flex min-h-screen flex-col justify-center px-8 pt-28 pb-10 md:px-16">
+      <section className="flex min-h-screen flex-col justify-center bg-charcoal px-8 pt-28 pb-10 md:px-16">
         <div className="grid md:grid-cols-2 md:gap-16">
-
           {/* ── Left: image ── */}
           <div className="relative min-h-[55vw] md:min-h-0">
             <Image
@@ -71,7 +74,6 @@ export function SpiritDetail({ item, image, prevSlug, nextSlug }: Props) {
 
           {/* ── Right: details ── */}
           <div className="flex flex-col justify-center pt-10 md:pt-0">
-
             {/* Nav row */}
             <div className="mb-10 flex items-center justify-between">
               <Link
@@ -106,7 +108,7 @@ export function SpiritDetail({ item, image, prevSlug, nextSlug }: Props) {
             </div>
 
             {/* Name */}
-            <h1 className="font-display text-[1.8rem] leading-tight text-cream md:text-[2.4rem] lg:text-[3rem]">
+            <h1 className="font-display text-3xl leading-tight text-cream md:text-4xl lg:text-5xl">
               {item.name}
             </h1>
 
@@ -120,8 +122,7 @@ export function SpiritDetail({ item, image, prevSlug, nextSlug }: Props) {
               <div className="flex items-center justify-between border-b border-cream/10 py-5">
                 <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
                   Price
-                  <span className="mx-3 text-cream/20">—</span>
-                  ${item.price}
+                  <span className="mx-3 text-cream/20">—</span>${item.price}
                 </span>
                 <span className="text-lg text-cream/20">+</span>
               </div>

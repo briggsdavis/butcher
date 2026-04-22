@@ -32,12 +32,12 @@ function MenuCard({ item, dark }: { item: MenuItem; dark: boolean }) {
       <div className="flex-1 pt-1">
         <div className="flex items-baseline justify-between gap-3">
           <h3
-            className={`font-display text-[1.05rem] leading-snug ${dark ? "text-cream" : "text-charcoal"}`}
+            className={`font-display text-base leading-snug ${dark ? "text-cream" : "text-charcoal"}`}
           >
             {item.name}
           </h3>
           <span
-            className={`shrink-0 font-display text-[0.95rem] ${dark ? "text-amber" : "text-oxblood"}`}
+            className={`shrink-0 font-display text-sm ${dark ? "text-amber" : "text-oxblood"}`}
           >
             ${item.price}
           </span>

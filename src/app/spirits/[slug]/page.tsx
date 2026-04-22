@@ -12,19 +12,79 @@ const CATEGORY_IMAGES: Record<string, string> = {
 }
 
 const ALL_SPIRITS = [
-  { name: "Pappy Van Winkle 15yr", notes: "Buffalo, Kentucky", price: "65", category: "Whiskey" },
-  { name: "Blanton's Original", notes: "Buffalo Trace, Kentucky", price: "22", category: "Whiskey" },
-  { name: "Hibiki 17yr", notes: "Suntory, Japan", price: "38", category: "Whiskey" },
-  { name: "Ardbeg 10yr", notes: "Islay, Scotland", price: "18", category: "Whiskey" },
-  { name: "Buffalo Trace", notes: "Buffalo Trace, Kentucky", price: "12", category: "Whiskey" },
+  {
+    name: "Pappy Van Winkle 15yr",
+    notes: "Buffalo, Kentucky",
+    price: "65",
+    category: "Whiskey",
+  },
+  {
+    name: "Blanton's Original",
+    notes: "Buffalo Trace, Kentucky",
+    price: "22",
+    category: "Whiskey",
+  },
+  {
+    name: "Hibiki 17yr",
+    notes: "Suntory, Japan",
+    price: "38",
+    category: "Whiskey",
+  },
+  {
+    name: "Ardbeg 10yr",
+    notes: "Islay, Scotland",
+    price: "18",
+    category: "Whiskey",
+  },
+  {
+    name: "Buffalo Trace",
+    notes: "Buffalo Trace, Kentucky",
+    price: "12",
+    category: "Whiskey",
+  },
   { name: "Hendrick's", notes: "Scotland", price: "14", category: "Gin" },
-  { name: "The Botanist", notes: "Islay, Scotland", price: "16", category: "Gin" },
-  { name: "Monkey 47", notes: "Black Forest, Germany", price: "18", category: "Gin" },
-  { name: "Diplomatico Reserva Exclusiva", notes: "Venezuela, 12yr", price: "16", category: "Rum & Mezcal" },
-  { name: "El Silencio Espadin", notes: "Oaxaca, Mexico", price: "13", category: "Rum & Mezcal" },
-  { name: "Banhez Ensemble", notes: "Oaxaca, Mexico", price: "15", category: "Rum & Mezcal" },
-  { name: "Rémy Martin VSOP", notes: "Cognac, France", price: "18", category: "Cognac & Armagnac" },
-  { name: "Château de Laubade XO", notes: "Armagnac, France", price: "28", category: "Cognac & Armagnac" },
+  {
+    name: "The Botanist",
+    notes: "Islay, Scotland",
+    price: "16",
+    category: "Gin",
+  },
+  {
+    name: "Monkey 47",
+    notes: "Black Forest, Germany",
+    price: "18",
+    category: "Gin",
+  },
+  {
+    name: "Diplomatico Reserva Exclusiva",
+    notes: "Venezuela, 12yr",
+    price: "16",
+    category: "Rum & Mezcal",
+  },
+  {
+    name: "El Silencio Espadin",
+    notes: "Oaxaca, Mexico",
+    price: "13",
+    category: "Rum & Mezcal",
+  },
+  {
+    name: "Banhez Ensemble",
+    notes: "Oaxaca, Mexico",
+    price: "15",
+    category: "Rum & Mezcal",
+  },
+  {
+    name: "Rémy Martin VSOP",
+    notes: "Cognac, France",
+    price: "18",
+    category: "Cognac & Armagnac",
+  },
+  {
+    name: "Château de Laubade XO",
+    notes: "Armagnac, France",
+    price: "28",
+    category: "Cognac & Armagnac",
+  },
 ]
 
 function getItem(slug: string) {
@@ -64,7 +124,12 @@ export default async function SpiritDetailPage({
 
   return (
     <Suspense>
-      <SpiritDetail item={item} image={image} prevSlug={prevSlug} nextSlug={nextSlug} />
+      <SpiritDetail
+        item={item}
+        image={image}
+        prevSlug={prevSlug}
+        nextSlug={nextSlug}
+      />
     </Suspense>
   )
 }

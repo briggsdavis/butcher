@@ -407,7 +407,7 @@ export function AboutPage() {
                   <p className="font-display text-xl text-cream">
                     {member.name}
                   </p>
-                  <p className="mt-1 text-[10px] tracking-[0.2em] text-amber uppercase">
+                  <p className="mt-1 text-xs tracking-[0.2em] text-amber uppercase">
                     {member.role}
                   </p>
                 </div>
