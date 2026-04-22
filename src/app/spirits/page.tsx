@@ -1,5 +1,6 @@
 import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { MenuNav } from "~/components/menu-nav"
 
@@ -62,8 +63,16 @@ const SPIRITS = [
 export default function Spirits() {
   return (
     <>
-      <section className="flex flex-col justify-end bg-oxblood px-8 pt-32 pb-20 md:px-16 md:pt-48 md:pb-32">
-        <div className="mx-auto w-full max-w-7xl">
+      <section className="relative flex flex-col justify-end overflow-hidden bg-oxblood px-8 pt-32 pb-20 md:px-16 md:pt-48 md:pb-32">
+        <Image
+          src="/img-7222.jpg"
+          alt="The bar at Butcher and the Rye"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-oxblood/70 to-oxblood/90" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl">
           <div className="flex items-center gap-4">
             <span className="block h-px w-8 shrink-0 bg-amber/50" />
             <span className="text-xs tracking-[0.3em] text-amber uppercase">

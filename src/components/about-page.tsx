@@ -317,8 +317,8 @@ export function AboutPage() {
           style={{ top: "-10%", bottom: "-10%" }}
         >
           <Image
-            src="/bartender-at-work.jpg"
-            alt="Behind the bar at Butcher and the Rye"
+            src="/img-7152.jpg"
+            alt="Atmosphere at Butcher and the Rye"
             fill
             className="object-cover"
           />
