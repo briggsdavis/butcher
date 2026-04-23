@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 
 const MENU_HIGHLIGHTS = [
   {
@@ -737,6 +738,8 @@ export function AboutPage() {
           </Link>
         </div>
       </section>
+
+      <RestaurantGroupSection />
     </>
   )
 }
