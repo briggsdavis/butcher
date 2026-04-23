@@ -140,7 +140,7 @@ export default function About() {
               <div
                 data-animate=""
                 data-delay="340"
-                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-left-10 md:h-52 md:w-40"
+                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-left-10 md:h-52 md:w-40"
               >
                 <Image
                   src="/entree-frame.png"

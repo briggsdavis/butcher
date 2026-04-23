@@ -145,7 +145,7 @@ export default function Home() {
             <div
               data-animate=""
               data-delay="365"
-              className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-right-10 md:h-52 md:w-40"
+              className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
               <Image
                 src="/glow-frame.png"
@@ -249,7 +249,7 @@ export default function Home() {
 
           {/* Bottom bar */}
           <div className="mt-10 border-t border-cream/10 pt-10">
-            <div className="flex items-end justify-between gap-8">
+            <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
               <div data-animate="" data-delay="560">
                 <p className="max-w-xs text-sm leading-relaxed text-tan">
                   Sourced from heritage farms and shaped by old-world

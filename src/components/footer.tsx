@@ -68,7 +68,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-cream/10 bg-oxblood px-8 py-6 md:px-16">
-        <div className="flex items-center justify-between text-xs text-tan/40">
+        <div className="flex flex-col items-center gap-3 text-center text-xs text-tan/40 md:flex-row md:justify-between md:gap-0 md:text-left">
           <p>
             © {new Date().getFullYear()} Butcher and the Rye. All rights
             reserved.

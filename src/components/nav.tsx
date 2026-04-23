@@ -35,7 +35,7 @@ export function Nav() {
 
   return (
     <>
-      <nav className="absolute inset-x-0 top-0 z-50 flex items-center overflow-hidden px-8 py-6 md:px-16">
+      <nav className="absolute inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16">
         <Image src="/wood.jpg" alt="" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-amber/20" />
 
