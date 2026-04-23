@@ -19,7 +19,7 @@ export function PageEffects() {
           }
         })
       },
-      { threshold: 0.12 },
+      { threshold: 0.15, rootMargin: "0px 0px -18% 0px" },
     )
 
     document

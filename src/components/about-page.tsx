@@ -26,10 +26,10 @@ const MENU_HIGHLIGHTS = [
 ]
 
 const FEATURED_STAFF = [
-  { name: "Marcus Chen", role: "Executive Chef", initials: "MC" },
-  { name: "Sophia Reeves", role: "Bar Director", initials: "SR" },
-  { name: "James O'Brien", role: "Head Butcher", initials: "JO" },
-  { name: "Amara Washington", role: "General Manager", initials: "AW" },
+  { name: "Marcus Chen", role: "Executive Chef", initials: "MC", img: "/food/bone-in-ribeye.jpg" },
+  { name: "Sophia Reeves", role: "Bar Director", initials: "SR", img: "/craft-old-fashioned.jpg" },
+  { name: "James O'Brien", role: "Head Butcher", initials: "JO", img: "/food/bone-marrow.jpg" },
+  { name: "Amara Washington", role: "General Manager", initials: "AW", img: "/candlelit-tables.jpg" },
 ]
 
 const SOURCING = [
@@ -38,18 +38,24 @@ const SOURCING = [
     copy: "Our steaks come exclusively from Heritage Farms of Pennsylvania, raised on open pasture without growth hormones. Every cut is hand-selected by our Head Butcher and dry-aged on-site for a minimum of 45 days.",
     source: "Heritage Farms, PA",
     delay: "0",
+    img: "/food/bone-in-ribeye.jpg",
+    imgAlt: "Bone-in ribeye",
   },
   {
     label: "The Spirits",
     copy: "We maintain relationships with over 30 American distilleries — from well-known Kentucky bourbon houses to small-batch rye producers across the Northeast. Our Bar Director personally selects every bottle.",
     source: "30+ American Distilleries",
-    delay: "150",
+    delay: "195",
+    img: "/whiskey-pour.jpg",
+    imgAlt: "Whiskey pour",
   },
   {
     label: "The Produce",
     copy: "Our kitchen sources seasonal vegetables and herbs from within 100 miles of Pittsburgh. We change our sides and starters with the season, letting what grows close to home dictate the direction of the menu.",
     source: "Within 100 Miles of Pittsburgh",
-    delay: "300",
+    delay: "390",
+    img: "/food/charred-broccolini.jpg",
+    imgAlt: "Charred broccolini",
   },
 ]
 
@@ -123,7 +129,7 @@ export function AboutPage() {
               </div>
               <h2
                 data-animate=""
-                data-delay="100"
+                data-delay="130"
                 className="mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
               >
                 Born from
@@ -133,7 +139,7 @@ export function AboutPage() {
               </h2>
               <p
                 data-animate=""
-                data-delay="220"
+                data-delay="285"
                 className="mt-10 text-lg leading-relaxed text-tan"
               >
                 Butcher and the Rye opened on Penn Avenue in 2013 with a single
@@ -144,7 +150,7 @@ export function AboutPage() {
               </p>
               <p
                 data-animate=""
-                data-delay="340"
+                data-delay="440"
                 className="mt-6 text-lg leading-relaxed text-tan"
               >
                 Every choice made here — from the beef we source to the glass we
@@ -153,7 +159,7 @@ export function AboutPage() {
               </p>
               <blockquote
                 data-animate=""
-                data-delay="460"
+                data-delay="600"
                 className="mt-10 border-l-2 border-amber/30 pl-6"
               >
                 <p className="font-cursive text-2xl leading-relaxed text-cream/70">
@@ -163,14 +169,14 @@ export function AboutPage() {
               </blockquote>
             </div>
 
-            {/* Right: overlapping image collage + rotating ring */}
-            <div
-              data-animate=""
-              data-delay="80"
-              className="relative mt-8 md:mt-16"
-            >
+            {/* Right: overlapping image collage — each element staggered */}
+            <div className="relative mt-8 md:mt-16">
               {/* Primary image */}
-              <div className="relative h-80 overflow-hidden md:h-96">
+              <div
+                data-animate=""
+                data-delay="155"
+                className="relative h-80 overflow-hidden md:h-96"
+              >
                 <Image
                   src="/candlelit-tables.jpg"
                   alt="Candlelit dining at Butcher and the Rye"
@@ -179,7 +185,11 @@ export function AboutPage() {
                 />
               </div>
               {/* Secondary image — overlaps bottom-left of primary */}
-              <div className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-left-10 md:h-52 md:w-40">
+              <div
+                data-animate=""
+                data-delay="340"
+                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-left-10 md:h-52 md:w-40"
+              >
                 <Image
                   src="/plated-entree.jpg"
                   alt="A plated entrée"
@@ -187,8 +197,10 @@ export function AboutPage() {
                   className="object-cover"
                 />
               </div>
-              {/* Rotating text ring (Screenshot 1 inspired) */}
+              {/* Rotating text ring */}
               <div
+                data-animate=""
+                data-delay="495"
                 className="absolute right-0 -bottom-14 z-10 h-28 w-28 text-amber/30 md:h-32 md:w-32"
                 style={{ animation: "spin 20s linear infinite" }}
                 aria-hidden="true"
@@ -224,81 +236,141 @@ export function AboutPage() {
             </span>
           </div>
 
-          {/* Value 1 — offset right */}
-          <div
-            data-animate=""
-            data-delay="0"
-            className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
-          >
-            <div
-              className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
-              style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-              aria-hidden="true"
-            >
-              01
-            </div>
-            <div className="relative z-10">
-              <h3 className="font-display text-6xl text-cream md:text-7xl">
-                Excellence
-              </h3>
-              <p className="mt-6 text-lg leading-relaxed text-tan">
-                We hold every plate and every pour to the same exacting
-                standard. No table is less important than another. No dish
-                leaves our kitchen without meeting the mark. Excellence
-                isn&rsquo;t an aspiration here — it&rsquo;s the minimum.
-              </p>
-            </div>
-          </div>
-
-          {/* Value 2 — centered */}
-          <div
-            data-animate=""
-            data-delay="150"
-            className="relative mb-16 border-t border-cream/10 pt-12 md:mx-auto md:w-3/5"
-          >
-            <div
-              className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
-              style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-              aria-hidden="true"
-            >
-              02
-            </div>
-            <div className="relative z-10">
-              <h3 className="font-display text-6xl text-cream md:text-7xl">
-                Craft
-              </h3>
-              <p className="mt-6 text-lg leading-relaxed text-tan">
-                Every technique here is learned the slow way. Our chefs
-                apprenticed under demanding kitchens. Our bartenders spent years
-                studying whiskey before touching our bar. There are no
-                shortcuts, and we wouldn&rsquo;t have it any other way.
-              </p>
+          {/* Value 1 — Excellence */}
+          <div className="mb-16 border-t border-cream/10 pt-12">
+            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
+              <div className="relative">
+                <div
+                  className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
+                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                  aria-hidden="true"
+                >
+                  01
+                </div>
+                <div className="relative z-10">
+                  <h3
+                    data-animate=""
+                    data-delay="0"
+                    className="font-display text-6xl text-cream md:text-7xl"
+                  >
+                    Excellence
+                  </h3>
+                  <p
+                    data-animate=""
+                    data-delay="130"
+                    className="mt-6 text-lg leading-relaxed text-tan"
+                  >
+                    We hold every plate and every pour to the same exacting
+                    standard. No table is less important than another. No dish
+                    leaves our kitchen without meeting the mark. Excellence
+                    isn&rsquo;t an aspiration here — it&rsquo;s the minimum.
+                  </p>
+                </div>
+              </div>
+              <div
+                data-animate=""
+                data-delay="260"
+                className="relative h-64 overflow-hidden md:h-80"
+              >
+                <Image
+                  src="/barmood1.jpg"
+                  alt="Excellence at Butcher and the Rye"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Value 3 — offset left */}
-          <div
-            data-animate=""
-            data-delay="300"
-            className="relative border-t border-cream/10 pt-12 md:w-3/5"
-          >
-            <div
-              className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
-              style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-              aria-hidden="true"
-            >
-              03
+          {/* Value 2 — Craft */}
+          <div className="mb-16 border-t border-cream/10 pt-12">
+            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
+              <div className="relative">
+                <div
+                  className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
+                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                  aria-hidden="true"
+                >
+                  02
+                </div>
+                <div className="relative z-10">
+                  <h3
+                    data-animate=""
+                    data-delay="0"
+                    className="font-display text-6xl text-cream md:text-7xl"
+                  >
+                    Craft
+                  </h3>
+                  <p
+                    data-animate=""
+                    data-delay="130"
+                    className="mt-6 text-lg leading-relaxed text-tan"
+                  >
+                    Every technique here is learned the slow way. Our chefs
+                    apprenticed under demanding kitchens. Our bartenders spent
+                    years studying whiskey before touching our bar. There are no
+                    shortcuts, and we wouldn&rsquo;t have it any other way.
+                  </p>
+                </div>
+              </div>
+              <div
+                data-animate=""
+                data-delay="260"
+                className="relative h-64 overflow-hidden md:h-80"
+              >
+                <Image
+                  src="/bardecor1.jpg"
+                  alt="Craft at Butcher and the Rye"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <div className="relative z-10">
-              <h3 className="font-display text-6xl text-cream md:text-7xl">
-                Hospitality
-              </h3>
-              <p className="mt-6 text-lg leading-relaxed text-tan">
-                The meal is the occasion. The experience is the memory. We study
-                our guests — their preferences, their celebrations, their
-                habits. Hospitality at Butcher and the Rye means you never have
-                to ask twice.
-              </p>
+          </div>
+
+          {/* Value 3 — Hospitality */}
+          <div className="border-t border-cream/10 pt-12">
+            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
+              <div className="relative">
+                <div
+                  className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
+                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                  aria-hidden="true"
+                >
+                  03
+                </div>
+                <div className="relative z-10">
+                  <h3
+                    data-animate=""
+                    data-delay="0"
+                    className="font-display text-6xl text-cream md:text-7xl"
+                  >
+                    Hospitality
+                  </h3>
+                  <p
+                    data-animate=""
+                    data-delay="130"
+                    className="mt-6 text-lg leading-relaxed text-tan"
+                  >
+                    The meal is the occasion. The experience is the memory. We
+                    study our guests — their preferences, their celebrations,
+                    their habits. Hospitality at Butcher and the Rye means you
+                    never have to ask twice.
+                  </p>
+                </div>
+              </div>
+              <div
+                data-animate=""
+                data-delay="260"
+                className="relative h-64 overflow-hidden md:h-80"
+              >
+                <Image
+                  src="/candlelit-tables.jpg"
+                  alt="Hospitality at Butcher and the Rye"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -359,7 +431,7 @@ export function AboutPage() {
               </div>
               <h2
                 data-animate=""
-                data-delay="100"
+                data-delay="130"
                 className="mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
               >
                 The people
@@ -370,7 +442,7 @@ export function AboutPage() {
               </h2>
               <p
                 data-animate=""
-                data-delay="220"
+                data-delay="285"
                 className="mt-8 text-lg leading-relaxed text-tan"
               >
                 Our team brings decades of combined experience from some of the
@@ -381,7 +453,7 @@ export function AboutPage() {
               <Link
                 href="/our-staff"
                 data-animate=""
-                data-delay="360"
+                data-delay="470"
                 className="mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-cream"
               >
                 Meet the full team
@@ -395,11 +467,18 @@ export function AboutPage() {
                 <div
                   key={member.name}
                   data-animate=""
-                  data-delay={String(i * 90)}
+                  data-delay={String(i * 120)}
                   className="flex flex-col items-center text-center"
                 >
-                  <div className="relative mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-amber/20 bg-gradient-to-br from-oxblood via-[#2a1015] to-charcoal">
-                    <span className="font-display text-2xl text-amber/50 select-none">
+                  <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border border-amber/20">
+                    <Image
+                      src={member.img}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-charcoal/55" />
+                    <span className="absolute inset-0 flex items-center justify-center font-display text-2xl text-amber/70 select-none">
                       {member.initials}
                     </span>
                     <div className="absolute inset-0 rounded-full ring-1 ring-amber/10 ring-inset" />
@@ -415,7 +494,7 @@ export function AboutPage() {
               <Link
                 href="/our-staff"
                 data-animate=""
-                data-delay="400"
+                data-delay="520"
                 className="col-span-2 mt-2 inline-flex items-center justify-end gap-2 text-xs tracking-[0.2em] text-amber/50 uppercase transition-colors hover:text-amber"
               >
                 See all 8 <ArrowRight className="size-3" />
@@ -441,7 +520,7 @@ export function AboutPage() {
             </div>
             <h2
               data-animate=""
-              data-delay="100"
+              data-delay="130"
               className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
             >
               The menu
@@ -452,7 +531,7 @@ export function AboutPage() {
               <div
                 key={item.name}
                 data-animate=""
-                data-delay={String(i * 80)}
+                data-delay={String(i * 105)}
                 className="group grid items-baseline gap-4 py-8 md:grid-cols-[1fr_2fr_auto]"
               >
                 <h3 className="font-display text-3xl text-cream transition-colors group-hover:text-amber">
@@ -467,7 +546,7 @@ export function AboutPage() {
           </div>
           <div
             data-animate=""
-            data-delay="400"
+            data-delay="520"
             className="mt-16 flex flex-wrap gap-4"
           >
             <Link
@@ -502,10 +581,20 @@ export function AboutPage() {
         data-wipe
         className="relative overflow-hidden bg-charcoal py-32 md:py-48"
       >
+        {/* Background image */}
+        <div className="absolute inset-0 opacity-[0.12]">
+          <Image
+            src="/barvibe.jpg"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-charcoal/75" />
         <div
           data-parallax="content"
           data-parallax-speed="0.05"
-          className="mx-auto max-w-5xl px-8 text-center md:px-16"
+          className="relative z-10 mx-auto max-w-5xl px-8 text-center md:px-16"
         >
           <p
             data-animate=""
@@ -515,7 +604,7 @@ export function AboutPage() {
           </p>
           <blockquote
             data-animate=""
-            data-delay="100"
+            data-delay="130"
             className="font-display leading-tight text-cream"
             style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
           >
@@ -525,7 +614,7 @@ export function AboutPage() {
           <Link
             href="/our-staff"
             data-animate=""
-            data-delay="280"
+            data-delay="365"
             className="mt-12 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-cream"
           >
             Meet the team behind it
@@ -549,7 +638,7 @@ export function AboutPage() {
             </div>
             <h2
               data-animate=""
-              data-delay="100"
+              data-delay="130"
               className="mt-4 font-display text-5xl leading-tight text-charcoal md:text-7xl"
             >
               Where it
@@ -564,17 +653,34 @@ export function AboutPage() {
             className="grid gap-16 md:grid-cols-3"
           >
             {SOURCING.map((item) => (
-              <div key={item.label} data-animate="" data-delay={item.delay}>
-                <div className="mb-8 h-px w-10 bg-amber/60" />
-                <h3 className="mb-4 font-display text-2xl text-charcoal">
-                  {item.label}
-                </h3>
-                <p className="mb-6 leading-relaxed text-charcoal/70">
-                  {item.copy}
-                </p>
-                <p className="text-xs tracking-[0.25em] text-oxblood/70 uppercase">
-                  {item.source}
-                </p>
+              <div key={item.label}>
+                <div
+                  data-animate=""
+                  data-delay={item.delay}
+                  className="relative mb-8 h-48 overflow-hidden md:h-56"
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.imgAlt}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div
+                  data-animate=""
+                  data-delay={String(+item.delay + 150)}
+                >
+                  <div className="mb-8 h-px w-10 bg-amber/60" />
+                  <h3 className="mb-4 font-display text-2xl text-charcoal">
+                    {item.label}
+                  </h3>
+                  <p className="mb-6 leading-relaxed text-charcoal/70">
+                    {item.copy}
+                  </p>
+                  <p className="text-xs tracking-[0.25em] text-oxblood/70 uppercase">
+                    {item.source}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -606,7 +712,7 @@ export function AboutPage() {
           </div>
           <h2
             data-animate=""
-            data-delay="100"
+            data-delay="130"
             className="mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
           >
             Reserve your
@@ -615,7 +721,7 @@ export function AboutPage() {
           </h2>
           <p
             data-animate=""
-            data-delay="220"
+            data-delay="285"
             className="mx-auto mt-8 max-w-md text-lg text-tan"
           >
             Whether it&rsquo;s a quiet dinner for two or a gathering worth
@@ -624,7 +730,7 @@ export function AboutPage() {
           <Link
             href="#reservations"
             data-animate=""
-            data-delay="360"
+            data-delay="470"
             className="mt-12 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-colors hover:bg-cream"
           >
             Book a Table
