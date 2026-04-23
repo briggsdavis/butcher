@@ -3,28 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 
-const MENU_HIGHLIGHTS = [
-  {
-    name: "Bone-In Ribeye",
-    description: "Dry-aged 45 days, served with roasted marrow butter",
-    price: "68",
-  },
-  {
-    name: "Braised Short Rib",
-    description: "Red wine reduction, root vegetables, horseradish gremolata",
-    price: "42",
-  },
-  {
-    name: "Pan-Seared Duck Breast",
-    description: "Cherry gastrique, wild rice, charred broccolini",
-    price: "38",
-  },
-  {
-    name: "Grilled Lamb Chops",
-    description: "Herb crust, mint chimichurri, fingerling potatoes",
-    price: "54",
-  },
-]
 
 const COCKTAILS = [
   {
@@ -208,47 +186,88 @@ export default function Home() {
           data-parallax-speed="0.05"
           className="mx-auto max-w-7xl px-8 md:px-16"
         >
-          <div className="mb-20 max-w-xl">
-            <div data-animate="" className="flex items-center gap-4">
-              <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                From the Kitchen
-              </span>
-            </div>
-            <h2
-              data-animate=""
-              data-delay="130"
-              className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
-            >
-              The menu
-            </h2>
-          </div>
-          <div className="grid gap-0 divide-y divide-cream/10">
-            {MENU_HIGHLIGHTS.map((item, i) => (
-              <div
-                key={item.name}
-                data-animate=""
-                data-delay={String(i * 105)}
-                className="group grid items-baseline gap-4 py-8 md:grid-cols-[1fr_2fr_auto]"
-              >
-                <h3 className="font-display text-3xl text-cream transition-colors group-hover:text-amber">
-                  {item.name}
-                </h3>
-                <p className="text-tan">{item.description}</p>
-                <span className="font-display text-2xl text-amber">
-                  ${item.price}
-                </span>
+          <div className="grid gap-x-8 gap-y-10 lg:grid-cols-3 lg:items-start">
+            {/* Col 1: heading + left image */}
+            <div className="flex flex-col gap-10">
+              <div>
+                <div data-animate="" className="flex items-center gap-4">
+                  <span className="block h-px w-10 shrink-0 bg-amber/50" />
+                  <span className="text-xs tracking-[0.3em] text-amber uppercase">
+                    From the Kitchen
+                  </span>
+                </div>
+                <h2
+                  data-animate=""
+                  data-delay="130"
+                  className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+                >
+                  The menu
+                </h2>
               </div>
-            ))}
+              <div
+                data-animate=""
+                data-delay="220"
+                className="relative aspect-[5/4] w-full overflow-hidden"
+              >
+                <Image
+                  src="/food/bone-in-ribeye.jpg"
+                  alt="Bone-in Ribeye"
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
+
+            {/* Col 2: tall center image */}
+            <div
+              data-animate=""
+              data-delay="340"
+              className="relative aspect-[3/4] w-full overflow-hidden"
+            >
+              <Image
+                src="/plated-entree.jpg"
+                alt="Signature plated dish"
+                fill
+                className="object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+
+            {/* Col 3: right image offset down */}
+            <div
+              data-animate=""
+              data-delay="460"
+              className="relative aspect-[5/4] w-full overflow-hidden lg:mt-16"
+            >
+              <Image
+                src="/food/braised-short-rib.jpg"
+                alt="Braised Short Rib"
+                fill
+                className="object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
           </div>
-          <Link
-            href="/food"
-            data-animate=""
-            data-delay="520"
-            className="mt-16 inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
-          >
-            Full Menu
-          </Link>
+
+          {/* Bottom bar */}
+          <div className="mt-10 border-t border-cream/10 pt-10">
+            <div className="flex items-end justify-between gap-8">
+              <div data-animate="" data-delay="560">
+                <div className="mb-4 text-xl text-amber">↓</div>
+                <p className="max-w-xs text-sm leading-relaxed text-tan">
+                  Sourced from heritage farms and shaped by old-world
+                  technique — every plate is a reflection of place, season,
+                  and craft.
+                </p>
+              </div>
+              <Link
+                href="/food"
+                data-animate=""
+                data-delay="640"
+                className="shrink-0 border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
+              >
+                Full Menu
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
