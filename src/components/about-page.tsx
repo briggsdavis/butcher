@@ -45,7 +45,7 @@ const SOURCING = [
     label: "The Spirits",
     copy: "We maintain relationships with over 30 American distilleries — from well-known Kentucky bourbon houses to small-batch rye producers across the Northeast. Our Bar Director personally selects every bottle.",
     source: "30+ American Distilleries",
-    delay: "150",
+    delay: "195",
     img: "/whiskey-pour.jpg",
     imgAlt: "Whiskey pour",
   },
@@ -53,7 +53,7 @@ const SOURCING = [
     label: "The Produce",
     copy: "Our kitchen sources seasonal vegetables and herbs from within 100 miles of Pittsburgh. We change our sides and starters with the season, letting what grows close to home dictate the direction of the menu.",
     source: "Within 100 Miles of Pittsburgh",
-    delay: "300",
+    delay: "390",
     img: "/food/charred-broccolini.jpg",
     imgAlt: "Charred broccolini",
   },
@@ -129,7 +129,7 @@ export function AboutPage() {
               </div>
               <h2
                 data-animate=""
-                data-delay="100"
+                data-delay="130"
                 className="mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
               >
                 Born from
@@ -139,7 +139,7 @@ export function AboutPage() {
               </h2>
               <p
                 data-animate=""
-                data-delay="220"
+                data-delay="285"
                 className="mt-10 text-lg leading-relaxed text-tan"
               >
                 Butcher and the Rye opened on Penn Avenue in 2013 with a single
@@ -150,7 +150,7 @@ export function AboutPage() {
               </p>
               <p
                 data-animate=""
-                data-delay="340"
+                data-delay="440"
                 className="mt-6 text-lg leading-relaxed text-tan"
               >
                 Every choice made here — from the beef we source to the glass we
@@ -159,7 +159,7 @@ export function AboutPage() {
               </p>
               <blockquote
                 data-animate=""
-                data-delay="460"
+                data-delay="600"
                 className="mt-10 border-l-2 border-amber/30 pl-6"
               >
                 <p className="font-cursive text-2xl leading-relaxed text-cream/70">
@@ -174,7 +174,7 @@ export function AboutPage() {
               {/* Primary image */}
               <div
                 data-animate=""
-                data-delay="120"
+                data-delay="155"
                 className="relative h-80 overflow-hidden md:h-96"
               >
                 <Image
@@ -187,7 +187,7 @@ export function AboutPage() {
               {/* Secondary image — overlaps bottom-left of primary */}
               <div
                 data-animate=""
-                data-delay="260"
+                data-delay="340"
                 className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-left-10 md:h-52 md:w-40"
               >
                 <Image
@@ -200,7 +200,7 @@ export function AboutPage() {
               {/* Rotating text ring */}
               <div
                 data-animate=""
-                data-delay="380"
+                data-delay="495"
                 className="absolute right-0 -bottom-14 z-10 h-28 w-28 text-amber/30 md:h-32 md:w-32"
                 style={{ animation: "spin 20s linear infinite" }}
                 aria-hidden="true"
@@ -257,7 +257,7 @@ export function AboutPage() {
                   </h3>
                   <p
                     data-animate=""
-                    data-delay="100"
+                    data-delay="130"
                     className="mt-6 text-lg leading-relaxed text-tan"
                   >
                     We hold every plate and every pour to the same exacting
@@ -269,7 +269,7 @@ export function AboutPage() {
               </div>
               <div
                 data-animate=""
-                data-delay="200"
+                data-delay="260"
                 className="relative h-64 overflow-hidden md:h-80"
               >
                 <Image
@@ -303,7 +303,7 @@ export function AboutPage() {
                   </h3>
                   <p
                     data-animate=""
-                    data-delay="100"
+                    data-delay="130"
                     className="mt-6 text-lg leading-relaxed text-tan"
                   >
                     Every technique here is learned the slow way. Our chefs
@@ -315,7 +315,7 @@ export function AboutPage() {
               </div>
               <div
                 data-animate=""
-                data-delay="200"
+                data-delay="260"
                 className="relative h-64 overflow-hidden md:h-80"
               >
                 <Image
@@ -349,7 +349,7 @@ export function AboutPage() {
                   </h3>
                   <p
                     data-animate=""
-                    data-delay="100"
+                    data-delay="130"
                     className="mt-6 text-lg leading-relaxed text-tan"
                   >
                     The meal is the occasion. The experience is the memory. We
@@ -361,7 +361,7 @@ export function AboutPage() {
               </div>
               <div
                 data-animate=""
-                data-delay="200"
+                data-delay="260"
                 className="relative h-64 overflow-hidden md:h-80"
               >
                 <Image
@@ -431,7 +431,7 @@ export function AboutPage() {
               </div>
               <h2
                 data-animate=""
-                data-delay="100"
+                data-delay="130"
                 className="mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
               >
                 The people
@@ -442,7 +442,7 @@ export function AboutPage() {
               </h2>
               <p
                 data-animate=""
-                data-delay="220"
+                data-delay="285"
                 className="mt-8 text-lg leading-relaxed text-tan"
               >
                 Our team brings decades of combined experience from some of the
@@ -453,7 +453,7 @@ export function AboutPage() {
               <Link
                 href="/our-staff"
                 data-animate=""
-                data-delay="360"
+                data-delay="470"
                 className="mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-cream"
               >
                 Meet the full team
@@ -467,7 +467,7 @@ export function AboutPage() {
                 <div
                   key={member.name}
                   data-animate=""
-                  data-delay={String(i * 90)}
+                  data-delay={String(i * 120)}
                   className="flex flex-col items-center text-center"
                 >
                   <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border border-amber/20">
@@ -494,7 +494,7 @@ export function AboutPage() {
               <Link
                 href="/our-staff"
                 data-animate=""
-                data-delay="400"
+                data-delay="520"
                 className="col-span-2 mt-2 inline-flex items-center justify-end gap-2 text-xs tracking-[0.2em] text-amber/50 uppercase transition-colors hover:text-amber"
               >
                 See all 8 <ArrowRight className="size-3" />
@@ -520,7 +520,7 @@ export function AboutPage() {
             </div>
             <h2
               data-animate=""
-              data-delay="100"
+              data-delay="130"
               className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
             >
               The menu
@@ -531,7 +531,7 @@ export function AboutPage() {
               <div
                 key={item.name}
                 data-animate=""
-                data-delay={String(i * 80)}
+                data-delay={String(i * 105)}
                 className="group grid items-baseline gap-4 py-8 md:grid-cols-[1fr_2fr_auto]"
               >
                 <h3 className="font-display text-3xl text-cream transition-colors group-hover:text-amber">
@@ -546,7 +546,7 @@ export function AboutPage() {
           </div>
           <div
             data-animate=""
-            data-delay="400"
+            data-delay="520"
             className="mt-16 flex flex-wrap gap-4"
           >
             <Link
@@ -604,7 +604,7 @@ export function AboutPage() {
           </p>
           <blockquote
             data-animate=""
-            data-delay="100"
+            data-delay="130"
             className="font-display leading-tight text-cream"
             style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
           >
@@ -614,7 +614,7 @@ export function AboutPage() {
           <Link
             href="/our-staff"
             data-animate=""
-            data-delay="280"
+            data-delay="365"
             className="mt-12 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-cream"
           >
             Meet the team behind it
@@ -638,7 +638,7 @@ export function AboutPage() {
             </div>
             <h2
               data-animate=""
-              data-delay="100"
+              data-delay="130"
               className="mt-4 font-display text-5xl leading-tight text-charcoal md:text-7xl"
             >
               Where it
@@ -712,7 +712,7 @@ export function AboutPage() {
           </div>
           <h2
             data-animate=""
-            data-delay="100"
+            data-delay="130"
             className="mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
           >
             Reserve your
@@ -721,7 +721,7 @@ export function AboutPage() {
           </h2>
           <p
             data-animate=""
-            data-delay="220"
+            data-delay="285"
             className="mx-auto mt-8 max-w-md text-lg text-tan"
           >
             Whether it&rsquo;s a quiet dinner for two or a gathering worth
@@ -730,7 +730,7 @@ export function AboutPage() {
           <Link
             href="#reservations"
             data-animate=""
-            data-delay="360"
+            data-delay="470"
             className="mt-12 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-colors hover:bg-cream"
           >
             Book a Table

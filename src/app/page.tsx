@@ -111,7 +111,7 @@ export default function Home() {
             </div>
             <h2
               data-animate=""
-              data-delay="100"
+              data-delay="130"
               className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
             >
               Where every
@@ -121,7 +121,7 @@ export default function Home() {
             </h2>
             <p
               data-animate=""
-              data-delay="200"
+              data-delay="260"
               className="mt-8 text-lg leading-relaxed text-tan"
             >
               Butcher and the Rye was born from a reverence for the craft — the
@@ -130,7 +130,7 @@ export default function Home() {
             </p>
             <p
               data-animate=""
-              data-delay="300"
+              data-delay="390"
               className="mt-6 text-lg leading-relaxed text-tan"
             >
               We are a place for those who understand that a great evening is
@@ -139,7 +139,7 @@ export default function Home() {
             <Link
               href="/about"
               data-animate=""
-              data-delay="400"
+              data-delay="520"
               className="mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-cream"
             >
               Read more
@@ -152,7 +152,7 @@ export default function Home() {
             {/* Primary image */}
             <div
               data-animate=""
-              data-delay="150"
+              data-delay="195"
               className="relative h-[26rem] overflow-hidden"
             >
               <Image
@@ -165,7 +165,7 @@ export default function Home() {
             {/* Secondary overlapping image */}
             <div
               data-animate=""
-              data-delay="280"
+              data-delay="365"
               className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
               <Image
@@ -178,7 +178,7 @@ export default function Home() {
             {/* Spinning text ring */}
             <div
               data-animate=""
-              data-delay="380"
+              data-delay="495"
               className="absolute -bottom-14 left-0 z-10 h-28 w-28 text-amber/20 md:h-32 md:w-32"
               style={{ animation: "spin 20s linear infinite" }}
               aria-hidden="true"
@@ -216,7 +216,7 @@ export default function Home() {
             </div>
             <h2
               data-animate=""
-              data-delay="100"
+              data-delay="130"
               className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
             >
               The menu
@@ -227,7 +227,7 @@ export default function Home() {
               <div
                 key={item.name}
                 data-animate=""
-                data-delay={String(i * 80)}
+                data-delay={String(i * 105)}
                 className="group grid items-baseline gap-4 py-8 md:grid-cols-[1fr_2fr_auto]"
               >
                 <h3 className="font-display text-3xl text-cream transition-colors group-hover:text-amber">
@@ -243,7 +243,7 @@ export default function Home() {
           <Link
             href="/food"
             data-animate=""
-            data-delay="400"
+            data-delay="520"
             className="mt-16 inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
           >
             Full Menu
@@ -280,7 +280,7 @@ export default function Home() {
             </div>
             <h2
               data-animate=""
-              data-delay="100"
+              data-delay="130"
               className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
             >
               Crafted,
@@ -292,7 +292,7 @@ export default function Home() {
                 <div
                   key={drink.name}
                   data-animate=""
-                  data-delay={String(200 + i * 100)}
+                  data-delay={String(260 + i * 130)}
                 >
                   <h3 className="font-display text-2xl text-cream">
                     {drink.name}
@@ -301,7 +301,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div data-animate="" data-delay="550" className="mt-16 flex gap-6">
+            <div data-animate="" data-delay="715" className="mt-16 flex gap-6">
               <Link
                 href="/beverages"
                 className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
@@ -331,7 +331,7 @@ export default function Home() {
           </div>
           <h2
             data-animate=""
-            data-delay="100"
+            data-delay="130"
             className="mt-4 text-center font-display text-5xl text-cream md:text-7xl"
           >
             A glimpse <span className="text-tan italic">inside</span>
@@ -341,7 +341,7 @@ export default function Home() {
             <div className="flex gap-3 md:gap-4">
               <div
                 data-animate=""
-                data-delay="100"
+                data-delay="130"
                 className="relative h-72 flex-1 overflow-hidden md:h-96"
               >
                 <Image
@@ -353,7 +353,7 @@ export default function Home() {
               </div>
               <div
                 data-animate=""
-                data-delay="220"
+                data-delay="285"
                 className="relative h-72 flex-[1.5] overflow-hidden md:h-96"
               >
                 <Image
@@ -365,7 +365,7 @@ export default function Home() {
               </div>
               <div
                 data-animate=""
-                data-delay="340"
+                data-delay="440"
                 className="relative h-72 flex-1 overflow-hidden md:h-96"
               >
                 <Image
@@ -380,7 +380,7 @@ export default function Home() {
             <div className="flex gap-3 md:gap-4">
               <div
                 data-animate=""
-                data-delay="280"
+                data-delay="365"
                 className="relative h-52 flex-[1.4] overflow-hidden md:h-64"
               >
                 <Image
@@ -392,7 +392,7 @@ export default function Home() {
               </div>
               <div
                 data-animate=""
-                data-delay="400"
+                data-delay="520"
                 className="relative h-52 flex-1 overflow-hidden md:h-64"
               >
                 <Image
@@ -413,9 +413,9 @@ export default function Home() {
           <div className="mt-4 space-y-8">
             <div className="flex flex-wrap items-end justify-center gap-8">
               {[
-                { src: "/entree.png", alt: "Plated dish", w: 1652, h: 1924, delay: "100" },
-                { src: "/glow.png", alt: "The bar", w: 1803, h: 2003, delay: "220" },
-                { src: "/whiskey.png", alt: "Whiskey pour", w: 1579, h: 1996, delay: "340" },
+                { src: "/entree.png", alt: "Plated dish", w: 1652, h: 1924, delay: "130" },
+                { src: "/glow.png", alt: "The bar", w: 1803, h: 2003, delay: "285" },
+                { src: "/whiskey.png", alt: "Whiskey pour", w: 1579, h: 1996, delay: "440" },
               ].map((photo) => (
                 <div key={photo.src} data-animate="" data-delay={photo.delay}>
                   <Image
@@ -430,8 +430,8 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap items-end justify-center gap-8">
               {[
-                { src: "/bartender.png", alt: "Bartender", w: 1208, h: 1662, delay: "280" },
-                { src: "/tables.png", alt: "Dining room", w: 2168, h: 1922, delay: "400" },
+                { src: "/bartender.png", alt: "Bartender", w: 1208, h: 1662, delay: "365" },
+                { src: "/tables.png", alt: "Dining room", w: 2168, h: 1922, delay: "520" },
               ].map((photo) => (
                 <div key={photo.src} data-animate="" data-delay={photo.delay}>
                   <Image
@@ -474,7 +474,7 @@ export default function Home() {
           </div>
           <h2
             data-animate=""
-            data-delay="100"
+            data-delay="130"
             className="mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
           >
             Reserve your
@@ -483,7 +483,7 @@ export default function Home() {
           </h2>
           <p
             data-animate=""
-            data-delay="220"
+            data-delay="285"
             className="mx-auto mt-8 max-w-md text-lg text-tan"
           >
             Whether it's a quiet dinner for two or a gathering worth
@@ -492,7 +492,7 @@ export default function Home() {
           <Link
             href="#"
             data-animate=""
-            data-delay="360"
+            data-delay="470"
             className="mt-12 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-colors hover:bg-cream"
           >
             Book a Table
