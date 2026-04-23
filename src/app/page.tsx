@@ -99,8 +99,9 @@ export default function Home() {
         <div
           data-parallax="content"
           data-parallax-speed="0.06"
-          className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16"
+          className="mx-auto grid max-w-7xl items-center gap-16 px-8 md:grid-cols-2 md:px-16"
         >
+          {/* Left: all copy */}
           <div className="flex flex-col justify-center">
             <div data-animate="" className="flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
@@ -118,12 +119,10 @@ export default function Home() {
               glass has a<br />
               <span className="text-tan italic">history</span>
             </h2>
-          </div>
-          <div className="flex flex-col justify-center">
             <p
               data-animate=""
-              data-delay="180"
-              className="text-lg leading-relaxed text-tan"
+              data-delay="200"
+              className="mt-8 text-lg leading-relaxed text-tan"
             >
               Butcher and the Rye was born from a reverence for the craft — the
               slow char of a barrel, the patience of a dry-aged cut, the
@@ -131,7 +130,7 @@ export default function Home() {
             </p>
             <p
               data-animate=""
-              data-delay="280"
+              data-delay="300"
               className="mt-6 text-lg leading-relaxed text-tan"
             >
               We are a place for those who understand that a great evening is
@@ -140,12 +139,53 @@ export default function Home() {
             <Link
               href="/about"
               data-animate=""
-              data-delay="380"
+              data-delay="400"
               className="mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-cream"
             >
               Read more
               <ArrowRight className="size-4" />
             </Link>
+          </div>
+
+          {/* Right: image collage */}
+          <div data-animate="" data-delay="80" className="relative mt-8 md:mt-0">
+            {/* Primary image */}
+            <div className="relative h-[26rem] overflow-hidden">
+              <Image
+                src="/barmood.jpg"
+                alt="The bar at Butcher and the Rye"
+                fill
+                className="object-cover"
+              />
+            </div>
+            {/* Secondary overlapping image */}
+            <div className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-right-10 md:h-52 md:w-40">
+              <Image
+                src="/bardecor.jpg"
+                alt="Bar detail"
+                fill
+                className="object-cover"
+              />
+            </div>
+            {/* Spinning text ring */}
+            <div
+              className="absolute -bottom-14 left-0 z-10 h-28 w-28 text-amber/20 md:h-32 md:w-32"
+              style={{ animation: "spin 20s linear infinite" }}
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 100 100" className="h-full w-full">
+                <path
+                  id="aboutRing"
+                  d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+                  fill="none"
+                />
+                <text fontSize="8.5" fill="currentColor" letterSpacing="3.2">
+                  <textPath href="#aboutRing">
+                    BUTCHER &amp; THE RYE · EST 2013 ·
+                  </textPath>
+                </text>
+              </svg>
+            </div>
           </div>
         </div>
       </section>
@@ -172,6 +212,20 @@ export default function Home() {
               The menu
             </h2>
           </div>
+          {/* Featured food image */}
+          <div
+            data-animate=""
+            data-delay="150"
+            className="relative mb-16 h-64 w-full overflow-hidden md:h-80"
+          >
+            <Image
+              src="/food/bone-in-ribeye.jpg"
+              alt="Bone-In Ribeye"
+              fill
+              className="object-cover"
+            />
+          </div>
+
           <div className="grid gap-0 divide-y divide-cream/10">
             {MENU_HIGHLIGHTS.map((item, i) => (
               <div
@@ -286,45 +340,52 @@ export default function Home() {
           >
             A glimpse <span className="text-tan italic">inside</span>
           </h2>
-          <div className="mt-20 space-y-8">
-            <div
-              data-animate=""
-              data-delay="150"
-              className="flex flex-wrap items-end justify-center gap-8"
-            >
-              {[
-                { src: "/entree.png", alt: "Plated dish", w: 1652, h: 1924 },
-                { src: "/glow.png", alt: "The bar", w: 1803, h: 2003 },
-                { src: "/whiskey.png", alt: "Whiskey pour", w: 1579, h: 1996 },
-              ].map((photo) => (
+          <div className="mt-20 space-y-3 md:space-y-4">
+            {/* Row 1: 3 images */}
+            <div data-animate="" data-delay="150" className="flex gap-3 md:gap-4">
+              <div className="relative h-72 flex-1 overflow-hidden md:h-96">
                 <Image
-                  key={photo.src}
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.w}
-                  height={photo.h}
-                  className="h-56 w-auto object-contain md:h-80"
+                  src="/barmood.jpg"
+                  alt="Bar atmosphere"
+                  fill
+                  className="object-cover"
                 />
-              ))}
+              </div>
+              <div className="relative h-72 flex-[1.5] overflow-hidden md:h-96">
+                <Image
+                  src="/bar-brass-glow.jpg"
+                  alt="Bar glow"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative h-72 flex-1 overflow-hidden md:h-96">
+                <Image
+                  src="/barvibe.jpg"
+                  alt="Bar vibe"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <div
-              data-animate=""
-              data-delay="250"
-              className="flex flex-wrap items-end justify-center gap-8"
-            >
-              {[
-                { src: "/bartender.png", alt: "Bartender", w: 1208, h: 1662 },
-                { src: "/tables.png", alt: "Dining room", w: 2168, h: 1922 },
-              ].map((photo) => (
+            {/* Row 2: 2 images */}
+            <div data-animate="" data-delay="250" className="flex gap-3 md:gap-4">
+              <div className="relative h-52 flex-[1.4] overflow-hidden md:h-64">
                 <Image
-                  key={photo.src}
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={photo.w}
-                  height={photo.h}
-                  className="h-56 w-auto object-contain md:h-80"
+                  src="/bardecor.jpg"
+                  alt="Bar decor"
+                  fill
+                  className="object-cover"
                 />
-              ))}
+              </div>
+              <div className="relative h-52 flex-1 overflow-hidden md:h-64">
+                <Image
+                  src="/whiskey-pour.jpg"
+                  alt="Whiskey pour"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>

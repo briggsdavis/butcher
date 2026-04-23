@@ -26,10 +26,10 @@ const MENU_HIGHLIGHTS = [
 ]
 
 const FEATURED_STAFF = [
-  { name: "Marcus Chen", role: "Executive Chef", initials: "MC" },
-  { name: "Sophia Reeves", role: "Bar Director", initials: "SR" },
-  { name: "James O'Brien", role: "Head Butcher", initials: "JO" },
-  { name: "Amara Washington", role: "General Manager", initials: "AW" },
+  { name: "Marcus Chen", role: "Executive Chef", initials: "MC", img: "/food/bone-in-ribeye.jpg" },
+  { name: "Sophia Reeves", role: "Bar Director", initials: "SR", img: "/craft-old-fashioned.jpg" },
+  { name: "James O'Brien", role: "Head Butcher", initials: "JO", img: "/food/bone-marrow.jpg" },
+  { name: "Amara Washington", role: "General Manager", initials: "AW", img: "/candlelit-tables.jpg" },
 ]
 
 const SOURCING = [
@@ -38,18 +38,24 @@ const SOURCING = [
     copy: "Our steaks come exclusively from Heritage Farms of Pennsylvania, raised on open pasture without growth hormones. Every cut is hand-selected by our Head Butcher and dry-aged on-site for a minimum of 45 days.",
     source: "Heritage Farms, PA",
     delay: "0",
+    img: "/food/bone-in-ribeye.jpg",
+    imgAlt: "Bone-in ribeye",
   },
   {
     label: "The Spirits",
     copy: "We maintain relationships with over 30 American distilleries — from well-known Kentucky bourbon houses to small-batch rye producers across the Northeast. Our Bar Director personally selects every bottle.",
     source: "30+ American Distilleries",
     delay: "150",
+    img: "/whiskey-pour.jpg",
+    imgAlt: "Whiskey pour",
   },
   {
     label: "The Produce",
     copy: "Our kitchen sources seasonal vegetables and herbs from within 100 miles of Pittsburgh. We change our sides and starters with the season, letting what grows close to home dictate the direction of the menu.",
     source: "Within 100 Miles of Pittsburgh",
     delay: "300",
+    img: "/food/charred-broccolini.jpg",
+    imgAlt: "Charred broccolini",
   },
 ]
 
@@ -224,81 +230,116 @@ export function AboutPage() {
             </span>
           </div>
 
-          {/* Value 1 — offset right */}
-          <div
-            data-animate=""
-            data-delay="0"
-            className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
-          >
-            <div
-              className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
-              style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-              aria-hidden="true"
-            >
-              01
-            </div>
-            <div className="relative z-10">
-              <h3 className="font-display text-6xl text-cream md:text-7xl">
-                Excellence
-              </h3>
-              <p className="mt-6 text-lg leading-relaxed text-tan">
-                We hold every plate and every pour to the same exacting
-                standard. No table is less important than another. No dish
-                leaves our kitchen without meeting the mark. Excellence
-                isn&rsquo;t an aspiration here — it&rsquo;s the minimum.
-              </p>
-            </div>
-          </div>
+          <div className="grid gap-16 md:grid-cols-[3fr_2fr] md:gap-8">
+            {/* Left: value blocks */}
+            <div>
+              {/* Value 1 — offset right */}
+              <div
+                data-animate=""
+                data-delay="0"
+                className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
+              >
+                <div
+                  className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
+                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                  aria-hidden="true"
+                >
+                  01
+                </div>
+                <div className="relative z-10">
+                  <h3 className="font-display text-6xl text-cream md:text-7xl">
+                    Excellence
+                  </h3>
+                  <p className="mt-6 text-lg leading-relaxed text-tan">
+                    We hold every plate and every pour to the same exacting
+                    standard. No table is less important than another. No dish
+                    leaves our kitchen without meeting the mark. Excellence
+                    isn&rsquo;t an aspiration here — it&rsquo;s the minimum.
+                  </p>
+                </div>
+              </div>
 
-          {/* Value 2 — centered */}
-          <div
-            data-animate=""
-            data-delay="150"
-            className="relative mb-16 border-t border-cream/10 pt-12 md:mx-auto md:w-3/5"
-          >
-            <div
-              className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
-              style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-              aria-hidden="true"
-            >
-              02
-            </div>
-            <div className="relative z-10">
-              <h3 className="font-display text-6xl text-cream md:text-7xl">
-                Craft
-              </h3>
-              <p className="mt-6 text-lg leading-relaxed text-tan">
-                Every technique here is learned the slow way. Our chefs
-                apprenticed under demanding kitchens. Our bartenders spent years
-                studying whiskey before touching our bar. There are no
-                shortcuts, and we wouldn&rsquo;t have it any other way.
-              </p>
-            </div>
-          </div>
+              {/* Value 2 — centered */}
+              <div
+                data-animate=""
+                data-delay="150"
+                className="relative mb-16 border-t border-cream/10 pt-12 md:mx-auto md:w-3/5"
+              >
+                <div
+                  className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
+                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                  aria-hidden="true"
+                >
+                  02
+                </div>
+                <div className="relative z-10">
+                  <h3 className="font-display text-6xl text-cream md:text-7xl">
+                    Craft
+                  </h3>
+                  <p className="mt-6 text-lg leading-relaxed text-tan">
+                    Every technique here is learned the slow way. Our chefs
+                    apprenticed under demanding kitchens. Our bartenders spent
+                    years studying whiskey before touching our bar. There are no
+                    shortcuts, and we wouldn&rsquo;t have it any other way.
+                  </p>
+                </div>
+              </div>
 
-          {/* Value 3 — offset left */}
-          <div
-            data-animate=""
-            data-delay="300"
-            className="relative border-t border-cream/10 pt-12 md:w-3/5"
-          >
-            <div
-              className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
-              style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-              aria-hidden="true"
-            >
-              03
+              {/* Value 3 — offset left */}
+              <div
+                data-animate=""
+                data-delay="300"
+                className="relative border-t border-cream/10 pt-12 md:w-3/5"
+              >
+                <div
+                  className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
+                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                  aria-hidden="true"
+                >
+                  03
+                </div>
+                <div className="relative z-10">
+                  <h3 className="font-display text-6xl text-cream md:text-7xl">
+                    Hospitality
+                  </h3>
+                  <p className="mt-6 text-lg leading-relaxed text-tan">
+                    The meal is the occasion. The experience is the memory. We
+                    study our guests — their preferences, their celebrations,
+                    their habits. Hospitality at Butcher and the Rye means you
+                    never have to ask twice.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="relative z-10">
-              <h3 className="font-display text-6xl text-cream md:text-7xl">
-                Hospitality
-              </h3>
-              <p className="mt-6 text-lg leading-relaxed text-tan">
-                The meal is the occasion. The experience is the memory. We study
-                our guests — their preferences, their celebrations, their
-                habits. Hospitality at Butcher and the Rye means you never have
-                to ask twice.
-              </p>
+
+            {/* Right: sticky image column (desktop only) */}
+            <div className="hidden md:block">
+              <div className="sticky top-32 space-y-4">
+                <div
+                  data-animate=""
+                  data-delay="80"
+                  className="relative h-72 overflow-hidden"
+                >
+                  <Image
+                    src="/barmood1.jpg"
+                    alt="Bar atmosphere"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div
+                  data-animate=""
+                  data-delay="200"
+                  className="relative h-52 overflow-hidden"
+                >
+                  <Image
+                    src="/bardecor1.jpg"
+                    alt="Bar decor"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -398,8 +439,15 @@ export function AboutPage() {
                   data-delay={String(i * 90)}
                   className="flex flex-col items-center text-center"
                 >
-                  <div className="relative mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-amber/20 bg-gradient-to-br from-oxblood via-[#2a1015] to-charcoal">
-                    <span className="font-display text-2xl text-amber/50 select-none">
+                  <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border border-amber/20">
+                    <Image
+                      src={member.img}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-charcoal/55" />
+                    <span className="absolute inset-0 flex items-center justify-center font-display text-2xl text-amber/70 select-none">
                       {member.initials}
                     </span>
                     <div className="absolute inset-0 rounded-full ring-1 ring-amber/10 ring-inset" />
@@ -502,10 +550,20 @@ export function AboutPage() {
         data-wipe
         className="relative overflow-hidden bg-charcoal py-32 md:py-48"
       >
+        {/* Background image */}
+        <div className="absolute inset-0 opacity-[0.12]">
+          <Image
+            src="/barvibe.jpg"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-charcoal/75" />
         <div
           data-parallax="content"
           data-parallax-speed="0.05"
-          className="mx-auto max-w-5xl px-8 text-center md:px-16"
+          className="relative z-10 mx-auto max-w-5xl px-8 text-center md:px-16"
         >
           <p
             data-animate=""
@@ -565,6 +623,14 @@ export function AboutPage() {
           >
             {SOURCING.map((item) => (
               <div key={item.label} data-animate="" data-delay={item.delay}>
+                <div className="relative mb-8 h-48 overflow-hidden md:h-56">
+                  <Image
+                    src={item.img}
+                    alt={item.imgAlt}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="mb-8 h-px w-10 bg-amber/60" />
                 <h3 className="mb-4 font-display text-2xl text-charcoal">
                   {item.label}
