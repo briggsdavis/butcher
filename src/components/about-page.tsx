@@ -11,32 +11,6 @@ const FEATURED_STAFF = [
   { name: "Amara Washington", role: "General Manager", initials: "AW", img: "/candlelit-tables.jpg" },
 ]
 
-const SOURCING = [
-  {
-    label: "The Beef",
-    copy: "Our steaks come exclusively from Heritage Farms of Pennsylvania, raised on open pasture without growth hormones. Every cut is hand-selected by our Head Butcher and dry-aged on-site for a minimum of 45 days.",
-    source: "Heritage Farms, PA",
-    delay: "0",
-    img: "/food/bone-in-ribeye.jpg",
-    imgAlt: "Bone-in ribeye",
-  },
-  {
-    label: "The Spirits",
-    copy: "We maintain relationships with over 30 American distilleries — from well-known Kentucky bourbon houses to small-batch rye producers across the Northeast. Our Bar Director personally selects every bottle.",
-    source: "30+ American Distilleries",
-    delay: "195",
-    img: "/whiskey-pour.jpg",
-    imgAlt: "Whiskey pour",
-  },
-  {
-    label: "The Produce",
-    copy: "Our kitchen sources seasonal vegetables and herbs from within 100 miles of Pittsburgh. We change our sides and starters with the season, letting what grows close to home dictate the direction of the menu.",
-    source: "Within 100 Miles of Pittsburgh",
-    delay: "390",
-    img: "/food/charred-broccolini.jpg",
-    imgAlt: "Charred broccolini",
-  },
-]
 
 export function AboutPage() {
   return (
@@ -50,7 +24,7 @@ export function AboutPage() {
           style={{ top: "-15%", bottom: "-15%" }}
         >
           <Image
-            src="/warm-dining-room.jpg"
+            src="/aboutbg.jpg"
             alt="Butcher and the Rye dining room"
             fill
             priority
@@ -368,7 +342,7 @@ export function AboutPage() {
           style={{ top: "-10%", bottom: "-10%" }}
         >
           <Image
-            src="/bartender-at-work.jpg"
+            src="/paralaxwide.jpg"
             alt="Behind the bar at Butcher and the Rye"
             fill
             className="object-cover"
@@ -514,8 +488,8 @@ export function AboutPage() {
                 className="relative aspect-[5/4] w-full overflow-hidden"
               >
                 <Image
-                  src="/food/bone-in-ribeye.jpg"
-                  alt="Bone-in Ribeye"
+                  src="/meatboard.jpg"
+                  alt="Meat Board"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
@@ -543,8 +517,8 @@ export function AboutPage() {
               className="relative aspect-[5/4] w-full overflow-hidden lg:mt-16"
             >
               <Image
-                src="/food/braised-short-rib.jpg"
-                alt="Braised Short Rib"
+                src="/steak.jpg"
+                alt="Steak"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
@@ -640,70 +614,6 @@ export function AboutPage() {
             Meet the team behind it
             <ArrowRight className="size-4" />
           </Link>
-        </div>
-      </section>
-
-      {/* ── 8. PROVENANCE / SOURCING ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-cream py-32 md:py-48"
-      >
-        <div className="mx-auto max-w-7xl px-8 md:px-16">
-          <div className="mb-20">
-            <div data-animate="" className="flex items-center gap-4">
-              <span className="block h-px w-10 shrink-0 bg-oxblood/30" />
-              <span className="text-xs tracking-[0.3em] text-oxblood/50 uppercase">
-                The Ingredients
-              </span>
-            </div>
-            <h2
-              data-animate=""
-              data-delay="130"
-              className="mt-4 font-display text-5xl leading-tight text-charcoal md:text-7xl"
-            >
-              Where it
-              <br />
-              <span className="text-oxblood italic">comes from</span>
-            </h2>
-          </div>
-
-          <div
-            data-parallax="content"
-            data-parallax-speed="0.05"
-            className="grid gap-16 md:grid-cols-3"
-          >
-            {SOURCING.map((item) => (
-              <div key={item.label}>
-                <div
-                  data-animate=""
-                  data-delay={item.delay}
-                  className="relative mb-8 h-48 overflow-hidden md:h-56"
-                >
-                  <Image
-                    src={item.img}
-                    alt={item.imgAlt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div
-                  data-animate=""
-                  data-delay={String(+item.delay + 150)}
-                >
-                  <div className="mb-8 h-px w-10 bg-amber/60" />
-                  <h3 className="mb-4 font-display text-2xl text-charcoal">
-                    {item.label}
-                  </h3>
-                  <p className="mb-6 leading-relaxed text-charcoal/70">
-                    {item.copy}
-                  </p>
-                  <p className="text-xs tracking-[0.25em] text-oxblood/70 uppercase">
-                    {item.source}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
