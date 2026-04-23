@@ -147,10 +147,14 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Right: image collage */}
-          <div data-animate="" data-delay="80" className="relative mt-8 md:mt-0">
+          {/* Right: image collage — each element staggered */}
+          <div className="relative mt-8 md:mt-0">
             {/* Primary image */}
-            <div className="relative h-[26rem] overflow-hidden">
+            <div
+              data-animate=""
+              data-delay="150"
+              className="relative h-[26rem] overflow-hidden"
+            >
               <Image
                 src="/barmood.jpg"
                 alt="The bar at Butcher and the Rye"
@@ -159,7 +163,11 @@ export default function Home() {
               />
             </div>
             {/* Secondary overlapping image */}
-            <div className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-right-10 md:h-52 md:w-40">
+            <div
+              data-animate=""
+              data-delay="280"
+              className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-right-10 md:h-52 md:w-40"
+            >
               <Image
                 src="/bardecor.jpg"
                 alt="Bar detail"
@@ -169,6 +177,8 @@ export default function Home() {
             </div>
             {/* Spinning text ring */}
             <div
+              data-animate=""
+              data-delay="380"
               className="absolute -bottom-14 left-0 z-10 h-28 w-28 text-amber/20 md:h-32 md:w-32"
               style={{ animation: "spin 20s linear infinite" }}
               aria-hidden="true"
@@ -212,20 +222,6 @@ export default function Home() {
               The menu
             </h2>
           </div>
-          {/* Featured food image */}
-          <div
-            data-animate=""
-            data-delay="150"
-            className="relative mb-16 h-64 w-full overflow-hidden md:h-80"
-          >
-            <Image
-              src="/food/bone-in-ribeye.jpg"
-              alt="Bone-In Ribeye"
-              fill
-              className="object-cover"
-            />
-          </div>
-
           <div className="grid gap-0 divide-y divide-cream/10">
             {MENU_HIGHLIGHTS.map((item, i) => (
               <div
@@ -341,9 +337,13 @@ export default function Home() {
             A glimpse <span className="text-tan italic">inside</span>
           </h2>
           <div className="mt-20 space-y-3 md:space-y-4">
-            {/* Row 1: 3 images */}
-            <div data-animate="" data-delay="150" className="flex gap-3 md:gap-4">
-              <div className="relative h-72 flex-1 overflow-hidden md:h-96">
+            {/* Row 1: 3 images — individually staggered */}
+            <div className="flex gap-3 md:gap-4">
+              <div
+                data-animate=""
+                data-delay="100"
+                className="relative h-72 flex-1 overflow-hidden md:h-96"
+              >
                 <Image
                   src="/barmood.jpg"
                   alt="Bar atmosphere"
@@ -351,7 +351,11 @@ export default function Home() {
                   className="object-cover"
                 />
               </div>
-              <div className="relative h-72 flex-[1.5] overflow-hidden md:h-96">
+              <div
+                data-animate=""
+                data-delay="220"
+                className="relative h-72 flex-[1.5] overflow-hidden md:h-96"
+              >
                 <Image
                   src="/bar-brass-glow.jpg"
                   alt="Bar glow"
@@ -359,7 +363,11 @@ export default function Home() {
                   className="object-cover"
                 />
               </div>
-              <div className="relative h-72 flex-1 overflow-hidden md:h-96">
+              <div
+                data-animate=""
+                data-delay="340"
+                className="relative h-72 flex-1 overflow-hidden md:h-96"
+              >
                 <Image
                   src="/barvibe.jpg"
                   alt="Bar vibe"
@@ -368,9 +376,13 @@ export default function Home() {
                 />
               </div>
             </div>
-            {/* Row 2: 2 images */}
-            <div data-animate="" data-delay="250" className="flex gap-3 md:gap-4">
-              <div className="relative h-52 flex-[1.4] overflow-hidden md:h-64">
+            {/* Row 2: 2 images — individually staggered */}
+            <div className="flex gap-3 md:gap-4">
+              <div
+                data-animate=""
+                data-delay="280"
+                className="relative h-52 flex-[1.4] overflow-hidden md:h-64"
+              >
                 <Image
                   src="/bardecor.jpg"
                   alt="Bar decor"
@@ -378,7 +390,11 @@ export default function Home() {
                   className="object-cover"
                 />
               </div>
-              <div className="relative h-52 flex-1 overflow-hidden md:h-64">
+              <div
+                data-animate=""
+                data-delay="400"
+                className="relative h-52 flex-1 overflow-hidden md:h-64"
+              >
                 <Image
                   src="/whiskey-pour.jpg"
                   alt="Whiskey pour"
@@ -386,6 +402,47 @@ export default function Home() {
                   className="object-cover"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Gallery (original) ── */}
+      <section data-wipe className="bg-charcoal py-32 md:py-48">
+        <div className="mx-auto max-w-7xl px-8 md:px-16">
+          <div className="mt-4 space-y-8">
+            <div className="flex flex-wrap items-end justify-center gap-8">
+              {[
+                { src: "/entree.png", alt: "Plated dish", w: 1652, h: 1924, delay: "100" },
+                { src: "/glow.png", alt: "The bar", w: 1803, h: 2003, delay: "220" },
+                { src: "/whiskey.png", alt: "Whiskey pour", w: 1579, h: 1996, delay: "340" },
+              ].map((photo) => (
+                <div key={photo.src} data-animate="" data-delay={photo.delay}>
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={photo.w}
+                    height={photo.h}
+                    className="h-56 w-auto object-contain md:h-80"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-end justify-center gap-8">
+              {[
+                { src: "/bartender.png", alt: "Bartender", w: 1208, h: 1662, delay: "280" },
+                { src: "/tables.png", alt: "Dining room", w: 2168, h: 1922, delay: "400" },
+              ].map((photo) => (
+                <div key={photo.src} data-animate="" data-delay={photo.delay}>
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={photo.w}
+                    height={photo.h}
+                    className="h-56 w-auto object-contain md:h-80"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>

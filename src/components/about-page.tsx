@@ -169,14 +169,14 @@ export function AboutPage() {
               </blockquote>
             </div>
 
-            {/* Right: overlapping image collage + rotating ring */}
-            <div
-              data-animate=""
-              data-delay="80"
-              className="relative mt-8 md:mt-16"
-            >
+            {/* Right: overlapping image collage — each element staggered */}
+            <div className="relative mt-8 md:mt-16">
               {/* Primary image */}
-              <div className="relative h-80 overflow-hidden md:h-96">
+              <div
+                data-animate=""
+                data-delay="120"
+                className="relative h-80 overflow-hidden md:h-96"
+              >
                 <Image
                   src="/candlelit-tables.jpg"
                   alt="Candlelit dining at Butcher and the Rye"
@@ -185,7 +185,11 @@ export function AboutPage() {
                 />
               </div>
               {/* Secondary image — overlaps bottom-left of primary */}
-              <div className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-left-10 md:h-52 md:w-40">
+              <div
+                data-animate=""
+                data-delay="260"
+                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-left-10 md:h-52 md:w-40"
+              >
                 <Image
                   src="/plated-entree.jpg"
                   alt="A plated entrée"
@@ -193,8 +197,10 @@ export function AboutPage() {
                   className="object-cover"
                 />
               </div>
-              {/* Rotating text ring (Screenshot 1 inspired) */}
+              {/* Rotating text ring */}
               <div
+                data-animate=""
+                data-delay="380"
                 className="absolute right-0 -bottom-14 z-10 h-28 w-28 text-amber/30 md:h-32 md:w-32"
                 style={{ animation: "spin 20s linear infinite" }}
                 aria-hidden="true"
@@ -230,15 +236,10 @@ export function AboutPage() {
             </span>
           </div>
 
-          <div className="grid gap-16 md:grid-cols-[3fr_2fr] md:gap-8">
-            {/* Left: value blocks */}
-            <div>
-              {/* Value 1 — offset right */}
-              <div
-                data-animate=""
-                data-delay="0"
-                className="relative mb-16 border-t border-cream/10 pt-12 md:ml-auto md:w-3/5"
-              >
+          {/* Value 1 — Excellence */}
+          <div className="mb-16 border-t border-cream/10 pt-12">
+            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
+              <div className="relative">
                 <div
                   className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
                   style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
@@ -247,10 +248,18 @@ export function AboutPage() {
                   01
                 </div>
                 <div className="relative z-10">
-                  <h3 className="font-display text-6xl text-cream md:text-7xl">
+                  <h3
+                    data-animate=""
+                    data-delay="0"
+                    className="font-display text-6xl text-cream md:text-7xl"
+                  >
                     Excellence
                   </h3>
-                  <p className="mt-6 text-lg leading-relaxed text-tan">
+                  <p
+                    data-animate=""
+                    data-delay="100"
+                    className="mt-6 text-lg leading-relaxed text-tan"
+                  >
                     We hold every plate and every pour to the same exacting
                     standard. No table is less important than another. No dish
                     leaves our kitchen without meeting the mark. Excellence
@@ -258,13 +267,25 @@ export function AboutPage() {
                   </p>
                 </div>
               </div>
-
-              {/* Value 2 — centered */}
               <div
                 data-animate=""
-                data-delay="150"
-                className="relative mb-16 border-t border-cream/10 pt-12 md:mx-auto md:w-3/5"
+                data-delay="200"
+                className="relative h-64 overflow-hidden md:h-80"
               >
+                <Image
+                  src="/barmood1.jpg"
+                  alt="Excellence at Butcher and the Rye"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Value 2 — Craft */}
+          <div className="mb-16 border-t border-cream/10 pt-12">
+            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
+              <div className="relative">
                 <div
                   className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
                   style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
@@ -273,10 +294,18 @@ export function AboutPage() {
                   02
                 </div>
                 <div className="relative z-10">
-                  <h3 className="font-display text-6xl text-cream md:text-7xl">
+                  <h3
+                    data-animate=""
+                    data-delay="0"
+                    className="font-display text-6xl text-cream md:text-7xl"
+                  >
                     Craft
                   </h3>
-                  <p className="mt-6 text-lg leading-relaxed text-tan">
+                  <p
+                    data-animate=""
+                    data-delay="100"
+                    className="mt-6 text-lg leading-relaxed text-tan"
+                  >
                     Every technique here is learned the slow way. Our chefs
                     apprenticed under demanding kitchens. Our bartenders spent
                     years studying whiskey before touching our bar. There are no
@@ -284,13 +313,25 @@ export function AboutPage() {
                   </p>
                 </div>
               </div>
-
-              {/* Value 3 — offset left */}
               <div
                 data-animate=""
-                data-delay="300"
-                className="relative border-t border-cream/10 pt-12 md:w-3/5"
+                data-delay="200"
+                className="relative h-64 overflow-hidden md:h-80"
               >
+                <Image
+                  src="/bardecor1.jpg"
+                  alt="Craft at Butcher and the Rye"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Value 3 — Hospitality */}
+          <div className="border-t border-cream/10 pt-12">
+            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
+              <div className="relative">
                 <div
                   className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
                   style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
@@ -299,10 +340,18 @@ export function AboutPage() {
                   03
                 </div>
                 <div className="relative z-10">
-                  <h3 className="font-display text-6xl text-cream md:text-7xl">
+                  <h3
+                    data-animate=""
+                    data-delay="0"
+                    className="font-display text-6xl text-cream md:text-7xl"
+                  >
                     Hospitality
                   </h3>
-                  <p className="mt-6 text-lg leading-relaxed text-tan">
+                  <p
+                    data-animate=""
+                    data-delay="100"
+                    className="mt-6 text-lg leading-relaxed text-tan"
+                  >
                     The meal is the occasion. The experience is the memory. We
                     study our guests — their preferences, their celebrations,
                     their habits. Hospitality at Butcher and the Rye means you
@@ -310,35 +359,17 @@ export function AboutPage() {
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Right: sticky image column (desktop only) */}
-            <div className="hidden md:block">
-              <div className="sticky top-32 space-y-4">
-                <div
-                  data-animate=""
-                  data-delay="80"
-                  className="relative h-72 overflow-hidden"
-                >
-                  <Image
-                    src="/barmood1.jpg"
-                    alt="Bar atmosphere"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div
-                  data-animate=""
-                  data-delay="200"
-                  className="relative h-52 overflow-hidden"
-                >
-                  <Image
-                    src="/bardecor1.jpg"
-                    alt="Bar decor"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+              <div
+                data-animate=""
+                data-delay="200"
+                className="relative h-64 overflow-hidden md:h-80"
+              >
+                <Image
+                  src="/candlelit-tables.jpg"
+                  alt="Hospitality at Butcher and the Rye"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -622,8 +653,12 @@ export function AboutPage() {
             className="grid gap-16 md:grid-cols-3"
           >
             {SOURCING.map((item) => (
-              <div key={item.label} data-animate="" data-delay={item.delay}>
-                <div className="relative mb-8 h-48 overflow-hidden md:h-56">
+              <div key={item.label}>
+                <div
+                  data-animate=""
+                  data-delay={item.delay}
+                  className="relative mb-8 h-48 overflow-hidden md:h-56"
+                >
                   <Image
                     src={item.img}
                     alt={item.imgAlt}
@@ -631,16 +666,21 @@ export function AboutPage() {
                     className="object-cover"
                   />
                 </div>
-                <div className="mb-8 h-px w-10 bg-amber/60" />
-                <h3 className="mb-4 font-display text-2xl text-charcoal">
-                  {item.label}
-                </h3>
-                <p className="mb-6 leading-relaxed text-charcoal/70">
-                  {item.copy}
-                </p>
-                <p className="text-xs tracking-[0.25em] text-oxblood/70 uppercase">
-                  {item.source}
-                </p>
+                <div
+                  data-animate=""
+                  data-delay={String(+item.delay + 150)}
+                >
+                  <div className="mb-8 h-px w-10 bg-amber/60" />
+                  <h3 className="mb-4 font-display text-2xl text-charcoal">
+                    {item.label}
+                  </h3>
+                  <p className="mb-6 leading-relaxed text-charcoal/70">
+                    {item.copy}
+                  </p>
+                  <p className="text-xs tracking-[0.25em] text-oxblood/70 uppercase">
+                    {item.source}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
