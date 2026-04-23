@@ -50,7 +50,7 @@ export function AboutPage() {
           style={{ top: "-15%", bottom: "-15%" }}
         >
           <Image
-            src="/warm-dining-room.jpg"
+            src="/aboutbg.jpg"
             alt="Butcher and the Rye dining room"
             fill
             priority
@@ -368,7 +368,7 @@ export function AboutPage() {
           style={{ top: "-10%", bottom: "-10%" }}
         >
           <Image
-            src="/bartender-at-work.jpg"
+            src="/paralaxwide.jpg"
             alt="Behind the bar at Butcher and the Rye"
             fill
             className="object-cover"
@@ -514,8 +514,8 @@ export function AboutPage() {
                 className="relative aspect-[5/4] w-full overflow-hidden"
               >
                 <Image
-                  src="/food/bone-in-ribeye.jpg"
-                  alt="Bone-in Ribeye"
+                  src="/meatboard.jpg"
+                  alt="Meat Board"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
@@ -543,8 +543,8 @@ export function AboutPage() {
               className="relative aspect-[5/4] w-full overflow-hidden lg:mt-16"
             >
               <Image
-                src="/food/braised-short-rib.jpg"
-                alt="Braised Short Rib"
+                src="/steak.jpg"
+                alt="Steak"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />

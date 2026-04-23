@@ -210,8 +210,8 @@ export default function Home() {
                 className="relative aspect-[5/4] w-full overflow-hidden"
               >
                 <Image
-                  src="/food/bone-in-ribeye.jpg"
-                  alt="Bone-in Ribeye"
+                  src="/meatboard.jpg"
+                  alt="Meat Board"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
@@ -239,8 +239,8 @@ export default function Home() {
               className="relative aspect-[5/4] w-full overflow-hidden lg:mt-16"
             >
               <Image
-                src="/food/braised-short-rib.jpg"
-                alt="Braised Short Rib"
+                src="/steak.jpg"
+                alt="Steak"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
