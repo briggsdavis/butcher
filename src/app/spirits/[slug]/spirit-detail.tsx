@@ -122,14 +122,14 @@ export function SpiritDetail({ item, image, prevSlug, nextSlug }: Props) {
               <div className="flex items-center justify-between border-b border-cream/10 py-5">
                 <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
                   Price
-                  <span className="mx-3 text-cream/20">—</span>${item.price}
+                  <span className="mx-3 text-cream/20">·</span>${item.price}
                 </span>
                 <span className="text-lg text-cream/20">+</span>
               </div>
               <div className="flex items-center justify-between border-b border-cream/10 py-5">
                 <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
                   Category
-                  <span className="mx-3 text-cream/20">—</span>
+                  <span className="mx-3 text-cream/20">·</span>
                   {item.category}
                 </span>
                 <span className="text-lg text-cream/20">+</span>

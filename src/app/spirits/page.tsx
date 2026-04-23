@@ -75,7 +75,7 @@ export default function Spirits() {
           </h1>
           <p className="mt-6 max-w-lg text-lg text-tan">
             A thoughtfully assembled collection of world-class whiskeys, gins,
-            and rare pours — served neat, on rocks, or in classic form.
+            and rare pours, served neat, on rocks, or in classic form.
           </p>
         </div>
       </section>

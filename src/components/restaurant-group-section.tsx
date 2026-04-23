@@ -4,62 +4,62 @@ import Link from "next/link"
 const restaurants = [
   {
     name: "Meat & Potatoes",
-    image: "/meatpotatoew.webp",
+    image: "/logo-meat-and-potatoes.webp",
     href: "https://meatandpotatoespgh.com/",
   },
   {
     name: "Tako",
-    image: "/tako.webp",
+    image: "/logo-tako.webp",
     href: "https://takopgh.com/",
   },
   {
     name: "Poulet Bleu",
-    image: "/pouletbleu.webp",
+    image: "/logo-poulet-bleu.webp",
     href: "https://www.pouletbleupgh.com/",
   },
   {
     name: "Fish nor Fowl",
-    image: "/fish.webp",
+    image: "/logo-fish-nor-fowl.webp",
     href: "https://fishnorfowlpgh.com/",
   },
   {
     name: "Coop de Ville",
-    image: "/voopdeville.webp",
+    image: "/logo-coop-de-ville.webp",
     href: "https://coopdevillepgh.com/",
   },
   {
     name: "Preamp Coffee Studio",
-    image: "/preamp.webp",
+    image: "/logo-preamp-coffee.webp",
     href: "https://www.preampcoffeestudio.com/",
   },
   {
     name: "Golden Gai",
-    image: "/goldengay.webp",
+    image: "/logo-golden-gai.webp",
     href: "https://goldengaipgh.com/",
   },
   {
     name: "Sally Ann's",
-    image: "/sallyanny.webp",
+    image: "/logo-sally-anns.webp",
     href: "https://sallyannspgh.com/",
   },
   {
     name: "The Rib Room",
-    image: "/ribroom.webp",
+    image: "/logo-rib-room.webp",
     href: "https://ribroompgh.com/",
   },
   {
     name: "Tako Torta",
-    image: "/takotorta.webp",
+    image: "/logo-tako-torta.webp",
     href: "https://takotorta.com/",
   },
   {
     name: "Gi-Jin Hand Roll Bar",
-    image: "/handrollbar.webp",
+    image: "/logo-gi-jin.webp",
     href: "https://gi-jin.com/",
   },
   {
     name: "Sea Monkey",
-    image: "/seamonkey.webp",
+    image: "/logo-sea-monkey.webp",
     href: "https://www.seamonkeypgh.com/",
   },
 ]

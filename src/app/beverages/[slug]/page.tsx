@@ -6,7 +6,7 @@ import { BeverageDetail } from "./beverage-detail"
 
 const CATEGORY_IMAGES: Record<string, string> = {
   Cocktails: "/craft-old-fashioned.jpg",
-  "Wine — Red": "/whiskey-pour.jpg",
+  "Red Wine": "/whiskey-pour.jpg",
   "White & Sparkling": "/barmood1.jpg",
   "Non-Alcoholic": "/barmood.jpg",
 }
@@ -52,19 +52,19 @@ const ALL_BEVERAGES = [
     name: "Caymus Cabernet Sauvignon",
     notes: "Napa Valley, 2021",
     price: "24",
-    category: "Wine — Red",
+    category: "Red Wine",
   },
   {
     name: "Château Pichon Baron",
     notes: "Pauillac, Bordeaux, 2018",
     price: "38",
-    category: "Wine — Red",
+    category: "Red Wine",
   },
   {
     name: "Meiomi Pinot Noir",
     notes: "California, 2022",
     price: "15",
-    category: "Wine — Red",
+    category: "Red Wine",
   },
   {
     name: "Rombauer Chardonnay",

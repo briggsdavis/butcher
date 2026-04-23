@@ -103,7 +103,7 @@ export default function Home() {
               data-delay="260"
               className="mt-8 text-lg leading-relaxed text-tan"
             >
-              Butcher and the Rye was born from a reverence for the craft — the
+              Butcher and the Rye was born from a reverence for the craft: the
               slow char of a barrel, the patience of a dry-aged cut, the
               conversation that only happens around a well-set table.
             </p>
@@ -148,8 +148,8 @@ export default function Home() {
               className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden border-4 border-charcoal shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
               <Image
-                src="/bardecor.jpg"
-                alt="Bar detail"
+                src="/glow-frame.png"
+                alt="Bar glow"
                 fill
                 className="object-cover"
               />
@@ -210,7 +210,7 @@ export default function Home() {
                 className="relative aspect-[5/4] w-full overflow-hidden"
               >
                 <Image
-                  src="/meatboard.jpg"
+                  src="/meat-board.jpg"
                   alt="Meat Board"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
@@ -251,10 +251,9 @@ export default function Home() {
           <div className="mt-10 border-t border-cream/10 pt-10">
             <div className="flex items-end justify-between gap-8">
               <div data-animate="" data-delay="560">
-                <div className="mb-4 text-xl text-amber">↓</div>
                 <p className="max-w-xs text-sm leading-relaxed text-tan">
                   Sourced from heritage farms and shaped by old-world
-                  technique — every plate is a reflection of place, season,
+                  technique. Every plate is a reflection of place, season,
                   and craft.
                 </p>
               </div>
@@ -428,14 +427,15 @@ export default function Home() {
       </section>
 
       {/* ── Gallery (original) ── */}
+      {/*
       <section data-wipe className="bg-charcoal py-32 md:py-48">
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div className="mt-4 space-y-8">
             <div className="flex flex-wrap items-end justify-center gap-8">
               {[
-                { src: "/entree.png", alt: "Plated dish", w: 1652, h: 1924, delay: "130" },
-                { src: "/glow.png", alt: "The bar", w: 1803, h: 2003, delay: "285" },
-                { src: "/whiskey.png", alt: "Whiskey pour", w: 1579, h: 1996, delay: "440" },
+                { src: "/entree-frame.png", alt: "Plated dish", w: 1652, h: 1924, delay: "130" },
+                { src: "/glow-frame.png", alt: "The bar", w: 1803, h: 2003, delay: "285" },
+                { src: "/whiskey-frame.png", alt: "Whiskey pour", w: 1579, h: 1996, delay: "440" },
               ].map((photo) => (
                 <div key={photo.src} data-animate="" data-delay={photo.delay}>
                   <Image
@@ -450,8 +450,8 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap items-end justify-center gap-8">
               {[
-                { src: "/bartender.png", alt: "Bartender", w: 1208, h: 1662, delay: "365" },
-                { src: "/tables.png", alt: "Dining room", w: 2168, h: 1922, delay: "520" },
+                { src: "/bartender-frame.png", alt: "Bartender", w: 1208, h: 1662, delay: "365" },
+                { src: "/tables-frame.png", alt: "Dining room", w: 2168, h: 1922, delay: "520" },
               ].map((photo) => (
                 <div key={photo.src} data-animate="" data-delay={photo.delay}>
                   <Image
@@ -467,6 +467,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* ── Reservations ── */}
       <section

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const CATEGORY_IMAGES: Record<string, string> = {
   Cocktails: "/craft-old-fashioned.jpg",
-  "Wine — Red": "/whiskey-pour.jpg",
+  "Red Wine": "/whiskey-pour.jpg",
   "White & Sparkling": "/barmood1.jpg",
   "Non-Alcoholic": "/barmood.jpg",
 }
@@ -53,7 +53,7 @@ const BEVERAGES = [
     ],
   },
   {
-    category: "Wine — Red",
+    category: "Red Wine",
     label: "The Cellar",
     items: [
       {

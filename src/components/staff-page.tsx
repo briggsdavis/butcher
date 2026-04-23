@@ -86,7 +86,7 @@ export function StaffPage() {
 
             <p className="mt-8 text-sm leading-relaxed text-tan">
               Every dish, cocktail, and evening at Butcher and the Rye is shaped
-              by people who have devoted their lives to their craft — rigorously
+              by people who have devoted their lives to their craft. Rigorously
               trained, endlessly inspired, and driven by one goal: to give you
               something extraordinary.
             </p>

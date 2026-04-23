@@ -21,7 +21,7 @@ export const STAFF: StaffMember[] = [
   {
     name: "Elena Vasquez",
     role: "Sous Chef",
-    quote: "Precision and passion — you need both in equal measure.",
+    quote: "Precision and passion: you need both in equal measure.",
     years: "8 years",
     initials: "EV",
     specialty: "Braises & whole-animal butchery",
@@ -57,7 +57,7 @@ export const STAFF: StaffMember[] = [
   {
     name: "Amara Washington",
     role: "General Manager",
-    quote: "Hospitality isn't a job — it's a calling.",
+    quote: "Hospitality isn't a job. It's a calling.",
     years: "11 years",
     initials: "AW",
     specialty: "Guest experience & team development",

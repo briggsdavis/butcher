@@ -135,7 +135,7 @@ export function FoodDetail({ item, slug, prevSlug, nextSlug }: Props) {
                 >
                   <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
                     {label}
-                    <span className="mx-3 text-cream/20">—</span>
+                    <span className="mx-3 text-cream/20">·</span>
                     {value}
                   </span>
                   <span className="text-lg text-cream/20">+</span>
@@ -153,7 +153,7 @@ export function FoodDetail({ item, slug, prevSlug, nextSlug }: Props) {
                   }`}
                 >
                   Guests Loved
-                  <span className="mx-3 text-cream/20">—</span>
+                  <span className="mx-3 text-cream/20">·</span>
                   {likes}
                 </span>
                 <span

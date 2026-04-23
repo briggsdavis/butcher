@@ -40,36 +40,37 @@ export function Nav() {
         <div className="absolute inset-0 bg-amber/20" />
 
         {/* Hamburger — top left */}
-        <button
-          onClick={() => setOpen(true)}
-          aria-label="Open navigation"
-          className="relative z-10 flex flex-col gap-[5px]"
-        >
-          <span className="block h-px w-6 bg-white" />
-          <span className="block h-px w-6 bg-white" />
-          <span className="block h-px w-3.5 bg-white" />
-        </button>
+        <div className="relative z-10 flex items-center gap-8">
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="Open navigation"
+            className="flex flex-col gap-[5px]"
+          >
+            <span className="block h-px w-6 bg-white" />
+            <span className="block h-px w-6 bg-white" />
+            <span className="block h-px w-3.5 bg-white" />
+          </button>
 
-        {/* Desktop quick links */}
-        <div className="relative z-10 ml-7 hidden items-center gap-6 md:flex">
-          <Link
-            href="/food"
-            className="text-xs tracking-[0.25em] text-white/70 uppercase transition-colors hover:text-amber"
-          >
-            Food
-          </Link>
-          <Link
-            href="/spirits"
-            className="text-xs tracking-[0.25em] text-white/70 uppercase transition-colors hover:text-amber"
-          >
-            Spirits
-          </Link>
-          <Link
-            href="/beverages"
-            className="text-xs tracking-[0.25em] text-white/70 uppercase transition-colors hover:text-amber"
-          >
-            Beverages
-          </Link>
+          <div className="hidden items-center gap-6 md:flex">
+            <Link
+              href="/food"
+              className="text-xs tracking-[0.25em] text-white uppercase transition-colors hover:text-amber"
+            >
+              Food
+            </Link>
+            <Link
+              href="/spirits"
+              className="text-xs tracking-[0.25em] text-white uppercase transition-colors hover:text-amber"
+            >
+              Spirits
+            </Link>
+            <Link
+              href="/beverages"
+              className="text-xs tracking-[0.25em] text-white uppercase transition-colors hover:text-amber"
+            >
+              Beverages
+            </Link>
+          </div>
         </div>
 
         {/* Centered title */}
