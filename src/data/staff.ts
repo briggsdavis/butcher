@@ -1,4 +1,4 @@
-export type StaffMember = {
+type StaffMember = {
   name: string
   role: string
   quote: string

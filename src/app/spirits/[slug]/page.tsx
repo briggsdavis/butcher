@@ -2,7 +2,7 @@ import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
-import { SpiritDetail } from "./spirit-detail"
+import { ItemDetail } from "~/components/item-detail"
 
 const CATEGORY_IMAGES: Record<string, string> = {
   Whiskey: "/whiskey-pour.jpg",
@@ -124,11 +124,13 @@ export default async function SpiritDetailPage({
 
   return (
     <Suspense>
-      <SpiritDetail
+      <ItemDetail
         item={item}
         image={image}
         prevSlug={prevSlug}
         nextSlug={nextSlug}
+        basePath="/spirits"
+        backLabel="Back to spirits"
       />
     </Suspense>
   )

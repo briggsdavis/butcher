@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 
-
 const COCKTAILS = [
   {
     name: "The Old Fashioned",
@@ -145,7 +144,7 @@ export default function Home() {
             <div
               data-animate=""
               data-delay="365"
-              className="absolute -bottom-8 -right-6 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-right-10 md:h-52 md:w-40"
+              className="absolute -right-6 -bottom-8 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
               <Image
                 src="/glow-frame.png"
@@ -252,9 +251,8 @@ export default function Home() {
             <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
               <div data-animate="" data-delay="560">
                 <p className="max-w-xs text-sm leading-relaxed text-tan">
-                  Sourced from heritage farms and shaped by old-world
-                  technique. Every plate is a reflection of place, season,
-                  and craft.
+                  Sourced from heritage farms and shaped by old-world technique.
+                  Every plate is a reflection of place, season, and craft.
                 </p>
               </div>
               <Link

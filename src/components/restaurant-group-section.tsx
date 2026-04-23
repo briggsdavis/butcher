@@ -82,7 +82,7 @@ export function RestaurantGroupSection() {
               href="https://richarddeshantz.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="italic text-amber transition-colors hover:text-cream"
+              className="text-amber italic transition-colors hover:text-cream"
             >
               Richard Deshantz
             </Link>{" "}

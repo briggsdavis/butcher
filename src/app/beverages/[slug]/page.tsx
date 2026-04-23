@@ -2,7 +2,7 @@ import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
-import { BeverageDetail } from "./beverage-detail"
+import { ItemDetail } from "~/components/item-detail"
 
 const CATEGORY_IMAGES: Record<string, string> = {
   Cocktails: "/craft-old-fashioned.jpg",
@@ -141,11 +141,13 @@ export default async function BeverageDetailPage({
 
   return (
     <Suspense>
-      <BeverageDetail
+      <ItemDetail
         item={item}
         image={image}
         prevSlug={prevSlug}
         nextSlug={nextSlug}
+        basePath="/beverages"
+        backLabel="Back to beverages"
       />
     </Suspense>
   )

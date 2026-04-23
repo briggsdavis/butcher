@@ -10,11 +10,55 @@ export const metadata: Metadata = {
     "The story, values, team, and ingredients behind Butcher and the Rye, Pittsburgh's destination for craft cuisine and rare spirits.",
 }
 
+const VALUES = [
+  {
+    numeral: "01",
+    numeralClass: "right-0 bottom-0",
+    title: "Excellence",
+    body: "We hold every plate and every pour to the same exacting standard. No table is less important than another. No dish leaves our kitchen without meeting the mark. Excellence isn’t an aspiration here. It’s the minimum.",
+    image: "/barmood1.jpg",
+  },
+  {
+    numeral: "02",
+    numeralClass: "bottom-0 left-1/2 -translate-x-1/2",
+    title: "Craft",
+    body: "Every technique here is learned the slow way. Our chefs apprenticed under demanding kitchens. Our bartenders spent years studying whiskey before touching our bar. There are no shortcuts, and we wouldn’t have it any other way.",
+    image: "/bardecor1.jpg",
+  },
+  {
+    numeral: "03",
+    numeralClass: "bottom-0 -left-4",
+    title: "Hospitality",
+    body: "The meal is the occasion. The experience is the memory. We study our guests: their preferences, their celebrations, their habits. Hospitality at Butcher and the Rye means you never have to ask twice.",
+    image: "/candlelit-tables.jpg",
+  },
+]
+
 const FEATURED_STAFF = [
-  { name: "Marcus Chen", role: "Executive Chef", initials: "MC", img: "/food/bone-in-ribeye.jpg" },
-  { name: "Sophia Reeves", role: "Bar Director", initials: "SR", img: "/craft-old-fashioned.jpg" },
-  { name: "James O'Brien", role: "Head Butcher", initials: "JO", img: "/food/bone-marrow.jpg" },
-  { name: "Amara Washington", role: "General Manager", initials: "AW", img: "/candlelit-tables.jpg" },
+  {
+    name: "Marcus Chen",
+    role: "Executive Chef",
+    initials: "MC",
+    img: "/food/bone-in-ribeye.jpg",
+  },
+  {
+    name: "Sophia Reeves",
+    role: "Bar Director",
+    initials: "SR",
+    img: "/craft-old-fashioned.jpg",
+  },
+  {
+    name: "James O'Brien",
+    role: "Head Butcher",
+    initials: "JO",
+    img: "/food/bone-marrow.jpg",
+  },
+  {
+    name: "Amara Washington",
+    role: "General Manager",
+    initials: "AW",
+    img: "/candlelit-tables.jpg",
+  },
 ]
 
 export default function About() {
@@ -187,143 +231,52 @@ export default function About() {
             </span>
           </div>
 
-          {/* Value 1: Excellence */}
-          <div className="mb-16 border-t border-cream/10 pt-12">
-            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
-              <div className="relative">
+          {VALUES.map((value, i) => (
+            <div
+              key={value.numeral}
+              className={`${i < VALUES.length - 1 ? "mb-16 " : ""}border-t border-cream/10 pt-12`}
+            >
+              <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
+                <div className="relative">
+                  <div
+                    className={`pointer-events-none absolute ${value.numeralClass} font-display leading-none text-cream/[0.04] select-none`}
+                    style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                    aria-hidden="true"
+                  >
+                    {value.numeral}
+                  </div>
+                  <div className="relative z-10">
+                    <h3
+                      data-animate=""
+                      data-delay="0"
+                      className="font-display text-6xl text-cream md:text-7xl"
+                    >
+                      {value.title}
+                    </h3>
+                    <p
+                      data-animate=""
+                      data-delay="130"
+                      className="mt-6 text-lg leading-relaxed text-tan"
+                    >
+                      {value.body}
+                    </p>
+                  </div>
+                </div>
                 <div
-                  className="pointer-events-none absolute right-0 bottom-0 font-display leading-none text-cream/[0.04] select-none"
-                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-                  aria-hidden="true"
+                  data-animate=""
+                  data-delay="260"
+                  className="relative h-64 overflow-hidden md:h-80"
                 >
-                  01
+                  <Image
+                    src={value.image}
+                    alt={`${value.title} at Butcher and the Rye`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <div className="relative z-10">
-                  <h3
-                    data-animate=""
-                    data-delay="0"
-                    className="font-display text-6xl text-cream md:text-7xl"
-                  >
-                    Excellence
-                  </h3>
-                  <p
-                    data-animate=""
-                    data-delay="130"
-                    className="mt-6 text-lg leading-relaxed text-tan"
-                  >
-                    We hold every plate and every pour to the same exacting
-                    standard. No table is less important than another. No dish
-                    leaves our kitchen without meeting the mark. Excellence
-                    isn&rsquo;t an aspiration here. It&rsquo;s the minimum.
-                  </p>
-                </div>
-              </div>
-              <div
-                data-animate=""
-                data-delay="260"
-                className="relative h-64 overflow-hidden md:h-80"
-              >
-                <Image
-                  src="/barmood1.jpg"
-                  alt="Excellence at Butcher and the Rye"
-                  fill
-                  className="object-cover"
-                />
               </div>
             </div>
-          </div>
-
-          {/* Value 2: Craft */}
-          <div className="mb-16 border-t border-cream/10 pt-12">
-            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
-              <div className="relative">
-                <div
-                  className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 font-display leading-none text-cream/[0.04] select-none"
-                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-                  aria-hidden="true"
-                >
-                  02
-                </div>
-                <div className="relative z-10">
-                  <h3
-                    data-animate=""
-                    data-delay="0"
-                    className="font-display text-6xl text-cream md:text-7xl"
-                  >
-                    Craft
-                  </h3>
-                  <p
-                    data-animate=""
-                    data-delay="130"
-                    className="mt-6 text-lg leading-relaxed text-tan"
-                  >
-                    Every technique here is learned the slow way. Our chefs
-                    apprenticed under demanding kitchens. Our bartenders spent
-                    years studying whiskey before touching our bar. There are no
-                    shortcuts, and we wouldn&rsquo;t have it any other way.
-                  </p>
-                </div>
-              </div>
-              <div
-                data-animate=""
-                data-delay="260"
-                className="relative h-64 overflow-hidden md:h-80"
-              >
-                <Image
-                  src="/bardecor1.jpg"
-                  alt="Craft at Butcher and the Rye"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Value 3: Hospitality */}
-          <div className="border-t border-cream/10 pt-12">
-            <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
-              <div className="relative">
-                <div
-                  className="pointer-events-none absolute bottom-0 -left-4 font-display leading-none text-cream/[0.04] select-none"
-                  style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-                  aria-hidden="true"
-                >
-                  03
-                </div>
-                <div className="relative z-10">
-                  <h3
-                    data-animate=""
-                    data-delay="0"
-                    className="font-display text-6xl text-cream md:text-7xl"
-                  >
-                    Hospitality
-                  </h3>
-                  <p
-                    data-animate=""
-                    data-delay="130"
-                    className="mt-6 text-lg leading-relaxed text-tan"
-                  >
-                    The meal is the occasion. The experience is the memory. We
-                    study our guests: their preferences, their celebrations,
-                    their habits. Hospitality at Butcher and the Rye means you
-                    never have to ask twice.
-                  </p>
-                </div>
-              </div>
-              <div
-                data-animate=""
-                data-delay="260"
-                className="relative h-64 overflow-hidden md:h-80"
-              >
-                <Image
-                  src="/candlelit-tables.jpg"
-                  alt="Hospitality at Butcher and the Rye"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
