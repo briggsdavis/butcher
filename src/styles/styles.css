@@ -189,6 +189,18 @@
   animation: floatSlow 9s ease-in-out infinite;
 }
 
+/* ── Nav intro (first home page load) ── */
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Nav overlay animations ── */
 @keyframes overlayIn {
   from {
