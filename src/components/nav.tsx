@@ -2,7 +2,8 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
+import { useEffect, useLayoutEffect, useState } from "react"
 
 const MENU_LINKS = [
   { href: "/", label: "Home", num: "01" },
@@ -15,8 +16,26 @@ const MENU_LINKS = [
 ]
 
 export function Nav() {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [closing, setClosing] = useState(false)
+  const [introStyle, setIntroStyle] = useState<React.CSSProperties>({})
+
+  // Fire before paint so the nav starts off-screen with no flash.
+  // Only plays on the home page, once per session.
+  useLayoutEffect(() => {
+    if (pathname !== "/") return
+    try {
+      if (!sessionStorage.getItem("nav-intro-done")) {
+        setIntroStyle({
+          animation: "navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards",
+        })
+        sessionStorage.setItem("nav-intro-done", "true")
+      }
+    } catch {
+      // sessionStorage unavailable (e.g. private browsing restrictions)
+    }
+  }, [pathname])
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
@@ -35,7 +54,10 @@ export function Nav() {
 
   return (
     <>
-      <nav className="absolute inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16">
+      <nav
+        style={introStyle}
+        className="absolute inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16"
+      >
         <Image src="/wood.jpg" alt="" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-amber/20" />
 
