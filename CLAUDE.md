@@ -1,1 +1,1 @@
-@AGENTS.md
+Always use <Image /> and <Link />

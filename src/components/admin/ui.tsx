@@ -19,7 +19,7 @@ export function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-black/40">
+      <label className="mb-1.5 block text-[10px] font-semibold tracking-widest text-black/40 uppercase">
         {label}
       </label>
       <input
@@ -48,7 +48,7 @@ export function Textarea({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-black/40">
+      <label className="mb-1.5 block text-[10px] font-semibold tracking-widest text-black/40 uppercase">
         {label}
       </label>
       <textarea
@@ -100,12 +100,12 @@ export function EditorHeader({
 }) {
   return (
     <div className="sticky top-0 z-10 flex items-center justify-between border-b border-black/[0.08] bg-[#f2e8d8] px-8 py-4">
-      <h1 className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
+      <h1 className="text-[11px] font-semibold tracking-[0.22em] text-black/50 uppercase">
         {title}
       </h1>
       <button
         onClick={onSave}
-        className={`px-5 py-2 text-[11px] font-semibold uppercase tracking-widest transition-colors ${
+        className={`px-5 py-2 text-[11px] font-semibold tracking-widest uppercase transition-colors ${
           saved
             ? "bg-black/10 text-black/40"
             : "bg-black text-white hover:bg-black/80"
@@ -118,15 +118,11 @@ export function EditorHeader({
 }
 
 export function FieldRow({ children }: { children: ReactNode }) {
-  return (
-    <div className="grid grid-cols-2 gap-4">{children}</div>
-  )
+  return <div className="grid grid-cols-2 gap-4">{children}</div>
 }
 
 export function FieldRow3({ children }: { children: ReactNode }) {
-  return (
-    <div className="grid grid-cols-3 gap-4">{children}</div>
-  )
+  return <div className="grid grid-cols-3 gap-4">{children}</div>
 }
 
 export function Divider({ label }: { label?: string }) {
@@ -134,7 +130,7 @@ export function Divider({ label }: { label?: string }) {
     <div className="flex items-center gap-3 py-1">
       <div className="h-px flex-1 bg-black/[0.07]" />
       {label && (
-        <span className="shrink-0 text-[10px] uppercase tracking-widest text-black/30">
+        <span className="shrink-0 text-[10px] tracking-widest text-black/30 uppercase">
           {label}
         </span>
       )}

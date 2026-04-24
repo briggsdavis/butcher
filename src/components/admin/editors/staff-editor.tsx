@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import { ImageUpload } from "~/components/admin/image-upload"
 import { EditorHeader, Field, FieldRow, Textarea } from "~/components/admin/ui"
@@ -133,7 +134,7 @@ function StaffModal({
       <div className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden border border-black/[0.1] bg-white shadow-xl">
         {/* Modal header */}
         <div className="flex items-center justify-between border-b border-black/[0.08] px-6 py-4">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/50">
+          <h2 className="text-[11px] font-semibold tracking-[0.2em] text-black/50 uppercase">
             {isNew ? "Add Staff Member" : "Edit Staff Member"}
           </h2>
           <button
@@ -205,13 +206,13 @@ function StaffModal({
         <div className="flex items-center justify-end gap-3 border-t border-black/[0.08] px-6 py-4">
           <button
             onClick={onClose}
-            className="px-5 py-2 text-[11px] uppercase tracking-widest text-black/40 transition-colors hover:text-black"
+            className="px-5 py-2 text-[11px] tracking-widest text-black/40 uppercase transition-colors hover:text-black"
           >
             Cancel
           </button>
           <button
             onClick={() => onSave(draft)}
-            className="bg-black px-6 py-2 text-[11px] font-semibold uppercase tracking-widest text-white transition-colors hover:bg-black/80"
+            className="bg-black px-6 py-2 text-[11px] font-semibold tracking-widest text-white uppercase transition-colors hover:bg-black/80"
           >
             {isNew ? "Add Member" : "Save Changes"}
           </button>
@@ -267,7 +268,7 @@ export function StaffEditor() {
           </p>
           <button
             onClick={openAdd}
-            className="bg-black px-5 py-2 text-[11px] font-semibold uppercase tracking-widest text-white transition-colors hover:bg-black/80"
+            className="bg-black px-5 py-2 text-[11px] font-semibold tracking-widest text-white uppercase transition-colors hover:bg-black/80"
           >
             + Add Member
           </button>
@@ -283,10 +284,12 @@ export function StaffEditor() {
               {/* Photo */}
               <div className="relative aspect-square w-full overflow-hidden bg-black/[0.04]">
                 {member.headshot ? (
-                  <img
+                  <Image
                     src={member.headshot}
                     alt={member.name}
-                    className="h-full w-full object-cover"
+                    fill
+                    unoptimized
+                    className="object-cover"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
@@ -299,7 +302,7 @@ export function StaffEditor() {
 
               {/* Info */}
               <div className="p-4">
-                <p className="text-sm font-semibold leading-tight text-black">
+                <p className="text-sm leading-tight font-semibold text-black">
                   {member.name || (
                     <span className="text-black/30">Unnamed</span>
                   )}
@@ -314,14 +317,14 @@ export function StaffEditor() {
               <div className="flex border-t border-black/[0.06]">
                 <button
                   onClick={() => openEdit(member)}
-                  className="flex-1 py-2.5 text-[10px] uppercase tracking-widest text-black/40 transition-colors hover:bg-black/[0.04] hover:text-black"
+                  className="flex-1 py-2.5 text-[10px] tracking-widest text-black/40 uppercase transition-colors hover:bg-black/[0.04] hover:text-black"
                 >
                   Edit
                 </button>
                 <div className="w-px bg-black/[0.06]" />
                 <button
                   onClick={() => handleDelete(member.id)}
-                  className="flex-1 py-2.5 text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                  className="flex-1 py-2.5 text-[10px] tracking-widest text-red-400 uppercase transition-colors hover:bg-red-50 hover:text-red-600"
                 >
                   Delete
                 </button>
@@ -336,7 +339,7 @@ export function StaffEditor() {
               <p className="text-sm text-black/30">No staff members yet.</p>
               <button
                 onClick={openAdd}
-                className="mt-3 text-[11px] uppercase tracking-widest text-black underline underline-offset-2 hover:no-underline"
+                className="mt-3 text-[11px] tracking-widest text-black uppercase underline underline-offset-2 hover:no-underline"
               >
                 Add the first member
               </button>

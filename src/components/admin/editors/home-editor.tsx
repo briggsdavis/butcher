@@ -73,9 +73,7 @@ export function HomeEditor() {
 
   // Atmosphere
   const [atmosphereEyebrow, setAtmosphereEyebrow] = useState("The Atmosphere")
-  const [atmosphereHeading, setAtmosphereHeading] = useState(
-    "A glimpse inside",
-  )
+  const [atmosphereHeading, setAtmosphereHeading] = useState("A glimpse inside")
 
   // Reservations
   const [resEyebrow, setResEyebrow] = useState("Join Us")
@@ -286,7 +284,7 @@ export function HomeEditor() {
               key={i}
               className="rounded border border-black/[0.06] bg-black/[0.02] p-4"
             >
-              <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-black/30">
+              <p className="mb-3 text-[10px] font-semibold tracking-widest text-black/30 uppercase">
                 Cocktail {i + 1}
               </p>
               <div className="space-y-3">

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useRef, useState } from "react"
 
 interface Props {
@@ -10,7 +11,13 @@ interface Props {
   onChange?: (dataUrl: string) => void
 }
 
-export function ImageUpload({ label, currentSrc, hint, compact = false, onChange }: Props) {
+export function ImageUpload({
+  label,
+  currentSrc,
+  hint,
+  compact = false,
+  onChange,
+}: Props) {
   const [preview, setPreview] = useState<string | null>(null)
   const [fileName, setFileName] = useState<string | null>(null)
   const ref = useRef<HTMLInputElement>(null)
@@ -33,7 +40,7 @@ export function ImageUpload({ label, currentSrc, hint, compact = false, onChange
   return (
     <div>
       {label && (
-        <label className="mb-2 block text-[10px] font-semibold uppercase tracking-widest text-black/40">
+        <label className="mb-2 block text-[10px] font-semibold tracking-widest text-black/40 uppercase">
           {label}
         </label>
       )}
@@ -44,13 +51,15 @@ export function ImageUpload({ label, currentSrc, hint, compact = false, onChange
           }`}
         >
           {src ? (
-            <img
+            <Image
               src={src}
               alt="Preview"
-              className="h-full w-full object-cover"
+              fill
+              unoptimized
+              className="object-cover"
             />
           ) : (
-            <span className="absolute inset-0 flex items-center justify-center text-[9px] uppercase tracking-widest text-black/20">
+            <span className="absolute inset-0 flex items-center justify-center text-[9px] tracking-widest text-black/20 uppercase">
               No image
             </span>
           )}
@@ -59,7 +68,7 @@ export function ImageUpload({ label, currentSrc, hint, compact = false, onChange
           <button
             type="button"
             onClick={() => ref.current?.click()}
-            className="border border-black/20 px-4 py-2 text-[11px] uppercase tracking-widest text-black transition-colors hover:bg-black hover:text-white"
+            className="border border-black/20 px-4 py-2 text-[11px] tracking-widest text-black uppercase transition-colors hover:bg-black hover:text-white"
           >
             Upload Image
           </button>

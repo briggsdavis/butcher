@@ -8,7 +8,6 @@ import {
   Field,
   FieldRow,
   SectionPanel,
-  Textarea,
 } from "~/components/admin/ui"
 
 type NavLink = { id: string; label: string; href: string; num: string }
@@ -146,7 +145,7 @@ export function GlobalEditor() {
                 key={link.id}
                 className="flex items-center gap-3 rounded border border-black/[0.06] bg-black/[0.02] px-3 py-2"
               >
-                <span className="w-6 shrink-0 text-[10px] font-mono text-black/25">
+                <span className="w-6 shrink-0 font-mono text-[10px] text-black/25">
                   {link.num}
                 </span>
                 <input
@@ -167,7 +166,7 @@ export function GlobalEditor() {
                 />
                 <button
                   onClick={() => deleteNavLink(link.id)}
-                  className="shrink-0 text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:text-red-600"
+                  className="shrink-0 text-[10px] tracking-widest text-red-400 uppercase transition-colors hover:text-red-600"
                 >
                   Remove
                 </button>
@@ -176,7 +175,7 @@ export function GlobalEditor() {
           </div>
           <button
             onClick={addNavLink}
-            className="text-[11px] uppercase tracking-widest text-black/40 underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
+            className="text-[11px] tracking-widest text-black/40 uppercase underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
           >
             + Add Link
           </button>
@@ -271,7 +270,7 @@ export function GlobalEditor() {
                 />
                 <button
                   onClick={() => deleteHour(h.id)}
-                  className="shrink-0 text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:text-red-600"
+                  className="shrink-0 text-[10px] tracking-widest text-red-400 uppercase transition-colors hover:text-red-600"
                 >
                   Remove
                 </button>
@@ -280,7 +279,7 @@ export function GlobalEditor() {
           </div>
           <button
             onClick={addHour}
-            className="text-[11px] uppercase tracking-widest text-black/40 underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
+            className="text-[11px] tracking-widest text-black/40 uppercase underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
           >
             + Add Row
           </button>

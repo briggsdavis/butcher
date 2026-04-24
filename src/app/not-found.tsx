@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="relative z-10 flex flex-col items-center">
         {/* Large 404 */}
         <p
-          className="select-none font-display leading-none text-cream/[0.06]"
+          className="font-display leading-none text-cream/[0.06] select-none"
           style={{ fontSize: "clamp(10rem, 30vw, 22rem)" }}
           aria-hidden="true"
         >

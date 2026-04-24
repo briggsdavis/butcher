@@ -1,11 +1,29 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import { ImageUpload } from "~/components/admin/image-upload"
-import { EditorHeader, Field, FieldRow, SectionPanel, Textarea } from "~/components/admin/ui"
+import {
+  EditorHeader,
+  Field,
+  FieldRow,
+  SectionPanel,
+  Textarea,
+} from "~/components/admin/ui"
 
-type BevItem = { id: string; name: string; notes: string; price: string; image: string }
-type BevSection = { id: string; category: string; label: string; items: BevItem[] }
+type BevItem = {
+  id: string
+  name: string
+  notes: string
+  price: string
+  image: string
+}
+type BevSection = {
+  id: string
+  category: string
+  label: string
+  items: BevItem[]
+}
 
 const uid = () => Math.random().toString(36).slice(2, 9)
 
@@ -15,12 +33,48 @@ const INITIAL_SECTIONS: BevSection[] = [
     category: "Cocktails",
     label: "Crafted",
     items: [
-      { id: uid(), name: "Old Fashioned", notes: "Bourbon, demerara, Angostura, orange", price: "16", image: "/craft-old-fashioned.jpg" },
-      { id: uid(), name: "Rye Negroni", notes: "Rye, Campari, sweet vermouth, expressed orange", price: "15", image: "" },
-      { id: uid(), name: "Smoked Manhattan", notes: "Bulleit Rye, Carpano Antica, cherry bitters", price: "18", image: "" },
-      { id: uid(), name: "Paper Plane", notes: "Bourbon, Aperol, Amaro Nonino, lemon", price: "16", image: "" },
-      { id: uid(), name: "Butcher's Mule", notes: "Vodka, ginger beer, lime, house bitters", price: "13", image: "" },
-      { id: uid(), name: "Seasonal Spritz", notes: "Ask your server for today's selection", price: "14", image: "" },
+      {
+        id: uid(),
+        name: "Old Fashioned",
+        notes: "Bourbon, demerara, Angostura, orange",
+        price: "16",
+        image: "/craft-old-fashioned.jpg",
+      },
+      {
+        id: uid(),
+        name: "Rye Negroni",
+        notes: "Rye, Campari, sweet vermouth, expressed orange",
+        price: "15",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Smoked Manhattan",
+        notes: "Bulleit Rye, Carpano Antica, cherry bitters",
+        price: "18",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Paper Plane",
+        notes: "Bourbon, Aperol, Amaro Nonino, lemon",
+        price: "16",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Butcher's Mule",
+        notes: "Vodka, ginger beer, lime, house bitters",
+        price: "13",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Seasonal Spritz",
+        notes: "Ask your server for today's selection",
+        price: "14",
+        image: "",
+      },
     ],
   },
   {
@@ -28,9 +82,27 @@ const INITIAL_SECTIONS: BevSection[] = [
     category: "Red Wine",
     label: "The Cellar",
     items: [
-      { id: uid(), name: "Caymus Cabernet Sauvignon", notes: "Napa Valley, 2021", price: "24", image: "" },
-      { id: uid(), name: "Château Pichon Baron", notes: "Pauillac, Bordeaux, 2018", price: "38", image: "" },
-      { id: uid(), name: "Meiomi Pinot Noir", notes: "California, 2022", price: "15", image: "" },
+      {
+        id: uid(),
+        name: "Caymus Cabernet Sauvignon",
+        notes: "Napa Valley, 2021",
+        price: "24",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Château Pichon Baron",
+        notes: "Pauillac, Bordeaux, 2018",
+        price: "38",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Meiomi Pinot Noir",
+        notes: "California, 2022",
+        price: "15",
+        image: "",
+      },
     ],
   },
   {
@@ -38,9 +110,27 @@ const INITIAL_SECTIONS: BevSection[] = [
     category: "White & Sparkling",
     label: "Light & Bright",
     items: [
-      { id: uid(), name: "Rombauer Chardonnay", notes: "Carneros, Napa, 2022", price: "18", image: "" },
-      { id: uid(), name: "Whispering Angel Rosé", notes: "Provence, France, 2023", price: "16", image: "" },
-      { id: uid(), name: "Ruinart Blanc de Blancs", notes: "Champagne, France, NV", price: "32", image: "" },
+      {
+        id: uid(),
+        name: "Rombauer Chardonnay",
+        notes: "Carneros, Napa, 2022",
+        price: "18",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Whispering Angel Rosé",
+        notes: "Provence, France, 2023",
+        price: "16",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Ruinart Blanc de Blancs",
+        notes: "Champagne, France, NV",
+        price: "32",
+        image: "",
+      },
     ],
   },
   {
@@ -48,9 +138,27 @@ const INITIAL_SECTIONS: BevSection[] = [
     category: "Non-Alcoholic",
     label: "Zero Proof",
     items: [
-      { id: uid(), name: "House Lemonade", notes: "Fresh-squeezed, thyme, sea salt", price: "7", image: "" },
-      { id: uid(), name: "Sparkling Water", notes: "San Pellegrino, 750ml", price: "6", image: "" },
-      { id: uid(), name: "Cold Brew Coffee", notes: "Single origin, unsweetened", price: "6", image: "" },
+      {
+        id: uid(),
+        name: "House Lemonade",
+        notes: "Fresh-squeezed, thyme, sea salt",
+        price: "7",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Sparkling Water",
+        notes: "San Pellegrino, 750ml",
+        price: "6",
+        image: "",
+      },
+      {
+        id: uid(),
+        name: "Cold Brew Coffee",
+        notes: "Single origin, unsweetened",
+        price: "6",
+        image: "",
+      },
     ],
   },
 ]
@@ -69,20 +177,28 @@ function ItemRow({
       {/* Per-item thumbnail */}
       <div className="relative h-10 w-10 shrink-0 overflow-hidden border border-black/[0.08] bg-black/[0.04]">
         {item.image ? (
-          <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+          <Image
+            src={item.image}
+            alt={item.name}
+            fill
+            unoptimized
+            className="object-cover"
+          />
         ) : (
-          <span className="absolute inset-0 flex items-center justify-center text-[8px] uppercase tracking-wider text-black/20">
+          <span className="absolute inset-0 flex items-center justify-center text-[8px] tracking-wider text-black/20 uppercase">
             No img
           </span>
         )}
       </div>
 
-      <div className="flex-1 min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium text-black">
           {item.name || <span className="text-black/30">Unnamed</span>}
         </p>
         {item.notes && (
-          <p className="mt-0.5 truncate text-[11px] text-black/35">{item.notes}</p>
+          <p className="mt-0.5 truncate text-[11px] text-black/35">
+            {item.notes}
+          </p>
         )}
       </div>
       <span className="shrink-0 text-xs font-medium text-black/50">
@@ -90,13 +206,13 @@ function ItemRow({
       </span>
       <button
         onClick={onEdit}
-        className="shrink-0 border border-black/15 px-3 py-1.5 text-[10px] uppercase tracking-widest text-black/50 transition-colors hover:border-black hover:text-black"
+        className="shrink-0 border border-black/15 px-3 py-1.5 text-[10px] tracking-widest text-black/50 uppercase transition-colors hover:border-black hover:text-black"
       >
         Edit
       </button>
       <button
         onClick={onDelete}
-        className="shrink-0 border border-red-300/60 px-3 py-1.5 text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:bg-red-500 hover:text-white"
+        className="shrink-0 border border-red-300/60 px-3 py-1.5 text-[10px] tracking-widest text-red-400 uppercase transition-colors hover:bg-red-500 hover:text-white"
       >
         Delete
       </button>
@@ -121,7 +237,7 @@ function ItemForm({
 
   return (
     <div className="my-2 border border-black/[0.1] bg-[#f2e8d8]/40 p-4">
-      <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-black/35">
+      <p className="mb-3 text-[10px] font-semibold tracking-widest text-black/35 uppercase">
         {isNew ? "New Item" : "Editing Item"}
       </p>
       <div className="space-y-3">
@@ -156,13 +272,13 @@ function ItemForm({
       <div className="mt-4 flex gap-3">
         <button
           onClick={() => onSave(draft)}
-          className="bg-black px-5 py-2 text-[11px] font-semibold uppercase tracking-widest text-white transition-colors hover:bg-black/80"
+          className="bg-black px-5 py-2 text-[11px] font-semibold tracking-widest text-white uppercase transition-colors hover:bg-black/80"
         >
           {isNew ? "Add Item" : "Save"}
         </button>
         <button
           onClick={onCancel}
-          className="px-4 py-2 text-[11px] uppercase tracking-widest text-black/40 transition-colors hover:text-black"
+          className="px-4 py-2 text-[11px] tracking-widest text-black/40 uppercase transition-colors hover:text-black"
         >
           Cancel
         </button>
@@ -205,8 +321,12 @@ function SectionBlock({
       {/* Section header */}
       <div className="flex items-center justify-between border-b border-black/[0.08] px-5 py-4">
         <div>
-          <h3 className="text-sm font-semibold text-black">{section.category}</h3>
-          <p className="mt-0.5 text-[10px] text-black/30">Label: {section.label}</p>
+          <h3 className="text-sm font-semibold text-black">
+            {section.category}
+          </h3>
+          <p className="mt-0.5 text-[10px] text-black/30">
+            Label: {section.label}
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-[10px] text-black/30">
@@ -214,7 +334,7 @@ function SectionBlock({
           </span>
           <button
             onClick={onDelete}
-            className="text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:text-red-600"
+            className="text-[10px] tracking-widest text-red-400 uppercase transition-colors hover:text-red-600"
           >
             Delete Section
           </button>
@@ -269,7 +389,7 @@ function SectionBlock({
           {!addingNew && (
             <button
               onClick={() => setAddingNew(true)}
-              className="text-[11px] uppercase tracking-widest text-black/40 underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
+              className="text-[11px] tracking-widest text-black/40 uppercase underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
             >
               + Add Item
             </button>
@@ -341,7 +461,7 @@ export function BeveragesEditor() {
 
         {/* Sections */}
         <div className="space-y-4">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-black/40">
+          <p className="text-[11px] font-semibold tracking-widest text-black/40 uppercase">
             Beverage Sections
           </p>
 
@@ -357,7 +477,7 @@ export function BeveragesEditor() {
 
         <button
           onClick={addSection}
-          className="flex w-full items-center justify-center gap-2 border border-dashed border-black/20 py-4 text-[11px] uppercase tracking-widest text-black/40 transition-colors hover:border-black/40 hover:text-black"
+          className="flex w-full items-center justify-center gap-2 border border-dashed border-black/20 py-4 text-[11px] tracking-widest text-black/40 uppercase transition-colors hover:border-black/40 hover:text-black"
         >
           + Add New Section
         </button>

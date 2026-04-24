@@ -30,17 +30,17 @@ export function Sidebar({ active, onChange, onSignOut }: Props) {
     <aside className="flex h-full w-60 shrink-0 flex-col border-r border-black/[0.08] bg-white">
       {/* Header */}
       <div className="border-b border-black/[0.08] px-5 py-5">
-        <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-black/30">
+        <p className="text-[9px] font-semibold tracking-[0.3em] text-black/30 uppercase">
           Admin
         </p>
-        <p className="mt-1 text-sm font-semibold leading-tight text-black">
+        <p className="mt-1 text-sm leading-tight font-semibold text-black">
           Butcher & the Rye
         </p>
       </div>
 
       {/* Nav label */}
       <div className="px-5 pt-5 pb-2">
-        <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-black/25">
+        <p className="text-[9px] font-semibold tracking-[0.25em] text-black/25 uppercase">
           Pages
         </p>
       </div>
@@ -59,7 +59,7 @@ export function Sidebar({ active, onChange, onSignOut }: Props) {
                   : "text-black/60 hover:bg-black/[0.04] hover:text-black"
               }`}
             >
-              <span className="text-sm font-medium leading-none">
+              <span className="text-sm leading-none font-medium">
                 {tab.label}
               </span>
               <span
@@ -78,7 +78,7 @@ export function Sidebar({ active, onChange, onSignOut }: Props) {
       <div className="border-t border-black/[0.08] p-4">
         <button
           onClick={onSignOut}
-          className="w-full py-2 text-[10px] uppercase tracking-widest text-black/30 transition-colors hover:text-black"
+          className="w-full py-2 text-[10px] tracking-widest text-black/30 uppercase transition-colors hover:text-black"
         >
           Sign Out
         </button>

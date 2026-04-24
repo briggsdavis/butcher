@@ -1,10 +1,99 @@
 "use client"
 
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Heart } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
+
+type Comment = { id: string; name: string; body: string; ts: number }
+
+const DAY = 86_400_000
+const SEED_COMMENTS: Omit<Comment, "ts">[] = [
+  {
+    id: "seed-1",
+    name: "Velvet Heron",
+    body: "Ordered this twice in one sitting. The bartender just nodded knowingly the second time.",
+  },
+  {
+    id: "seed-2",
+    name: "Smoky Marten",
+    body: "Balanced, unhurried, dangerously easy to drink. Pairs well with the steak tartare.",
+  },
+  {
+    id: "seed-3",
+    name: "Quiet Owl",
+    body: "Not what I expected. Better.",
+  },
+]
+const SEED_LIKES = 47
+
+const ADJECTIVES = [
+  "Quick",
+  "Velvet",
+  "Midnight",
+  "Copper",
+  "Smoky",
+  "Restless",
+  "Gilded",
+  "Quiet",
+  "Wandering",
+  "Salted",
+  "Crimson",
+  "Hushed",
+  "Bramble",
+  "Lantern",
+  "Marble",
+  "Ember",
+  "Dusky",
+  "Hollow",
+  "Polished",
+  "Rye",
+]
+const ANIMALS = [
+  "Turtle",
+  "Fox",
+  "Heron",
+  "Stag",
+  "Otter",
+  "Magpie",
+  "Wolf",
+  "Hare",
+  "Falcon",
+  "Raven",
+  "Bison",
+  "Lynx",
+  "Mole",
+  "Crane",
+  "Boar",
+  "Marten",
+  "Owl",
+  "Bear",
+  "Pheasant",
+  "Badger",
+]
+
+function randomAlias() {
+  const a = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)]
+  const b = ANIMALS[Math.floor(Math.random() * ANIMALS.length)]
+  return `${a} ${b}`
+}
+
+function slugify(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+}
+
+function formatTs(ts: number) {
+  const d = new Date(ts)
+  return d.toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  })
+}
 
 interface Item {
   name: string
@@ -18,7 +107,7 @@ interface Props {
   image: string
   prevSlug: string | null
   nextSlug: string | null
-  basePath: "/beverages" | "/spirits"
+  basePath: "/beverages" | "/spirits" | "/food"
   backLabel: string
 }
 
@@ -33,6 +122,68 @@ export function ItemDetail({
   const router = useRouter()
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [exitDir, setExitDir] = useState<"next" | "prev" | null>(null)
+
+  const slug = slugify(item.name)
+  const likeKey = `btr:likes:${slug}`
+  const likedKey = `btr:liked:${slug}`
+  const commentsKey = `btr:comments:${slug}`
+
+  const [likes, setLikes] = useState(0)
+  const [liked, setLiked] = useState(false)
+  const [pulse, setPulse] = useState(false)
+  const [comments, setComments] = useState<Comment[]>([])
+  const [body, setBody] = useState("")
+
+  useEffect(() => {
+    try {
+      const storedLikes = localStorage.getItem(likeKey)
+      setLikes(storedLikes === null ? SEED_LIKES : Number(storedLikes))
+      setLiked(localStorage.getItem(likedKey) === "1")
+      const raw = localStorage.getItem(commentsKey)
+      if (raw) {
+        setComments(JSON.parse(raw))
+      } else {
+        const now = Date.now()
+        setComments(
+          SEED_COMMENTS.map((c, i) => ({ ...c, ts: now - (i + 1) * 3 * DAY })),
+        )
+      }
+    } catch {}
+  }, [likeKey, likedKey, commentsKey])
+
+  function toggleLike() {
+    const next = liked ? Math.max(0, likes - 1) : likes + 1
+    setLikes(next)
+    setLiked(!liked)
+    if (!liked) {
+      setPulse(true)
+      setTimeout(() => setPulse(false), 450)
+    }
+    try {
+      localStorage.setItem(likeKey, String(next))
+      localStorage.setItem(likedKey, liked ? "0" : "1")
+    } catch {}
+  }
+
+  function submitComment(e: React.FormEvent) {
+    e.preventDefault()
+    const trimmedBody = body.trim()
+    if (!trimmedBody) return
+    const next: Comment[] = [
+      {
+        id: crypto.randomUUID(),
+        name: randomAlias(),
+        body: trimmedBody,
+        ts: Date.now(),
+      },
+      ...comments,
+    ]
+    setComments(next)
+    setBody("")
+    try {
+      localStorage.setItem(commentsKey, JSON.stringify(next))
+    } catch {}
+  }
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -66,7 +217,7 @@ export function ItemDetail({
 
   return (
     <div ref={wrapperRef} className={exitClass}>
-      <section className="flex min-h-screen flex-col justify-center bg-charcoal px-8 pt-28 pb-10 md:px-16">
+      <section className="flex min-h-screen flex-col justify-center bg-charcoal px-8 pt-44 pb-10 md:px-16 md:pt-52">
         <div className="grid md:grid-cols-2 md:gap-16">
           <div className="relative min-h-[55vw] md:min-h-0">
             <Image
@@ -121,21 +272,42 @@ export function ItemDetail({
             </p>
 
             <div className="mt-10 border-t border-cream/10">
-              <div className="flex items-center justify-between border-b border-cream/10 py-5">
+              <div className="border-b border-cream/10 py-5">
                 <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
                   Price
                   <span className="mx-3 text-cream/20">·</span>${item.price}
                 </span>
-                <span className="text-lg text-cream/20">+</span>
               </div>
-              <div className="flex items-center justify-between border-b border-cream/10 py-5">
+              <div className="border-b border-cream/10 py-5">
                 <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
                   Category
                   <span className="mx-3 text-cream/20">·</span>
                   {item.category}
                 </span>
-                <span className="text-lg text-cream/20">+</span>
               </div>
+              <button
+                onClick={toggleLike}
+                aria-pressed={liked}
+                className="group flex w-full items-center justify-between border-b border-cream/10 py-5 text-left"
+              >
+                <span className="flex items-center gap-3 text-xs tracking-[0.2em] text-cream/45 uppercase transition-colors group-hover:text-cream/70">
+                  <Heart
+                    className={`size-3.5 transition-all duration-300 ${
+                      liked
+                        ? "fill-amber stroke-amber"
+                        : "stroke-cream/45 group-hover:stroke-amber"
+                    } ${pulse ? "scale-125" : "scale-100"}`}
+                  />
+                  {liked ? "You liked this" : "Tap to like"}
+                </span>
+                <span
+                  className={`font-display text-lg tabular-nums transition-colors ${
+                    liked ? "text-amber" : "text-cream/40"
+                  }`}
+                >
+                  {likes}
+                </span>
+              </button>
             </div>
 
             <div className="mt-10">
@@ -147,6 +319,61 @@ export function ItemDetail({
               </Link>
             </div>
           </div>
+        </div>
+
+        <div className="mx-auto mt-24 w-full max-w-3xl md:mt-32">
+          <div className="mb-10 flex items-baseline justify-between border-b border-cream/10 pb-4">
+            <h2 className="font-display text-2xl text-cream md:text-3xl">
+              Guestbook
+            </h2>
+            <span className="text-[10px] tracking-[0.3em] text-cream/30 uppercase">
+              {comments.length} {comments.length === 1 ? "Note" : "Notes"}
+            </span>
+          </div>
+
+          <form onSubmit={submitComment} className="mb-12 space-y-4">
+            <textarea
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              placeholder="Leave a note about this dish…"
+              rows={3}
+              className="w-full resize-none border-b border-cream/15 bg-transparent py-3 text-sm leading-relaxed text-cream placeholder-cream/25 focus:border-amber focus:outline-none"
+            />
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                disabled={!body.trim()}
+                className="border border-cream/25 px-6 py-2.5 text-[11px] tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-cream/25 disabled:hover:text-cream"
+              >
+                Post Note
+              </button>
+            </div>
+          </form>
+
+          <ul className="space-y-8">
+            {comments.length === 0 ? (
+              <li className="text-center text-xs tracking-[0.2em] text-cream/25 uppercase">
+                Be the first to leave a note
+              </li>
+            ) : (
+              comments.map((c) => (
+                <li
+                  key={c.id}
+                  className="border-b border-cream/[0.06] pb-8 last:border-0"
+                >
+                  <div className="mb-2 flex items-baseline justify-between gap-4">
+                    <span className="text-[11px] tracking-[0.25em] text-cream/80 uppercase">
+                      {c.name}
+                    </span>
+                    <span className="text-[10px] tracking-[0.2em] text-cream/30 uppercase">
+                      {formatTs(c.ts)}
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-tan">{c.body}</p>
+                </li>
+              ))
+            )}
+          </ul>
         </div>
       </section>
     </div>

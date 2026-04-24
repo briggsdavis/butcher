@@ -222,7 +222,7 @@ export function AboutEditor() {
               key={i}
               className="rounded border border-black/[0.06] bg-black/[0.02] p-4"
             >
-              <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-black/30">
+              <p className="mb-3 text-[10px] font-semibold tracking-widest text-black/30 uppercase">
                 Value {i + 1}
               </p>
               <div className="space-y-3">
@@ -240,7 +240,11 @@ export function AboutEditor() {
                 <ImageUpload
                   label="Section Image"
                   currentSrc={
-                    ["/barmood1.jpg", "/bardecor1.jpg", "/candlelit-tables.jpg"][i]
+                    [
+                      "/barmood1.jpg",
+                      "/bardecor1.jpg",
+                      "/candlelit-tables.jpg",
+                    ][i]
                   }
                   compact
                 />
@@ -308,7 +312,7 @@ export function AboutEditor() {
                 key={i}
                 className="rounded border border-black/[0.06] bg-black/[0.02] p-4"
               >
-                <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-black/30">
+                <p className="mb-3 text-[10px] font-semibold tracking-widest text-black/30 uppercase">
                   Member {i + 1}
                 </p>
                 <div className="space-y-3">
@@ -350,13 +354,12 @@ export function AboutEditor() {
             value={quoteEyebrow}
             onChange={setQuoteEyebrow}
           />
-          <Textarea
-            label="Quote"
-            value={quote}
-            onChange={setQuote}
-            rows={2}
+          <Textarea label="Quote" value={quote} onChange={setQuote} rows={2} />
+          <Field
+            label="CTA Link Text"
+            value={quoteCta}
+            onChange={setQuoteCta}
           />
-          <Field label="CTA Link Text" value={quoteCta} onChange={setQuoteCta} />
         </SectionPanel>
 
         {/* Closing CTA */}

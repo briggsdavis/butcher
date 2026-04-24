@@ -28,7 +28,8 @@ export function Nav() {
     try {
       if (!sessionStorage.getItem("nav-intro-done")) {
         setIntroStyle({
-          animation: "navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards",
+          animation:
+            "navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards",
         })
         sessionStorage.setItem("nav-intro-done", "true")
       }

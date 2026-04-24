@@ -1,8 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Login } from "~/components/admin/login"
-import { Sidebar, type AdminTab } from "~/components/admin/sidebar"
 import { AboutEditor } from "~/components/admin/editors/about-editor"
 import { BeveragesEditor } from "~/components/admin/editors/beverages-editor"
 import { FoodEditor } from "~/components/admin/editors/food-editor"
@@ -10,6 +8,8 @@ import { GlobalEditor } from "~/components/admin/editors/global-editor"
 import { HomeEditor } from "~/components/admin/editors/home-editor"
 import { SpiritsEditor } from "~/components/admin/editors/spirits-editor"
 import { StaffEditor } from "~/components/admin/editors/staff-editor"
+import { Login } from "~/components/admin/login"
+import { Sidebar, type AdminTab } from "~/components/admin/sidebar"
 
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false)

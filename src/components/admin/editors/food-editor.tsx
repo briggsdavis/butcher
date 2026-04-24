@@ -1,8 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ImageUpload } from "~/components/admin/image-upload"
-import { EditorHeader, Field, FieldRow, SectionPanel, Textarea } from "~/components/admin/ui"
+import {
+  EditorHeader,
+  Field,
+  FieldRow,
+  SectionPanel,
+  Textarea,
+} from "~/components/admin/ui"
 
 type FoodItem = {
   id: string
@@ -24,24 +30,87 @@ const INITIAL_SECTIONS: FoodSection[] = [
     id: uid(),
     name: "Starters",
     items: [
-      { id: uid(), name: "Bone Marrow", description: "Roasted split bones, gremolata, grilled sourdough", price: "18" },
-      { id: uid(), name: "Beef Tartare", description: "Hand-cut tenderloin, cured egg yolk, capers, mustard seed", price: "22" },
-      { id: uid(), name: "Charred Octopus", description: "Romesco, fingerling potatoes, chorizo vinaigrette", price: "24" },
-      { id: uid(), name: "Burrata", description: "Heirloom tomato, basil oil, aged balsamic, grilled bread", price: "16" },
-      { id: uid(), name: "Oysters on the Half Shell", description: "Half dozen, mignonette, cocktail sauce, fresh horseradish", price: "21" },
+      {
+        id: uid(),
+        name: "Bone Marrow",
+        description: "Roasted split bones, gremolata, grilled sourdough",
+        price: "18",
+      },
+      {
+        id: uid(),
+        name: "Beef Tartare",
+        description:
+          "Hand-cut tenderloin, cured egg yolk, capers, mustard seed",
+        price: "22",
+      },
+      {
+        id: uid(),
+        name: "Charred Octopus",
+        description: "Romesco, fingerling potatoes, chorizo vinaigrette",
+        price: "24",
+      },
+      {
+        id: uid(),
+        name: "Burrata",
+        description: "Heirloom tomato, basil oil, aged balsamic, grilled bread",
+        price: "16",
+      },
+      {
+        id: uid(),
+        name: "Oysters on the Half Shell",
+        description:
+          "Half dozen, mignonette, cocktail sauce, fresh horseradish",
+        price: "21",
+      },
     ],
   },
   {
     id: uid(),
     name: "Entrées",
     items: [
-      { id: uid(), name: "Bone-In Ribeye", description: "Dry-aged 45 days, roasted marrow butter", price: "68" },
-      { id: uid(), name: "Braised Short Rib", description: "Red wine reduction, root vegetables, horseradish gremolata", price: "42" },
-      { id: uid(), name: "Pan-Seared Duck Breast", description: "Cherry gastrique, wild rice, charred broccolini", price: "38" },
-      { id: uid(), name: "Grilled Lamb Chops", description: "Herb crust, mint chimichurri, fingerling potatoes", price: "54" },
-      { id: uid(), name: "Berkshire Pork Chop", description: "Brined and grilled, apple mostarda, braised greens", price: "36" },
-      { id: uid(), name: "Seared Scallops", description: "Cauliflower purée, brown butter, crispy capers, pancetta", price: "44" },
-      { id: uid(), name: "Whole Branzino", description: "Wood-grilled, lemon, herbs, olive oil, roasted fennel", price: "40" },
+      {
+        id: uid(),
+        name: "Bone-In Ribeye",
+        description: "Dry-aged 45 days, roasted marrow butter",
+        price: "68",
+      },
+      {
+        id: uid(),
+        name: "Braised Short Rib",
+        description:
+          "Red wine reduction, root vegetables, horseradish gremolata",
+        price: "42",
+      },
+      {
+        id: uid(),
+        name: "Pan-Seared Duck Breast",
+        description: "Cherry gastrique, wild rice, charred broccolini",
+        price: "38",
+      },
+      {
+        id: uid(),
+        name: "Grilled Lamb Chops",
+        description: "Herb crust, mint chimichurri, fingerling potatoes",
+        price: "54",
+      },
+      {
+        id: uid(),
+        name: "Berkshire Pork Chop",
+        description: "Brined and grilled, apple mostarda, braised greens",
+        price: "36",
+      },
+      {
+        id: uid(),
+        name: "Seared Scallops",
+        description: "Cauliflower purée, brown butter, crispy capers, pancetta",
+        price: "44",
+      },
+      {
+        id: uid(),
+        name: "Whole Branzino",
+        description: "Wood-grilled, lemon, herbs, olive oil, roasted fennel",
+        price: "40",
+      },
     ],
   },
   {
@@ -50,19 +119,49 @@ const INITIAL_SECTIONS: FoodSection[] = [
     items: [
       { id: uid(), name: "Truffle Fries", description: "", price: "12" },
       { id: uid(), name: "Creamed Spinach", description: "", price: "10" },
-      { id: uid(), name: "Roasted Bone Marrow Mashed Potatoes", description: "", price: "14" },
+      {
+        id: uid(),
+        name: "Roasted Bone Marrow Mashed Potatoes",
+        description: "",
+        price: "14",
+      },
       { id: uid(), name: "Charred Broccolini", description: "", price: "11" },
-      { id: uid(), name: "Brussels Sprouts", description: "Bacon, balsamic glaze", price: "12" },
-      { id: uid(), name: "Mac & Cheese", description: "Gruyère, white cheddar, breadcrumb crust", price: "13" },
+      {
+        id: uid(),
+        name: "Brussels Sprouts",
+        description: "Bacon, balsamic glaze",
+        price: "12",
+      },
+      {
+        id: uid(),
+        name: "Mac & Cheese",
+        description: "Gruyère, white cheddar, breadcrumb crust",
+        price: "13",
+      },
     ],
   },
   {
     id: uid(),
     name: "Desserts",
     items: [
-      { id: uid(), name: "Bourbon Crème Brûlée", description: "Woodford Reserve custard, torched sugar, shortbread", price: "14" },
-      { id: uid(), name: "Chocolate Torte", description: "Flourless, espresso crème, candied hazelnuts", price: "15" },
-      { id: uid(), name: "Bread Pudding", description: "Brioche, salted caramel, vanilla bean ice cream", price: "13" },
+      {
+        id: uid(),
+        name: "Bourbon Crème Brûlée",
+        description: "Woodford Reserve custard, torched sugar, shortbread",
+        price: "14",
+      },
+      {
+        id: uid(),
+        name: "Chocolate Torte",
+        description: "Flourless, espresso crème, candied hazelnuts",
+        price: "15",
+      },
+      {
+        id: uid(),
+        name: "Bread Pudding",
+        description: "Brioche, salted caramel, vanilla bean ice cream",
+        price: "13",
+      },
     ],
   },
 ]
@@ -78,7 +177,7 @@ function ItemRow({
 }) {
   return (
     <div className="flex items-center gap-3 border-b border-black/[0.06] py-3 last:border-0">
-      <div className="flex-1 min-w-0">
+      <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium text-black">
           {item.name || <span className="text-black/30">Unnamed item</span>}
         </p>
@@ -93,13 +192,13 @@ function ItemRow({
       </span>
       <button
         onClick={onEdit}
-        className="shrink-0 border border-black/15 px-3 py-1.5 text-[10px] uppercase tracking-widest text-black/50 transition-colors hover:border-black hover:text-black"
+        className="shrink-0 border border-black/15 px-3 py-1.5 text-[10px] tracking-widest text-black/50 uppercase transition-colors hover:border-black hover:text-black"
       >
         Edit
       </button>
       <button
         onClick={onDelete}
-        className="shrink-0 border border-red-300/60 px-3 py-1.5 text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:bg-red-500 hover:text-white"
+        className="shrink-0 border border-red-300/60 px-3 py-1.5 text-[10px] tracking-widest text-red-400 uppercase transition-colors hover:bg-red-500 hover:text-white"
       >
         Delete
       </button>
@@ -124,7 +223,7 @@ function ItemForm({
 
   return (
     <div className="my-2 border border-black/[0.1] bg-[#f2e8d8]/40 p-4">
-      <p className="mb-3 text-[10px] font-semibold uppercase tracking-widest text-black/35">
+      <p className="mb-3 text-[10px] font-semibold tracking-widest text-black/35 uppercase">
         {isNew ? "New Item" : "Editing Item"}
       </p>
       <div className="space-y-3">
@@ -154,13 +253,13 @@ function ItemForm({
       <div className="mt-4 flex gap-3">
         <button
           onClick={() => onSave(draft)}
-          className="bg-black px-5 py-2 text-[11px] font-semibold uppercase tracking-widest text-white transition-colors hover:bg-black/80"
+          className="bg-black px-5 py-2 text-[11px] font-semibold tracking-widest text-white uppercase transition-colors hover:bg-black/80"
         >
           {isNew ? "Add Item" : "Save"}
         </button>
         <button
           onClick={onCancel}
-          className="px-4 py-2 text-[11px] uppercase tracking-widest text-black/40 transition-colors hover:text-black"
+          className="px-4 py-2 text-[11px] tracking-widest text-black/40 uppercase transition-colors hover:text-black"
         >
           Cancel
         </button>
@@ -182,6 +281,11 @@ function SectionBlock({
   const [addingNew, setAddingNew] = useState(false)
   const [editingName, setEditingName] = useState(false)
   const [nameVal, setNameVal] = useState(section.name)
+  const nameInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (editingName) nameInputRef.current?.focus()
+  }, [editingName])
 
   function saveItem(item: FoodItem) {
     onUpdate({
@@ -212,7 +316,7 @@ function SectionBlock({
         {editingName ? (
           <div className="flex flex-1 items-center gap-2">
             <input
-              autoFocus
+              ref={nameInputRef}
               value={nameVal}
               onChange={(e) => setNameVal(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && saveName()}
@@ -220,7 +324,7 @@ function SectionBlock({
             />
             <button
               onClick={saveName}
-              className="text-[10px] uppercase tracking-widest text-black"
+              className="text-[10px] tracking-widest text-black uppercase"
             >
               Done
             </button>
@@ -242,7 +346,7 @@ function SectionBlock({
           </span>
           <button
             onClick={onDelete}
-            className="text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:text-red-600"
+            className="text-[10px] tracking-widest text-red-400 uppercase transition-colors hover:text-red-600"
           >
             Delete Section
           </button>
@@ -283,7 +387,7 @@ function SectionBlock({
           {!addingNew && (
             <button
               onClick={() => setAddingNew(true)}
-              className="text-[11px] uppercase tracking-widest text-black/40 underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
+              className="text-[11px] tracking-widest text-black/40 uppercase underline underline-offset-2 transition-colors hover:text-black hover:no-underline"
             >
               + Add Item
             </button>
@@ -350,7 +454,7 @@ export function FoodEditor() {
         {/* Sections */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-black/40">
+            <p className="text-[11px] font-semibold tracking-widest text-black/40 uppercase">
               Menu Sections
             </p>
           </div>
@@ -368,7 +472,7 @@ export function FoodEditor() {
         {/* Add section */}
         <button
           onClick={addSection}
-          className="flex w-full items-center justify-center gap-2 border border-dashed border-black/20 py-4 text-[11px] uppercase tracking-widest text-black/40 transition-colors hover:border-black/40 hover:text-black"
+          className="flex w-full items-center justify-center gap-2 border border-dashed border-black/20 py-4 text-[11px] tracking-widest text-black/40 uppercase transition-colors hover:border-black/40 hover:text-black"
         >
           + Add New Section
         </button>
