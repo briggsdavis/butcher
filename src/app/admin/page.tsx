@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Login } from "~/components/admin/login"
 import { Sidebar, type AdminTab } from "~/components/admin/sidebar"
 import { AboutEditor } from "~/components/admin/editors/about-editor"
@@ -14,6 +14,11 @@ import { StaffEditor } from "~/components/admin/editors/staff-editor"
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false)
   const [activeTab, setActiveTab] = useState<AdminTab>("home")
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 })
+  }, [activeTab])
 
   if (!authenticated) {
     return <Login onLogin={() => setAuthenticated(true)} />
@@ -28,7 +33,7 @@ export default function AdminPage() {
       />
 
       <main className="flex flex-1 flex-col overflow-hidden">
-        <div className="flex-1 overflow-y-auto">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto">
           {activeTab === "home" && <HomeEditor />}
           {activeTab === "about" && <AboutEditor />}
           {activeTab === "staff" && <StaffEditor />}

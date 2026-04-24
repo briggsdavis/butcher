@@ -7,9 +7,10 @@ interface Props {
   currentSrc?: string
   hint?: string
   compact?: boolean
+  onChange?: (dataUrl: string) => void
 }
 
-export function ImageUpload({ label, currentSrc, hint, compact = false }: Props) {
+export function ImageUpload({ label, currentSrc, hint, compact = false, onChange }: Props) {
   const [preview, setPreview] = useState<string | null>(null)
   const [fileName, setFileName] = useState<string | null>(null)
   const ref = useRef<HTMLInputElement>(null)
@@ -19,7 +20,11 @@ export function ImageUpload({ label, currentSrc, hint, compact = false }: Props)
     if (!file) return
     setFileName(file.name)
     const reader = new FileReader()
-    reader.onload = (ev) => setPreview(ev.target?.result as string)
+    reader.onload = (ev) => {
+      const url = ev.target?.result as string
+      setPreview(url)
+      onChange?.(url)
+    }
     reader.readAsDataURL(file)
   }
 

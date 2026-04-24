@@ -4,14 +4,8 @@ import { useState } from "react"
 import { ImageUpload } from "~/components/admin/image-upload"
 import { EditorHeader, Field, FieldRow, SectionPanel, Textarea } from "~/components/admin/ui"
 
-type BevItem = { id: string; name: string; notes: string; price: string }
-type BevSection = {
-  id: string
-  category: string
-  label: string
-  image: string
-  items: BevItem[]
-}
+type BevItem = { id: string; name: string; notes: string; price: string; image: string }
+type BevSection = { id: string; category: string; label: string; items: BevItem[] }
 
 const uid = () => Math.random().toString(36).slice(2, 9)
 
@@ -20,47 +14,43 @@ const INITIAL_SECTIONS: BevSection[] = [
     id: uid(),
     category: "Cocktails",
     label: "Crafted",
-    image: "/craft-old-fashioned.jpg",
     items: [
-      { id: uid(), name: "Old Fashioned", notes: "Bourbon, demerara, Angostura, orange", price: "16" },
-      { id: uid(), name: "Rye Negroni", notes: "Rye, Campari, sweet vermouth, expressed orange", price: "15" },
-      { id: uid(), name: "Smoked Manhattan", notes: "Bulleit Rye, Carpano Antica, cherry bitters", price: "18" },
-      { id: uid(), name: "Paper Plane", notes: "Bourbon, Aperol, Amaro Nonino, lemon", price: "16" },
-      { id: uid(), name: "Butcher's Mule", notes: "Vodka, ginger beer, lime, house bitters", price: "13" },
-      { id: uid(), name: "Seasonal Spritz", notes: "Ask your server for today's selection", price: "14" },
+      { id: uid(), name: "Old Fashioned", notes: "Bourbon, demerara, Angostura, orange", price: "16", image: "/craft-old-fashioned.jpg" },
+      { id: uid(), name: "Rye Negroni", notes: "Rye, Campari, sweet vermouth, expressed orange", price: "15", image: "" },
+      { id: uid(), name: "Smoked Manhattan", notes: "Bulleit Rye, Carpano Antica, cherry bitters", price: "18", image: "" },
+      { id: uid(), name: "Paper Plane", notes: "Bourbon, Aperol, Amaro Nonino, lemon", price: "16", image: "" },
+      { id: uid(), name: "Butcher's Mule", notes: "Vodka, ginger beer, lime, house bitters", price: "13", image: "" },
+      { id: uid(), name: "Seasonal Spritz", notes: "Ask your server for today's selection", price: "14", image: "" },
     ],
   },
   {
     id: uid(),
     category: "Red Wine",
     label: "The Cellar",
-    image: "/whiskey-pour.jpg",
     items: [
-      { id: uid(), name: "Caymus Cabernet Sauvignon", notes: "Napa Valley, 2021", price: "24" },
-      { id: uid(), name: "Château Pichon Baron", notes: "Pauillac, Bordeaux, 2018", price: "38" },
-      { id: uid(), name: "Meiomi Pinot Noir", notes: "California, 2022", price: "15" },
+      { id: uid(), name: "Caymus Cabernet Sauvignon", notes: "Napa Valley, 2021", price: "24", image: "" },
+      { id: uid(), name: "Château Pichon Baron", notes: "Pauillac, Bordeaux, 2018", price: "38", image: "" },
+      { id: uid(), name: "Meiomi Pinot Noir", notes: "California, 2022", price: "15", image: "" },
     ],
   },
   {
     id: uid(),
     category: "White & Sparkling",
     label: "Light & Bright",
-    image: "/barmood1.jpg",
     items: [
-      { id: uid(), name: "Rombauer Chardonnay", notes: "Carneros, Napa, 2022", price: "18" },
-      { id: uid(), name: "Whispering Angel Rosé", notes: "Provence, France, 2023", price: "16" },
-      { id: uid(), name: "Ruinart Blanc de Blancs", notes: "Champagne, France, NV", price: "32" },
+      { id: uid(), name: "Rombauer Chardonnay", notes: "Carneros, Napa, 2022", price: "18", image: "" },
+      { id: uid(), name: "Whispering Angel Rosé", notes: "Provence, France, 2023", price: "16", image: "" },
+      { id: uid(), name: "Ruinart Blanc de Blancs", notes: "Champagne, France, NV", price: "32", image: "" },
     ],
   },
   {
     id: uid(),
     category: "Non-Alcoholic",
     label: "Zero Proof",
-    image: "/barmood.jpg",
     items: [
-      { id: uid(), name: "House Lemonade", notes: "Fresh-squeezed, thyme, sea salt", price: "7" },
-      { id: uid(), name: "Sparkling Water", notes: "San Pellegrino, 750ml", price: "6" },
-      { id: uid(), name: "Cold Brew Coffee", notes: "Single origin, unsweetened", price: "6" },
+      { id: uid(), name: "House Lemonade", notes: "Fresh-squeezed, thyme, sea salt", price: "7", image: "" },
+      { id: uid(), name: "Sparkling Water", notes: "San Pellegrino, 750ml", price: "6", image: "" },
+      { id: uid(), name: "Cold Brew Coffee", notes: "Single origin, unsweetened", price: "6", image: "" },
     ],
   },
 ]
@@ -76,6 +66,17 @@ function ItemRow({
 }) {
   return (
     <div className="flex items-center gap-3 border-b border-black/[0.06] py-3 last:border-0">
+      {/* Per-item thumbnail */}
+      <div className="relative h-10 w-10 shrink-0 overflow-hidden border border-black/[0.08] bg-black/[0.04]">
+        {item.image ? (
+          <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center text-[8px] uppercase tracking-wider text-black/20">
+            No img
+          </span>
+        )}
+      </div>
+
       <div className="flex-1 min-w-0">
         <p className="truncate text-sm font-medium text-black">
           {item.name || <span className="text-black/30">Unnamed</span>}
@@ -144,6 +145,13 @@ function ItemForm({
           onChange={(v) => set("notes", v)}
           placeholder="Bourbon, demerara, Angostura, orange"
         />
+        <ImageUpload
+          label="Item Image"
+          currentSrc={draft.image || undefined}
+          hint="Photo shown as thumbnail for this item"
+          compact
+          onChange={(url) => set("image", url)}
+        />
       </div>
       <div className="mt-4 flex gap-3">
         <button
@@ -198,9 +206,7 @@ function SectionBlock({
       <div className="flex items-center justify-between border-b border-black/[0.08] px-5 py-4">
         <div>
           <h3 className="text-sm font-semibold text-black">{section.category}</h3>
-          <p className="mt-0.5 text-[10px] text-black/30">
-            Label: {section.label}
-          </p>
+          <p className="mt-0.5 text-[10px] text-black/30">Label: {section.label}</p>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-[10px] text-black/30">
@@ -216,7 +222,7 @@ function SectionBlock({
       </div>
 
       {/* Section metadata */}
-      <div className="grid grid-cols-3 gap-4 border-b border-black/[0.06] px-5 py-4">
+      <div className="grid grid-cols-2 gap-4 border-b border-black/[0.06] px-5 py-4">
         <Field
           label="Category Name"
           value={section.category}
@@ -226,12 +232,6 @@ function SectionBlock({
           label="Section Label"
           value={section.label}
           onChange={(v) => onUpdate({ ...section, label: v })}
-        />
-        <ImageUpload
-          label="Category Image"
-          currentSrc={section.image}
-          hint="Shown as thumbnail per item"
-          compact
         />
       </div>
 
@@ -258,7 +258,7 @@ function SectionBlock({
 
         {addingNew && (
           <ItemForm
-            item={{ id: uid(), name: "", notes: "", price: "" }}
+            item={{ id: uid(), name: "", notes: "", price: "", image: "" }}
             isNew
             onSave={addItem}
             onCancel={() => setAddingNew(false)}
@@ -305,13 +305,7 @@ export function BeveragesEditor() {
   function addSection() {
     setSections((prev) => [
       ...prev,
-      {
-        id: uid(),
-        category: "New Category",
-        label: "Label",
-        image: "",
-        items: [],
-      },
+      { id: uid(), category: "New Category", label: "Label", items: [] },
     ])
   }
 
