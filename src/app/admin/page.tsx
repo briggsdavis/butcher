@@ -20,15 +20,13 @@ export default function AdminPage() {
   }
 
   return (
-    // Fixed overlay covers the restaurant site's Nav + Footer
-    <div className="fixed inset-0 z-[500] flex overflow-hidden bg-[#f2e8d8] font-sans">
+    <div className="flex h-screen overflow-hidden bg-[#f2e8d8] font-sans">
       <Sidebar
         active={activeTab}
         onChange={setActiveTab}
         onSignOut={() => setAuthenticated(false)}
       />
 
-      {/* Main content area */}
       <main className="flex flex-1 flex-col overflow-hidden">
         <div className="flex-1 overflow-y-auto">
           {activeTab === "home" && <HomeEditor />}
