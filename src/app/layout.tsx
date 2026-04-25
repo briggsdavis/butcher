@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     default: "Butcher and the Rye",
     template: "%s · Butcher and the Rye",
   },
+  icons: { icon: "/logo.png" },
 }
 
 export default function Layout({ children }: { children: ReactNode }) {

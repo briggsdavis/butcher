@@ -293,7 +293,7 @@ export default function About() {
           style={{ top: "-10%", bottom: "-10%" }}
         >
           <Image
-            src="/parallax-wide.jpg"
+            src="/bar-brass-glow.jpg"
             alt="Behind the bar at Butcher and the Rye"
             fill
             className="object-cover"
@@ -389,14 +389,6 @@ export default function About() {
                   </p>
                 </div>
               ))}
-              <Link
-                href="/our-staff"
-                data-animate=""
-                data-delay="520"
-                className="col-span-2 mt-2 inline-flex items-center justify-end gap-2 text-xs tracking-[0.2em] text-amber/50 uppercase transition-colors hover:text-amber"
-              >
-                See all 8 <ArrowRight className="size-3" />
-              </Link>
             </div>
           </div>
         </div>
@@ -428,12 +420,12 @@ export default function About() {
             ordinary.&rdquo;
           </blockquote>
           <Link
-            href="/our-staff"
+            href="/food"
             data-animate=""
             data-delay="365"
             className="mt-12 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-oxblood"
           >
-            Meet the team behind it
+            Explore the menu
             <ArrowRight className="size-4" />
           </Link>
         </div>
