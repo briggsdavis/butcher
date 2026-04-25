@@ -21,6 +21,15 @@ export const metadata: Metadata = {
     template: "%s · Butcher and the Rye",
   },
   icons: { icon: "/logo.png" },
+  openGraph: {
+    title: "Butcher and the Rye",
+    images: ["/warm-dining-room.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Butcher and the Rye",
+    images: ["/warm-dining-room.jpg"],
+  },
 }
 
 export default function Layout({ children }: { children: ReactNode }) {
