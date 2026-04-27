@@ -99,9 +99,15 @@ export function Nav() {
         {/* Centered title */}
         <Link
           href="/"
-          className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 font-display text-xl tracking-widest whitespace-nowrap text-white uppercase md:text-2xl"
+          className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
         >
-          Butcher & the Rye
+          <Image
+            src="/logo.png"
+            alt="Butcher & the Rye"
+            width={48}
+            height={48}
+            className="h-10 w-10 md:h-12 md:w-12"
+          />
         </Link>
 
         {/* Reserve — top right */}
