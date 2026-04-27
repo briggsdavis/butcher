@@ -467,6 +467,66 @@ export default function Home() {
       </section>
       */}
 
+      {/* ── Campaigns ── */}
+      <section data-wipe className="bg-charcoal py-32 md:py-48">
+        <div className="mx-auto max-w-7xl px-8 md:px-16">
+          <div data-animate="" className="flex items-center gap-4">
+            <span className="block h-px w-10 shrink-0 bg-amber/50" />
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Current Offers
+            </span>
+          </div>
+          <h2
+            data-animate=""
+            data-delay="130"
+            className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+          >
+            Made for the
+            <br />
+            <span className="text-tan italic">occasion</span>
+          </h2>
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                label: "Sunday – Thursday",
+                title: "Bar Bites & Bourbon",
+                body: "Join us from 5–7 PM for half-price bar bites and select bourbons at the bar. First come, first seated.",
+                delay: "260",
+              },
+              {
+                label: "Every Friday",
+                title: "The Butcher's Cut",
+                body: "Our chef selects one exceptional dry-aged cut each Friday night. Available while supplies last — no substitutions.",
+                delay: "390",
+              },
+              {
+                label: "Private Dining",
+                title: "Reserve the Room",
+                body: "Host an unforgettable evening in our private dining room. Curated menus for groups of 10 to 30 guests.",
+                delay: "520",
+              },
+            ].map((card) => (
+              <div
+                key={card.title}
+                data-animate=""
+                data-delay={card.delay}
+                className="border border-cream/10 p-8"
+              >
+                <span className="text-xs tracking-[0.25em] text-amber uppercase">
+                  {card.label}
+                </span>
+                <h3 className="mt-4 font-display text-2xl text-cream">
+                  {card.title}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-tan">
+                  {card.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Reservations ── */}
       <section
         id="reservations"
