@@ -143,8 +143,8 @@ const FOOD = [
 export default function Food() {
   return (
     <>
-      <section className="flex flex-col justify-end bg-oxblood px-8 pt-32 pb-20 md:px-16 md:pt-48 md:pb-32">
-        <div className="mx-auto w-full max-w-7xl">
+      <section className="flex flex-col justify-end bg-oxblood pt-32 pb-20 md:pt-48 md:pb-32">
+        <div className="mx-auto w-full max-w-7xl px-8 md:px-16">
           <div className="flex items-center gap-4">
             <span className="block h-px w-8 shrink-0 bg-amber/50" />
             <span className="text-xs tracking-[0.3em] text-amber uppercase">
@@ -202,7 +202,7 @@ export default function Food() {
                       data-delay={String(180 + i * 60)}
                       className="group flex items-center gap-5 py-4"
                     >
-                      <div className="relative size-14 shrink-0 transition-all duration-300 ease-out group-hover:size-44">
+                      <div className="relative size-14 shrink-0 transition-all duration-700 ease-in-out group-hover:size-36">
                         <Image
                           src={`/food/${slug}.jpg`}
                           alt={item.name}
