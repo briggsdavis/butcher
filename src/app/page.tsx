@@ -155,19 +155,22 @@ export default function Home() {
                 className="img-zoom object-cover"
               />
             </div>
-            <div
+            <TiltCard
               data-animate=""
               data-delay="365"
-              className="img-inset-shadow absolute -right-6 -bottom-8 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-right-10 md:h-52 md:w-40"
-              style={{ transform: "rotate(2deg)" }}
+              initialRotate={2}
+              maxTilt={5}
+              className="absolute -right-6 -bottom-8 z-10 h-44 w-32 shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
-              <Image
-                src="/glow-frame.png"
-                alt="Bar glow"
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </div>
+              <div className="relative h-full w-full overflow-hidden">
+                <Image
+                  src="/glow-frame.png"
+                  alt="Bar glow"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </TiltCard>
             {/* Spinning text ring */}
             <div
               data-animate=""
@@ -291,7 +294,11 @@ export default function Home() {
         />
         <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
           <div data-animate="">
-            <div className="self-center bg-cream p-4 pb-0 shadow-2xl transition-transform duration-500 hover:scale-[1.02] md:p-6 md:pb-0" style={{ transform: "rotate(-2deg)" }}>
+            <TiltCard
+              initialRotate={-2}
+              maxTilt={7}
+              className="self-center bg-cream p-4 pb-0 shadow-2xl md:p-6 md:pb-0"
+            >
               <div className="img-inset-shadow relative aspect-[3/4] overflow-hidden">
                 <Image
                   src="/craft-old-fashioned.jpg"
@@ -305,7 +312,7 @@ export default function Home() {
                   The Old Fashioned
                 </p>
               </div>
-            </div>
+            </TiltCard>
           </div>
           <div className="flex flex-col justify-center">
             <div data-animate="" className="flex items-center gap-4">

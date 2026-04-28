@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
+import { TiltCard } from "~/components/tilt-card"
 
 export const metadata: Metadata = {
   title: "About",
@@ -181,18 +182,22 @@ export default function About() {
                   className="img-zoom object-cover"
                 />
               </div>
-              <div
+              <TiltCard
                 data-animate=""
                 data-delay="340"
-                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-left-10 md:h-52 md:w-40"
+                initialRotate={-3}
+                maxTilt={5}
+                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 shadow-2xl md:-left-10 md:h-52 md:w-40"
               >
-                <Image
-                  src="/entree-frame.png"
-                  alt="A plated entrée"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+                <div className="relative h-full w-full overflow-hidden">
+                  <Image
+                    src="/entree-frame.png"
+                    alt="A plated entrée"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </TiltCard>
               <div
                 data-animate=""
                 data-delay="495"
