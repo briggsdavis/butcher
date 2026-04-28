@@ -3,6 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { InfiniteCarousel } from "~/components/infinite-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
+import { SectionDivider } from "~/components/section-divider"
+import { TiltCard } from "~/components/tilt-card"
 
 const COCKTAILS = [
   {
@@ -20,11 +22,11 @@ const COCKTAILS = [
 ]
 
 const FRAMES = [
-  { src: "/entree-frame.png", alt: "Plated dish", w: 1652, h: 1924, rotate: "-rotate-[2.5deg]", delay: "130" },
-  { src: "/glow-frame.png", alt: "The bar", w: 1803, h: 2003, rotate: "rotate-[1.5deg]", delay: "285" },
-  { src: "/whiskey-frame.png", alt: "Whiskey pour", w: 1579, h: 1996, rotate: "-rotate-[1deg]", delay: "440" },
-  { src: "/bartender-frame.png", alt: "Bartender", w: 1208, h: 1662, rotate: "rotate-[2.5deg]", delay: "365" },
-  { src: "/tables-frame.png", alt: "Dining room", w: 2168, h: 1922, rotate: "-rotate-[1.8deg]", delay: "520" },
+  { src: "/entree-frame.png", alt: "Plated dish",  w: 1652, h: 1924, rotate: -2.5, delay: "130" },
+  { src: "/glow-frame.png",   alt: "The bar",      w: 1803, h: 2003, rotate:  1.5, delay: "285" },
+  { src: "/whiskey-frame.png",alt: "Whiskey pour", w: 1579, h: 1996, rotate: -1.0, delay: "440" },
+  { src: "/bartender-frame.png", alt: "Bartender", w: 1208, h: 1662, rotate:  2.5, delay: "365" },
+  { src: "/tables-frame.png", alt: "Dining room",  w: 2168, h: 1922, rotate: -1.8, delay: "520" },
 ]
 
 export default function Home() {
@@ -49,7 +51,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/55 to-transparent" />
         <div className="relative z-10 max-w-3xl px-8 pb-24 text-center md:px-16">
           <h1
-            className="font-display leading-none tracking-tight text-cream"
+            className="heading-emboss font-display leading-none tracking-tight text-cream"
             style={{
               fontSize: "clamp(3rem, 8vw, 6.4rem)",
               animation: "fadeInUp 1s ease 0.15s both",
@@ -81,6 +83,12 @@ export default function Home() {
         data-wipe
         className="wood-grain relative overflow-hidden bg-charcoal py-32 md:py-48"
       >
+        {/* Ambient glow blob */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-[0.06]"
+          style={{ background: "radial-gradient(circle, var(--color-amber), transparent 70%)" }}
+        />
         <div
           data-parallax="content"
           data-parallax-speed="0.06"
@@ -97,7 +105,7 @@ export default function Home() {
             <h2
               data-animate=""
               data-delay="130"
-              className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+              className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
             >
               Where every
               <br />
@@ -134,25 +142,23 @@ export default function Home() {
 
           {/* Right: tilted image collage */}
           <div className="relative mt-8 md:mt-0">
-            {/* Primary image — slight tilt */}
             <div
               data-animate=""
               data-delay="195"
-              className="relative h-[26rem] overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-[1.02]"
+              className="img-inset-shadow relative h-[26rem] overflow-hidden shadow-2xl"
               style={{ transform: "rotate(-1.2deg)" }}
             >
               <Image
                 src="/barmood.jpg"
                 alt="The bar at Butcher and the Rye"
                 fill
-                className="object-cover img-zoom"
+                className="img-zoom object-cover"
               />
             </div>
-            {/* Secondary overlapping frame — opposite tilt */}
             <div
               data-animate=""
               data-delay="365"
-              className="absolute -right-6 -bottom-8 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-right-10 md:h-52 md:w-40"
+              className="img-inset-shadow absolute -right-6 -bottom-8 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-right-10 md:h-52 md:w-40"
               style={{ transform: "rotate(2deg)" }}
             >
               <Image
@@ -195,7 +201,6 @@ export default function Home() {
           className="mx-auto max-w-7xl px-8 md:px-16"
         >
           <div className="grid gap-x-8 gap-y-10 lg:grid-cols-3 lg:items-start">
-            {/* Col 1 */}
             <div className="flex flex-col gap-10">
               <div>
                 <div data-animate="" className="flex items-center gap-4">
@@ -207,7 +212,7 @@ export default function Home() {
                 <h2
                   data-animate=""
                   data-delay="130"
-                  className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+                  className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
                 >
                   The menu
                 </h2>
@@ -215,7 +220,7 @@ export default function Home() {
               <div
                 data-animate=""
                 data-delay="220"
-                className="group relative aspect-[5/4] w-full overflow-hidden shadow-xl"
+                className="img-inset-shadow relative aspect-[5/4] w-full overflow-hidden shadow-xl"
               >
                 <Image
                   src="/meat-board.jpg"
@@ -226,11 +231,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Col 2: tall center */}
             <div
               data-animate=""
               data-delay="340"
-              className="group relative aspect-[3/4] w-full overflow-hidden shadow-xl"
+              className="img-inset-shadow relative aspect-[3/4] w-full overflow-hidden shadow-xl"
             >
               <Image
                 src="/plated-entree.jpg"
@@ -240,11 +244,10 @@ export default function Home() {
               />
             </div>
 
-            {/* Col 3: offset right */}
             <div
               data-animate=""
               data-delay="460"
-              className="group relative aspect-[5/4] w-full overflow-hidden shadow-xl lg:mt-16"
+              className="img-inset-shadow relative aspect-[5/4] w-full overflow-hidden shadow-xl lg:mt-16"
             >
               <Image
                 src="/steak.jpg"
@@ -255,8 +258,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom bar */}
-          <div className="mt-10 border-t border-cream/10 pt-10">
+          <SectionDivider className="mt-6" />
+
+          <div className="border-t border-cream/10 pt-4">
             <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
               <div data-animate="" data-delay="560">
                 <p className="max-w-xs text-sm leading-relaxed text-tan">
@@ -278,12 +282,17 @@ export default function Home() {
       </section>
 
       {/* ── Cocktails & Spirits ── */}
-      <section data-wipe className="wood-grain relative bg-charcoal py-32 md:py-48">
+      <section data-wipe className="wood-grain relative overflow-hidden bg-charcoal py-32 md:py-48">
+        {/* Ambient glow blob — lower-left, warm */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-32 h-[550px] w-[550px] rounded-full opacity-[0.07]"
+          style={{ background: "radial-gradient(circle, var(--color-amber), transparent 68%)" }}
+        />
         <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
           <div data-animate="">
-            {/* Tilted cream frame — same treatment as before */}
-            <div className="-rotate-2 self-center bg-cream p-4 pb-0 shadow-2xl transition-transform duration-500 hover:rotate-0 hover:scale-[1.02] md:p-6 md:pb-0">
-              <div className="relative aspect-[3/4] overflow-hidden">
+            <div className="self-center bg-cream p-4 pb-0 shadow-2xl transition-transform duration-500 hover:scale-[1.02] md:p-6 md:pb-0" style={{ transform: "rotate(-2deg)" }}>
+              <div className="img-inset-shadow relative aspect-[3/4] overflow-hidden">
                 <Image
                   src="/craft-old-fashioned.jpg"
                   alt="Craft cocktail"
@@ -308,7 +317,7 @@ export default function Home() {
             <h2
               data-animate=""
               data-delay="130"
-              className="mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+              className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
             >
               Crafted,
               <br />
@@ -328,7 +337,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div data-animate="" data-delay="715" className="mt-16 flex gap-6">
+
+            <SectionDivider className="my-4" />
+
+            <div data-animate="" data-delay="715" className="flex gap-6">
               <Link
                 href="/beverages"
                 className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-300 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
@@ -369,7 +381,7 @@ export default function Home() {
           data-animate=""
           className="relative z-10 max-w-2xl px-8 text-center"
         >
-          <p className="font-display text-2xl leading-snug text-cream md:text-4xl">
+          <p className="heading-emboss font-display text-2xl leading-snug text-cream md:text-4xl">
             &ldquo;The best meals are the ones you{" "}
             <span className="text-amber italic">never forget.</span>&rdquo;
           </p>
@@ -394,11 +406,12 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap items-end justify-center gap-8 md:gap-12">
             {FRAMES.map((frame) => (
-              <div
+              <TiltCard
                 key={frame.src}
                 data-animate=""
                 data-delay={frame.delay}
-                className={`frame-tilt ${frame.rotate} drop-shadow-2xl`}
+                initialRotate={frame.rotate}
+                className="frame-tilt drop-shadow-2xl"
               >
                 <Image
                   src={frame.src}
@@ -407,14 +420,20 @@ export default function Home() {
                   height={frame.h}
                   className="h-52 w-auto object-contain md:h-72"
                 />
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── Gallery ── */}
-      <section data-wipe className="bg-oxblood/80 py-32 md:py-48">
+      <section data-wipe className="relative overflow-hidden bg-oxblood/80 py-32 md:py-48">
+        {/* Ambient glow blob — upper centre */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-20 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full opacity-[0.05]"
+          style={{ background: "radial-gradient(circle, var(--color-amber), transparent 70%)" }}
+        />
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="flex items-center gap-6">
             <span className="block h-px flex-1 bg-amber/25" />
@@ -426,122 +445,82 @@ export default function Home() {
           <h2
             data-animate=""
             data-delay="130"
-            className="mt-4 text-center font-display text-5xl text-cream md:text-7xl"
+            className="heading-emboss mt-4 text-center font-display text-5xl text-cream md:text-7xl"
           >
             A glimpse <span className="text-tan italic">inside</span>
           </h2>
           <div className="mt-20 space-y-3 md:space-y-4">
-            {/* Row 1: 3 images */}
+            {/* Row 1 */}
             <div className="flex gap-3 md:gap-4">
               <div
                 data-animate=""
                 data-delay="130"
-                className="group relative h-72 flex-1 overflow-hidden shadow-xl md:h-96"
+                className="img-inset-shadow group relative h-72 flex-1 overflow-hidden shadow-xl md:h-96"
                 style={{ transform: "rotate(0.4deg)" }}
               >
-                <Image
-                  src="/barmood.jpg"
-                  alt="Bar atmosphere"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/barmood.jpg" alt="Bar atmosphere" fill className="img-zoom object-cover" />
               </div>
               <div
                 data-animate=""
                 data-delay="285"
-                className="group relative h-72 flex-[1.5] overflow-hidden shadow-xl md:h-96"
+                className="img-inset-shadow group relative h-72 flex-[1.5] overflow-hidden shadow-xl md:h-96"
                 style={{ transform: "rotate(-0.3deg)" }}
               >
-                <Image
-                  src="/bar-brass-glow.jpg"
-                  alt="Bar glow"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/bar-brass-glow.jpg" alt="Bar glow" fill className="img-zoom object-cover" />
               </div>
               <div
                 data-animate=""
                 data-delay="440"
-                className="group relative h-72 flex-1 overflow-hidden shadow-xl md:h-96"
+                className="img-inset-shadow group relative h-72 flex-1 overflow-hidden shadow-xl md:h-96"
                 style={{ transform: "rotate(0.6deg)" }}
               >
-                <Image
-                  src="/barvibe.jpg"
-                  alt="Bar vibe"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/barvibe.jpg" alt="Bar vibe" fill className="img-zoom object-cover" />
               </div>
             </div>
-            {/* Row 2: 3 images (added bartender-at-work) */}
+            {/* Row 2 */}
             <div className="flex gap-3 md:gap-4">
               <div
                 data-animate=""
                 data-delay="365"
-                className="group relative h-52 flex-[1.4] overflow-hidden shadow-xl md:h-64"
+                className="img-inset-shadow group relative h-52 flex-[1.4] overflow-hidden shadow-xl md:h-64"
                 style={{ transform: "rotate(-0.5deg)" }}
               >
-                <Image
-                  src="/bardecor.jpg"
-                  alt="Bar decor"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/bardecor.jpg" alt="Bar decor" fill className="img-zoom object-cover" />
               </div>
               <div
                 data-animate=""
                 data-delay="450"
-                className="group relative h-52 flex-1 overflow-hidden shadow-xl md:h-64"
+                className="img-inset-shadow group relative h-52 flex-1 overflow-hidden shadow-xl md:h-64"
                 style={{ transform: "rotate(0.3deg)" }}
               >
-                <Image
-                  src="/bartender-at-work.jpg"
-                  alt="Bartender"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/bartender-at-work.jpg" alt="Bartender" fill className="img-zoom object-cover" />
               </div>
               <div
                 data-animate=""
                 data-delay="520"
-                className="group relative h-52 flex-1 overflow-hidden shadow-xl md:h-64"
+                className="img-inset-shadow group relative h-52 flex-1 overflow-hidden shadow-xl md:h-64"
                 style={{ transform: "rotate(-0.4deg)" }}
               >
-                <Image
-                  src="/whiskey-pour.jpg"
-                  alt="Whiskey pour"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/whiskey-pour.jpg" alt="Whiskey pour" fill className="img-zoom object-cover" />
               </div>
             </div>
-            {/* Row 3: 2 wide images */}
+            {/* Row 3 */}
             <div className="flex gap-3 md:gap-4">
               <div
                 data-animate=""
                 data-delay="580"
-                className="group relative h-52 flex-1 overflow-hidden shadow-xl md:h-72"
+                className="img-inset-shadow group relative h-52 flex-1 overflow-hidden shadow-xl md:h-72"
                 style={{ transform: "rotate(0.5deg)" }}
               >
-                <Image
-                  src="/candlelit-tables.jpg"
-                  alt="Candlelit tables"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/candlelit-tables.jpg" alt="Candlelit tables" fill className="img-zoom object-cover" />
               </div>
               <div
                 data-animate=""
                 data-delay="660"
-                className="group relative h-52 flex-[1.6] overflow-hidden shadow-xl md:h-72"
+                className="img-inset-shadow group relative h-52 flex-[1.6] overflow-hidden shadow-xl md:h-72"
                 style={{ transform: "rotate(-0.3deg)" }}
               >
-                <Image
-                  src="/cocktail-splash.jpg"
-                  alt="Cocktail"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/cocktail-splash.jpg" alt="Cocktail" fill className="img-zoom object-cover" />
               </div>
             </div>
           </div>
@@ -555,15 +534,14 @@ export default function Home() {
       <section
         id="reservations"
         data-wipe
-        className="wood-grain relative flex items-center justify-center bg-charcoal py-32 md:py-48"
+        className="wood-grain relative flex items-center justify-center overflow-hidden bg-charcoal py-32 md:py-48"
       >
+        {/* Ambient glow blob — centred radial */}
         <div
-          data-parallax="content"
-          data-parallax-speed="0.1"
-          className="absolute inset-0 opacity-20"
-        >
-          <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--color-oxblood)_0%,_transparent_70%)]" />
-        </div>
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
+          style={{ background: "radial-gradient(ellipse at center, var(--color-oxblood), transparent 65%)" }}
+        />
         <div className="relative z-10 text-center">
           <div
             data-animate=""
@@ -578,7 +556,7 @@ export default function Home() {
           <h2
             data-animate=""
             data-delay="130"
-            className="mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
+            className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
           >
             Reserve your
             <br />
@@ -592,11 +570,14 @@ export default function Home() {
             Whether it's a quiet dinner for two or a gathering worth
             remembering, we'll set the table.
           </p>
+
+          <SectionDivider className="my-4" />
+
           <Link
             href="#"
             data-animate=""
             data-delay="470"
-            className="mt-12 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_8px_32px_rgba(213,137,54,0.35)]"
+            className="mt-4 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_8px_32px_rgba(213,137,54,0.35)]"
           >
             Book a Table
           </Link>
