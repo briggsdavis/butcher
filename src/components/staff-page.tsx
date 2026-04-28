@@ -178,12 +178,12 @@ export function StaffPage() {
                     style={{ transitionDelay: "500ms" }}
                   />
                   {/* Headshot image */}
-                  <div className="relative h-full w-full overflow-hidden rounded-sm">
+                  <div className="img-inset-shadow relative h-full w-full overflow-hidden rounded-sm">
                     <Image
                       src={member.headshot}
                       alt={member.name}
                       fill
-                      className="object-cover object-top"
+                      className="img-zoom object-cover object-top"
                     />
                     {/* Bottom fade */}
                     <div className="absolute right-0 bottom-0 left-0 h-16 bg-gradient-to-t from-charcoal/20 to-transparent" />
@@ -262,7 +262,7 @@ export function StaffPage() {
           </p>
           <Link
             href="/#reservations"
-            className="mt-12 inline-block bg-oxblood px-12 py-5 text-xs font-medium tracking-[0.3em] text-cream uppercase transition-colors hover:bg-charcoal"
+            className="mt-12 inline-block bg-oxblood px-12 py-5 text-xs font-medium tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-charcoal hover:shadow-[0_8px_32px_rgba(60,21,24,0.5)]"
           >
             Reserve Now
           </Link>

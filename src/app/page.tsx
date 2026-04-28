@@ -70,7 +70,7 @@ export default function Home() {
           </p>
           <Link
             href="#reservations"
-            className="mt-10 inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-300 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+            className="mt-10 inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
             style={{ animation: "fadeInUp 1s ease 0.65s both" }}
           >
             Reserve a Table
@@ -133,10 +133,10 @@ export default function Home() {
               href="/about"
               data-animate=""
               data-delay="520"
-              className="mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-all duration-300 hover:gap-5 hover:text-cream"
+              className="group mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
             >
               Read more
-              <ArrowRight className="size-4" />
+              <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
             </Link>
           </div>
 
@@ -272,7 +272,7 @@ export default function Home() {
                 href="/food"
                 data-animate=""
                 data-delay="640"
-                className="shrink-0 border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-300 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+                className="shrink-0 border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
               >
                 Full Menu
               </Link>
@@ -343,13 +343,13 @@ export default function Home() {
             <div data-animate="" data-delay="715" className="flex gap-6">
               <Link
                 href="/beverages"
-                className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-300 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+                className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
               >
                 Beverages
               </Link>
               <Link
                 href="/spirits"
-                className="border border-amber px-8 py-4 text-xs tracking-[0.3em] text-amber uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber hover:text-charcoal hover:shadow-[0_4px_24px_rgba(213,137,54,0.3)]"
+                className="border border-amber px-8 py-4 text-xs tracking-[0.3em] text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-amber hover:text-charcoal hover:shadow-[0_4px_24px_rgba(213,137,54,0.3)]"
               >
                 Spirits
               </Link>
@@ -577,7 +577,7 @@ export default function Home() {
             href="#"
             data-animate=""
             data-delay="470"
-            className="mt-4 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_8px_32px_rgba(213,137,54,0.35)]"
+            className="mt-4 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_8px_32px_rgba(213,137,54,0.35)]"
           >
             Book a Table
           </Link>
