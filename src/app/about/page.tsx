@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
+import { TiltCard } from "~/components/tilt-card"
 
 export const metadata: Metadata = {
   title: "About",
@@ -89,7 +90,7 @@ export default function About() {
             Pittsburgh, PA · Est. 2013
           </p>
           <h1
-            className="font-display leading-none tracking-tight text-cream"
+            className="heading-emboss font-display leading-none tracking-tight text-cream"
             style={{
               fontSize: "clamp(3rem, 8vw, 6.4rem)",
               animation: "fadeInUp 1s ease 0.35s both",
@@ -128,7 +129,7 @@ export default function About() {
               <h2
                 data-animate=""
                 data-delay="130"
-                className="mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
+                className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
               >
                 Born from
                 <br />a reverence
@@ -172,27 +173,31 @@ export default function About() {
               <div
                 data-animate=""
                 data-delay="155"
-                className="relative h-80 overflow-hidden md:h-96"
+                className="img-inset-shadow relative h-80 overflow-hidden shadow-xl md:h-96"
               >
                 <Image
                   src="/candlelit-tables.jpg"
                   alt="Candlelit dining at Butcher and the Rye"
                   fill
-                  className="object-cover"
+                  className="img-zoom object-cover"
                 />
               </div>
-              <div
+              <TiltCard
                 data-animate=""
                 data-delay="340"
-                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 overflow-hidden shadow-2xl md:-left-10 md:h-52 md:w-40"
+                initialRotate={-3}
+                maxTilt={5}
+                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 shadow-2xl md:-left-10 md:h-52 md:w-40"
               >
-                <Image
-                  src="/entree-frame.png"
-                  alt="A plated entrée"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+                <div className="relative h-full w-full overflow-hidden">
+                  <Image
+                    src="/entree-frame.png"
+                    alt="A plated entrée"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </TiltCard>
               <div
                 data-animate=""
                 data-delay="495"
@@ -265,13 +270,13 @@ export default function About() {
                 <div
                   data-animate=""
                   data-delay="260"
-                  className="relative h-64 overflow-hidden md:h-80"
+                  className="img-inset-shadow relative h-64 overflow-hidden shadow-xl md:h-80"
                 >
                   <Image
                     src={value.image}
                     alt={`${value.title} at Butcher and the Rye`}
                     fill
-                    className="object-cover"
+                    className="img-zoom object-cover"
                   />
                 </div>
               </div>
@@ -331,7 +336,7 @@ export default function About() {
               <h2
                 data-animate=""
                 data-delay="130"
-                className="mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
+                className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
               >
                 The people
                 <br />
@@ -353,10 +358,10 @@ export default function About() {
                 href="/our-staff"
                 data-animate=""
                 data-delay="470"
-                className="mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-cream"
+                className="group mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
               >
                 Meet the full team
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
               </Link>
             </div>
 
@@ -423,10 +428,10 @@ export default function About() {
             href="/food"
             data-animate=""
             data-delay="365"
-            className="mt-12 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors hover:text-oxblood"
+            className="group mt-12 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-oxblood"
           >
             Explore the menu
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
           </Link>
         </div>
       </section>
@@ -457,7 +462,7 @@ export default function About() {
           <h2
             data-animate=""
             data-delay="130"
-            className="mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
+            className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
           >
             Reserve your
             <br />
@@ -475,7 +480,7 @@ export default function About() {
             href="#reservations"
             data-animate=""
             data-delay="470"
-            className="mt-12 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-colors hover:bg-cream"
+            className="mt-12 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_8px_32px_rgba(213,137,54,0.35)]"
           >
             Book a Table
           </Link>
