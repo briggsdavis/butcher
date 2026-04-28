@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import type { ReactNode } from "react"
+import { CustomCursor } from "~/components/custom-cursor"
 import { Footer } from "~/components/footer"
 import { Nav } from "~/components/nav"
 import { PageEffects } from "~/components/page-effects"
@@ -17,6 +18,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <CustomCursor />
       <SmoothScroll />
       <PageEffects />
       <Nav />
