@@ -81,7 +81,7 @@ export default function Home() {
       {/* ── About ── */}
       <section
         data-wipe
-        className="wood-grain relative overflow-hidden bg-charcoal py-32 md:py-48"
+        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
       >
         {/* Ambient glow blob */}
         <div
@@ -194,7 +194,7 @@ export default function Home() {
       </section>
 
       {/* ── Menu Highlights ── */}
-      <section data-wipe className="wood-grain bg-oxblood py-32 md:py-48">
+      <section data-wipe className="bg-oxblood py-32 md:py-48">
         <div
           data-parallax="content"
           data-parallax-speed="0.05"
@@ -282,7 +282,7 @@ export default function Home() {
       </section>
 
       {/* ── Cocktails & Spirits ── */}
-      <section data-wipe className="wood-grain relative overflow-hidden bg-charcoal py-32 md:py-48">
+      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
         {/* Ambient glow blob — lower-left, warm */}
         <div
           aria-hidden="true"
@@ -394,7 +394,7 @@ export default function Home() {
       {/* ── Framed Gallery ── */}
       <section
         data-wipe
-        className="wood-grain overflow-hidden bg-charcoal py-24 md:py-32"
+        className="overflow-hidden bg-charcoal py-24 md:py-32"
       >
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-14 flex items-center gap-6">
@@ -534,7 +534,7 @@ export default function Home() {
       <section
         id="reservations"
         data-wipe
-        className="wood-grain relative flex items-center justify-center overflow-hidden bg-charcoal py-32 md:py-48"
+        className="relative flex items-center justify-center overflow-hidden bg-charcoal py-32 md:py-48"
       >
         {/* Ambient glow blob — centred radial */}
         <div

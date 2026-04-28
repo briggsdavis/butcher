@@ -24,8 +24,8 @@ export function CustomCursor() {
     }
 
     const loop = () => {
-      ringX += (mouseX - ringX) * 0.1
-      ringY += (mouseY - ringY) * 0.1
+      ringX += (mouseX - ringX) * 0.2
+      ringY += (mouseY - ringY) * 0.2
       ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`
       raf = requestAnimationFrame(loop)
     }
