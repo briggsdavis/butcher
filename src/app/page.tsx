@@ -57,8 +57,8 @@ export default function Home() {
             backgroundSize: "700px",
             backgroundRepeat: "repeat",
             opacity: 0.07,
-            maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
           }}
         />
         {/* Top vignette — darkens top half for atmosphere */}
