@@ -60,7 +60,7 @@ export default function Home() {
             backgroundImage: "url(/wood.jpg)",
             backgroundSize: "700px",
             backgroundRepeat: "repeat",
-            opacity: 0.2,
+            opacity: 0.1,
             maskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
             WebkitMaskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
           }}
