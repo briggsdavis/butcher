@@ -77,10 +77,16 @@
 
 /* ── Override Tailwind's 150ms transition-colors default ──
  * Everything with transition-colors but no explicit duration-* class
- * was snapping at 150ms. 450ms feels gradual and deliberate.
+ * was snapping at 150ms. 450ms with ease-out feels gradual and deliberate.
  */
 .transition-colors {
   transition-duration: 450ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ── Smooth easing for all transition-all elements ── */
+.transition-all {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
 /* ── Page transition blur-in / blur-out ── */
