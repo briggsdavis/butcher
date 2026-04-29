@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
 const MENU_LINKS = [
   { href: "/", label: "Home", num: "01" },
@@ -20,6 +20,8 @@ export function Nav() {
   const [open, setOpen] = useState(false)
   const [closing, setClosing] = useState(false)
   const [introStyle, setIntroStyle] = useState<React.CSSProperties>({})
+  const [hidden, setHidden] = useState(false)
+  const lastScrollY = useRef(0)
 
   // Fire before paint so the nav starts off-screen with no flash.
   // Only plays on the home page, once per session.
@@ -37,6 +39,24 @@ export function Nav() {
       // sessionStorage unavailable (e.g. private browsing restrictions)
     }
   }, [pathname])
+
+  // Hide on scroll down, reveal on scroll up
+  useEffect(() => {
+    lastScrollY.current = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      if (y < 60) {
+        setHidden(false)
+      } else if (y > lastScrollY.current + 6) {
+        setHidden(true)
+      } else if (y < lastScrollY.current - 6) {
+        setHidden(false)
+      }
+      lastScrollY.current = y
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
@@ -56,8 +76,12 @@ export function Nav() {
   return (
     <>
       <nav
-        style={introStyle}
-        className="absolute inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16"
+        style={{
+          ...introStyle,
+          transform: hidden ? "translateY(-100%)" : "translateY(0)",
+          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+        className="fixed inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16"
       >
         <Image src="/wood.jpg" alt="" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-amber/20" />

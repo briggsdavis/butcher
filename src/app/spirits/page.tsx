@@ -1,8 +1,6 @@
 import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
 import Link from "next/link"
-import { MenuNav } from "~/components/menu-nav"
-
 export const metadata: Metadata = {
   title: "Spirits",
 }
@@ -63,7 +61,6 @@ export default function Spirits() {
   return (
     <>
       <div className="h-20 md:h-24" />
-      <MenuNav />
 
       {SPIRITS.map(({ category, label, items }, si) => {
         const dark = si % 2 === 0

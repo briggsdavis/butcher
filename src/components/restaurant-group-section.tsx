@@ -110,6 +110,7 @@ export function RestaurantGroupSection() {
               <TiltCard
                 initialRotate={ROTATIONS[i % ROTATIONS.length]}
                 maxTilt={6}
+                subtle
                 className="bg-cream shadow-2xl"
               >
                 <div className="p-4 pb-2">

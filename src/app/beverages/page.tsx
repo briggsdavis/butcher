@@ -2,8 +2,6 @@ import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { MenuNav } from "~/components/menu-nav"
-
 export const metadata: Metadata = {
   title: "Beverages",
 }
@@ -113,7 +111,6 @@ export default function Beverages() {
   return (
     <>
       <div className="h-20 md:h-24" />
-      <MenuNav />
 
       {BEVERAGES.map(({ category, label, items }, bi) => {
         const dark = bi % 2 === 0

@@ -35,7 +35,7 @@ export function TiltCard({
     const el = ref.current
     if (el) {
       el.style.transition = subtle
-        ? "transform 120ms ease, filter 0.3s ease"
+        ? "transform 220ms ease, filter 0.3s ease"
         : "filter 0.3s ease"
       el.style.filter = "drop-shadow(0 20px 40px rgba(0,0,0,0.6))"
     }
