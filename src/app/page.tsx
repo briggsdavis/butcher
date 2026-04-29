@@ -601,7 +601,7 @@ export default function Home() {
             href="#"
             data-animate=""
             data-delay="470"
-            className="mt-4 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-cream hover:shadow-[0_8px_32px_rgba(213,137,54,0.35)]"
+            className="mt-4 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
           >
             Book a Table
           </Link>

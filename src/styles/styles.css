@@ -10,12 +10,12 @@
   --font-cursive: var(--font-cursive);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
-  --color-oxblood: #3c1518;
+  --color-oxblood: #1b0a0b;
   --color-forest: #69140e;
   --color-amber: #d58936;
   --color-cream: #f2e8d8;
   --color-tan: #c4a882;
-  --color-charcoal: #1a1210;
+  --color-charcoal: #0c0807;
 }
 
 /* ── Scroll-triggered fade-in ── */
@@ -77,10 +77,16 @@
 
 /* ── Override Tailwind's 150ms transition-colors default ──
  * Everything with transition-colors but no explicit duration-* class
- * was snapping at 150ms. 450ms feels gradual and deliberate.
+ * was snapping at 150ms. 450ms with ease-out feels gradual and deliberate.
  */
 .transition-colors {
   transition-duration: 450ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ── Smooth easing for all transition-all elements ── */
+.transition-all {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
 /* ── Page transition blur-in / blur-out ── */
