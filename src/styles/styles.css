@@ -10,12 +10,12 @@
   --font-cursive: var(--font-cursive);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
-  --color-oxblood: #3c1518;
+  --color-oxblood: #2a0f11;
   --color-forest: #69140e;
   --color-amber: #d58936;
   --color-cream: #f2e8d8;
   --color-tan: #c4a882;
-  --color-charcoal: #1a1210;
+  --color-charcoal: #120d0b;
 }
 
 /* ── Scroll-triggered fade-in ── */
