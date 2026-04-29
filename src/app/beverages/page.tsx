@@ -112,24 +112,7 @@ const BEVERAGES = [
 export default function Beverages() {
   return (
     <>
-      <section className="flex flex-col justify-end bg-oxblood pt-32 pb-20 md:pt-48 md:pb-32">
-        <div className="mx-auto w-full max-w-7xl px-8 md:px-16">
-          <div className="flex items-center gap-4">
-            <span className="block h-px w-8 shrink-0 bg-amber/50" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              The Bar
-            </span>
-          </div>
-          <h1 className="mt-4 font-display text-6xl leading-none text-cream md:text-9xl">
-            Beverages
-          </h1>
-          <p className="mt-6 max-w-lg text-lg text-tan">
-            Cocktails crafted with intention, wines chosen for the table, and
-            non-alcoholic options that stand on their own.
-          </p>
-        </div>
-      </section>
-
+      <div className="h-20 md:h-24" />
       <MenuNav />
 
       {BEVERAGES.map(({ category, label, items }, bi) => {

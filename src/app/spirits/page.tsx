@@ -62,24 +62,7 @@ const SPIRITS = [
 export default function Spirits() {
   return (
     <>
-      <section className="flex flex-col justify-end bg-oxblood pt-32 pb-20 md:pt-48 md:pb-32">
-        <div className="mx-auto w-full max-w-7xl px-8 md:px-16">
-          <div className="flex items-center gap-4">
-            <span className="block h-px w-8 shrink-0 bg-amber/50" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              The Bar
-            </span>
-          </div>
-          <h1 className="mt-4 font-display text-6xl leading-none text-cream md:text-9xl">
-            Spirits
-          </h1>
-          <p className="mt-6 max-w-lg text-lg text-tan">
-            A thoughtfully assembled collection of world-class whiskeys, gins,
-            and rare pours, served neat, on rocks, or in classic form.
-          </p>
-        </div>
-      </section>
-
+      <div className="h-20 md:h-24" />
       <MenuNav />
 
       {SPIRITS.map(({ category, label, items }, si) => {

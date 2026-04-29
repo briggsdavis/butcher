@@ -419,6 +419,7 @@ export default function Home() {
                 data-delay={frame.delay}
                 initialRotate={frame.rotate}
                 className="frame-tilt drop-shadow-2xl"
+                subtle
               >
                 <Image
                   src={frame.src}
