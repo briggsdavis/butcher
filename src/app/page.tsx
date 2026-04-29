@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
+      <section className="hero-section relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
         <div
           data-parallax="hero-bg"
           data-parallax-speed="0.15"

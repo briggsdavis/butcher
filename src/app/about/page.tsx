@@ -66,7 +66,7 @@ export default function About() {
   return (
     <>
       {/* ── 1. HERO ── */}
-      <section className="relative flex h-screen items-end overflow-hidden bg-oxblood">
+      <section className="hero-section relative flex h-screen items-end overflow-hidden bg-oxblood">
         <div
           data-parallax="hero-bg"
           data-parallax-speed="0.15"

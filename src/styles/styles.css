@@ -207,23 +207,25 @@
 }
 
 /* ── Wood grain texture ─────────────────────────────────────────────────────
- * Applied to sections by adding the .wood-grain class.
- * The ::before sits below all children (z-index: -1 inside isolation: isolate)
- * but above the section's own background-color, adding very faint texture.
+ * Every section and the footer gets grain automatically via ::before at z:-1
+ * (above the element's own background-color, below its content).
+ * Hero sections opt out with the .hero-section class.
  */
-.wood-grain {
+section:not(.hero-section),
+footer {
   isolation: isolate;
+  position: relative;
 }
 
-.wood-grain::before {
+section:not(.hero-section)::before,
+footer::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image: url("/wood.jpg");
   background-size: 700px;
   background-repeat: repeat;
-  background-attachment: scroll;
-  opacity: 0.15;
+  opacity: 0.14;
   pointer-events: none;
   z-index: -1;
 }
