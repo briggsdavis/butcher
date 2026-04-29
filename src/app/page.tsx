@@ -48,7 +48,20 @@ export default function Home() {
             className="object-cover"
           />
         </div>
-        {/* Top vignette — solid over top half so wood grain is imperceptible */}
+        {/* Wood grain — own layer, fades out in bottom 30% */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: "url(/wood.jpg)",
+            backgroundSize: "700px",
+            backgroundRepeat: "repeat",
+            opacity: 0.07,
+            maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+          }}
+        />
+        {/* Top vignette — darkens top half for atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades into the next section */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/65 to-transparent" />
