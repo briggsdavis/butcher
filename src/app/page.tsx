@@ -48,7 +48,10 @@ export default function Home() {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/55 to-transparent" />
+        {/* Top vignette — solid over top half so wood grain is imperceptible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
+        {/* Bottom gradient — fades into the next section */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/65 to-transparent" />
         <div className="relative z-10 max-w-3xl px-8 pb-24 text-center md:px-16">
           <h1
             className="heading-emboss font-display leading-none tracking-tight text-cream"

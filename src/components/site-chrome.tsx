@@ -26,7 +26,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           backgroundImage: "url(/wood.jpg)",
           backgroundSize: "700px",
           backgroundRepeat: "repeat",
-          opacity: 0.065,
+          opacity: 0.025,
         }}
       />
       <CustomCursor />

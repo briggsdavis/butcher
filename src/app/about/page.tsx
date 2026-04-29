@@ -81,7 +81,10 @@ export default function About() {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
+        {/* Top vignette — solid over top half so wood grain is imperceptible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
+        {/* Bottom gradient — fades photo into next section */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-24 md:px-16">
           <p
             className="mb-5 text-xs tracking-[0.3em] text-amber uppercase"

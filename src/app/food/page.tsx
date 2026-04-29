@@ -149,7 +149,7 @@ export default function Food() {
           <section
             key={category}
             data-wipe
-            className={`py-24 md:py-32 ${dark ? "bg-cream" : "bg-oxblood"}`}
+            className={`wood-grain py-24 md:py-32 ${dark ? "bg-cream" : "bg-oxblood"}`}
           >
             <div className="mx-auto max-w-7xl px-8 md:px-16">
               <div data-animate="" className="flex items-center gap-4">

@@ -222,8 +222,8 @@
   background-image: url("/wood.jpg");
   background-size: 700px;
   background-repeat: repeat;
-  background-attachment: fixed;
-  opacity: 0.045;
+  background-attachment: scroll;
+  opacity: 0.09;
   pointer-events: none;
   z-index: -1;
 }
