@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { TiltCard } from "~/components/tilt-card"
 
 const restaurants = [
   {
@@ -64,6 +65,8 @@ const restaurants = [
   },
 ]
 
+const ROTATIONS = [-2.5, 1.8, -1.2, 2.1, -1.8, 0.9, -2.2, 1.5, -0.8, 2.3, -1.4, 1.1]
+
 export function RestaurantGroupSection() {
   return (
     <section className="bg-charcoal px-8 py-20 md:px-16 md:py-28">
@@ -93,7 +96,7 @@ export function RestaurantGroupSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 md:gap-10">
           {restaurants.map((restaurant, i) => (
             <Link
               key={restaurant.name}
@@ -102,19 +105,30 @@ export function RestaurantGroupSection() {
               rel="noopener noreferrer"
               data-animate=""
               data-delay={String(i * 60)}
-              className="group flex flex-col items-center gap-3"
+              className="block"
             >
-              <div className="relative aspect-square w-full overflow-hidden rounded border border-cream/10 bg-cream/5 transition-all duration-300 group-hover:border-amber/40 group-hover:bg-cream/10">
-                <Image
-                  src={restaurant.image}
-                  alt={restaurant.name}
-                  fill
-                  className="object-contain p-3 transition-opacity duration-300 group-hover:opacity-80"
-                />
-              </div>
-              <span className="text-center text-xs text-tan/70 transition-colors group-hover:text-cream">
-                {restaurant.name}
-              </span>
+              <TiltCard
+                initialRotate={ROTATIONS[i % ROTATIONS.length]}
+                maxTilt={6}
+                subtle
+                className="bg-cream shadow-2xl"
+              >
+                <div className="p-4 pb-2">
+                  <div className="relative aspect-square w-full">
+                    <Image
+                      src={restaurant.image}
+                      alt={restaurant.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="flex min-h-10 items-center justify-center px-3 pb-3">
+                  <p className="text-center font-cursive text-sm leading-tight text-charcoal">
+                    {restaurant.name}
+                  </p>
+                </div>
+              </TiltCard>
             </Link>
           ))}
         </div>

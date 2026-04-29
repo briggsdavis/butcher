@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
+      <section className="hero-section relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
         <div
           data-parallax="hero-bg"
           data-parallax-speed="0.15"
@@ -48,7 +48,23 @@ export default function Home() {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/55 to-transparent" />
+        {/* Top vignette — darkens top half for atmosphere */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
+        {/* Bottom gradient — fades into the next section */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/65 to-transparent" />
+        {/* Wood grain — on top of gradients, invisible top 70%, fades in bottom 30% */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: "url(/wood.jpg)",
+            backgroundSize: "700px",
+            backgroundRepeat: "repeat",
+            opacity: 0.1,
+            maskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
+          }}
+        />
         <div className="relative z-10 max-w-3xl px-8 pb-24 text-center md:px-16">
           <h1
             className="heading-emboss font-display leading-none tracking-tight text-cream"
@@ -419,6 +435,7 @@ export default function Home() {
                 data-delay={frame.delay}
                 initialRotate={frame.rotate}
                 className="frame-tilt drop-shadow-2xl"
+                subtle
               >
                 <Image
                   src={frame.src}

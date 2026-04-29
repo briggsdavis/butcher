@@ -7,6 +7,8 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   initialRotate?: number
   /** Max tilt degrees for the 3-D perspective effect */
   maxTilt?: number
+  /** Gentler hover: reduced scale, dampened tracking, no spring overshoot */
+  subtle?: boolean
 }
 
 export function TiltCard({
@@ -15,6 +17,7 @@ export function TiltCard({
   style,
   initialRotate = 0,
   maxTilt = 9,
+  subtle = false,
   onMouseEnter,
   onMouseMove,
   onMouseLeave,
@@ -22,12 +25,18 @@ export function TiltCard({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const rest = `rotate(${initialRotate}deg)`
+  const effectiveMaxTilt = subtle ? Math.min(maxTilt, 4) : maxTilt
+  const hoverScale = subtle ? 1.015 : 1.04
+  const springCurve = subtle
+    ? "cubic-bezier(0.16,1,0.3,1)"
+    : "cubic-bezier(0.34,1.56,0.64,1)"
 
   function handleEnter(e: MouseEvent<HTMLDivElement>) {
     const el = ref.current
     if (el) {
-      // Disable transform transition so mouse tracking feels instant
-      el.style.transition = "filter 0.3s ease"
+      el.style.transition = subtle
+        ? "transform 220ms ease, filter 0.3s ease"
+        : "filter 0.3s ease"
       el.style.filter = "drop-shadow(0 20px 40px rgba(0,0,0,0.6))"
     }
     onMouseEnter?.(e)
@@ -39,18 +48,16 @@ export function TiltCard({
     const r = el.getBoundingClientRect()
     const x = (e.clientX - r.left) / r.width
     const y = (e.clientY - r.top) / r.height
-    const rx = (0.5 - y) * maxTilt
-    const ry = (x - 0.5) * maxTilt
-    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`
+    const rx = (0.5 - y) * effectiveMaxTilt
+    const ry = (x - 0.5) * effectiveMaxTilt
+    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${hoverScale})`
     onMouseMove?.(e)
   }
 
   function handleLeave(e: MouseEvent<HTMLDivElement>) {
     const el = ref.current
     if (el) {
-      // Spring back to initial tilt
-      el.style.transition =
-        "transform 0.65s cubic-bezier(0.34,1.56,0.64,1), filter 0.4s ease"
+      el.style.transition = `transform 0.65s ${springCurve}, filter 0.4s ease`
       el.style.transform = rest
       el.style.filter = ""
     }

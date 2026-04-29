@@ -17,25 +17,13 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   }
 
   return (
-    <>
-      {/* Site-wide wood grain texture — fixed overlay, paints above all section
-          backgrounds so it covers footer/restaurant-group/every page */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[1]"
-        style={{
-          backgroundImage: "url(/wood.jpg)",
-          backgroundSize: "700px",
-          backgroundRepeat: "repeat",
-          opacity: 0.045,
-        }}
-      />
+    <div className="relative">
       <CustomCursor />
       <SmoothScroll />
       <PageEffects />
       <Nav />
       <PageTransition>{children}</PageTransition>
       <Footer />
-    </>
+    </div>
   )
 }

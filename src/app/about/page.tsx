@@ -66,7 +66,7 @@ export default function About() {
   return (
     <>
       {/* ── 1. HERO ── */}
-      <section className="relative flex h-screen items-end overflow-hidden bg-oxblood">
+      <section className="hero-section relative flex h-screen items-end overflow-hidden bg-oxblood">
         <div
           data-parallax="hero-bg"
           data-parallax-speed="0.15"
@@ -81,7 +81,23 @@ export default function About() {
             className="object-cover"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
+        {/* Top vignette — darkens top half for atmosphere */}
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
+        {/* Bottom gradient — fades photo into next section */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent" />
+        {/* Wood grain — on top of gradients, invisible top 70%, fades in bottom 30% */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: "url(/wood.jpg)",
+            backgroundSize: "700px",
+            backgroundRepeat: "repeat",
+            opacity: 0.1,
+            maskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
+          }}
+        />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-24 md:px-16">
           <p
             className="mb-5 text-xs tracking-[0.3em] text-amber uppercase"

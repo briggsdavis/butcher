@@ -2,8 +2,6 @@ import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { MenuNav } from "~/components/menu-nav"
-
 export const metadata: Metadata = {
   title: "Food",
 }
@@ -143,25 +141,7 @@ const FOOD = [
 export default function Food() {
   return (
     <>
-      <section className="flex flex-col justify-end bg-oxblood pt-32 pb-20 md:pt-48 md:pb-32">
-        <div className="mx-auto w-full max-w-7xl px-8 md:px-16">
-          <div className="flex items-center gap-4">
-            <span className="block h-px w-8 shrink-0 bg-amber/50" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              The Kitchen
-            </span>
-          </div>
-          <h1 className="mt-4 font-display text-6xl leading-none text-cream md:text-9xl">
-            Food
-          </h1>
-          <p className="mt-6 max-w-lg text-lg text-tan">
-            Wood-fire cooking, dry-aged steaks, and the kind of sides you
-            remember. Sourced close, plated honest.
-          </p>
-        </div>
-      </section>
-
-      <MenuNav />
+      <div className="h-20 md:h-24" />
 
       {FOOD.map(({ category, label, items }, bi) => {
         const dark = bi % 2 === 0
