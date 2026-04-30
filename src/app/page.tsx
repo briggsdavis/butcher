@@ -69,7 +69,7 @@ export default function Home() {
           <h1
             className="heading-emboss font-display leading-none tracking-tight text-cream"
             style={{
-              fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
+              fontSize: "clamp(2.5rem, 6.25vw, 3.75rem)",
               animation: "fadeInUp 1s ease 0.15s both",
             }}
           >
