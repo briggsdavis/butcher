@@ -65,29 +65,20 @@ export default function Home() {
             WebkitMaskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
           }}
         />
-        <div className="relative z-10 max-w-3xl px-8 pb-24 text-center md:px-16">
+        <div className="relative z-10 flex flex-col items-center px-8 pb-24 text-center md:px-16">
           <h1
             className="heading-emboss font-display leading-none tracking-tight text-cream"
             style={{
-              fontSize: "clamp(3rem, 8vw, 6.4rem)",
+              fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
               animation: "fadeInUp 1s ease 0.15s both",
             }}
           >
-            Butcher
-            <br />
-            <span className="text-amber italic">&</span> the Rye
+            Butcher <span className="text-amber italic">&</span> the Rye
           </h1>
-          <p
-            className="mt-6 max-w-md text-lg leading-relaxed text-tan"
-            style={{ animation: "fadeInUp 1s ease 0.4s both" }}
-          >
-            A storied table where craft meets tradition. Fine cuts, rare
-            spirits, and the kind of evening you remember.
-          </p>
           <Link
             href="#reservations"
-            className="mt-10 inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
-            style={{ animation: "fadeInUp 1s ease 0.65s both" }}
+            className="mt-4 inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+            style={{ animation: "fadeInUp 1s ease 0.4s both" }}
           >
             Reserve a Table
           </Link>
