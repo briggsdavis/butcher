@@ -55,8 +55,8 @@ export function PageEffects() {
         const speed = parseFloat(el.dataset.parallaxSpeed ?? "0.15")
 
         if (el.dataset.parallax === "hero-bg") {
-          // Simple translateY — no scale needed (parent uses % overflow for buffer)
-          el.style.transform = `translateY(${window.scrollY * speed}px)`
+          const rotate = "parallaxNoRotate" in el.dataset ? "" : "rotate(5deg) scale(1.1) "
+          el.style.transform = `${rotate}translateY(${window.scrollY * speed}px)`
         } else {
           const rect = el.getBoundingClientRect()
           const elMid = rect.top + rect.height / 2

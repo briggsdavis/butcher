@@ -70,6 +70,7 @@ export default function About() {
         <div
           data-parallax="hero-bg"
           data-parallax-speed="0.15"
+          data-parallax-no-rotate=""
           className="absolute inset-x-0"
           style={{ top: "-15%", bottom: "-15%" }}
         >
