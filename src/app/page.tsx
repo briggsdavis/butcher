@@ -38,7 +38,7 @@ export default function Home() {
           data-parallax="hero-bg"
           data-parallax-speed="0.15"
           className="absolute inset-x-0"
-          style={{ top: "-15%", bottom: "-15%", transform: "rotate(-5deg) scale(1.1)" }}
+          style={{ top: "-15%", bottom: "-15%", transform: "rotate(-10deg) scale(1.2)" }}
         >
           <Image
             src="/warm-dining-room.jpg"
