@@ -129,15 +129,15 @@ export default function Home() {
               We are a place for those who understand that a great evening is
               not rushed. It is savored, one pour at a time.
             </p>
-            <Link
-              href="/about"
-              data-animate=""
-              data-delay="520"
-              className="group mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
-            >
-              Read more
-              <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
-            </Link>
+            <span data-animate="" data-delay="520" className="mt-10 inline-block">
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
+              >
+                Read more
+                <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
+              </Link>
+            </span>
           </div>
 
           {/* Right: tilted image collage */}
@@ -271,14 +271,14 @@ export default function Home() {
                   Every plate is a reflection of place, season, and craft.
                 </p>
               </div>
-              <Link
-                href="/food"
-                data-animate=""
-                data-delay="640"
-                className="shrink-0 border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
-              >
-                Full Menu
-              </Link>
+              <span data-animate="" data-delay="640" className="shrink-0 inline-block">
+                <Link
+                  href="/food"
+                  className="border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+                >
+                  Full Menu
+                </Link>
+              </span>
             </div>
           </div>
         </div>
@@ -434,107 +434,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Gallery ── */}
-      <section data-wipe className="relative overflow-hidden bg-oxblood/80 py-32 md:py-48">
-        {/* Ambient glow blob — upper centre */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-20 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full opacity-[0.05]"
-          style={{ background: "radial-gradient(circle, var(--color-amber), transparent 70%)" }}
-        />
-        <div className="mx-auto max-w-7xl px-8 md:px-16">
-          <div data-animate="" className="flex items-center gap-6">
-            <span className="block h-px flex-1 bg-amber/25" />
-            <span className="shrink-0 text-xs tracking-[0.3em] text-amber uppercase">
-              The Atmosphere
-            </span>
-            <span className="block h-px flex-1 bg-amber/25" />
-          </div>
-          <h2
-            data-animate=""
-            data-delay="130"
-            className="heading-emboss mt-4 text-center font-display text-5xl text-cream md:text-7xl"
-          >
-            A glimpse <span className="text-tan italic">inside</span>
-          </h2>
-          <div className="mt-20 space-y-3 md:space-y-4">
-            {/* Row 1 */}
-            <div className="flex gap-3 md:gap-4">
-              <div
-                data-animate=""
-                data-delay="130"
-                className="img-inset-shadow group relative h-72 flex-1 overflow-hidden shadow-xl md:h-96"
-                style={{ transform: "rotate(0.4deg)" }}
-              >
-                <Image src="/decor13.jpg" alt="Bar atmosphere" fill className="img-zoom object-cover" />
-              </div>
-              <div
-                data-animate=""
-                data-delay="285"
-                className="img-inset-shadow group relative h-72 flex-[1.5] overflow-hidden shadow-xl md:h-96"
-                style={{ transform: "rotate(-0.3deg)" }}
-              >
-                <Image src="/bar-brass-glow.jpg" alt="Bar glow" fill className="img-zoom object-cover" />
-              </div>
-              <div
-                data-animate=""
-                data-delay="440"
-                className="img-inset-shadow group relative h-72 flex-1 overflow-hidden shadow-xl md:h-96"
-                style={{ transform: "rotate(0.6deg)" }}
-              >
-                <Image src="/barvibe.jpg" alt="Bar vibe" fill className="img-zoom object-cover" />
-              </div>
-            </div>
-            {/* Row 2 */}
-            <div className="flex gap-3 md:gap-4">
-              <div
-                data-animate=""
-                data-delay="365"
-                className="img-inset-shadow group relative h-52 flex-[1.4] overflow-hidden shadow-xl md:h-64"
-                style={{ transform: "rotate(-0.5deg)" }}
-              >
-                <Image src="/bardecor.jpg" alt="Bar decor" fill className="img-zoom object-cover" />
-              </div>
-              <div
-                data-animate=""
-                data-delay="450"
-                className="img-inset-shadow group relative h-52 flex-1 overflow-hidden shadow-xl md:h-64"
-                style={{ transform: "rotate(0.3deg)" }}
-              >
-                <Image src="/bartender-at-work.jpg" alt="Bartender" fill className="img-zoom object-cover" />
-              </div>
-              <div
-                data-animate=""
-                data-delay="520"
-                className="img-inset-shadow group relative h-52 flex-1 overflow-hidden shadow-xl md:h-64"
-                style={{ transform: "rotate(-0.4deg)" }}
-              >
-                <Image src="/whiskey-pour.jpg" alt="Whiskey pour" fill className="img-zoom object-cover" />
-              </div>
-            </div>
-            {/* Row 3 */}
-            <div className="flex gap-3 md:gap-4">
-              <div
-                data-animate=""
-                data-delay="580"
-                className="img-inset-shadow group relative h-52 flex-1 overflow-hidden shadow-xl md:h-72"
-                style={{ transform: "rotate(0.5deg)" }}
-              >
-                <Image src="/candlelit-tables.jpg" alt="Candlelit tables" fill className="img-zoom object-cover" />
-              </div>
-              <div
-                data-animate=""
-                data-delay="660"
-                className="img-inset-shadow group relative h-52 flex-[1.6] overflow-hidden shadow-xl md:h-72"
-                style={{ transform: "rotate(-0.3deg)" }}
-              >
-                <Image src="/cocktail-splash.jpg" alt="Cocktail" fill className="img-zoom object-cover" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Infinite Carousel ── */}
       <InfiniteCarousel />
 
@@ -581,14 +480,14 @@ export default function Home() {
 
           <SectionDivider className="my-4" />
 
-          <Link
-            href="#"
-            data-animate=""
-            data-delay="470"
-            className="mt-4 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
-          >
-            Book a Table
-          </Link>
+          <span data-animate="" data-delay="470" className="mt-4 inline-block">
+            <Link
+              href="#"
+              className="inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
+            >
+              Book a Table
+            </Link>
+          </span>
         </div>
       </section>
 

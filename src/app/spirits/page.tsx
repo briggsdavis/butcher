@@ -92,18 +92,16 @@ export default function Spirits() {
                 className={`mt-10 divide-y border-t ${dark ? "divide-charcoal/10 border-charcoal/10" : "divide-cream/10 border-cream/10"}`}
               >
                 {items.map((item, i) => (
+                  <span key={item.name} data-animate="" data-delay={String(180 + i * 60)} className="block">
                   <Link
-                    key={item.name}
                     href={`/spirits/${slugify(item.name)}`}
-                    data-animate=""
-                    data-delay={String(180 + i * 60)}
-                    className={`group flex items-baseline justify-between py-5 transition-colors duration-200 ${
+                    className={`group flex items-baseline justify-between py-5 transition-colors duration-500 ${
                       dark ? "hover:text-oxblood" : "hover:text-amber"
                     }`}
                   >
                     <div>
                       <span
-                        className={`font-display text-base transition-colors duration-200 ${
+                        className={`font-display text-base transition-colors duration-500 ${
                           dark
                             ? "text-charcoal group-hover:text-oxblood"
                             : "text-cream group-hover:text-amber"
@@ -123,6 +121,7 @@ export default function Spirits() {
                       ${item.price}
                     </span>
                   </Link>
+                  </span>
                 ))}
               </div>
             </div>

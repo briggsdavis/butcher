@@ -42,7 +42,7 @@ export default function NotFound() {
 
           <Link
             href="/"
-            className="mt-10 inline-block border border-cream/25 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber"
+            className="mt-10 inline-block border border-cream/25 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
           >
             Return Home
           </Link>
