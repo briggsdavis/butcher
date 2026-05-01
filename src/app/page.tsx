@@ -33,7 +33,6 @@ const FRAMES = [
   { src: "/glow-frame.png",   alt: "The bar",      w: 1803, h: 2003, rotate:  1.5, delay: "285" },
   { src: "/whiskey-frame.png",alt: "Whiskey pour", w: 1579, h: 1996, rotate: -1.0, delay: "440" },
   { src: "/bartender-frame.png", alt: "Bartender", w: 1208, h: 1662, rotate:  2.5, delay: "365" },
-  { src: "/tables-frame.png", alt: "Dining room",  w: 2168, h: 1922, rotate: -1.8, delay: "520" },
 ]
 
 export default function Home() {
