@@ -1,10 +1,17 @@
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { HeroCarousel } from "~/components/hero-carousel"
 import { InfiniteCarousel } from "~/components/infinite-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { SectionDivider } from "~/components/section-divider"
 import { TiltCard } from "~/components/tilt-card"
+
+const HOME_HERO_IMAGES = [
+  { src: "/warm-dining-room.jpg", alt: "Butcher and the Rye dining room" },
+  { src: "/hero1.jpg", alt: "Butcher and the Rye" },
+  { src: "/hero2.jpg", alt: "Butcher and the Rye" },
+]
 
 const COCKTAILS = [
   {
@@ -34,20 +41,7 @@ export default function Home() {
     <>
       {/* ── Hero ── */}
       <section className="hero-section relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
-        <div
-          data-parallax="hero-bg"
-          data-parallax-speed="0.15"
-          className="absolute inset-x-0"
-          style={{ top: "-15%", bottom: "-15%" }}
-        >
-          <Image
-            src="/warm-dining-room.jpg"
-            alt="Butcher and the Rye dining room"
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+        <HeroCarousel images={HOME_HERO_IMAGES} firstImageAngle />
         {/* Top vignette — darkens top half for atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades into the next section */}
@@ -473,7 +467,7 @@ export default function Home() {
                 className="img-inset-shadow group relative h-72 flex-1 overflow-hidden shadow-xl md:h-96"
                 style={{ transform: "rotate(0.4deg)" }}
               >
-                <Image src="/barmood.jpg" alt="Bar atmosphere" fill className="img-zoom object-cover" />
+                <Image src="/decor13.jpg" alt="Bar atmosphere" fill className="img-zoom object-cover" />
               </div>
               <div
                 data-animate=""

@@ -3,10 +3,10 @@
 import Image from "next/image"
 
 const IMAGES = [
-  { src: "/barmood1.jpg", alt: "Bar atmosphere" },
-  { src: "/bardecor1.jpg", alt: "Bar decor" },
+  { src: "/decor12.jpg", alt: "Bar atmosphere" },
+  { src: "/decor14.jpg", alt: "Bar decor" },
   { src: "/bartender-at-work.jpg", alt: "Bartender at work" },
-  { src: "/candlelit-tables.jpg", alt: "Candlelit tables" },
+  { src: "/decor15.jpg", alt: "Candlelit tables" },
   { src: "/cocktail-splash.jpg", alt: "Cocktail" },
   { src: "/fondue-spread.jpg", alt: "Fondue spread" },
   { src: "/charcuterie-board.jpg", alt: "Charcuterie board" },

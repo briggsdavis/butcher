@@ -2,8 +2,15 @@ import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { HeroCarousel } from "~/components/hero-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { TiltCard } from "~/components/tilt-card"
+
+const ABOUT_HERO_IMAGES = [
+  { src: "/about-background.jpg", alt: "Butcher and the Rye dining room" },
+  { src: "/abouthero2.jpg", alt: "Butcher and the Rye" },
+  { src: "/abouthero3.jpg", alt: "Butcher and the Rye" },
+]
 
 export const metadata: Metadata = {
   title: "About",
@@ -31,7 +38,7 @@ const VALUES = [
     numeralClass: "bottom-0 -left-4",
     title: "Hospitality",
     body: "The meal is the occasion. The experience is the memory. We study our guests: their preferences, their celebrations, their habits. Hospitality at Butcher and the Rye means you never have to ask twice.",
-    image: "/candlelit-tables.jpg",
+    image: "/decor16.jpg",
   },
 ]
 
@@ -67,21 +74,7 @@ export default function About() {
     <>
       {/* ── 1. HERO ── */}
       <section className="hero-section relative flex h-screen items-end overflow-hidden bg-oxblood">
-        <div
-          data-parallax="hero-bg"
-          data-parallax-speed="0.15"
-          data-parallax-no-rotate=""
-          className="absolute inset-x-0"
-          style={{ top: "-15%", bottom: "-15%" }}
-        >
-          <Image
-            src="/about-background.jpg"
-            alt="Butcher and the Rye dining room"
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+        <HeroCarousel images={ABOUT_HERO_IMAGES} />
         {/* Top vignette — darkens top half for atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades photo into next section */}
@@ -193,7 +186,7 @@ export default function About() {
                 className="img-inset-shadow relative h-80 overflow-hidden shadow-xl md:h-96"
               >
                 <Image
-                  src="/candlelit-tables.jpg"
+                  src="/decor15.jpg"
                   alt="Candlelit dining at Butcher and the Rye"
                   fill
                   className="img-zoom object-cover"
@@ -315,7 +308,7 @@ export default function About() {
           style={{ top: "-10%", bottom: "-10%" }}
         >
           <Image
-            src="/bar-brass-glow.jpg"
+            src="/decor17.jpg"
             alt="Behind the bar at Butcher and the Rye"
             fill
             className="object-cover"
