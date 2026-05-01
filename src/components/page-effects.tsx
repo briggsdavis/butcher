@@ -68,10 +68,42 @@ export function PageEffects() {
     window.addEventListener("scroll", onScroll, { passive: true })
     onScroll()
 
+    // ── Text cursor glow ───────────────────────────────────────────────────
+    const TEXT_SELECTORS = "h1, h2, h3, h4, h5, h6, p, blockquote, cite, li"
+    const glow = document.createElement("div")
+    glow.style.cssText = [
+      "position:fixed",
+      "pointer-events:none",
+      "width:280px",
+      "height:280px",
+      "border-radius:50%",
+      "background:radial-gradient(circle, rgba(242,232,216,0.07) 0%, transparent 70%)",
+      "transform:translate(-50%,-50%)",
+      "mix-blend-mode:screen",
+      "z-index:9999",
+      "opacity:0",
+      "transition:opacity 1.4s ease",
+      "left:-999px",
+      "top:-999px",
+    ].join(";")
+    document.body.appendChild(glow)
+
+    const onMouseMove = (e: MouseEvent) => {
+      glow.style.left = `${e.clientX}px`
+      glow.style.top = `${e.clientY}px`
+      const target = document.elementFromPoint(e.clientX, e.clientY)
+      const overText = !!(target && (target.matches(TEXT_SELECTORS) || target.closest(TEXT_SELECTORS)))
+      glow.style.opacity = overText ? "1" : "0"
+    }
+
+    document.addEventListener("mousemove", onMouseMove)
+
     return () => {
       fadeObserver.disconnect()
       wipeObserver.disconnect()
       window.removeEventListener("scroll", onScroll)
+      document.removeEventListener("mousemove", onMouseMove)
+      glow.remove()
     }
   }, [pathname])
 

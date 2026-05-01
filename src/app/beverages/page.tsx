@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 const CATEGORY_IMAGES: Record<string, string> = {
   Cocktails: "/craft-old-fashioned.jpg",
   "Red Wine": "/whiskey-pour.jpg",
-  "White & Sparkling": "/barmood1.jpg",
-  "Non-Alcoholic": "/barmood.jpg",
+  "White & Sparkling": "/decor11.jpg",
+  "Non-Alcoholic": "/decor10.jpg",
 }
 
 const BEVERAGES = [
