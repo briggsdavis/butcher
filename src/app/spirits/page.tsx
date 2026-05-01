@@ -95,7 +95,7 @@ export default function Spirits() {
                   <span key={item.name} data-animate="" data-delay={String(180 + i * 60)} className="block">
                   <Link
                     href={`/spirits/${slugify(item.name)}`}
-                    className={`group flex items-baseline justify-between py-5 transition-colors duration-500 ${
+                    className={`group flex items-baseline justify-between py-5 transition-all duration-300 hover:translate-x-2 ${
                       dark ? "hover:text-oxblood" : "hover:text-amber"
                     }`}
                   >
