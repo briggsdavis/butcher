@@ -364,15 +364,15 @@ export default function About() {
                 are passionate, rigorously trained, and united by one shared
                 devotion: excellence at every table, every night.
               </p>
-              <Link
-                href="/our-staff"
-                data-animate=""
-                data-delay="470"
-                className="group mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
-              >
-                Meet the full team
-                <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
-              </Link>
+              <span data-animate="" data-delay="470" className="mt-10 inline-block">
+                <Link
+                  href="/our-staff"
+                  className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
+                >
+                  Meet the full team
+                  <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
+                </Link>
+              </span>
             </div>
 
             <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:pl-8">
@@ -434,15 +434,15 @@ export default function About() {
             &ldquo;The pursuit of extraordinary starts with refusing to accept
             ordinary.&rdquo;
           </blockquote>
-          <Link
-            href="/food"
-            data-animate=""
-            data-delay="365"
-            className="group mt-12 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-oxblood"
-          >
-            Explore the menu
-            <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
-          </Link>
+          <span data-animate="" data-delay="365" className="mt-12 inline-block">
+            <Link
+              href="/food"
+              className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-oxblood"
+            >
+              Explore the menu
+              <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
+            </Link>
+          </span>
         </div>
       </section>
 
@@ -486,14 +486,14 @@ export default function About() {
             Whether it&rsquo;s a quiet dinner for two or a gathering worth
             remembering, we&rsquo;ll set the table.
           </p>
-          <Link
-            href="#reservations"
-            data-animate=""
-            data-delay="470"
-            className="mt-12 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
-          >
-            Book a Table
-          </Link>
+          <span data-animate="" data-delay="470" className="mt-12 inline-block">
+            <Link
+              href="#reservations"
+              className="inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
+            >
+              Book a Table
+            </Link>
+          </span>
         </div>
       </section>
 

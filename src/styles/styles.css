@@ -19,19 +19,17 @@
 }
 
 /* ── Scroll-triggered fade-in ── */
-@layer base {
-  [data-animate] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.9s ease,
-      transform 0.9s ease;
-  }
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
 
-  [data-animate].in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
+[data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── Parallax performance ── */

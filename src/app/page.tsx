@@ -129,15 +129,15 @@ export default function Home() {
               We are a place for those who understand that a great evening is
               not rushed. It is savored, one pour at a time.
             </p>
-            <Link
-              href="/about"
-              data-animate=""
-              data-delay="520"
-              className="group mt-10 inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
-            >
-              Read more
-              <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
-            </Link>
+            <span data-animate="" data-delay="520" className="mt-10 inline-block">
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
+              >
+                Read more
+                <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
+              </Link>
+            </span>
           </div>
 
           {/* Right: tilted image collage */}
@@ -271,14 +271,14 @@ export default function Home() {
                   Every plate is a reflection of place, season, and craft.
                 </p>
               </div>
-              <Link
-                href="/food"
-                data-animate=""
-                data-delay="640"
-                className="shrink-0 border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
-              >
-                Full Menu
-              </Link>
+              <span data-animate="" data-delay="640" className="shrink-0 inline-block">
+                <Link
+                  href="/food"
+                  className="border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+                >
+                  Full Menu
+                </Link>
+              </span>
             </div>
           </div>
         </div>
@@ -581,14 +581,14 @@ export default function Home() {
 
           <SectionDivider className="my-4" />
 
-          <Link
-            href="#"
-            data-animate=""
-            data-delay="470"
-            className="mt-4 inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
-          >
-            Book a Table
-          </Link>
+          <span data-animate="" data-delay="470" className="mt-4 inline-block">
+            <Link
+              href="#"
+              className="inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
+            >
+              Book a Table
+            </Link>
+          </span>
         </div>
       </section>
 
