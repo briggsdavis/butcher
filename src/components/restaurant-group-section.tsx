@@ -65,7 +65,7 @@ const restaurants = [
   },
 ]
 
-const ROTATIONS = [-2.5, 1.8, -1.2, 2.1, -1.8, 0.9, -2.2, 1.5, -0.8, 2.3, -1.4, 1.1]
+const ROTATIONS = [-2.5, 1.8, 2.2, -1.4, 1.6, 2.4, -1.9, 0.8, -1.1, -2.0, 1.4, -0.7]
 
 export function RestaurantGroupSection() {
   return (
