@@ -77,7 +77,7 @@ export function PageEffects() {
       "width:280px",
       "height:280px",
       "border-radius:50%",
-      "background:radial-gradient(circle, rgba(242,232,216,0.13) 0%, transparent 70%)",
+      "background:radial-gradient(circle, rgba(242,232,216,0.06) 0%, transparent 70%)",
       "transform:translate(-50%,-50%)",
       "mix-blend-mode:screen",
       "z-index:9999",
