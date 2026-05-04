@@ -29,10 +29,38 @@ const COCKTAILS = [
 ]
 
 const FRAMES = [
-  { src: "/entree-frame.png", alt: "Plated dish",  w: 1652, h: 1924, rotate: -2.5, delay: "130" },
-  { src: "/glow-frame.png",   alt: "The bar",      w: 1803, h: 2003, rotate:  1.5, delay: "285" },
-  { src: "/whiskey-frame.png",alt: "Whiskey pour", w: 1579, h: 1996, rotate: -1.0, delay: "440" },
-  { src: "/bartender-frame.png", alt: "Bartender", w: 1208, h: 1662, rotate:  2.5, delay: "365" },
+  {
+    src: "/entree-frame.png",
+    alt: "Plated dish",
+    w: 1652,
+    h: 1924,
+    rotate: -2.5,
+    delay: "130",
+  },
+  {
+    src: "/glow-frame.png",
+    alt: "The bar",
+    w: 1803,
+    h: 2003,
+    rotate: 1.5,
+    delay: "285",
+  },
+  {
+    src: "/whiskey-frame.png",
+    alt: "Whiskey pour",
+    w: 1579,
+    h: 1996,
+    rotate: -1.0,
+    delay: "440",
+  },
+  {
+    src: "/bartender-frame.png",
+    alt: "Bartender",
+    w: 1208,
+    h: 1662,
+    rotate: 2.5,
+    delay: "365",
+  },
 ]
 
 export default function Home() {
@@ -54,8 +82,10 @@ export default function Home() {
             backgroundSize: "700px",
             backgroundRepeat: "repeat",
             opacity: 0.1,
-            maskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
+            maskImage:
+              "linear-gradient(to bottom, transparent 70%, black 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 70%, black 100%)",
           }}
         />
         <div className="relative z-10 flex flex-col items-center px-8 pb-24 text-center md:px-16">
@@ -87,7 +117,10 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(circle, var(--color-amber), transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, var(--color-amber), transparent 70%)",
+          }}
         />
         <div
           data-parallax="content"
@@ -129,7 +162,11 @@ export default function Home() {
               We are a place for those who understand that a great evening is
               not rushed. It is savored, one pour at a time.
             </p>
-            <span data-animate="" data-delay="520" className="mt-10 inline-block">
+            <span
+              data-animate=""
+              data-delay="520"
+              className="mt-10 inline-block"
+            >
               <Link
                 href="/about"
                 className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
@@ -271,7 +308,11 @@ export default function Home() {
                   Every plate is a reflection of place, season, and craft.
                 </p>
               </div>
-              <span data-animate="" data-delay="640" className="shrink-0 inline-block">
+              <span
+                data-animate=""
+                data-delay="640"
+                className="inline-block shrink-0"
+              >
                 <Link
                   href="/food"
                   className="border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
@@ -285,12 +326,18 @@ export default function Home() {
       </section>
 
       {/* ── Cocktails & Spirits ── */}
-      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
+      >
         {/* Ambient glow blob — lower-left, warm */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -bottom-32 -left-32 h-[550px] w-[550px] rounded-full opacity-[0.07]"
-          style={{ background: "radial-gradient(circle, var(--color-amber), transparent 68%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, var(--color-amber), transparent 68%)",
+          }}
         />
         <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
           <div data-animate="">
@@ -399,10 +446,7 @@ export default function Home() {
       </section>
 
       {/* ── Framed Gallery ── */}
-      <section
-        data-wipe
-        className="overflow-hidden bg-charcoal py-24 md:py-32"
-      >
+      <section data-wipe className="overflow-hidden bg-charcoal py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-14 flex items-center gap-6">
             <span className="block h-px flex-1 bg-amber/25" />
@@ -447,7 +491,10 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          style={{ background: "radial-gradient(ellipse at center, var(--color-oxblood), transparent 65%)" }}
+          style={{
+            background:
+              "radial-gradient(ellipse at center, var(--color-oxblood), transparent 65%)",
+          }}
         />
         <div className="relative z-10 text-center">
           <div

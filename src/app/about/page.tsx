@@ -88,8 +88,10 @@ export default function About() {
             backgroundSize: "700px",
             backgroundRepeat: "repeat",
             opacity: 0.1,
-            maskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 70%, black 100%)",
+            maskImage:
+              "linear-gradient(to bottom, transparent 70%, black 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 70%, black 100%)",
           }}
         />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-24 md:px-16">
@@ -364,7 +366,11 @@ export default function About() {
                 are passionate, rigorously trained, and united by one shared
                 devotion: excellence at every table, every night.
               </p>
-              <span data-animate="" data-delay="470" className="mt-10 inline-block">
+              <span
+                data-animate=""
+                data-delay="470"
+                className="mt-10 inline-block"
+              >
                 <Link
                   href="/our-staff"
                   className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"

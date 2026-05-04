@@ -65,7 +65,9 @@ const restaurants = [
   },
 ]
 
-const ROTATIONS = [-2.5, 1.8, 2.2, -1.4, 1.6, 2.4, -1.9, 0.8, -1.1, -2.0, 1.4, -0.7]
+const ROTATIONS = [
+  -2.5, 1.8, 2.2, -1.4, 1.6, 2.4, -1.9, 0.8, -1.1, -2.0, 1.4, -0.7,
+]
 
 export function RestaurantGroupSection() {
   return (
@@ -87,7 +89,7 @@ export function RestaurantGroupSection() {
               rel="noopener noreferrer"
               className="text-amber italic transition-colors hover:text-cream"
             >
-              Richard Deshantz
+              Richard DeShantz
             </Link>{" "}
             Restaurant Group
           </h2>

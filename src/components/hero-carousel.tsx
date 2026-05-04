@@ -10,11 +10,17 @@ interface HeroCarouselProps {
   firstImageAngle?: boolean
 }
 
-export function HeroCarousel({ images, firstImageAngle = false }: HeroCarouselProps) {
+export function HeroCarousel({
+  images,
+  firstImageAngle = false,
+}: HeroCarouselProps) {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
-    const id = setInterval(() => setActive((p) => (p + 1) % images.length), 8000)
+    const id = setInterval(
+      () => setActive((p) => (p + 1) % images.length),
+      8000,
+    )
     return () => clearInterval(id)
   }, [images.length])
 

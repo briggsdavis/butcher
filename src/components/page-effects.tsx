@@ -55,7 +55,8 @@ export function PageEffects() {
         const speed = parseFloat(el.dataset.parallaxSpeed ?? "0.15")
 
         if (el.dataset.parallax === "hero-bg") {
-          const rotate = "parallaxNoRotate" in el.dataset ? "" : "rotate(5deg) scale(1.1) "
+          const rotate =
+            "parallaxNoRotate" in el.dataset ? "" : "rotate(5deg) scale(1.1) "
           el.style.transform = `${rotate}translateY(${window.scrollY * speed}px)`
         } else {
           const rect = el.getBoundingClientRect()
@@ -92,7 +93,10 @@ export function PageEffects() {
       glow.style.left = `${e.clientX}px`
       glow.style.top = `${e.clientY}px`
       const target = document.elementFromPoint(e.clientX, e.clientY)
-      const overText = !!(target && (target.matches(TEXT_SELECTORS) || target.closest(TEXT_SELECTORS)))
+      const overText = !!(
+        target &&
+        (target.matches(TEXT_SELECTORS) || target.closest(TEXT_SELECTORS))
+      )
       glow.style.opacity = overText ? "1" : "0"
     }
 

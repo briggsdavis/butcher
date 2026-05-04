@@ -317,7 +317,9 @@ footer::before {
 
 /* ── Gallery image hover zoom ── */
 .img-zoom {
-  transition: transform 0.7s ease, filter 0.7s ease;
+  transition:
+    transform 0.7s ease,
+    filter 0.7s ease;
 }
 
 .img-zoom:hover {

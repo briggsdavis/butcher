@@ -92,35 +92,40 @@ export default function Spirits() {
                 className={`mt-10 divide-y border-t ${dark ? "divide-charcoal/10 border-charcoal/10" : "divide-cream/10 border-cream/10"}`}
               >
                 {items.map((item, i) => (
-                  <span key={item.name} data-animate="" data-delay={String(180 + i * 60)} className="block">
-                  <Link
-                    href={`/spirits/${slugify(item.name)}`}
-                    className={`group flex items-baseline justify-between py-5 transition-all duration-300 hover:translate-x-2 ${
-                      dark ? "hover:text-oxblood" : "hover:text-amber"
-                    }`}
+                  <span
+                    key={item.name}
+                    data-animate=""
+                    data-delay={String(180 + i * 60)}
+                    className="block"
                   >
-                    <div>
-                      <span
-                        className={`font-display text-base transition-colors duration-500 ${
-                          dark
-                            ? "text-charcoal group-hover:text-oxblood"
-                            : "text-cream group-hover:text-amber"
-                        }`}
-                      >
-                        {item.name}
-                      </span>
-                      <span
-                        className={`ml-4 text-xs ${dark ? "text-charcoal/45" : "text-tan/50"}`}
-                      >
-                        {item.notes}
-                      </span>
-                    </div>
-                    <span
-                      className={`font-display text-sm ${dark ? "text-oxblood" : "text-amber"}`}
+                    <Link
+                      href={`/spirits/${slugify(item.name)}`}
+                      className={`group flex items-baseline justify-between py-5 transition-all duration-300 hover:translate-x-2 ${
+                        dark ? "hover:text-oxblood" : "hover:text-amber"
+                      }`}
                     >
-                      ${item.price}
-                    </span>
-                  </Link>
+                      <div>
+                        <span
+                          className={`font-display text-base transition-colors duration-500 ${
+                            dark
+                              ? "text-charcoal group-hover:text-oxblood"
+                              : "text-cream group-hover:text-amber"
+                          }`}
+                        >
+                          {item.name}
+                        </span>
+                        <span
+                          className={`ml-4 text-xs ${dark ? "text-charcoal/45" : "text-tan/50"}`}
+                        >
+                          {item.notes}
+                        </span>
+                      </div>
+                      <span
+                        className={`font-display text-sm ${dark ? "text-oxblood" : "text-amber"}`}
+                      >
+                        ${item.price}
+                      </span>
+                    </Link>
                   </span>
                 ))}
               </div>
