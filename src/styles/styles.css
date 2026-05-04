@@ -244,6 +244,13 @@ footer::before {
   *::after {
     cursor: none !important;
   }
+
+  /* Restore default cursor on admin pages */
+  [data-admin] *,
+  [data-admin] *::before,
+  [data-admin] *::after {
+    cursor: auto !important;
+  }
 }
 
 .cursor-dot {
