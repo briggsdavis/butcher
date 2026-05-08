@@ -17,10 +17,19 @@ export function CustomCursor() {
     let ringY = 0
     let raf: number
 
+    let visible = false
     const move = (e: MouseEvent) => {
       mouseX = e.clientX
       mouseY = e.clientY
       dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`
+      if (!visible) {
+        ringX = mouseX
+        ringY = mouseY
+        ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`
+        dot.style.visibility = "visible"
+        ring.style.visibility = "visible"
+        visible = true
+      }
     }
 
     const loop = () => {
@@ -67,8 +76,18 @@ export function CustomCursor() {
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
-      <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
+      <div
+        ref={dotRef}
+        className="cursor-dot"
+        style={{ visibility: "hidden" }}
+        aria-hidden="true"
+      />
+      <div
+        ref={ringRef}
+        className="cursor-ring"
+        style={{ visibility: "hidden" }}
+        aria-hidden="true"
+      />
     </>
   )
 }

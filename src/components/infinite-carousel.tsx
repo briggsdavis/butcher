@@ -23,7 +23,7 @@ export function InfiniteCarousel() {
         className="mb-12 flex items-center justify-center gap-6 px-8"
       >
         <span className="block h-px w-16 bg-amber/25" />
-        <span className="shrink-0 font-display text-xs tracking-[0.3em] text-amber uppercase italic">
+        <span className="shrink-0 font-subhead text-xs tracking-[0.3em] text-amber uppercase italic">
           A Taste of the Experience
         </span>
         <span className="block h-px w-16 bg-amber/25" />

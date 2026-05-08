@@ -135,7 +135,7 @@ export default function About() {
               <div data-animate="" className="flex items-center gap-4">
                 <span className="block h-px w-10 shrink-0 bg-amber/50" />
                 <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                  Our Story
+                  The Chef
                 </span>
               </div>
               <h2
@@ -143,30 +143,31 @@ export default function About() {
                 data-delay="130"
                 className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
               >
-                Born from
-                <br />a reverence
+                A life
                 <br />
-                <span className="text-tan italic">for craft</span>
+                shaped by
+                <br />
+                <span className="text-tan italic">the fire</span>
               </h2>
               <p
                 data-animate=""
                 data-delay="285"
                 className="mt-10 text-lg leading-relaxed text-tan"
               >
-                Butcher and the Rye opened on Penn Avenue in 2013 with a single
-                conviction: Pittsburgh deserved a restaurant that honored the
-                full depth of American culinary tradition: the slow char of a
-                barrel-aged bourbon, the patience of a 45-day dry-aged cut, and
-                the art of a dining room that feels like home.
+                Our Executive Chef came up the long way: years on the line in
+                some of the country&rsquo;s most demanding kitchens, training
+                under butchers who measured aging in months and chefs who
+                measured stocks in days. Every technique here is one he learned
+                by hand.
               </p>
               <p
                 data-animate=""
                 data-delay="440"
                 className="mt-6 text-lg leading-relaxed text-tan"
               >
-                Every choice made here, from the beef we source to the glass we
-                pour, is deliberate. We are not chasing trends. We are building
-                something that lasts.
+                His philosophy is simple: source honestly, cook patiently, and
+                trust the ingredient. The menu changes with what the farms and
+                seasons offer, but the discipline behind every plate never does.
               </p>
               <blockquote
                 data-animate=""
@@ -174,8 +175,8 @@ export default function About() {
                 className="mt-10 border-l-2 border-amber/30 pl-6"
               >
                 <p className="font-cursive text-2xl leading-relaxed text-cream/70">
-                  &ldquo;The kind of place you come back to not just for the
-                  food, but for how it makes you feel.&rdquo;
+                  &ldquo;The fire teaches you patience. The cut teaches you
+                  respect. The rest is just paying attention.&rdquo;
                 </p>
               </blockquote>
             </div>
@@ -235,99 +236,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── 3. OUR VALUES ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-oxblood py-32 md:py-48"
-      >
-        <div className="mx-auto max-w-7xl px-8 md:px-16">
-          <div data-animate="" className="mb-20 flex items-center gap-4">
-            <span className="block h-px w-10 shrink-0 bg-amber/50" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              Our Values
-            </span>
-          </div>
-
-          {VALUES.map((value, i) => (
-            <div
-              key={value.numeral}
-              className={`${i < VALUES.length - 1 ? "mb-16 " : ""}border-t border-cream/10 pt-12`}
-            >
-              <div className="grid items-center gap-8 md:grid-cols-[1fr_0.75fr] md:gap-16">
-                <div className="relative">
-                  <div
-                    className={`pointer-events-none absolute ${value.numeralClass} font-display leading-none text-cream/[0.04] select-none`}
-                    style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
-                    aria-hidden="true"
-                  >
-                    {value.numeral}
-                  </div>
-                  <div className="relative z-10">
-                    <h3
-                      data-animate=""
-                      data-delay="0"
-                      className="font-display text-6xl text-cream md:text-7xl"
-                    >
-                      {value.title}
-                    </h3>
-                    <p
-                      data-animate=""
-                      data-delay="130"
-                      className="mt-6 text-lg leading-relaxed text-tan"
-                    >
-                      {value.body}
-                    </p>
-                  </div>
-                </div>
-                <div
-                  data-animate=""
-                  data-delay="260"
-                  className="img-inset-shadow relative h-64 overflow-hidden shadow-xl md:h-80"
-                >
-                  <Image
-                    src={value.image}
-                    alt={`${value.title} at Butcher and the Rye`}
-                    fill
-                    className="img-zoom object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 4. FULL-WIDTH IMAGE BREAK ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-charcoal"
-        style={{ minHeight: "80vh" }}
-      >
-        <div
-          data-parallax="image-break"
-          data-parallax-speed="0.1"
-          className="absolute inset-x-0"
-          style={{ top: "-10%", bottom: "-10%" }}
-        >
-          <Image
-            src="/decor17.jpg"
-            alt="Behind the bar at Butcher and the Rye"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-charcoal/60" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p
-            data-animate=""
-            className="px-8 text-center font-cursive text-3xl text-cream/80 md:text-5xl"
-          >
-            Every evening is its own occasion.
-          </p>
-        </div>
-      </section>
-
-      {/* ── 5. THE TEAM ── */}
+      {/* ── THE TEAM ── */}
       <section
         data-wipe
         className="relative overflow-hidden bg-charcoal py-32 md:py-48"
@@ -397,12 +306,12 @@ export default function About() {
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-charcoal/55" />
-                    <span className="absolute inset-0 flex items-center justify-center font-display text-2xl text-amber/70 select-none">
+                    <span className="absolute inset-0 flex items-center justify-center font-subhead text-2xl text-amber/70 select-none">
                       {member.initials}
                     </span>
                     <div className="absolute inset-0 rounded-full ring-1 ring-amber/10 ring-inset" />
                   </div>
-                  <p className="font-display text-xl text-cream">
+                  <p className="font-subhead text-xl text-cream">
                     {member.name}
                   </p>
                   <p className="mt-1 text-xs tracking-[0.2em] text-amber uppercase">
@@ -412,6 +321,115 @@ export default function About() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── 3. OUR VALUES ── */}
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-oxblood py-32 md:py-48"
+      >
+        <div className="mx-auto max-w-7xl px-8 md:px-16">
+          <div data-animate="" className="mb-20 flex items-center gap-4">
+            <span className="block h-px w-10 shrink-0 bg-amber/50" />
+            <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              Our Values
+            </span>
+          </div>
+
+          {VALUES.map((value, i) => {
+            const reversed = i === 1
+            return (
+              <div
+                key={value.numeral}
+                className={`${i < VALUES.length - 1 ? "mb-16 " : ""}border-t border-cream/10 pt-12`}
+              >
+                <div
+                  className={`grid items-center gap-8 md:gap-16 ${
+                    reversed
+                      ? "md:grid-cols-[0.75fr_1fr]"
+                      : "md:grid-cols-[1fr_0.75fr]"
+                  }`}
+                >
+                  <div className={`relative ${reversed ? "md:order-2" : ""}`}>
+                    <div
+                      className={`pointer-events-none absolute ${value.numeralClass} font-display leading-none text-cream/[0.04] select-none`}
+                      style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                      aria-hidden="true"
+                    >
+                      {value.numeral}
+                    </div>
+                    <div className="relative z-10">
+                      <h3
+                        data-animate=""
+                        data-delay="0"
+                        className="font-display text-6xl text-cream md:text-7xl"
+                      >
+                        {value.title}
+                      </h3>
+                      <p
+                        data-animate=""
+                        data-delay="130"
+                        className="mt-6 text-lg leading-relaxed text-tan"
+                      >
+                        {value.body}
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    data-animate=""
+                    data-delay="260"
+                    className={reversed ? "md:order-1" : ""}
+                  >
+                    <TiltCard
+                      initialRotate={i % 2 === 0 ? -2 : 2}
+                      maxTilt={5}
+                      className="bg-cream p-3 pb-10 shadow-2xl md:p-4 md:pb-12"
+                    >
+                      <div className="img-inset-shadow relative h-64 overflow-hidden md:h-80">
+                        <Image
+                          src={value.image}
+                          alt={`${value.title} at Butcher and the Rye`}
+                          fill
+                          className="img-zoom object-cover"
+                        />
+                      </div>
+                    </TiltCard>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* ── 4. FULL-WIDTH IMAGE BREAK ── */}
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-charcoal"
+        style={{ minHeight: "80vh" }}
+      >
+        <div
+          data-parallax="image-break"
+          data-parallax-speed="0.1"
+          className="absolute inset-x-0"
+          style={{ top: "-10%", bottom: "-10%" }}
+        >
+          <Image
+            src="/decor17.jpg"
+            alt="Behind the bar at Butcher and the Rye"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-transparent to-charcoal/60" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p
+            data-animate=""
+            className="px-8 text-center font-cursive text-3xl text-cream/80 md:text-5xl"
+          >
+            Every evening is its own occasion.
+          </p>
         </div>
       </section>
 

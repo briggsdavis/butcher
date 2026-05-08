@@ -293,7 +293,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
                 {liked ? "You liked this" : "Tap to like"}
               </span>
               <span
-                className={`font-display text-lg tabular-nums transition-colors ${
+                className={`font-subhead text-lg tabular-nums transition-colors ${
                   liked ? "text-amber" : "text-cream/40"
                 }`}
               >
@@ -316,7 +316,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
       <section className="bg-charcoal px-8 py-24 md:px-16 md:py-32">
         <div className="mx-auto w-full max-w-3xl">
           <div className="mb-10 flex items-baseline justify-between border-b border-cream/10 pb-4">
-            <h2 className="font-display text-2xl text-cream md:text-3xl">
+            <h2 className="font-subhead text-2xl text-cream md:text-3xl">
               Guestbook
             </h2>
             <span className="text-[10px] tracking-[0.3em] text-cream/30 uppercase">

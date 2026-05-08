@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Ocean Beach";
+  src: url("/fonts/ocean-beach-minor-vintage.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "March Rough";
+  src: url("/fonts/march-rough.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Vegan Style";
+  src: url("/fonts/vegan-style.ttf") format("truetype");
+  font-display: swap;
+}
+
 @layer base {
   button {
     @apply cursor-pointer disabled:cursor-not-allowed;
@@ -7,9 +23,10 @@
 }
 
 @theme inline {
-  --font-cursive: var(--font-cursive);
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
+  --font-cursive: "Vegan Style", "Courier Prime", monospace;
+  --font-display: "Ocean Beach", "Courier Prime", monospace;
+  --font-subhead: "March Rough", "Courier Prime", monospace;
+  --font-sans: "Courier Prime", ui-monospace, monospace;
   --color-oxblood: #1b0a0b;
   --color-forest: #69140e;
   --color-amber: #d58936;

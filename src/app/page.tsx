@@ -98,13 +98,110 @@ export default function Home() {
           >
             Butcher <span className="text-amber italic">&</span> the Rye
           </h1>
-          <Link
-            href="#reservations"
-            className="mt-10 inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+          <div
+            className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
             style={{ animation: "fadeInUp 1s ease 0.4s both" }}
           >
-            Reserve a Table
-          </Link>
+            <Link
+              href="#reservations"
+              className="inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+            >
+              Reserve a Table
+            </Link>
+            <Link
+              href="/food"
+              className="inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+            >
+              View Menu
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Cocktails & Spirits ── */}
+      <section
+        data-wipe
+        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
+      >
+        {/* Ambient glow blob — lower-left, warm */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-32 h-[550px] w-[550px] rounded-full opacity-[0.07]"
+          style={{
+            background:
+              "radial-gradient(circle, var(--color-amber), transparent 68%)",
+          }}
+        />
+        <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
+          <div data-animate="">
+            <TiltCard
+              initialRotate={-2}
+              maxTilt={7}
+              className="self-center bg-cream p-4 pb-0 shadow-2xl md:p-6 md:pb-0"
+            >
+              <div className="img-inset-shadow relative aspect-[3/4] overflow-hidden">
+                <Image
+                  src="/craft-old-fashioned.jpg"
+                  alt="Craft cocktail"
+                  fill
+                  className="img-zoom object-cover"
+                />
+              </div>
+              <div className="flex h-16 items-center justify-center md:h-24">
+                <p className="font-cursive text-2xl text-charcoal md:text-3xl">
+                  The Old Fashioned
+                </p>
+              </div>
+            </TiltCard>
+          </div>
+          <div className="flex flex-col justify-center">
+            <div data-animate="" className="flex items-center gap-4">
+              <span className="block h-px w-10 shrink-0 bg-amber/50" />
+              <span className="text-xs tracking-[0.3em] text-amber uppercase">
+                Cocktails & Spirits
+              </span>
+            </div>
+            <h2
+              data-animate=""
+              data-delay="130"
+              className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+            >
+              Crafted,
+              <br />
+              never <span className="text-tan italic">mixed</span>
+            </h2>
+            <div className="mt-16 space-y-10">
+              {COCKTAILS.map((drink, i) => (
+                <div
+                  key={drink.name}
+                  data-animate=""
+                  data-delay={String(260 + i * 130)}
+                >
+                  <h3 className="font-subhead text-2xl text-cream">
+                    {drink.name}
+                  </h3>
+                  <p className="mt-2 text-tan">{drink.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <SectionDivider className="my-4" />
+
+            <div data-animate="" data-delay="715" className="flex gap-6">
+              <Link
+                href="/beverages"
+                className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+              >
+                Beverages
+              </Link>
+              <Link
+                href="/spirits"
+                className="border border-amber px-8 py-4 text-xs tracking-[0.3em] text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-amber hover:text-charcoal hover:shadow-[0_4px_24px_rgba(213,137,54,0.3)]"
+              >
+                Spirits
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -256,6 +353,18 @@ export default function Home() {
                 >
                   The menu
                 </h2>
+                <span
+                  data-animate=""
+                  data-delay="220"
+                  className="mt-8 inline-block"
+                >
+                  <Link
+                    href="/food"
+                    className="border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+                  >
+                    Full Menu
+                  </Link>
+                </span>
               </div>
               <div
                 data-animate=""
@@ -284,129 +393,25 @@ export default function Home() {
               />
             </div>
 
-            <div
-              data-animate=""
-              data-delay="460"
-              className="img-inset-shadow relative aspect-[5/4] w-full overflow-hidden shadow-xl lg:mt-16"
-            >
-              <Image
-                src="/steak.jpg"
-                alt="Steak"
-                fill
-                className="img-zoom object-cover"
-              />
-            </div>
-          </div>
-
-          <SectionDivider className="mt-6" />
-
-          <div className="border-t border-cream/10 pt-4">
-            <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
-              <div data-animate="" data-delay="560">
+            <div className="lg:mt-16">
+              <div
+                data-animate=""
+                data-delay="460"
+                className="img-inset-shadow relative aspect-[5/4] w-full overflow-hidden shadow-xl"
+              >
+                <Image
+                  src="/steak.jpg"
+                  alt="Steak"
+                  fill
+                  className="img-zoom object-cover"
+                />
+              </div>
+              <div data-animate="" data-delay="560" className="mt-8">
                 <p className="max-w-xs text-sm leading-relaxed text-tan">
                   Sourced from heritage farms and shaped by old-world technique.
                   Every plate is a reflection of place, season, and craft.
                 </p>
               </div>
-              <span
-                data-animate=""
-                data-delay="640"
-                className="inline-block shrink-0"
-              >
-                <Link
-                  href="/food"
-                  className="border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
-                >
-                  Full Menu
-                </Link>
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Cocktails & Spirits ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
-      >
-        {/* Ambient glow blob — lower-left, warm */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 -left-32 h-[550px] w-[550px] rounded-full opacity-[0.07]"
-          style={{
-            background:
-              "radial-gradient(circle, var(--color-amber), transparent 68%)",
-          }}
-        />
-        <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
-          <div data-animate="">
-            <TiltCard
-              initialRotate={-2}
-              maxTilt={7}
-              className="self-center bg-cream p-4 pb-0 shadow-2xl md:p-6 md:pb-0"
-            >
-              <div className="img-inset-shadow relative aspect-[3/4] overflow-hidden">
-                <Image
-                  src="/craft-old-fashioned.jpg"
-                  alt="Craft cocktail"
-                  fill
-                  className="img-zoom object-cover"
-                />
-              </div>
-              <div className="flex h-16 items-center justify-center md:h-24">
-                <p className="font-cursive text-2xl text-charcoal md:text-3xl">
-                  The Old Fashioned
-                </p>
-              </div>
-            </TiltCard>
-          </div>
-          <div className="flex flex-col justify-center">
-            <div data-animate="" className="flex items-center gap-4">
-              <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                Cocktails & Spirits
-              </span>
-            </div>
-            <h2
-              data-animate=""
-              data-delay="130"
-              className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
-            >
-              Crafted,
-              <br />
-              never <span className="text-tan italic">mixed</span>
-            </h2>
-            <div className="mt-16 space-y-10">
-              {COCKTAILS.map((drink, i) => (
-                <div
-                  key={drink.name}
-                  data-animate=""
-                  data-delay={String(260 + i * 130)}
-                >
-                  <h3 className="font-display text-2xl text-cream">
-                    {drink.name}
-                  </h3>
-                  <p className="mt-2 text-tan">{drink.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <SectionDivider className="my-4" />
-
-            <div data-animate="" data-delay="715" className="flex gap-6">
-              <Link
-                href="/beverages"
-                className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
-              >
-                Beverages
-              </Link>
-              <Link
-                href="/spirits"
-                className="border border-amber px-8 py-4 text-xs tracking-[0.3em] text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-amber hover:text-charcoal hover:shadow-[0_4px_24px_rgba(213,137,54,0.3)]"
-              >
-                Spirits
-              </Link>
             </div>
           </div>
         </div>

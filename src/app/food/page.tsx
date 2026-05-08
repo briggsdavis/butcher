@@ -2,6 +2,7 @@ import slugify from "@sindresorhus/slugify"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { TiltCard } from "~/components/tilt-card"
 export const metadata: Metadata = {
   title: "Food",
 }
@@ -143,6 +144,55 @@ export default function Food() {
     <>
       <div className="h-20 md:h-24" />
 
+      <section className="bg-charcoal pt-16 pb-16 md:pt-24 md:pb-24">
+        <div className="mx-auto max-w-7xl px-8 md:px-16">
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+            {[
+              { src: "/steak.jpg", alt: "Bone-in ribeye", rotate: -2.5 },
+              {
+                src: "/charcuterie-board.jpg",
+                alt: "Charcuterie board",
+                rotate: 1.5,
+              },
+              {
+                src: "/plated-entree.jpg",
+                alt: "Plated entrée",
+                rotate: -1.5,
+              },
+              {
+                src: "/mussels-cream-sauce.jpg",
+                alt: "Mussels in cream sauce",
+                rotate: 2.5,
+              },
+            ].map((img) => (
+              <TiltCard
+                key={img.src}
+                initialRotate={img.rotate}
+                maxTilt={5}
+                className="bg-cream p-2 pb-8 shadow-2xl md:p-3 md:pb-10"
+              >
+                <div className="img-inset-shadow relative aspect-square overflow-hidden">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="img-zoom object-cover"
+                  />
+                </div>
+              </TiltCard>
+            ))}
+          </div>
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="#"
+              className="inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+            >
+              View Menu PDF
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {FOOD.map(({ category, label, items }, bi) => {
         const dark = bi % 2 === 0
         return (
@@ -194,7 +244,7 @@ export default function Food() {
                       <div className="flex flex-1 items-baseline justify-between">
                         <div>
                           <span
-                            className={`font-display text-base transition-colors duration-200 ${
+                            className={`font-subhead text-base transition-colors duration-200 ${
                               dark
                                 ? "text-charcoal group-hover:text-oxblood"
                                 : "text-cream group-hover:text-amber"
@@ -209,7 +259,7 @@ export default function Food() {
                           </span>
                         </div>
                         <span
-                          className={`font-display text-sm ${dark ? "text-oxblood" : "text-amber"}`}
+                          className={`font-subhead text-sm ${dark ? "text-oxblood" : "text-amber"}`}
                         >
                           ${item.price}
                         </span>

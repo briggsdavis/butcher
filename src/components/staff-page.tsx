@@ -114,7 +114,7 @@ export function StaffPage() {
               ))}
             </div>
             <div>
-              <p className="font-display">
+              <p className="font-subhead">
                 <span
                   className="text-amber"
                   style={{ fontSize: "clamp(1.4rem, 2vw, 1.9rem)" }}
