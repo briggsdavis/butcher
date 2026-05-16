@@ -324,6 +324,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
 
           <form onSubmit={submitComment} className="mb-12 space-y-4">
             <textarea
+              aria-label="Leave a note about this pour"
               value={body}
               onChange={(e) => setBody(e.target.value)}
               placeholder="Leave a note about this pour…"
