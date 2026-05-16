@@ -76,18 +76,8 @@ export function CustomCursor() {
 
   return (
     <>
-      <div
-        ref={dotRef}
-        className="cursor-dot"
-        style={{ visibility: "hidden" }}
-        aria-hidden="true"
-      />
-      <div
-        ref={ringRef}
-        className="cursor-ring"
-        style={{ visibility: "hidden" }}
-        aria-hidden="true"
-      />
+      <div ref={dotRef} className="cursor-dot invisible" aria-hidden="true" />
+      <div ref={ringRef} className="cursor-ring invisible" aria-hidden="true" />
     </>
   )
 }

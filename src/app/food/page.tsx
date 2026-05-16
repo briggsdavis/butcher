@@ -185,7 +185,7 @@ export default function Food() {
           <div className="mt-10 flex justify-center">
             <Link
               href="#"
-              className="inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+              className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               View Menu PDF
             </Link>
@@ -207,7 +207,7 @@ export default function Food() {
                   className={`block h-px w-8 shrink-0 ${dark ? "bg-oxblood/30" : "bg-amber/50"}`}
                 />
                 <span
-                  className={`text-xs tracking-[0.3em] uppercase ${dark ? "text-oxblood" : "text-amber"}`}
+                  className={`text-xs uppercase ${dark ? "text-oxblood" : "text-amber"}`}
                 >
                   {label}
                 </span>

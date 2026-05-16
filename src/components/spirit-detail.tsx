@@ -135,6 +135,8 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
       } else {
         const now = Date.now()
         setComments(
+          // One-shot seed; immutable copy is clearer than Object.assign mutation.
+          // oxlint-disable-next-line oxc/no-map-spread
           SEED_COMMENTS.map((c, i) => ({ ...c, ts: now - (i + 1) * 3 * DAY })),
         )
       }
@@ -212,7 +214,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
           <div className="mb-12 flex items-center justify-between">
             <Link
               href="/spirits"
-              className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/60 uppercase transition-colors hover:text-amber"
+              className="flex items-center gap-2 text-xs text-tan/60 uppercase transition-colors hover:text-amber"
             >
               <ArrowLeft className="size-3.5" />
               Back to spirits
@@ -222,7 +224,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
                 <button
                   onClick={handlePrev}
                   disabled={!!exitDir}
-                  className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/60 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
+                  className="flex items-center gap-2 text-xs text-tan/60 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
                 >
                   <ArrowLeft className="size-3.5" />
                   Prev
@@ -232,7 +234,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
                 <button
                   onClick={handleNext}
                   disabled={!!exitDir}
-                  className="flex items-center gap-2 text-xs tracking-[0.2em] text-tan/60 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
+                  className="flex items-center gap-2 text-xs text-tan/60 uppercase transition-colors hover:text-amber disabled:pointer-events-none"
                 >
                   Next
                   <ArrowRight className="size-3.5" />
@@ -244,24 +246,22 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center gap-4">
               <span className="block h-px w-8 shrink-0 bg-amber/50" />
-              <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              <span className="text-xs text-amber uppercase">
                 {item.label ?? item.category}
               </span>
               <span className="block h-px w-8 shrink-0 bg-amber/50" />
             </div>
 
-            <h1 className="mt-6 font-display text-5xl leading-tight text-cream md:text-7xl lg:text-8xl">
+            <h1 className="mt-6 font-display text-5xl text-cream md:text-7xl lg:text-8xl">
               {item.name}
             </h1>
 
-            <p className="mt-8 max-w-md text-base leading-relaxed text-tan md:text-lg">
+            <p className="mt-8 max-w-md text-base text-tan md:text-lg">
               {item.notes}
             </p>
 
             <div className="mt-12 flex items-baseline gap-3">
-              <span className="text-xs tracking-[0.3em] text-tan/50 uppercase">
-                Pour
-              </span>
+              <span className="text-xs text-tan/50 uppercase">Pour</span>
               <span className="font-display text-4xl text-amber md:text-5xl">
                 ${item.price}
               </span>
@@ -270,10 +270,8 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
 
           <div className="mx-auto mt-16 w-full max-w-md border-y border-cream/10">
             <div className="flex h-16 items-center justify-between border-b border-cream/10">
-              <span className="text-xs tracking-[0.2em] text-cream/45 uppercase">
-                Category
-              </span>
-              <span className="text-xs tracking-[0.2em] text-cream uppercase">
+              <span className="text-xs text-cream/45 uppercase">Category</span>
+              <span className="text-xs text-cream uppercase">
                 {item.category}
               </span>
             </div>
@@ -282,7 +280,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
               aria-pressed={liked}
               className="group flex h-16 w-full items-center justify-between text-left"
             >
-              <span className="flex items-center gap-3 text-xs tracking-[0.2em] text-cream/45 uppercase transition-colors group-hover:text-cream/70">
+              <span className="flex items-center gap-3 text-xs text-cream/45 uppercase transition-colors group-hover:text-cream/70">
                 <Heart
                   className={`size-3.5 transition-all duration-300 ${
                     liked
@@ -305,7 +303,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
           <div className="mt-12 flex justify-center">
             <Link
               href="/#reservations"
-              className="flex w-fit items-center gap-3 border border-cream/25 px-8 py-3.5 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+              className="flex w-fit items-center gap-3 border border-amber px-8 py-3.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               Reserve a Table
             </Link>
@@ -319,7 +317,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
             <h2 className="font-subhead text-2xl text-cream md:text-3xl">
               Guestbook
             </h2>
-            <span className="text-[10px] tracking-[0.3em] text-cream/30 uppercase">
+            <span className="text-xs text-cream/30 uppercase">
               {comments.length} {comments.length === 1 ? "Note" : "Notes"}
             </span>
           </div>
@@ -330,13 +328,13 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
               onChange={(e) => setBody(e.target.value)}
               placeholder="Leave a note about this pour…"
               rows={3}
-              className="w-full resize-none border-b border-cream/15 bg-transparent py-3 text-sm leading-relaxed text-cream placeholder-cream/25 focus:border-amber focus:outline-none"
+              className="w-full resize-none border-b border-cream/15 bg-transparent py-3 text-sm text-cream placeholder-cream/25 focus:border-amber focus:outline-none"
             />
             <div className="flex justify-end">
               <button
                 type="submit"
                 disabled={!body.trim()}
-                className="border border-cream/25 px-6 py-2.5 text-[11px] tracking-[0.3em] text-cream uppercase transition-colors hover:border-amber hover:text-amber disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-cream/25 disabled:hover:text-cream"
+                className="border border-amber px-6 py-2.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:translate-y-0 disabled:hover:border-amber disabled:hover:text-amber disabled:hover:shadow-none"
               >
                 Post Note
               </button>
@@ -345,7 +343,7 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
 
           <ul className="space-y-8">
             {comments.length === 0 ? (
-              <li className="text-center text-xs tracking-[0.2em] text-cream/25 uppercase">
+              <li className="text-center text-xs text-cream/25 uppercase">
                 Be the first to leave a note
               </li>
             ) : (
@@ -355,14 +353,14 @@ export function SpiritDetail({ item, prevSlug, nextSlug }: Props) {
                   className="border-b border-cream/[0.06] pb-8 last:border-0"
                 >
                   <div className="mb-2 flex items-baseline justify-between gap-4">
-                    <span className="text-[11px] tracking-[0.25em] text-cream/80 uppercase">
+                    <span className="text-xs text-cream/80 uppercase">
                       {c.name}
                     </span>
-                    <span className="text-[10px] tracking-[0.2em] text-cream/30 uppercase">
+                    <span className="text-xs text-cream/30 uppercase">
                       {formatTs(c.ts)}
                     </span>
                   </div>
-                  <p className="text-sm leading-relaxed text-tan">{c.body}</p>
+                  <p className="text-sm text-tan">{c.body}</p>
                 </li>
               ))
             )}

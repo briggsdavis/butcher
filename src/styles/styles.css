@@ -23,10 +23,12 @@
 }
 
 @theme inline {
-  --font-cursive: "Vegan Style", "Courier Prime", monospace;
-  --font-display: "Ocean Beach", "Courier Prime", monospace;
-  --font-subhead: "March Rough", "Courier Prime", monospace;
-  --font-sans: "Courier Prime", ui-monospace, monospace;
+  --font-cursive: "Vegan Style", var(--font-courier-prime), monospace;
+  --font-handwritten:
+    var(--font-reenie-beanie), var(--font-courier-prime), cursive;
+  --font-display: "Ocean Beach", var(--font-courier-prime), monospace;
+  --font-subhead: "March Rough", var(--font-courier-prime), monospace;
+  --font-sans: var(--font-courier-prime), ui-monospace, monospace;
   --color-oxblood: #1b0a0b;
   --color-forest: #69140e;
   --color-amber: #d58936;
@@ -66,28 +68,12 @@
   }
 }
 
-/* ── Section wipe-up reveal ── */
-/*
- * Sections start with their layout offset cancelled by the matching transform
- * (net visual position = natural). On .wiped, the transform goes to 0, rising
- * the section by --wipe-amt to gently cover the previous section's bottom.
- */
-[data-wipe] {
-  --wipe-amt: 2.5rem;
-  margin-top: calc(-1 * var(--wipe-amt));
-  position: relative;
-  transform: translateY(var(--wipe-amt));
-  transition:
-    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.9s ease;
-  will-change: transform;
-}
-
-[data-wipe].wiped {
-  transform: translateY(0);
-}
-
 /* Very faint amber warmth when hovering a section */
+[data-wipe] {
+  position: relative;
+  transition: box-shadow 0.9s ease;
+}
+
 [data-wipe]:hover {
   box-shadow: inset 0 0 140px rgba(213, 137, 54, 0.04);
 }
@@ -411,4 +397,71 @@ footer::before {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* ── Hero fade-in utilities ── */
+.fade-in-up-1 {
+  animation: fadeInUp 1s ease 0.15s both;
+}
+.fade-in-up-2 {
+  animation: fadeInUp 1s ease 0.35s both;
+}
+.fade-in-up-3 {
+  animation: fadeInUp 1s ease 0.4s both;
+}
+.fade-in-up-4 {
+  animation: fadeInUp 1s ease 0.6s both;
+}
+
+/* ── Wood-grain hero overlay ── */
+.wood-grain-overlay {
+  background-image: url("/wood.jpg");
+  background-size: 700px;
+  background-repeat: repeat;
+  opacity: 0.1;
+  mask-image: linear-gradient(to bottom, transparent 70%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 70%, black 100%);
+}
+
+/* ── Ambient radial glow blobs ── */
+.glow-amber {
+  background: radial-gradient(circle, var(--color-amber), transparent 68%);
+}
+.glow-amber-wide {
+  background: radial-gradient(circle, var(--color-amber), transparent 70%);
+}
+.glow-oxblood {
+  background: radial-gradient(
+    ellipse at center,
+    var(--color-oxblood),
+    transparent 65%
+  );
+}
+
+/* ── Spin used for badge rings ── */
+.spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+/* ── Draw-line accent for staff page ── */
+.draw-line {
+  animation: drawLine 1s ease 0.7s both;
+  transform-origin: left;
+}
+
+/* ── Nav slide / state ── */
+.nav-shell {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-intro {
+  animation: navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards;
+}
+.overlay-in {
+  animation: overlayIn 0.3s ease both;
+}
+.overlay-out {
+  animation: overlayOut 0.3s ease both;
+}
+.menu-item-in {
+  animation: menuItemIn 0.55s ease var(--menu-delay, 0s) both;
 }

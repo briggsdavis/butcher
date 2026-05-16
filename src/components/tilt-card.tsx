@@ -1,6 +1,6 @@
 "use client"
 
-import { HTMLAttributes, MouseEvent, useRef } from "react"
+import { HTMLAttributes, MouseEvent, useMemo, useRef } from "react"
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   /** Initial 2-D rotation angle in degrees — restored on mouse leave */
@@ -25,6 +25,10 @@ export function TiltCard({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const rest = `rotate(${initialRotate}deg)`
+  const mergedStyle = useMemo(
+    () => ({ ...style, transform: rest }),
+    [style, rest],
+  )
   const effectiveMaxTilt = subtle ? Math.min(maxTilt, 4) : maxTilt
   const hoverScale = subtle ? 1.015 : 1.04
   const springCurve = subtle
@@ -69,7 +73,7 @@ export function TiltCard({
       {...divProps}
       ref={ref}
       className={className}
-      style={{ ...style, transform: rest }}
+      style={mergedStyle}
       onMouseEnter={handleEnter}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}

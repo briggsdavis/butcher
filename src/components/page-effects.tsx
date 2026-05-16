@@ -26,23 +26,6 @@ export function PageEffects() {
       .querySelectorAll("[data-animate]")
       .forEach((el) => fadeObserver.observe(el))
 
-    // ── Wipe-up section reveal ─────────────────────────────────────────────
-    const wipeObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            ;(entry.target as HTMLElement).classList.add("wiped")
-            wipeObserver.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.04 },
-    )
-
-    document
-      .querySelectorAll("[data-wipe]")
-      .forEach((el) => wipeObserver.observe(el))
-
     // ── Parallax on scroll ─────────────────────────────────────────────────
     const parallaxEls = Array.from(
       document.querySelectorAll<HTMLElement>("[data-parallax]"),
@@ -104,7 +87,6 @@ export function PageEffects() {
 
     return () => {
       fadeObserver.disconnect()
-      wipeObserver.disconnect()
       window.removeEventListener("scroll", onScroll)
       document.removeEventListener("mousemove", onMouseMove)
       glow.remove()

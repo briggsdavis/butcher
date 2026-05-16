@@ -6,9 +6,7 @@ export function Footer() {
       <div className="px-8 py-16 md:px-16 md:py-24">
         <div className="grid md:grid-cols-3 md:divide-x md:divide-cream/10">
           <div className="pb-12 md:pr-16 md:pb-0">
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              Connect
-            </span>
+            <span className="text-xs text-amber uppercase">Connect</span>
             <h3 className="mt-4 font-display text-3xl text-cream">Contact</h3>
             <div className="mt-6 space-y-3 text-tan">
               <p>(412) 391-2752</p>
@@ -28,9 +26,7 @@ export function Footer() {
           </div>
 
           <div className="border-t border-cream/10 py-12 md:border-t-0 md:px-16 md:py-0">
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              Find Us
-            </span>
+            <span className="text-xs text-amber uppercase">Find Us</span>
             <h3 className="mt-4 font-display text-3xl text-cream">Location</h3>
             <div className="mt-6 space-y-3 text-tan">
               <p>2195 Penn Avenue</p>
@@ -45,9 +41,7 @@ export function Footer() {
           </div>
 
           <div className="border-t border-cream/10 pt-12 md:border-t-0 md:pt-0 md:pl-16">
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              Visit
-            </span>
+            <span className="text-xs text-amber uppercase">Visit</span>
             <h3 className="mt-4 font-display text-3xl text-cream">Hours</h3>
             <div className="mt-6 space-y-3 text-tan">
               <div className="flex justify-between">

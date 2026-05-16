@@ -1,11 +1,24 @@
 import { Metadata } from "next"
+import { Courier_Prime, Caveat } from "next/font/google"
 import { ReactNode } from "react"
 import { SiteChrome } from "~/components/site-chrome"
-import "@fontsource/courier-prime/400.css"
-import "@fontsource/courier-prime/400-italic.css"
-import "@fontsource/courier-prime/700.css"
-import "@fontsource/courier-prime/700-italic.css"
+// eslint-disable-next-line import/no-unassigned-import
 import "~/styles/styles.css"
+
+const courierPrime = Courier_Prime({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-courier-prime",
+  display: "swap",
+})
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-reenie-beanie",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -26,7 +39,10 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="antialiased">
+    <html
+      lang="en"
+      className={`${courierPrime.variable} ${caveat.variable} antialiased`}
+    >
       <body className="bg-charcoal font-sans text-cream">
         <SiteChrome>{children}</SiteChrome>
       </body>

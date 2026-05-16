@@ -55,42 +55,28 @@ export function StaffPage() {
           <div className="relative z-10">
             <div className="mb-6 flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                Our Staff
-              </span>
+              <span className="text-xs text-amber uppercase">Our Staff</span>
             </div>
 
-            <h1
-              className="font-display leading-tight text-cream"
-              style={{ fontSize: "clamp(2.185rem, 4.025vw, 2.76rem)" }}
-            >
+            <h1 className="font-display text-4xl text-cream md:text-5xl">
               The People
               <br />
-              <span
-                className="font-cursive text-amber"
-                style={{ fontSize: "0.88em" }}
-              >
+              <span className="font-cursive text-3xl text-amber md:text-4xl">
                 Behind
               </span>
               <br />
               the Craft
             </h1>
 
-            <div
-              className="mt-2 h-px w-14 bg-amber/35"
-              style={{
-                animation: "drawLine 1s ease 0.7s both",
-                transformOrigin: "left",
-              }}
-            />
+            <div className="draw-line mt-2 h-px w-14 bg-amber/35" />
 
-            <p className="mt-8 text-sm leading-relaxed text-tan">
+            <p className="mt-8 text-sm text-tan">
               Every dish, cocktail, and evening at Butcher and the Rye is shaped
               by people who have devoted their lives to their craft. Rigorously
               trained, endlessly inspired, and driven by one goal: to give you
               something extraordinary.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-tan">
+            <p className="mt-3 text-sm text-tan">
               From our Executive Chef to our floor staff, everyone here shares
               the same relentless commitment to excellence. We don't settle for
               good. We pursue perfect, every single night.
@@ -100,9 +86,9 @@ export function StaffPage() {
           {/* Progress indicator — desktop only */}
           <div className="relative z-10 mt-12 hidden items-end gap-6 md:flex">
             <div className="flex flex-col items-center gap-[5px]">
-              {STAFF.map((_, i) => (
+              {STAFF.map((member, i) => (
                 <div
-                  key={i}
+                  key={member.name}
                   className={`rounded-full transition-all duration-500 ease-out ${
                     i === activeIndex
                       ? "h-7 w-[3px] bg-amber"
@@ -115,17 +101,14 @@ export function StaffPage() {
             </div>
             <div>
               <p className="font-subhead">
-                <span
-                  className="text-amber"
-                  style={{ fontSize: "clamp(1.4rem, 2vw, 1.9rem)" }}
-                >
+                <span className="text-xl text-amber md:text-3xl">
                   {String(activeIndex + 1).padStart(2, "0")}
                 </span>
                 <span className="ml-2 text-xs text-cream/30">
                   / {String(STAFF.length).padStart(2, "0")}
                 </span>
               </p>
-              <p className="mt-1 text-xs tracking-[0.2em] text-tan/60 uppercase">
+              <p className="mt-1 text-xs text-tan/60 uppercase">
                 {activeMember.role}
               </p>
             </div>
@@ -153,29 +136,26 @@ export function StaffPage() {
 
               {/* Headshot — 20% larger than original (h-72 w-56 → h-[22rem] w-[17rem]) */}
               <div
-                className={`transition-all duration-700 ${
+                className={`transition-all delay-[80ms] duration-700 ${
                   revealed[i]
                     ? "translate-y-0 opacity-100"
                     : "translate-y-10 opacity-0"
                 }`}
-                style={{ transitionDelay: "80ms" }}
               >
                 <div className="relative mx-auto mb-8 h-[22rem] w-[17rem] md:h-96 md:w-[19rem]">
                   {/* Outer accent border */}
                   <div
-                    className={`absolute -inset-[7px] rounded-sm border border-amber/20 transition-all duration-700 ${
+                    className={`absolute -inset-[7px] rounded-sm border border-amber/20 transition-all delay-[320ms] duration-700 ${
                       revealed[i]
                         ? "scale-100 opacity-100"
                         : "scale-95 opacity-0"
                     }`}
-                    style={{ transitionDelay: "320ms" }}
                   />
                   {/* Ambient glow */}
                   <div
-                    className={`absolute -inset-5 rounded-sm bg-amber/[0.04] blur-sm transition-all duration-1000 ${
+                    className={`absolute -inset-5 rounded-sm bg-amber/[0.04] blur-sm transition-all delay-500 duration-1000 ${
                       revealed[i] ? "opacity-100" : "opacity-0"
                     }`}
-                    style={{ transitionDelay: "500ms" }}
                   />
                   {/* Headshot image */}
                   <div className="img-inset-shadow relative h-full w-full overflow-hidden rounded-sm">
@@ -193,12 +173,11 @@ export function StaffPage() {
 
               {/* Name — 20% smaller than original text-4xl md:text-5xl */}
               <div
-                className={`transition-all duration-700 ${
+                className={`transition-all delay-200 duration-700 ${
                   revealed[i]
                     ? "translate-y-0 opacity-100"
                     : "translate-y-4 opacity-0"
                 }`}
-                style={{ transitionDelay: "200ms" }}
               >
                 <h2 className="text-center font-display text-3xl text-cream md:text-4xl">
                   {member.name}
@@ -207,33 +186,29 @@ export function StaffPage() {
 
               {/* Role */}
               <div
-                className={`transition-all duration-700 ${
+                className={`transition-all delay-[320ms] duration-700 ${
                   revealed[i]
                     ? "translate-y-0 opacity-100"
                     : "translate-y-4 opacity-0"
                 }`}
-                style={{ transitionDelay: "320ms" }}
               >
-                <p className="mt-3 text-center text-xs tracking-[0.3em] text-amber uppercase">
+                <p className="mt-3 text-center text-xs text-amber uppercase">
                   {member.role}
                 </p>
               </div>
 
               {/* Experience badge */}
               <div
-                className={`mt-5 transition-all duration-500 ${
+                className={`mt-5 transition-all delay-[440ms] duration-500 ${
                   revealed[i] ? "opacity-100" : "opacity-0"
                 }`}
-                style={{ transitionDelay: "440ms" }}
               >
                 <div className="inline-flex items-center gap-3 border border-cream/10 px-5 py-2">
-                  <span className="text-xs tracking-[0.25em] text-cream/30 uppercase">
+                  <span className="text-xs text-cream/30 uppercase">
                     Experience
                   </span>
                   <span className="h-3 w-px bg-cream/10" />
-                  <span className="text-xs tracking-wider text-amber/70">
-                    {member.years}
-                  </span>
+                  <span className="text-xs text-amber/70">{member.years}</span>
                 </div>
               </div>
             </section>
@@ -246,12 +221,10 @@ export function StaffPage() {
         <div className="max-w-xl px-8 md:px-16">
           <div className="mb-8 flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-oxblood/20" />
-            <span className="text-xs tracking-[0.3em] text-oxblood/50 uppercase">
-              Join Us
-            </span>
+            <span className="text-xs text-oxblood/50 uppercase">Join Us</span>
             <span className="block h-px w-12 shrink-0 bg-oxblood/20" />
           </div>
-          <h2 className="font-display text-5xl leading-tight text-charcoal md:text-7xl">
+          <h2 className="font-display text-5xl text-charcoal md:text-7xl">
             Reserve your
             <br />
             <span className="text-oxblood italic">evening</span>
@@ -262,7 +235,7 @@ export function StaffPage() {
           </p>
           <Link
             href="/#reservations"
-            className="mt-12 inline-block bg-oxblood px-12 py-5 text-xs font-medium tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-charcoal hover:shadow-[0_8px_32px_rgba(60,21,24,0.5)]"
+            className="mt-12 inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
           >
             Reserve Now
           </Link>

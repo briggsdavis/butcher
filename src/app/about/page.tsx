@@ -82,40 +82,18 @@ export default function About() {
         {/* Wood grain — on top of gradients, invisible top 70%, fades in bottom 30% */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: "url(/wood.jpg)",
-            backgroundSize: "700px",
-            backgroundRepeat: "repeat",
-            opacity: 0.1,
-            maskImage:
-              "linear-gradient(to bottom, transparent 70%, black 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 70%, black 100%)",
-          }}
+          className="wood-grain-overlay pointer-events-none absolute inset-0"
         />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-24 md:px-16">
-          <p
-            className="mb-5 text-xs tracking-[0.3em] text-amber uppercase"
-            style={{ animation: "fadeInUp 1s ease 0.15s both" }}
-          >
+          <p className="fade-in-up-1 mb-5 text-xs text-amber uppercase">
             Pittsburgh, PA · Est. 2013
           </p>
-          <h1
-            className="heading-emboss font-display leading-none tracking-tight text-cream"
-            style={{
-              fontSize: "clamp(3rem, 8vw, 6.4rem)",
-              animation: "fadeInUp 1s ease 0.35s both",
-            }}
-          >
+          <h1 className="heading-emboss fade-in-up-2 font-display text-5xl text-cream md:text-7xl lg:text-8xl">
             Where Craft
             <br />
             <span className="text-amber italic">Meets</span> Tradition
           </h1>
-          <p
-            className="mt-6 max-w-md text-lg leading-relaxed text-tan"
-            style={{ animation: "fadeInUp 1s ease 0.6s both" }}
-          >
+          <p className="fade-in-up-4 mt-6 max-w-md text-lg text-tan">
             A storied table in Pittsburgh&rsquo;s Penn Avenue corridor, built on
             the belief that extraordinary evenings begin with extraordinary
             people and uncompromising craft.
@@ -134,14 +112,12 @@ export default function About() {
             <div>
               <div data-animate="" className="flex items-center gap-4">
                 <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                  The Chef
-                </span>
+                <span className="text-xs text-amber uppercase">The Chef</span>
               </div>
               <h2
                 data-animate=""
                 data-delay="130"
-                className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
+                className="heading-emboss mt-4 font-display text-5xl text-cream md:text-6xl"
               >
                 A life
                 <br />
@@ -152,7 +128,7 @@ export default function About() {
               <p
                 data-animate=""
                 data-delay="285"
-                className="mt-10 text-lg leading-relaxed text-tan"
+                className="mt-10 text-lg text-tan"
               >
                 Our Executive Chef came up the long way: years on the line in
                 some of the country&rsquo;s most demanding kitchens, training
@@ -163,7 +139,7 @@ export default function About() {
               <p
                 data-animate=""
                 data-delay="440"
-                className="mt-6 text-lg leading-relaxed text-tan"
+                className="mt-6 text-lg text-tan"
               >
                 His philosophy is simple: source honestly, cook patiently, and
                 trust the ingredient. The menu changes with what the farms and
@@ -174,7 +150,7 @@ export default function About() {
                 data-delay="600"
                 className="mt-10 border-l-2 border-amber/30 pl-6"
               >
-                <p className="font-cursive text-2xl leading-relaxed text-cream/70">
+                <p className="font-cursive text-2xl text-cream/70">
                   &ldquo;The fire teaches you patience. The cut teaches you
                   respect. The rest is just paying attention.&rdquo;
                 </p>
@@ -214,8 +190,7 @@ export default function About() {
               <div
                 data-animate=""
                 data-delay="495"
-                className="absolute right-0 -bottom-14 z-10 h-28 w-28 text-amber/30 md:h-32 md:w-32"
-                style={{ animation: "spin 20s linear infinite" }}
+                className="spin-slow absolute right-0 -bottom-14 z-10 h-28 w-28 text-amber/30 md:h-32 md:w-32"
                 aria-hidden="true"
               >
                 <svg viewBox="0 0 100 100" className="h-full w-full">
@@ -250,14 +225,12 @@ export default function About() {
             <div className="flex flex-col justify-center">
               <div data-animate="" className="flex items-center gap-4">
                 <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                  The People
-                </span>
+                <span className="text-xs text-amber uppercase">The People</span>
               </div>
               <h2
                 data-animate=""
                 data-delay="130"
-                className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-6xl"
+                className="heading-emboss mt-4 font-display text-5xl text-cream md:text-6xl"
               >
                 The people
                 <br />
@@ -268,7 +241,7 @@ export default function About() {
               <p
                 data-animate=""
                 data-delay="285"
-                className="mt-8 text-lg leading-relaxed text-tan"
+                className="mt-8 text-lg text-tan"
               >
                 Our team brings decades of combined experience from some of the
                 country&rsquo;s finest kitchens, bars, and dining rooms. They
@@ -282,7 +255,7 @@ export default function About() {
               >
                 <Link
                   href="/our-staff"
-                  className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
+                  className="group inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-cream"
                 >
                   Meet the full team
                   <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
@@ -314,7 +287,7 @@ export default function About() {
                   <p className="font-subhead text-xl text-cream">
                     {member.name}
                   </p>
-                  <p className="mt-1 text-xs tracking-[0.2em] text-amber uppercase">
+                  <p className="mt-1 text-xs text-amber uppercase">
                     {member.role}
                   </p>
                 </div>
@@ -332,9 +305,7 @@ export default function About() {
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-20 flex items-center gap-4">
             <span className="block h-px w-10 shrink-0 bg-amber/50" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              Our Values
-            </span>
+            <span className="text-xs text-amber uppercase">Our Values</span>
           </div>
 
           {VALUES.map((value, i) => {
@@ -353,8 +324,7 @@ export default function About() {
                 >
                   <div className={`relative ${reversed ? "md:order-2" : ""}`}>
                     <div
-                      className={`pointer-events-none absolute ${value.numeralClass} font-display leading-none text-cream/[0.04] select-none`}
-                      style={{ fontSize: "clamp(7rem, 14vw, 14rem)" }}
+                      className={`pointer-events-none absolute ${value.numeralClass} font-display text-[7rem] text-cream/[0.04] select-none md:text-[11rem] lg:text-[14rem]`}
                       aria-hidden="true"
                     >
                       {value.numeral}
@@ -370,7 +340,7 @@ export default function About() {
                       <p
                         data-animate=""
                         data-delay="130"
-                        className="mt-6 text-lg leading-relaxed text-tan"
+                        className="mt-6 text-lg text-tan"
                       >
                         {value.body}
                       </p>
@@ -406,14 +376,12 @@ export default function About() {
       {/* ── 4. FULL-WIDTH IMAGE BREAK ── */}
       <section
         data-wipe
-        className="relative overflow-hidden bg-charcoal"
-        style={{ minHeight: "80vh" }}
+        className="relative min-h-[80vh] overflow-hidden bg-charcoal"
       >
         <div
           data-parallax="image-break"
           data-parallax-speed="0.1"
-          className="absolute inset-x-0"
-          style={{ top: "-10%", bottom: "-10%" }}
+          className="absolute inset-x-0 top-[-10%] bottom-[-10%]"
         >
           <Image
             src="/decor17.jpg"
@@ -443,17 +411,13 @@ export default function About() {
           data-parallax-speed="0.05"
           className="relative z-10 mx-auto max-w-5xl px-8 text-center md:px-16"
         >
-          <p
-            data-animate=""
-            className="mb-8 text-xs tracking-[0.3em] text-amber uppercase"
-          >
+          <p data-animate="" className="mb-8 text-xs text-amber uppercase">
             Our Philosophy
           </p>
           <blockquote
             data-animate=""
             data-delay="130"
-            className="font-display leading-tight text-oxblood"
-            style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+            className="font-display text-3xl text-oxblood md:text-5xl lg:text-6xl"
           >
             &ldquo;The pursuit of extraordinary starts with refusing to accept
             ordinary.&rdquo;
@@ -461,7 +425,7 @@ export default function About() {
           <span data-animate="" data-delay="365" className="mt-12 inline-block">
             <Link
               href="/food"
-              className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-oxblood"
+              className="group inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-oxblood"
             >
               Explore the menu
               <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
@@ -488,15 +452,13 @@ export default function About() {
             className="flex items-center justify-center gap-6"
           >
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              Join Us
-            </span>
+            <span className="text-xs text-amber uppercase">Join Us</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
           </div>
           <h2
             data-animate=""
             data-delay="130"
-            className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
+            className="heading-emboss mt-4 font-display text-5xl text-cream md:text-8xl"
           >
             Reserve your
             <br />
@@ -513,7 +475,7 @@ export default function About() {
           <span data-animate="" data-delay="470" className="mt-12 inline-block">
             <Link
               href="#reservations"
-              className="inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
+              className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               Book a Table
             </Link>

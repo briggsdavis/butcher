@@ -25,7 +25,7 @@ export function MenuNav() {
           <Link
             key={href}
             href={href}
-            className={`${align} border-b-2 pb-0.5 text-xs tracking-[0.25em] uppercase transition-colors ${
+            className={`${align} border-b-2 pb-0.5 text-xs uppercase transition-colors ${
               active
                 ? "border-amber text-cream"
                 : "border-transparent text-tan/50 hover:text-cream"

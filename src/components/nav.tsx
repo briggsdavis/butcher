@@ -5,21 +5,31 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
-const MENU_LINKS = [
-  { href: "/", label: "Home", num: "01" },
-  { href: "/about", label: "About", num: "02" },
-  { href: "/our-staff", label: "Our Staff", num: "03" },
-  { href: "/food", label: "Food", num: "04" },
-  { href: "/spirits", label: "Spirits", num: "05" },
-  { href: "/beverages", label: "Beverages", num: "06" },
-  { href: "#reservations", label: "Reserve", num: "07" },
+type MenuLink = {
+  href: string
+  label: string
+  num: string
+  style: React.CSSProperties
+}
+
+const menuStyle = (delay: number): React.CSSProperties =>
+  ({ "--menu-delay": `${delay}s` }) as React.CSSProperties
+
+const MENU_LINKS: MenuLink[] = [
+  { href: "/", label: "Home", num: "01", style: menuStyle(0.06) },
+  { href: "/about", label: "About", num: "02", style: menuStyle(0.13) },
+  { href: "#reservations", label: "Reserve", num: "03", style: menuStyle(0.2) },
+  { href: "/our-staff", label: "Our Staff", num: "04", style: menuStyle(0.27) },
+  { href: "/food", label: "Food", num: "05", style: menuStyle(0.34) },
+  { href: "/spirits", label: "Spirits", num: "06", style: menuStyle(0.41) },
+  { href: "/beverages", label: "Beverages", num: "07", style: menuStyle(0.48) },
 ]
 
 export function Nav() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [closing, setClosing] = useState(false)
-  const [introStyle, setIntroStyle] = useState<React.CSSProperties>({})
+  const [introClass, setIntroClass] = useState("")
   const [hidden, setHidden] = useState(false)
   const lastScrollY = useRef(0)
 
@@ -29,10 +39,7 @@ export function Nav() {
     if (pathname !== "/") return
     try {
       if (!sessionStorage.getItem("nav-intro-done")) {
-        setIntroStyle({
-          animation:
-            "navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards",
-        })
+        setIntroClass("nav-intro")
         sessionStorage.setItem("nav-intro-done", "true")
       }
     } catch {
@@ -76,12 +83,7 @@ export function Nav() {
   return (
     <>
       <nav
-        style={{
-          ...introStyle,
-          transform: hidden ? "translateY(-100%)" : "translateY(0)",
-          transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
-        className="fixed inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16"
+        className={`nav-shell ${introClass} ${hidden ? "-translate-y-full" : "translate-y-0"} fixed inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16`}
       >
         <Image src="/wood.jpg" alt="" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-oxblood/70" />
@@ -102,19 +104,19 @@ export function Nav() {
           <div className="hidden items-center gap-6 md:flex">
             <Link
               href="/food"
-              className="text-xs tracking-[0.25em] text-white uppercase transition-colors hover:text-amber"
+              className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
               Food
             </Link>
             <Link
               href="/spirits"
-              className="text-xs tracking-[0.25em] text-white uppercase transition-colors hover:text-amber"
+              className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
               Spirits
             </Link>
             <Link
               href="/beverages"
-              className="text-xs tracking-[0.25em] text-white uppercase transition-colors hover:text-amber"
+              className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
               Beverages
             </Link>
@@ -129,16 +131,16 @@ export function Nav() {
           <Image
             src="/logo.png"
             alt="Butcher & the Rye"
-            width={48}
-            height={48}
-            className="h-10 w-10 md:h-12 md:w-12"
+            width={60}
+            height={60}
+            className="h-12 w-12 md:h-15 md:w-15"
           />
         </Link>
 
         {/* Reserve — top right */}
         <Link
           href="/#reservations"
-          className="relative z-10 ml-auto hidden border border-white/50 px-5 py-2 text-xs tracking-[0.25em] text-white uppercase transition-colors hover:border-amber hover:text-amber md:block"
+          className="relative z-10 ml-auto hidden border border-amber px-5 py-2 text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] md:block"
         >
           Reserve
         </Link>
@@ -147,10 +149,7 @@ export function Nav() {
       {/* Full-screen overlay menu */}
       {open && (
         <div
-          className="fixed inset-0 z-[100] flex flex-col bg-charcoal"
-          style={{
-            animation: `${closing ? "overlayOut" : "overlayIn"} 0.3s ease both`,
-          }}
+          className={`${closing ? "overlay-out" : "overlay-in"} fixed inset-0 z-[100] flex flex-col bg-charcoal`}
         >
           {/* Close */}
           <button
@@ -158,34 +157,28 @@ export function Nav() {
             aria-label="Close navigation"
             className="absolute top-7 left-8 z-10 flex h-6 w-6 items-center justify-center md:left-16"
           >
-            <span
-              className="absolute block h-px w-5 bg-cream/60"
-              style={{ transform: "rotate(45deg)" }}
-            />
-            <span
-              className="absolute block h-px w-5 bg-cream/60"
-              style={{ transform: "rotate(-45deg)" }}
-            />
+            <span className="absolute block h-px w-5 rotate-45 bg-cream/60" />
+            <span className="absolute block h-px w-5 -rotate-45 bg-cream/60" />
           </button>
 
           {/* Menu items — right-aligned, numbered, slide left on hover */}
           <div className="flex flex-1 flex-col justify-center pr-12 md:pr-28 lg:pr-40">
-            {MENU_LINKS.map((link, i) => (
+            {MENU_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="group flex items-baseline self-end py-2 md:py-3"
-                style={{
-                  animation: `menuItemIn 0.55s ease ${0.06 + i * 0.07}s both`,
-                }}
+                className="menu-item-in group flex items-baseline self-end py-2 md:py-3"
+                style={link.style}
               >
                 {/* Slide both number + label together on hover */}
                 <div className="flex items-baseline gap-3 transition-transform duration-300 ease-out group-hover:-translate-x-4">
                   <span className="font-sans text-xs text-cream/25">
                     {link.num}
                   </span>
-                  <span className="font-display text-3xl leading-none text-cream md:text-5xl lg:text-6xl">
+                  <span
+                    className={`font-display text-3xl text-cream md:text-5xl lg:text-6xl ${link.label === "Reserve" ? "font-bold" : ""}`}
+                  >
                     {link.label}
                   </span>
                 </div>

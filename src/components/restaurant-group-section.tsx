@@ -76,12 +76,10 @@ export function RestaurantGroupSection() {
         <div className="mb-14 text-center" data-animate="">
           <div className="flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              The Family
-            </span>
+            <span className="text-xs text-amber uppercase">The Family</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
           </div>
-          <h2 className="mt-4 font-display text-4xl leading-tight text-cream md:text-5xl">
+          <h2 className="mt-4 font-display text-4xl text-cream md:text-5xl">
             Part of the{" "}
             <Link
               href="https://richarddeshantz.com/"
@@ -126,7 +124,7 @@ export function RestaurantGroupSection() {
                   </div>
                 </div>
                 <div className="flex min-h-10 items-center justify-center px-3 pb-3">
-                  <p className="text-center font-cursive text-sm leading-tight text-charcoal">
+                  <p className="text-center font-handwritten text-2xl text-charcoal">
                     {restaurant.name}
                   </p>
                 </div>

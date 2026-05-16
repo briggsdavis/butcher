@@ -1,20 +1,21 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type HeroImage = { src: string; alt: string }
 
 interface HeroCarouselProps {
   images: HeroImage[]
-  firstImageAngle?: boolean
+  parallaxSpeed?: number
 }
 
 export function HeroCarousel({
   images,
-  firstImageAngle = false,
+  parallaxSpeed = 0.15,
 }: HeroCarouselProps) {
   const [active, setActive] = useState(0)
+  const layerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const id = setInterval(
@@ -24,30 +25,51 @@ export function HeroCarousel({
     return () => clearInterval(id)
   }, [images.length])
 
+  useEffect(() => {
+    let frame = 0
+    const apply = () => {
+      frame = 0
+      if (layerRef.current) {
+        layerRef.current.style.transform = `translate3d(0, ${window.scrollY * parallaxSpeed}px, 0)`
+      }
+    }
+    const onScroll = () => {
+      if (frame) return
+      frame = requestAnimationFrame(apply)
+    }
+    apply()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      if (frame) cancelAnimationFrame(frame)
+    }
+  }, [parallaxSpeed])
+
   return (
     <>
-      {images.map((img, i) => (
-        <div
-          key={img.src}
-          data-parallax="hero-bg"
-          data-parallax-speed="0.15"
-          data-parallax-no-rotate={firstImageAngle && i === 0 ? undefined : ""}
-          className={`absolute inset-x-0 transition-opacity duration-1000 ${active === i ? "opacity-100" : "opacity-0"}`}
-          style={{ top: "-15%", bottom: "-15%" }}
-        >
-          <Image
-            src={img.src}
-            alt={img.alt}
-            fill
-            priority={i === 0}
-            className="object-cover"
-          />
-        </div>
-      ))}
+      <div
+        ref={layerRef}
+        className="absolute inset-x-0 top-[-15%] bottom-[-15%] will-change-transform"
+      >
+        {images.map((img, i) => (
+          <div
+            key={img.src}
+            className={`absolute inset-0 transition-opacity duration-1000 ${active === i ? "opacity-100" : "opacity-0"}`}
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
       <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-        {images.map((_, i) => (
+        {images.map((img, i) => (
           <button
-            key={i}
+            key={img.src}
             onClick={() => setActive(i)}
             aria-label={`Go to slide ${i + 1}`}
             className={`rounded-full transition-all duration-500 ${

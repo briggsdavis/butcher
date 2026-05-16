@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { EqualWidthStack } from "~/components/equal-width-stack"
 import { HeroCarousel } from "~/components/hero-carousel"
 import { InfiniteCarousel } from "~/components/infinite-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
@@ -68,7 +69,7 @@ export default function Home() {
     <>
       {/* ── Hero ── */}
       <section className="hero-section relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
-        <HeroCarousel images={HOME_HERO_IMAGES} firstImageAngle />
+        <HeroCarousel images={HOME_HERO_IMAGES} />
         {/* Top vignette — darkens top half for atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades into the next section */}
@@ -76,41 +77,29 @@ export default function Home() {
         {/* Wood grain — on top of gradients, invisible top 70%, fades in bottom 30% */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: "url(/wood.jpg)",
-            backgroundSize: "700px",
-            backgroundRepeat: "repeat",
-            opacity: 0.1,
-            maskImage:
-              "linear-gradient(to bottom, transparent 70%, black 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 70%, black 100%)",
-          }}
+          className="wood-grain-overlay pointer-events-none absolute inset-0"
+        />
+        {/* Watermark logo */}
+        <Image
+          aria-hidden="true"
+          src="/logo.png"
+          alt=""
+          width={1200}
+          height={1200}
+          priority
+          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] mix-blend-screen"
         />
         <div className="relative z-10 flex flex-col items-center px-8 pb-24 text-center md:px-16">
-          <h1
-            className="heading-emboss font-display leading-none tracking-tight text-cream"
-            style={{
-              fontSize: "clamp(2.5rem, 6.25vw, 3.75rem)",
-              animation: "fadeInUp 1s ease 0.15s both",
-            }}
-          >
-            Butcher <span className="text-amber italic">&</span> the Rye
-          </h1>
-          <div
-            className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
-            style={{ animation: "fadeInUp 1s ease 0.4s both" }}
-          >
+          <div className="fade-in-up-3 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
             <Link
               href="#reservations"
-              className="inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+              className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               Reserve a Table
             </Link>
             <Link
               href="/food"
-              className="inline-block border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.18)]"
+              className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               View Menu
             </Link>
@@ -126,11 +115,7 @@ export default function Home() {
         {/* Ambient glow blob — lower-left, warm */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 -left-32 h-[550px] w-[550px] rounded-full opacity-[0.07]"
-          style={{
-            background:
-              "radial-gradient(circle, var(--color-amber), transparent 68%)",
-          }}
+          className="glow-amber pointer-events-none absolute -bottom-32 -left-32 h-[550px] w-[550px] rounded-full opacity-[0.07]"
         />
         <div className="mx-auto grid max-w-7xl gap-16 px-8 md:grid-cols-2 md:px-16">
           <div data-animate="">
@@ -148,7 +133,7 @@ export default function Home() {
                 />
               </div>
               <div className="flex h-16 items-center justify-center md:h-24">
-                <p className="font-cursive text-2xl text-charcoal md:text-3xl">
+                <p className="font-handwritten text-3xl text-charcoal md:text-4xl">
                   The Old Fashioned
                 </p>
               </div>
@@ -157,18 +142,30 @@ export default function Home() {
           <div className="flex flex-col justify-center">
             <div data-animate="" className="flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs tracking-[0.3em] text-amber uppercase">
+              <span className="text-xs text-amber uppercase">
                 Cocktails & Spirits
               </span>
             </div>
             <h2
               data-animate=""
               data-delay="130"
-              className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+              className="heading-emboss mt-4 font-display text-5xl text-cream md:text-7xl"
             >
-              Crafted,
-              <br />
-              never <span className="text-tan italic">mixed</span>
+              <EqualWidthStack className="inline-block text-center">
+                <span className="invisible block">
+                  <span data-equal-word="" className="inline-block">
+                    Crafted
+                  </span>
+                </span>
+                <span className="-mt-[0.4em] -mb-[0.65em] block font-cursive text-amber">
+                  never
+                </span>
+                <span className="invisible block text-cream">
+                  <span data-equal-word="" className="inline-block">
+                    mixed
+                  </span>
+                </span>
+              </EqualWidthStack>
             </h2>
             <div className="mt-16 space-y-10">
               {COCKTAILS.map((drink, i) => (
@@ -190,13 +187,13 @@ export default function Home() {
             <div data-animate="" data-delay="715" className="flex gap-6">
               <Link
                 href="/beverages"
-                className="border border-cream/30 px-8 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+                className="border border-amber px-8 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
               >
                 Beverages
               </Link>
               <Link
                 href="/spirits"
-                className="border border-amber px-8 py-4 text-xs tracking-[0.3em] text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-amber hover:text-charcoal hover:shadow-[0_4px_24px_rgba(213,137,54,0.3)]"
+                className="border border-amber px-8 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
               >
                 Spirits
               </Link>
@@ -213,11 +210,7 @@ export default function Home() {
         {/* Ambient glow blob */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-[0.06]"
-          style={{
-            background:
-              "radial-gradient(circle, var(--color-amber), transparent 70%)",
-          }}
+          className="glow-amber-wide pointer-events-none absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-[0.06]"
         />
         <div
           data-parallax="content"
@@ -228,14 +221,12 @@ export default function Home() {
           <div className="flex flex-col justify-center">
             <div data-animate="" className="flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs tracking-[0.3em] text-amber uppercase">
-                Our Story
-              </span>
+              <span className="text-xs text-amber uppercase">Our Story</span>
             </div>
             <h2
               data-animate=""
               data-delay="130"
-              className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+              className="heading-emboss mt-4 font-display text-5xl text-cream md:text-7xl"
             >
               Where every
               <br />
@@ -245,7 +236,7 @@ export default function Home() {
             <p
               data-animate=""
               data-delay="260"
-              className="mt-8 text-lg leading-relaxed text-tan"
+              className="mt-8 text-lg text-tan"
             >
               Butcher and the Rye was born from a reverence for the craft: the
               slow char of a barrel, the patience of a dry-aged cut, the
@@ -254,7 +245,7 @@ export default function Home() {
             <p
               data-animate=""
               data-delay="390"
-              className="mt-6 text-lg leading-relaxed text-tan"
+              className="mt-6 text-lg text-tan"
             >
               We are a place for those who understand that a great evening is
               not rushed. It is savored, one pour at a time.
@@ -266,7 +257,7 @@ export default function Home() {
             >
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-3 text-sm leading-none tracking-[0.2em] text-amber uppercase transition-colors duration-500 hover:text-cream"
+                className="group inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-cream"
               >
                 Read more
                 <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
@@ -279,8 +270,7 @@ export default function Home() {
             <div
               data-animate=""
               data-delay="195"
-              className="img-inset-shadow relative h-[26rem] overflow-hidden shadow-2xl"
-              style={{ transform: "rotate(-1.2deg)" }}
+              className="img-inset-shadow relative h-[26rem] rotate-[-1.2deg] overflow-hidden shadow-2xl"
             >
               <Image
                 src="/barmood.jpg"
@@ -309,8 +299,7 @@ export default function Home() {
             <div
               data-animate=""
               data-delay="495"
-              className="absolute -bottom-14 left-0 z-10 h-28 w-28 text-amber/20 md:h-32 md:w-32"
-              style={{ animation: "spin 20s linear infinite" }}
+              className="spin-slow absolute -bottom-14 left-0 z-10 h-28 w-28 text-amber/20 md:h-32 md:w-32"
               aria-hidden="true"
             >
               <svg viewBox="0 0 100 100" className="h-full w-full">
@@ -342,14 +331,14 @@ export default function Home() {
               <div>
                 <div data-animate="" className="flex items-center gap-4">
                   <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                  <span className="text-xs tracking-[0.3em] text-amber uppercase">
+                  <span className="text-xs text-amber uppercase">
                     From the Kitchen
                   </span>
                 </div>
                 <h2
                   data-animate=""
                   data-delay="130"
-                  className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-7xl"
+                  className="heading-emboss mt-4 font-display text-5xl text-cream md:text-7xl"
                 >
                   The menu
                 </h2>
@@ -360,7 +349,7 @@ export default function Home() {
                 >
                   <Link
                     href="/food"
-                    className="border border-cream/30 px-10 py-4 text-xs tracking-[0.3em] text-cream uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-amber hover:text-amber hover:shadow-[0_4px_24px_rgba(213,137,54,0.15)]"
+                    className="border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
                   >
                     Full Menu
                   </Link>
@@ -407,7 +396,7 @@ export default function Home() {
                 />
               </div>
               <div data-animate="" data-delay="560" className="mt-8">
-                <p className="max-w-xs text-sm leading-relaxed text-tan">
+                <p className="max-w-xs text-sm text-tan">
                   Sourced from heritage farms and shaped by old-world technique.
                   Every plate is a reflection of place, season, and craft.
                 </p>
@@ -425,8 +414,7 @@ export default function Home() {
         <div
           data-parallax="content"
           data-parallax-speed="0.2"
-          className="absolute inset-x-0"
-          style={{ top: "-20%", bottom: "-20%" }}
+          className="absolute inset-x-0 top-[-20%] bottom-[-20%]"
         >
           <Image
             src="/parallax-wide.jpg"
@@ -440,11 +428,11 @@ export default function Home() {
           data-animate=""
           className="relative z-10 max-w-2xl px-8 text-center"
         >
-          <p className="heading-emboss font-display text-2xl leading-snug text-cream md:text-4xl">
+          <p className="heading-emboss font-display text-2xl text-cream md:text-4xl">
             &ldquo;The best meals are the ones you{" "}
             <span className="text-amber italic">never forget.</span>&rdquo;
           </p>
-          <cite className="mt-6 block text-xs tracking-[0.3em] text-tan/70 uppercase not-italic">
+          <cite className="mt-6 block text-xs text-tan/70 uppercase not-italic">
             Butcher &amp; the Rye · Est. 2013
           </cite>
         </blockquote>
@@ -455,7 +443,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-14 flex items-center gap-6">
             <span className="block h-px flex-1 bg-amber/25" />
-            <span className="shrink-0 text-xs tracking-[0.3em] text-amber uppercase">
+            <span className="shrink-0 text-xs text-amber uppercase">
               On the Wall
             </span>
             <span className="block h-px flex-1 bg-amber/25" />
@@ -495,11 +483,7 @@ export default function Home() {
         {/* Ambient glow blob — centred radial */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, var(--color-oxblood), transparent 65%)",
-          }}
+          className="glow-oxblood pointer-events-none absolute inset-0 opacity-[0.08]"
         />
         <div className="relative z-10 text-center">
           <div
@@ -507,15 +491,13 @@ export default function Home() {
             className="flex items-center justify-center gap-6"
           >
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
-            <span className="text-xs tracking-[0.3em] text-amber uppercase">
-              Join Us
-            </span>
+            <span className="text-xs text-amber uppercase">Join Us</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
           </div>
           <h2
             data-animate=""
             data-delay="130"
-            className="heading-emboss mt-4 font-display text-5xl leading-tight text-cream md:text-8xl"
+            className="heading-emboss mt-4 font-display text-5xl text-cream md:text-8xl"
           >
             Reserve your
             <br />
@@ -535,7 +517,7 @@ export default function Home() {
           <span data-animate="" data-delay="470" className="mt-4 inline-block">
             <Link
               href="#"
-              className="inline-block bg-amber px-12 py-5 text-xs font-medium tracking-[0.3em] text-charcoal uppercase transition-all duration-500 hover:-translate-y-0.5 hover:bg-[#e09b4a] hover:shadow-[0_8px_40px_rgba(213,137,54,0.55)]"
+              className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               Book a Table
             </Link>
