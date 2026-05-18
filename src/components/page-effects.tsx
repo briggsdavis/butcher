@@ -22,9 +22,27 @@ export function PageEffects() {
       { threshold: 0.15, rootMargin: "0px 0px -18% 0px" },
     )
 
-    document
-      .querySelectorAll("[data-animate]")
-      .forEach((el) => fadeObserver.observe(el))
+    const observeFadeTargets = (root: ParentNode) => {
+      root.querySelectorAll("[data-animate]").forEach((el) => {
+        if (!el.classList.contains("in-view")) fadeObserver.observe(el)
+      })
+    }
+    observeFadeTargets(document)
+
+    // Pick up [data-animate] elements added after first paint (e.g. async
+    // queries rendering list rows). Without this, late-arriving content stays
+    // at opacity 0 because the IntersectionObserver was never attached to it.
+    const mutationObserver = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        m.addedNodes.forEach((node) => {
+          if (node.nodeType !== Node.ELEMENT_NODE) return
+          const el = node as Element
+          if (el.matches("[data-animate]")) fadeObserver.observe(el)
+          observeFadeTargets(el)
+        })
+      }
+    })
+    mutationObserver.observe(document.body, { childList: true, subtree: true })
 
     // ── Parallax on scroll ─────────────────────────────────────────────────
     const parallaxEls = Array.from(
@@ -87,6 +105,7 @@ export function PageEffects() {
 
     return () => {
       fadeObserver.disconnect()
+      mutationObserver.disconnect()
       window.removeEventListener("scroll", onScroll)
       document.removeEventListener("mousemove", onMouseMove)
       glow.remove()

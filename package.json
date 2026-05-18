@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "bun run --parallel dev:next dev:convex",
-    "dev:next": "next dev",
-    "dev:convex": "convex dev",
+    "dev": "convex dev --start 'next dev'",
     "build": "next build",
     "start": "next start",
     "lint": "oxlint",

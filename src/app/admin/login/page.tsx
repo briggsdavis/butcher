@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border border-amber/40 bg-transparent px-4 py-3 text-cream outline-none transition-colors focus:border-amber"
+              className="border border-amber/40 bg-transparent px-4 py-3 text-cream transition-colors outline-none focus:border-amber"
             />
           </label>
           <label className="flex flex-col gap-2">
@@ -56,13 +56,11 @@ export default function AdminLoginPage() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border border-amber/40 bg-transparent px-4 py-3 text-cream outline-none transition-colors focus:border-amber"
+              className="border border-amber/40 bg-transparent px-4 py-3 text-cream transition-colors outline-none focus:border-amber"
             />
           </label>
 
-          {error && (
-            <p className="font-subhead text-sm text-amber">{error}</p>
-          )}
+          {error && <p className="font-subhead text-sm text-amber">{error}</p>}
 
           <button
             type="submit"

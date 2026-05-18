@@ -4,7 +4,7 @@ import { betterAuth } from "better-auth"
 import { APIError, createAuthMiddleware } from "better-auth/api"
 import { components } from "./_generated/api"
 import type { DataModel } from "./_generated/dataModel"
-import { query } from "./_generated/server"
+import { query, type QueryCtx, type MutationCtx } from "./_generated/server"
 import authConfig from "./auth.config"
 
 const siteUrl = process.env.SITE_URL ?? "http://localhost:3000"
@@ -57,18 +57,20 @@ export const getCurrentUser = query({
   handler: async (ctx) => authComponent.safeGetAuthUser(ctx),
 })
 
-// Admin check. Mirror this in any mutation/query that touches admin data.
+// Admin check. Call this inside any mutation/query that touches admin data.
 // We re-verify the email against the live allowlist on every call, so
 // revoking an admin is as simple as removing their email from ADMIN_EMAILS.
+export async function assertAdmin(ctx: QueryCtx | MutationCtx) {
+  const user = await authComponent.safeGetAuthUser(ctx)
+  if (!user) throw new Error("Not authenticated")
+  const email = (user.email ?? "").toLowerCase()
+  if (!adminEmails().includes(email)) {
+    throw new Error("Not authorized")
+  }
+  return user
+}
+
 export const requireAdmin = query({
   args: {},
-  handler: async (ctx) => {
-    const user = await authComponent.safeGetAuthUser(ctx)
-    if (!user) throw new Error("Not authenticated")
-    const email = (user.email ?? "").toLowerCase()
-    if (!adminEmails().includes(email)) {
-      throw new Error("Not authorized")
-    }
-    return user
-  },
+  handler: assertAdmin,
 })
