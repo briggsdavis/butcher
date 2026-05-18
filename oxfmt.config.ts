@@ -5,4 +5,5 @@ export default defineConfig({
   semi: false,
   sortImports: { newlinesBetween: false },
   sortTailwindcss: { stylesheet: "src/styles/styles.css" },
+  ignorePatterns: ["convex/_generated"],
 })
