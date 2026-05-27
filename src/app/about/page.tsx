@@ -79,11 +79,6 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades photo into next section */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent" />
-        {/* Wood grain — on top of gradients, invisible top 70%, fades in bottom 30% */}
-        <div
-          aria-hidden="true"
-          className="wood-grain-overlay pointer-events-none absolute inset-0"
-        />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-24 md:px-16">
           <p className="fade-in-up-1 mb-5 text-xs text-amber uppercase">
             Pittsburgh, PA · Est. 2013
@@ -212,43 +207,48 @@ export default function About() {
       </section>
 
       {/* ── THE TEAM ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
-      >
-        <div
-          data-parallax="content"
-          data-parallax-speed="0.06"
-          className="mx-auto max-w-7xl px-8 md:px-16"
+      {/* Hiding "People behind the craft" section for now */}
+      {false && (
+        <section
+          data-wipe
+          className="relative overflow-hidden bg-charcoal py-32 md:py-48"
         >
-          <div className="grid gap-16 md:grid-cols-2 md:gap-24">
-            <div className="flex flex-col justify-center">
-              <div data-animate="" className="flex items-center gap-4">
-                <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                <span className="text-xs text-amber uppercase">The People</span>
-              </div>
-              <h2
-                data-animate=""
-                data-delay="130"
-                className="heading-emboss mt-4 font-display text-5xl text-cream md:text-6xl"
-              >
-                The people
-                <br />
-                behind
-                <br />
-                <span className="text-tan italic">the craft</span>
-              </h2>
-              <p
-                data-animate=""
-                data-delay="285"
-                className="mt-8 text-lg text-tan"
-              >
-                Our team brings decades of combined experience from some of the
-                country&rsquo;s finest kitchens, bars, and dining rooms. They
-                are passionate, rigorously trained, and united by one shared
-                devotion: excellence at every table, every night.
-              </p>
-              <span
+          <div
+            data-parallax="content"
+            data-parallax-speed="0.06"
+            className="mx-auto max-w-7xl px-8 md:px-16"
+          >
+            <div className="grid gap-16 md:grid-cols-2 md:gap-24">
+              <div className="flex flex-col justify-center">
+                <div data-animate="" className="flex items-center gap-4">
+                  <span className="block h-px w-10 shrink-0 bg-amber/50" />
+                  <span className="text-xs text-amber uppercase">
+                    The People
+                  </span>
+                </div>
+                <h2
+                  data-animate=""
+                  data-delay="130"
+                  className="heading-emboss mt-4 font-display text-5xl text-cream md:text-6xl"
+                >
+                  The people
+                  <br />
+                  behind
+                  <br />
+                  <span className="text-tan italic">the craft</span>
+                </h2>
+                <p
+                  data-animate=""
+                  data-delay="285"
+                  className="mt-8 text-lg text-tan"
+                >
+                  Our team brings decades of combined experience from some of
+                  the country&rsquo;s finest kitchens, bars, and dining rooms.
+                  They are passionate, rigorously trained, and united by one
+                  shared devotion: excellence at every table, every night.
+                </p>
+                {/* Hiding our-staff link for now */}
+                {/* <span
                 data-animate=""
                 data-delay="470"
                 className="mt-10 inline-block"
@@ -260,42 +260,43 @@ export default function About() {
                   Meet the full team
                   <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
                 </Link>
-              </span>
-            </div>
+              </span> */}
+              </div>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:pl-8">
-              {FEATURED_STAFF.map((member, i) => (
-                <div
-                  key={member.name}
-                  data-animate=""
-                  data-delay={String(i * 120)}
-                  className="flex flex-col items-center text-center"
-                >
-                  <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border border-amber/20">
-                    <Image
-                      src={member.img}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-charcoal/55" />
-                    <span className="absolute inset-0 flex items-center justify-center font-subhead text-2xl text-amber/70 select-none">
-                      {member.initials}
-                    </span>
-                    <div className="absolute inset-0 rounded-full ring-1 ring-amber/10 ring-inset" />
+              <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:pl-8">
+                {FEATURED_STAFF.map((member, i) => (
+                  <div
+                    key={member.name}
+                    data-animate=""
+                    data-delay={String(i * 120)}
+                    className="flex flex-col items-center text-center"
+                  >
+                    <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border border-amber/20">
+                      <Image
+                        src={member.img}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-charcoal/55" />
+                      <span className="absolute inset-0 flex items-center justify-center font-subhead text-2xl text-amber/70 select-none">
+                        {member.initials}
+                      </span>
+                      <div className="absolute inset-0 rounded-full ring-1 ring-amber/10 ring-inset" />
+                    </div>
+                    <p className="font-subhead text-xl text-cream">
+                      {member.name}
+                    </p>
+                    <p className="mt-1 text-xs text-amber uppercase">
+                      {member.role}
+                    </p>
                   </div>
-                  <p className="font-subhead text-xl text-cream">
-                    {member.name}
-                  </p>
-                  <p className="mt-1 text-xs text-amber uppercase">
-                    {member.role}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 3. OUR VALUES ── */}
       <section
@@ -474,7 +475,9 @@ export default function About() {
           </p>
           <span data-animate="" data-delay="470" className="mt-12 inline-block">
             <Link
-              href="#reservations"
+              href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               Book a Table

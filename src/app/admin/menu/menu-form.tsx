@@ -40,7 +40,7 @@ export function MenuForm(props: Props) {
 
   const existing = useQuery(
     api.menu.list,
-    props.mode === "edit" ? { kind: props.kind } : "skip",
+    props.mode === "edit" ? { kind: props.kind, includeHidden: true } : "skip",
   )
   const knownCategories = useQuery(api.menu.listCategories, {
     kind: props.kind,

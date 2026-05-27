@@ -15,14 +15,20 @@ type MenuLink = {
 const menuStyle = (delay: number): React.CSSProperties =>
   ({ "--menu-delay": `${delay}s` }) as React.CSSProperties
 
+// Hiding our-staff, spirits, beverages entries for now
 const MENU_LINKS: MenuLink[] = [
   { href: "/", label: "Home", num: "01", style: menuStyle(0.06) },
   { href: "/about", label: "About", num: "02", style: menuStyle(0.13) },
-  { href: "#reservations", label: "Reserve", num: "03", style: menuStyle(0.2) },
-  { href: "/our-staff", label: "Our Staff", num: "04", style: menuStyle(0.27) },
+  {
+    href: "https://www.opentable.com/r/butcher-and-the-rye-pittsburgh",
+    label: "Reserve",
+    num: "03",
+    style: menuStyle(0.2),
+  },
+  // { href: "/our-staff", label: "Our Staff", num: "04", style: menuStyle(0.27) },
   { href: "/food", label: "Food", num: "05", style: menuStyle(0.34) },
-  { href: "/spirits", label: "Spirits", num: "06", style: menuStyle(0.41) },
-  { href: "/beverages", label: "Beverages", num: "07", style: menuStyle(0.48) },
+  // { href: "/spirits", label: "Spirits", num: "06", style: menuStyle(0.41) },
+  // { href: "/beverages", label: "Beverages", num: "07", style: menuStyle(0.48) },
 ]
 
 export function Nav() {
@@ -108,7 +114,8 @@ export function Nav() {
             >
               Food
             </Link>
-            <Link
+            {/* Hiding spirits/beverages links for now */}
+            {/* <Link
               href="/spirits"
               className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
@@ -119,7 +126,7 @@ export function Nav() {
               className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
               Beverages
-            </Link>
+            </Link> */}
           </div>
         </div>
 
@@ -139,7 +146,9 @@ export function Nav() {
 
         {/* Reserve — top right */}
         <Link
-          href="/#reservations"
+          href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+          target="_blank"
+          rel="noopener noreferrer"
           className="relative z-10 ml-auto hidden border border-amber px-5 py-2 text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] md:block"
         >
           Reserve
@@ -163,27 +172,32 @@ export function Nav() {
 
           {/* Menu items — right-aligned, numbered, slide left on hover */}
           <div className="flex flex-1 flex-col justify-center pr-12 md:pr-28 lg:pr-40">
-            {MENU_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={closeMenu}
-                className="menu-item-in group flex items-baseline self-end py-2 md:py-3"
-                style={link.style}
-              >
-                {/* Slide both number + label together on hover */}
-                <div className="flex items-baseline gap-3 transition-transform duration-300 ease-out group-hover:-translate-x-4">
-                  <span className="font-sans text-xs text-cream/25">
-                    {link.num}
-                  </span>
-                  <span
-                    className={`font-display text-3xl text-cream md:text-5xl lg:text-6xl ${link.label === "Reserve" ? "font-bold" : ""}`}
-                  >
-                    {link.label}
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {MENU_LINKS.map((link) => {
+              const external = link.href.startsWith("http")
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  className="menu-item-in group flex items-baseline self-end py-2 md:py-3"
+                  style={link.style}
+                >
+                  {/* Slide both number + label together on hover */}
+                  <div className="flex items-baseline gap-3 transition-transform duration-300 ease-out group-hover:-translate-x-4">
+                    <span className="font-sans text-xs text-cream/25">
+                      {link.num}
+                    </span>
+                    <span
+                      className={`font-display text-3xl md:text-5xl lg:text-6xl ${link.label === "Reserve" ? "font-bold text-amber" : "text-cream"}`}
+                    >
+                      {link.label}
+                    </span>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
       )}

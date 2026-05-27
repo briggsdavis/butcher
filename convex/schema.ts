@@ -18,6 +18,7 @@ export default defineSchema({
     likes: v.number(),
     sortOrder: v.number(),
     imageId: v.optional(v.id("_storage")),
+    hidden: v.optional(v.boolean()),
   })
     .index("by_kind_and_slug", ["kind", "slug"])
     .index("by_kind_and_category_and_sortOrder", [

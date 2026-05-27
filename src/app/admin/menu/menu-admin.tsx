@@ -3,6 +3,8 @@
 import { useMutation, useQuery } from "convex/react"
 import {
   ArrowLeft,
+  Eye,
+  EyeOff,
   FileText,
   Pencil,
   Plus,
@@ -33,11 +35,12 @@ export function MenuAdmin({
   basePath,
   seedImagePath,
 }: Props) {
-  const items = useQuery(api.menu.list, { kind })
+  const items = useQuery(api.menu.list, { kind, includeHidden: true })
   const remove = useMutation(api.menu.remove)
   const seed = useMutation(api.menu.seed)
   const generateUploadUrl = useMutation(api.menu.generateUploadUrl)
   const setImage = useMutation(api.menu.setImage)
+  const setHidden = useMutation(api.menu.setHidden)
 
   const [busy, setBusy] = useState<Id<"menuItems"> | null>(null)
   const [seeding, setSeeding] = useState<string | null>(null)
@@ -141,7 +144,7 @@ export function MenuAdmin({
             {items.map((item) => (
               <div
                 key={item._id}
-                className="flex items-center gap-5 py-4 text-cream"
+                className={`flex items-center gap-5 py-4 text-cream ${item.hidden ? "opacity-40" : ""}`}
               >
                 <div className="relative size-14 shrink-0 overflow-hidden border border-cream/10 bg-charcoal">
                   {item.imageUrl ? (
@@ -175,6 +178,22 @@ export function MenuAdmin({
                   ♥ {item.likes}
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
+                  <button
+                    onClick={() =>
+                      setHidden({ id: item._id, hidden: !item.hidden })
+                    }
+                    className="border border-amber/40 p-2 text-amber transition-colors hover:border-amber hover:text-cream"
+                    aria-label={
+                      item.hidden ? `Show ${item.name}` : `Hide ${item.name}`
+                    }
+                    title={item.hidden ? "Show on site" : "Hide from site"}
+                  >
+                    {item.hidden ? (
+                      <EyeOff className="size-3.5" />
+                    ) : (
+                      <Eye className="size-3.5" />
+                    )}
+                  </button>
                   <Link
                     href={`${basePath}/${item._id}`}
                     className="border border-amber/40 p-2 text-amber transition-colors hover:border-amber hover:text-cream"

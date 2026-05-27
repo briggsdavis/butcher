@@ -205,7 +205,9 @@ export function MenuDetail({
 
             <div className="mt-10">
               <Link
-                href="/#reservations"
+                href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex w-fit items-center gap-3 border border-amber px-8 py-3.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
               >
                 Reserve a Table

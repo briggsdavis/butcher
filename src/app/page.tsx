@@ -4,6 +4,7 @@ import Link from "next/link"
 import { EqualWidthStack } from "~/components/equal-width-stack"
 import { HeroCarousel } from "~/components/hero-carousel"
 import { InfiniteCarousel } from "~/components/infinite-carousel"
+import { OpenTableWidget } from "~/components/opentable-widget"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { SectionDivider } from "~/components/section-divider"
 import { TiltCard } from "~/components/tilt-card"
@@ -74,11 +75,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades into the next section */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/65 to-transparent" />
-        {/* Wood grain — on top of gradients, invisible top 70%, fades in bottom 30% */}
-        <div
-          aria-hidden="true"
-          className="wood-grain-overlay pointer-events-none absolute inset-0"
-        />
         {/* Watermark logo */}
         <Image
           aria-hidden="true"
@@ -92,7 +88,9 @@ export default function Home() {
         <div className="relative z-10 flex flex-col items-center px-8 pb-24 text-center md:px-16">
           <div className="fade-in-up-3 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
             <Link
-              href="#reservations"
+              href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               Reserve a Table
@@ -104,6 +102,13 @@ export default function Home() {
               View Menu
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── OpenTable Reservation Widget ── */}
+      <section className="bg-charcoal px-8 py-12 md:px-16 md:py-16">
+        <div className="mx-auto max-w-4xl">
+          <OpenTableWidget />
         </div>
       </section>
 
@@ -184,7 +189,8 @@ export default function Home() {
 
             <SectionDivider className="my-4" />
 
-            <div data-animate="" data-delay="715" className="flex gap-6">
+            {/* Hiding beverages/spirits links for now */}
+            {/* <div data-animate="" data-delay="715" className="flex gap-6">
               <Link
                 href="/beverages"
                 className="border border-amber px-8 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
@@ -197,7 +203,7 @@ export default function Home() {
               >
                 Spirits
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -516,7 +522,9 @@ export default function Home() {
 
           <span data-animate="" data-delay="470" className="mt-4 inline-block">
             <Link
-              href="#"
+              href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
               Book a Table

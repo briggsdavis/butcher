@@ -54,12 +54,14 @@ async function withImageUrl<T extends { imageId?: string }>(
 }
 
 export const list = query({
-  args: { kind: menuKind },
-  handler: async (ctx, { kind }) => {
-    const items = await ctx.db
+  args: { kind: menuKind, includeHidden: v.optional(v.boolean()) },
+  handler: async (ctx, { kind, includeHidden }) => {
+    if (includeHidden) await assertAdmin(ctx)
+    const all = await ctx.db
       .query("menuItems")
       .withIndex("by_kind", (q) => q.eq("kind", kind))
       .take(500)
+    const items = includeHidden ? all : all.filter((i) => !i.hidden)
     items.sort((a, b) => {
       const ra = categoryRank(kind, a.category)
       const rb = categoryRank(kind, b.category)
@@ -79,7 +81,7 @@ export const listCategories = query({
       .withIndex("by_kind", (q) => q.eq("kind", kind))
       .take(500)
     const seen = new Set<string>()
-    for (const it of items) seen.add(it.category)
+    for (const it of items) if (!it.hidden) seen.add(it.category)
     return [...seen].sort(
       (a, b) => categoryRank(kind, a) - categoryRank(kind, b),
     )
@@ -93,8 +95,16 @@ export const getBySlug = query({
       .query("menuItems")
       .withIndex("by_kind_and_slug", (q) => q.eq("kind", kind).eq("slug", slug))
       .unique()
-    if (!item) return null
+    if (!item || item.hidden) return null
     return await withImageUrl(ctx, item)
+  },
+})
+
+export const setHidden = mutation({
+  args: { id: v.id("menuItems"), hidden: v.boolean() },
+  handler: async (ctx, { id, hidden }) => {
+    await assertAdmin(ctx)
+    await ctx.db.patch(id, { hidden })
   },
 })
 
