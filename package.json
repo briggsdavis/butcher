@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "convex dev --start 'next dev'",
     "build": "next build",
-    "start": "next start",
-    "lint": "oxlint",
-    "format": "oxfmt"
+    "start": "next start"
   },
   "dependencies": {
     "@convex-dev/better-auth": "0.12.2",
@@ -22,12 +20,12 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.0",
-    "@types/node": "25.8.0",
-    "@types/react": "19.2.14",
+    "@types/node": "25.9.1",
+    "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
-    "oxfmt": "0.50.0",
-    "oxlint": "1.65.0",
+    "oxfmt": "0.52.0",
+    "oxlint": "1.67.0",
     "tailwindcss": "4.3.0",
     "typescript": "6.0.3"
   }
