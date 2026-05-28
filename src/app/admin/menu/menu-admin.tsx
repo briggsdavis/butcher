@@ -25,26 +25,14 @@ type Props = {
   title: string
   eyebrow: string
   basePath: string
-  seedImagePath?: string
 }
 
-export function MenuAdmin({
-  kind,
-  title,
-  eyebrow,
-  basePath,
-  seedImagePath,
-}: Props) {
+export function MenuAdmin({ kind, title, eyebrow, basePath }: Props) {
   const items = useQuery(api.menu.list, { kind, includeHidden: true })
   const remove = useMutation(api.menu.remove)
-  const seed = useMutation(api.menu.seed)
-  const generateUploadUrl = useMutation(api.menu.generateUploadUrl)
-  const setImage = useMutation(api.menu.setImage)
   const setHidden = useMutation(api.menu.setHidden)
 
   const [busy, setBusy] = useState<Id<"menuItems"> | null>(null)
-  const [seeding, setSeeding] = useState<string | null>(null)
-  const [seedError, setSeedError] = useState<string | null>(null)
 
   async function onDelete(id: Id<"menuItems">, name: string) {
     if (!confirm(`Delete "${name}" and its comments?`)) return
@@ -53,39 +41,6 @@ export function MenuAdmin({
       await remove({ id })
     } finally {
       setBusy(null)
-    }
-  }
-
-  async function onSeed() {
-    setSeedError(null)
-    setSeeding("Inserting items…")
-    try {
-      const result = await seed({ kind })
-      const targets = result.items
-      if (seedImagePath) {
-        for (let i = 0; i < targets.length; i++) {
-          const item = targets[i]
-          setSeeding(`Uploading image ${i + 1}/${targets.length}…`)
-          const res = await fetch(`${seedImagePath}/${item.slug}.jpg`)
-          if (!res.ok) continue
-          const blob = await res.blob()
-          const uploadUrl = await generateUploadUrl({})
-          const up = await fetch(uploadUrl, {
-            method: "POST",
-            headers: { "Content-Type": blob.type || "image/jpeg" },
-            body: blob,
-          })
-          if (!up.ok) throw new Error(`Upload failed for ${item.slug}`)
-          const { storageId } = (await up.json()) as {
-            storageId: Id<"_storage">
-          }
-          await setImage({ id: item.id, imageId: storageId })
-        }
-      }
-    } catch (err) {
-      setSeedError(err instanceof Error ? err.message : "Seed failed.")
-    } finally {
-      setSeeding(null)
     }
   }
 
@@ -122,22 +77,11 @@ export function MenuAdmin({
 
         <MenuPdfPanel kind={kind} />
 
-        {seedError && (
-          <p className="mt-4 font-subhead text-sm text-amber">{seedError}</p>
-        )}
-
         {items === undefined ? (
           <p className="mt-12 text-sm text-tan/60">Loading…</p>
         ) : items.length === 0 ? (
           <div className="mt-12 border border-amber/30 p-8">
             <p className="text-tan">No items yet.</p>
-            <button
-              onClick={onSeed}
-              disabled={!!seeding}
-              className="mt-6 border border-amber px-6 py-2.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream disabled:opacity-50"
-            >
-              {seeding ?? "Seed with starter menu"}
-            </button>
           </div>
         ) : (
           <div className="mt-12 divide-y divide-cream/10 border-t border-cream/10">

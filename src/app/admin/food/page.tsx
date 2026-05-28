@@ -12,7 +12,6 @@ export default async function AdminFoodPage() {
       title="Food"
       eyebrow="Menu"
       basePath="/admin/food"
-      seedImagePath="/food"
     />
   )
 }
