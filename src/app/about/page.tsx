@@ -6,6 +6,8 @@ import { HeroCarousel } from "~/components/hero-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { TiltCard } from "~/components/tilt-card"
 
+const SHOW_TEAM_SECTION = false
+
 const ABOUT_HERO_IMAGES = [
   { src: "/about-background.jpg", alt: "Butcher and the Rye dining room" },
   { src: "/abouthero2.jpg", alt: "Butcher and the Rye" },
@@ -208,7 +210,7 @@ export default function About() {
 
       {/* ── THE TEAM ── */}
       {/* Hiding "People behind the craft" section for now */}
-      {false && (
+      {SHOW_TEAM_SECTION && (
         <section
           data-wipe
           className="relative overflow-hidden bg-charcoal py-32 md:py-48"

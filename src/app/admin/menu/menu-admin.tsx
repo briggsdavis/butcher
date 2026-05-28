@@ -289,6 +289,7 @@ function MenuPdfPanel({ kind }: { kind: Kind }) {
           ref={fileInputRef}
           type="file"
           accept="application/pdf"
+          aria-label="PDF file"
           onChange={onPick}
           className="hidden"
         />

@@ -42,6 +42,7 @@ export default function AdminLoginPage() {
             <input
               type="email"
               required
+              aria-label="Email"
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -53,6 +54,7 @@ export default function AdminLoginPage() {
             <input
               type="password"
               required
+              aria-label="Password"
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

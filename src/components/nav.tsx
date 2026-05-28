@@ -3,55 +3,37 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 type MenuLink = {
   href: string
   label: string
-  num: string
-  style: React.CSSProperties
 }
 
-const menuStyle = (delay: number): React.CSSProperties =>
-  ({ "--menu-delay": `${delay}s` }) as React.CSSProperties
-
-// Hiding our-staff, spirits, beverages entries for now
 const MENU_LINKS: MenuLink[] = [
-  { href: "/", label: "Home", num: "01", style: menuStyle(0.06) },
-  { href: "/about", label: "About", num: "02", style: menuStyle(0.13) },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   {
     href: "https://www.opentable.com/r/butcher-and-the-rye-pittsburgh",
     label: "Reserve",
-    num: "03",
-    style: menuStyle(0.2),
   },
-  // { href: "/our-staff", label: "Our Staff", num: "04", style: menuStyle(0.27) },
-  { href: "/food", label: "Food", num: "05", style: menuStyle(0.34) },
-  // { href: "/spirits", label: "Spirits", num: "06", style: menuStyle(0.41) },
-  // { href: "/beverages", label: "Beverages", num: "07", style: menuStyle(0.48) },
+  // { href: "/our-staff", label: "Our Staff" },
+  { href: "/food", label: "Food" },
+  // { href: "/spirits", label: "Spirits" },
+  // { href: "/beverages", label: "Beverages" },
 ]
 
 export function Nav() {
   const pathname = usePathname()
+  const isHome = pathname === "/"
   const [open, setOpen] = useState(false)
   const [closing, setClosing] = useState(false)
-  const [introClass, setIntroClass] = useState("")
   const [hidden, setHidden] = useState(false)
   const lastScrollY = useRef(0)
 
-  // Fire before paint so the nav starts off-screen with no flash.
-  // Only plays on the home page, once per session.
-  useLayoutEffect(() => {
-    if (pathname !== "/") return
-    try {
-      if (!sessionStorage.getItem("nav-intro-done")) {
-        setIntroClass("nav-intro")
-        sessionStorage.setItem("nav-intro-done", "true")
-      }
-    } catch {
-      // sessionStorage unavailable (e.g. private browsing restrictions)
-    }
-  }, [pathname])
+  // Apply the intro class during SSR on the home page so first paint
+  // already matches the animation's off-screen `backwards` fill — no flash.
+  const introClass = isHome ? "nav-intro" : ""
 
   // Hide on scroll down, reveal on scroll up
   useEffect(() => {
@@ -172,8 +154,12 @@ export function Nav() {
 
           {/* Menu items — right-aligned, numbered, slide left on hover */}
           <div className="flex flex-1 flex-col justify-center pr-12 md:pr-28 lg:pr-40">
-            {MENU_LINKS.map((link) => {
+            {MENU_LINKS.map((link, i) => {
               const external = link.href.startsWith("http")
+              const num = String(i + 1).padStart(2, "0")
+              const style = {
+                "--menu-delay": `${0.06 + i * 0.07}s`,
+              } as React.CSSProperties
               return (
                 <Link
                   key={link.href}
@@ -182,12 +168,12 @@ export function Nav() {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   className="menu-item-in group flex items-baseline self-end py-2 md:py-3"
-                  style={link.style}
+                  style={style}
                 >
                   {/* Slide both number + label together on hover */}
                   <div className="flex items-baseline gap-3 transition-transform duration-300 ease-out group-hover:-translate-x-4">
                     <span className="font-sans text-xs text-cream/25">
-                      {link.num}
+                      {num}
                     </span>
                     <span
                       className={`font-display text-3xl md:text-5xl lg:text-6xl ${link.label === "Reserve" ? "font-bold text-amber" : "text-cream"}`}

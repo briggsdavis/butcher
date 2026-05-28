@@ -106,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* ── OpenTable Reservation Widget ── */}
-      <section className="bg-charcoal px-8 py-12 md:px-16 md:py-16">
+      <section className="bg-oxblood px-8 py-12 md:px-16 md:py-16">
         <div className="mx-auto max-w-4xl">
           <OpenTableWidget />
         </div>

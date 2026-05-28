@@ -196,6 +196,7 @@ export function MenuForm(props: Props) {
                     ref={fileInputRef}
                     type="file"
                     accept="image/*"
+                    aria-label="Image file"
                     onChange={onPickFile}
                     className="hidden"
                   />
@@ -229,6 +230,7 @@ export function MenuForm(props: Props) {
             <Field label="Name">
               <input
                 required
+                aria-label="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="border border-amber/40 bg-transparent px-4 py-3 text-cream transition-colors outline-none focus:border-amber"
@@ -237,6 +239,7 @@ export function MenuForm(props: Props) {
 
             <Field label="Description">
               <textarea
+                aria-label="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 rows={3}
@@ -248,6 +251,7 @@ export function MenuForm(props: Props) {
               <Field label="Price">
                 <input
                   required
+                  aria-label="Price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   placeholder="e.g. 24"
@@ -258,6 +262,7 @@ export function MenuForm(props: Props) {
               <Field label="Category">
                 <input
                   required
+                  aria-label="Category"
                   list={datalistId}
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
@@ -266,7 +271,7 @@ export function MenuForm(props: Props) {
                 />
                 <datalist id={datalistId}>
                   {(knownCategories ?? []).map((c) => (
-                    <option key={c} value={c} />
+                    <option key={c} value={c} aria-label={c} />
                   ))}
                 </datalist>
               </Field>
