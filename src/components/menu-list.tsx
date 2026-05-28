@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useMemo } from "react"
 import { api } from "../../convex/_generated/api"
+import { MenuPdfEmbed } from "./menu-pdf-embed"
 import { TiltCard } from "./tilt-card"
 
 const POLAROID_ROTATIONS = [-2.5, 1.5, -1.5, 2.5]
@@ -15,6 +16,7 @@ type Config = {
   kind: Kind
   basePath: string
   categoryLabels?: Record<string, string>
+  inlinePdf?: boolean
 }
 
 function pickRandom<T>(arr: readonly T[], n: number): T[] {
@@ -27,7 +29,12 @@ function pickRandom<T>(arr: readonly T[], n: number): T[] {
   return out
 }
 
-export function MenuList({ kind, basePath, categoryLabels }: Config) {
+export function MenuList({
+  kind,
+  basePath,
+  categoryLabels,
+  inlinePdf,
+}: Config) {
   const items = useQuery(api.menu.list, { kind })
   const menuPdfUrl = useQuery(api.site.getMenuPdfUrl, { kind })
 
@@ -84,22 +91,30 @@ export function MenuList({ kind, basePath, categoryLabels }: Config) {
               </Link>
             ))}
           </div>
-          {menuPdfUrl && (
-            <div className="mt-10 flex justify-center">
-              <a
-                href={menuPdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
-              >
-                View Menu PDF
-              </a>
+          {menuPdfUrl && inlinePdf ? (
+            <div className="mt-10">
+              <MenuPdfEmbed url={menuPdfUrl} />
             </div>
+          ) : (
+            menuPdfUrl && (
+              <div className="mt-10 flex justify-center">
+                <a
+                  href={menuPdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+                >
+                  View Menu PDF
+                </a>
+              </div>
+            )
           )}
         </div>
       </section>
 
-      {grouped.map(({ category, label, items: rows }, bi) => {
+      {menuPdfUrl && inlinePdf
+        ? null
+        : grouped.map(({ category, label, items: rows }, bi) => {
         if (rows.length === 0) return null
         const dark = bi % 2 === 0
         return (

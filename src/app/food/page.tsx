@@ -14,6 +14,11 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 export default function Food() {
   return (
-    <MenuList kind="food" basePath="/food" categoryLabels={CATEGORY_LABELS} />
+    <MenuList
+      kind="food"
+      basePath="/food"
+      categoryLabels={CATEGORY_LABELS}
+      inlinePdf
+    />
   )
 }
