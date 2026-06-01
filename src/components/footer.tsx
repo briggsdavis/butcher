@@ -12,13 +12,23 @@ export function Footer() {
               <p>(412) 391-2752</p>
               <p>info@butcherandtherye.com</p>
               <div className="flex gap-6">
-                {["Instagram", "Facebook"].map((social) => (
+                {[
+                  {
+                    name: "Instagram",
+                    href: "https://www.instagram.com/butcherandtheryepgh",
+                  },
+                  {
+                    name: "Facebook",
+                    href: "https://www.facebook.com/butcherandtherye",
+                  },
+                ].map((social) => (
                   <Link
-                    key={social}
-                    href="#"
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
                     className="text-amber transition-colors hover:text-cream"
                   >
-                    {social}
+                    {social.name}
                   </Link>
                 ))}
               </div>
@@ -29,14 +39,8 @@ export function Footer() {
             <span className="text-xs text-amber uppercase">Find Us</span>
             <h3 className="mt-4 font-display text-3xl text-cream">Location</h3>
             <div className="mt-6 space-y-3 text-tan">
-              <p>2195 Penn Avenue</p>
+              <p>212 6th Street</p>
               <p>Pittsburgh, PA 15222</p>
-              <Link
-                href="#"
-                className="text-amber transition-colors hover:text-cream"
-              >
-                Get directions
-              </Link>
             </div>
           </div>
 
@@ -45,16 +49,8 @@ export function Footer() {
             <h3 className="mt-4 font-display text-3xl text-cream">Hours</h3>
             <div className="mt-6 space-y-3 text-tan">
               <div className="flex justify-between">
-                <span>Monday – Thursday</span>
-                <span>5pm – 11pm</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Friday – Saturday</span>
-                <span>5pm – 12am</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Sunday</span>
-                <span>4pm – 10pm</span>
+                <span>Wed - Sat</span>
+                <span>5pm - 10pm</span>
               </div>
             </div>
           </div>
