@@ -63,6 +63,11 @@ const restaurants = [
     image: "/logo-sea-monkey.webp",
     href: "https://www.seamonkeypgh.com/",
   },
+  {
+    name: "Vieux Carré",
+    image: "/logo-vieux-carre.png",
+    href: "https://www.seamonkeypgh.com/vieux-carre",
+  },
 ]
 
 const ROTATIONS = [
