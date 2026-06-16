@@ -97,12 +97,6 @@ export function Nav() {
             >
               Food
             </Link>
-            <Link
-              href="/contact"
-              className="text-sm text-white uppercase transition-colors hover:text-amber"
-            >
-              Contact
-            </Link>
             {/* Hiding spirits/beverages links for now */}
             {/* <Link
               href="/spirits"
