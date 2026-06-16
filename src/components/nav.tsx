@@ -19,6 +19,7 @@ const MENU_LINKS: MenuLink[] = [
   },
   // { href: "/our-staff", label: "Our Staff" },
   { href: "/food", label: "Food" },
+  { href: "/contact", label: "Contact" },
   // { href: "/spirits", label: "Spirits" },
   // { href: "/beverages", label: "Beverages" },
 ]
@@ -95,6 +96,12 @@ export function Nav() {
               className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
               Food
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm text-white uppercase transition-colors hover:text-amber"
+            >
+              Contact
             </Link>
             {/* Hiding spirits/beverages links for now */}
             {/* <Link

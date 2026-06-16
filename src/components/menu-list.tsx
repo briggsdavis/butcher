@@ -115,87 +115,87 @@ export function MenuList({
       {menuPdfUrl && inlinePdf
         ? null
         : grouped.map(({ category, label, items: rows }, bi) => {
-        if (rows.length === 0) return null
-        const dark = bi % 2 === 0
-        return (
-          <section
-            key={category}
-            data-wipe
-            className={`py-24 md:py-32 ${dark ? "bg-cream" : "bg-oxblood"}`}
-          >
-            <div className="mx-auto max-w-7xl px-8 md:px-16">
-              <div data-animate="" className="flex items-center gap-4">
-                <span
-                  className={`block h-px w-8 shrink-0 ${dark ? "bg-oxblood/30" : "bg-amber/50"}`}
-                />
-                <span
-                  className={`text-xs uppercase ${dark ? "text-oxblood" : "text-amber"}`}
-                >
-                  {label}
-                </span>
-              </div>
-              <h2
-                data-animate=""
-                data-delay="100"
-                className={`mt-4 font-display text-5xl md:text-7xl ${dark ? "text-charcoal" : "text-cream"}`}
+            if (rows.length === 0) return null
+            const dark = bi % 2 === 0
+            return (
+              <section
+                key={category}
+                data-wipe
+                className={`py-24 md:py-32 ${dark ? "bg-cream" : "bg-oxblood"}`}
               >
-                {category}
-              </h2>
-              <div
-                className={`mt-10 divide-y border-t ${dark ? "divide-charcoal/10 border-charcoal/10" : "divide-cream/10 border-cream/10"}`}
-              >
-                {rows.map((item, i) => (
-                  <Link
-                    key={item._id}
-                    href={`${basePath}/${item.slug}`}
-                    data-animate=""
-                    data-delay={String(180 + i * 60)}
-                    className="group flex items-center gap-5 py-4"
-                  >
-                    <div
-                      className={`relative size-14 shrink-0 overflow-hidden transition-all duration-700 ease-in-out group-hover:size-36 ${dark ? "bg-charcoal/10" : "bg-cream/5"}`}
+                <div className="mx-auto max-w-7xl px-8 md:px-16">
+                  <div data-animate="" className="flex items-center gap-4">
+                    <span
+                      className={`block h-px w-8 shrink-0 ${dark ? "bg-oxblood/30" : "bg-amber/50"}`}
+                    />
+                    <span
+                      className={`text-xs uppercase ${dark ? "text-oxblood" : "text-amber"}`}
                     >
-                      {item.imageUrl && (
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.name}
-                          fill
-                          sizes="144px"
-                          className="object-cover"
-                        />
-                      )}
-                    </div>
-
-                    <div className="flex flex-1 items-baseline justify-between">
-                      <div>
-                        <span
-                          className={`font-subhead text-base transition-colors duration-200 ${
-                            dark
-                              ? "text-charcoal group-hover:text-oxblood"
-                              : "text-cream group-hover:text-amber"
-                          }`}
-                        >
-                          {item.name}
-                        </span>
-                        <span
-                          className={`ml-4 text-xs ${dark ? "text-charcoal/45" : "text-tan/50"}`}
-                        >
-                          {item.description}
-                        </span>
-                      </div>
-                      <span
-                        className={`font-subhead text-sm ${dark ? "text-oxblood" : "text-amber"}`}
+                      {label}
+                    </span>
+                  </div>
+                  <h2
+                    data-animate=""
+                    data-delay="100"
+                    className={`mt-4 font-display text-5xl md:text-7xl ${dark ? "text-charcoal" : "text-cream"}`}
+                  >
+                    {category}
+                  </h2>
+                  <div
+                    className={`mt-10 divide-y border-t ${dark ? "divide-charcoal/10 border-charcoal/10" : "divide-cream/10 border-cream/10"}`}
+                  >
+                    {rows.map((item, i) => (
+                      <Link
+                        key={item._id}
+                        href={`${basePath}/${item.slug}`}
+                        data-animate=""
+                        data-delay={String(180 + i * 60)}
+                        className="group flex items-center gap-5 py-4"
                       >
-                        ${item.price}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )
-      })}
+                        <div
+                          className={`relative size-14 shrink-0 overflow-hidden transition-all duration-700 ease-in-out group-hover:size-36 ${dark ? "bg-charcoal/10" : "bg-cream/5"}`}
+                        >
+                          {item.imageUrl && (
+                            <Image
+                              src={item.imageUrl}
+                              alt={item.name}
+                              fill
+                              sizes="144px"
+                              className="object-cover"
+                            />
+                          )}
+                        </div>
+
+                        <div className="flex flex-1 items-baseline justify-between">
+                          <div>
+                            <span
+                              className={`font-subhead text-base transition-colors duration-200 ${
+                                dark
+                                  ? "text-charcoal group-hover:text-oxblood"
+                                  : "text-cream group-hover:text-amber"
+                              }`}
+                            >
+                              {item.name}
+                            </span>
+                            <span
+                              className={`ml-4 text-xs ${dark ? "text-charcoal/45" : "text-tan/50"}`}
+                            >
+                              {item.description}
+                            </span>
+                          </div>
+                          <span
+                            className={`font-subhead text-sm ${dark ? "text-oxblood" : "text-amber"}`}
+                          >
+                            ${item.price}
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            )
+          })}
     </>
   )
 }
