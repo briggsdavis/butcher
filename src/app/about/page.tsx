@@ -1,3 +1,4 @@
+import { fetchQuery } from "convex/nextjs"
 import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
@@ -5,14 +6,11 @@ import Link from "next/link"
 import { HeroCarousel } from "~/components/hero-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { TiltCard } from "~/components/tilt-card"
+import { resolveCommonValues } from "~/lib/common-values"
+import { resolveSiteContent } from "~/lib/site-content"
+import { api } from "../../../convex/_generated/api"
 
 const SHOW_TEAM_SECTION = false
-
-const ABOUT_HERO_IMAGES = [
-  { src: "/about-background.jpg", alt: "Butcher and the Rye dining room" },
-  { src: "/abouthero2.jpg", alt: "Butcher and the Rye" },
-  { src: "/abouthero3.jpg", alt: "Butcher and the Rye" },
-]
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,27 +18,21 @@ export const metadata: Metadata = {
     "The story, values, team, and ingredients behind Butcher and the Rye, Pittsburgh's destination for craft cuisine and rare spirits.",
 }
 
-const VALUES = [
+const VALUE_META = [
   {
     numeral: "01",
     numeralClass: "right-0 bottom-0",
-    title: "Excellence",
-    body: "We hold every plate and every pour to the same exacting standard. No table is less important than another. No dish leaves our kitchen without meeting the mark. Excellence isn’t an aspiration here. It’s the minimum.",
-    image: "/barmood1.jpg",
+    key: "value.1",
   },
   {
     numeral: "02",
     numeralClass: "bottom-0 left-1/2 -translate-x-1/2",
-    title: "Craft",
-    body: "Every technique here is learned the slow way. Our chefs apprenticed under demanding kitchens. Our bartenders spent years studying whiskey before touching our bar. There are no shortcuts, and we wouldn’t have it any other way.",
-    image: "/bardecor1.jpg",
+    key: "value.2",
   },
   {
     numeral: "03",
     numeralClass: "bottom-0 -left-4",
-    title: "Hospitality",
-    body: "The meal is the occasion. The experience is the memory. We study our guests: their preferences, their celebrations, their habits. Hospitality at Butcher and the Rye means you never have to ask twice.",
-    image: "/decor16.jpg",
+    key: "value.3",
   },
 ]
 
@@ -71,29 +63,45 @@ const FEATURED_STAFF = [
   },
 ]
 
-export default function About() {
+export default async function About() {
+  const [savedContent, savedCommonValues] = await Promise.all([
+    fetchQuery(api.site.getPage, { key: "about" }),
+    fetchQuery(api.site.getCommonValues, {}),
+  ])
+  const content = resolveSiteContent("about", savedContent)
+  const common = resolveCommonValues(savedCommonValues)
+  const f = content.fields
+  const img = content.images
+  const reservationHref = common["reservation.href"]
+  const heroImages = [
+    { src: img["hero.image.1"], alt: "Butcher and the Rye dining room" },
+    { src: img["hero.image.2"], alt: "Butcher and the Rye" },
+    { src: img["hero.image.3"], alt: "Butcher and the Rye" },
+  ]
+  const values = VALUE_META.map((value) => ({
+    ...value,
+    title: f[`${value.key}.title`],
+    body: f[`${value.key}.body`],
+    image: img[`${value.key}.image`],
+  }))
+
   return (
     <>
       {/* ── 1. HERO ── */}
       <section className="hero-section relative flex h-screen items-end overflow-hidden bg-oxblood">
-        <HeroCarousel images={ABOUT_HERO_IMAGES} />
+        <HeroCarousel images={heroImages} />
         {/* Top vignette — darkens top half for atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades photo into next section */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-8 pb-24 md:px-16">
-          <p className="fade-in-up-1 mb-5 text-xs text-amber uppercase">
-            Pittsburgh, PA · Est. 2013
-          </p>
+          <p className="fade-in-up-1 mb-5 text-sm text-amber uppercase">{f["hero.eyebrow"]}</p>
           <h1 className="heading-emboss fade-in-up-2 font-display text-5xl text-cream md:text-7xl lg:text-8xl">
-            Where Craft
+            {f["hero.heading.1"]}
             <br />
-            <span className="text-amber italic">Meets</span> Tradition
+            <span className="text-amber italic">{f["hero.heading.2"]}</span> {f["hero.heading.3"]}
           </h1>
-          <p className="fade-in-up-4 mt-6 max-w-md text-lg text-tan">
-            A storied table in Pittsburgh&rsquo;s Penn Avenue corridor, built on the belief that
-            extraordinary evenings begin with extraordinary people and uncompromising craft.
-          </p>
+          <p className="fade-in-up-4 mt-6 max-w-md text-lg text-tan">{f["hero.body"]}</p>
         </div>
       </section>
 
@@ -105,29 +113,24 @@ export default function About() {
             <div>
               <div data-animate="" className="flex items-center gap-4">
                 <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                <span className="text-xs text-amber uppercase">The Chef</span>
+                <span className="text-sm text-amber uppercase">{f["story.eyebrow"]}</span>
               </div>
               <h2
                 data-animate=""
                 data-delay="130"
                 className="heading-emboss mt-4 font-display text-5xl text-cream md:text-6xl"
               >
-                A life
+                {f["story.heading.1"]}
                 <br />
-                shaped by
+                {f["story.heading.2"]}
                 <br />
-                <span className="text-tan italic">the fire</span>
+                <span className="text-tan italic">{f["story.heading.3"]}</span>
               </h2>
               <p data-animate="" data-delay="285" className="mt-10 text-lg text-tan">
-                Our Executive Chef came up the long way: years on the line in some of the
-                country&rsquo;s most demanding kitchens, training under butchers who measured aging
-                in months and chefs who measured stocks in days. Every technique here is one he
-                learned by hand.
+                {f["story.body.1"]}
               </p>
               <p data-animate="" data-delay="440" className="mt-6 text-lg text-tan">
-                His philosophy is simple: source honestly, cook patiently, and trust the ingredient.
-                The menu changes with what the farms and seasons offer, but the discipline behind
-                every plate never does.
+                {f["story.body.2"]}
               </p>
               <blockquote
                 data-animate=""
@@ -135,8 +138,7 @@ export default function About() {
                 className="mt-10 border-l-2 border-amber/30 pl-6"
               >
                 <p className="font-cursive text-2xl text-cream/70">
-                  &ldquo;The fire teaches you patience. The cut teaches you respect. The rest is
-                  just paying attention.&rdquo;
+                  &ldquo;{f["story.quote"]}&rdquo;
                 </p>
               </blockquote>
             </div>
@@ -149,7 +151,7 @@ export default function About() {
                 className="img-inset-shadow relative h-80 overflow-hidden shadow-xl md:h-96"
               >
                 <Image
-                  src="/decor15.jpg"
+                  src={img["story.image.1"]}
                   alt="Candlelit dining at Butcher and the Rye"
                   fill
                   className="img-zoom object-cover"
@@ -164,7 +166,7 @@ export default function About() {
               >
                 <div className="relative h-full w-full overflow-hidden">
                   <Image
-                    src="/entree-frame.png"
+                    src={img["story.image.2"]}
                     alt="A plated entrée"
                     fill
                     className="object-cover"
@@ -206,7 +208,7 @@ export default function About() {
               <div className="flex flex-col justify-center">
                 <div data-animate="" className="flex items-center gap-4">
                   <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                  <span className="text-xs text-amber uppercase">The People</span>
+                  <span className="text-sm text-amber uppercase">The People</span>
                 </div>
                 <h2
                   data-animate=""
@@ -271,15 +273,15 @@ export default function About() {
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-20 flex items-center gap-4">
             <span className="block h-px w-10 shrink-0 bg-amber/50" />
-            <span className="text-xs text-amber uppercase">Our Values</span>
+            <span className="text-sm text-amber uppercase">{f["values.eyebrow"]}</span>
           </div>
 
-          {VALUES.map((value, i) => {
+          {values.map((value, i) => {
             const reversed = i === 1
             return (
               <div
                 key={value.numeral}
-                className={`${i < VALUES.length - 1 ? "mb-16 " : ""}border-t border-cream/10 pt-12`}
+                className={`${i < values.length - 1 ? "mb-16 " : ""}border-t border-cream/10 pt-12`}
               >
                 <div
                   className={`grid items-center gap-8 md:gap-16 ${
@@ -337,7 +339,7 @@ export default function About() {
           className="absolute inset-x-0 top-[-10%] bottom-[-10%]"
         >
           <Image
-            src="/decor17.jpg"
+            src={img["break.image"]}
             alt="Behind the bar at Butcher and the Rye"
             fill
             className="object-cover"
@@ -349,7 +351,7 @@ export default function About() {
             data-animate=""
             className="px-8 text-center font-cursive text-3xl text-cream/80 md:text-5xl"
           >
-            Every evening is its own occasion.
+            {f["break.text"]}
           </p>
         </div>
       </section>
@@ -361,22 +363,22 @@ export default function About() {
           data-parallax-speed="0.05"
           className="relative z-10 mx-auto max-w-5xl px-8 text-center md:px-16"
         >
-          <p data-animate="" className="mb-8 text-xs text-amber uppercase">
-            Our Philosophy
+          <p data-animate="" className="mb-8 text-sm text-amber uppercase">
+            {f["philosophy.eyebrow"]}
           </p>
           <blockquote
             data-animate=""
             data-delay="130"
             className="font-display text-3xl text-oxblood md:text-5xl lg:text-6xl"
           >
-            &ldquo;The pursuit of extraordinary starts with refusing to accept ordinary.&rdquo;
+            &ldquo;{f["philosophy.quote"]}&rdquo;
           </blockquote>
           <span data-animate="" data-delay="365" className="mt-12 inline-block">
             <Link
               href="/food"
               className="group inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-oxblood"
             >
-              Explore the menu
+              {f["philosophy.linkLabel"]}
               <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
             </Link>
           </span>
@@ -398,7 +400,7 @@ export default function About() {
         <div className="relative z-10 text-center">
           <div data-animate="" className="flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
-            <span className="text-xs text-amber uppercase">Join Us</span>
+            <span className="text-sm text-amber uppercase">{f["cta.eyebrow"]}</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
           </div>
           <h2
@@ -406,22 +408,21 @@ export default function About() {
             data-delay="130"
             className="heading-emboss mt-4 font-display text-5xl text-cream md:text-8xl"
           >
-            Reserve your
+            {f["cta.heading.1"]}
             <br />
-            <span className="text-tan italic">evening</span>
+            <span className="text-tan italic">{f["cta.heading.2"]}</span>
           </h2>
           <p data-animate="" data-delay="285" className="mx-auto mt-8 max-w-md text-lg text-tan">
-            Whether it&rsquo;s a quiet dinner for two or a gathering worth remembering, we&rsquo;ll
-            set the table.
+            {f["cta.body"]}
           </p>
           <span data-animate="" data-delay="470" className="mt-12 inline-block">
             <Link
-              href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+              href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
-              Book a Table
+              {f["cta.buttonLabel"]}
             </Link>
           </span>
         </div>

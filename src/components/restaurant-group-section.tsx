@@ -44,7 +44,7 @@ const restaurants = [
     href: "https://sallyannspgh.com/",
   },
   {
-    name: "The Rib Room",
+    name: "Rib Room",
     image: "/logo-rib-room.webp",
     href: "https://ribroompgh.com/",
   },
@@ -54,7 +54,7 @@ const restaurants = [
     href: "https://takotorta.com/",
   },
   {
-    name: "Gi-Jin Hand Roll Bar",
+    name: "Gi-Jin",
     image: "/logo-gi-jin.webp",
     href: "https://gi-jin.com/",
   },
@@ -79,7 +79,7 @@ export function RestaurantGroupSection() {
         <div className="mb-14 text-center" data-animate="">
           <div className="flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
-            <span className="text-xs text-amber uppercase">The Family</span>
+            <span className="text-sm text-amber uppercase">The Family</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
           </div>
           <h2 className="mt-4 font-display text-4xl text-cream md:text-5xl">

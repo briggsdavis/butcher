@@ -21,7 +21,7 @@ export default function NotFound() {
         <div className="-mt-10 flex flex-col items-center md:-mt-16">
           <div className="flex items-center gap-4">
             <span className="block h-px w-10 shrink-0 bg-amber/40" />
-            <span className="text-xs text-amber uppercase">Lost</span>
+            <span className="text-sm text-amber uppercase">Lost</span>
             <span className="block h-px w-10 shrink-0 bg-amber/40" />
           </div>
 

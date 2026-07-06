@@ -1,9 +1,9 @@
+import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server"
 import { Metadata } from "next"
 import { Courier_Prime, Caveat } from "next/font/google"
 import { ReactNode } from "react"
 import { ConvexClientProvider } from "~/components/convex-client-provider"
 import { SiteChrome } from "~/components/site-chrome"
-import { getToken } from "~/lib/auth-server"
 // eslint-disable-next-line import/no-unassigned-import
 import "~/styles/styles.css"
 
@@ -27,7 +27,13 @@ export const metadata: Metadata = {
     default: "Butcher and the Rye",
     template: "%s · Butcher and the Rye",
   },
-  icons: { icon: "/logo.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+  },
   openGraph: {
     title: "Butcher and the Rye",
     images: ["/warm-dining-room.jpg"],
@@ -39,15 +45,16 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function Layout({ children }: { children: ReactNode }) {
-  const initialToken = await getToken()
+export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${courierPrime.variable} ${caveat.variable} antialiased`}>
-      <body className="bg-charcoal font-sans text-cream">
-        <ConvexClientProvider initialToken={initialToken}>
-          <SiteChrome>{children}</SiteChrome>
-        </ConvexClientProvider>
-      </body>
-    </html>
+    <ConvexAuthNextjsServerProvider>
+      <html lang="en" className={`${courierPrime.variable} ${caveat.variable} antialiased`}>
+        <body className="bg-charcoal font-sans text-cream">
+          <ConvexClientProvider>
+            <SiteChrome>{children}</SiteChrome>
+          </ConvexClientProvider>
+        </body>
+      </html>
+    </ConvexAuthNextjsServerProvider>
   )
 }

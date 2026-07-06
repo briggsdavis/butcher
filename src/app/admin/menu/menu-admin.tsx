@@ -1,7 +1,18 @@
 "use client"
 
 import { useMutation, useQuery } from "convex/react"
-import { ArrowLeft, Eye, EyeOff, FileText, Pencil, Plus, Trash2, Upload, X } from "lucide-react"
+import {
+  ArrowLeft,
+  Eye,
+  EyeOff,
+  FileText,
+  Heart,
+  Pencil,
+  Plus,
+  Trash2,
+  Upload,
+  X,
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef, useState } from "react"
@@ -104,7 +115,10 @@ export function MenuAdmin({ kind, title, eyebrow, basePath }: Props) {
                 <div className="w-16 shrink-0 text-right font-subhead text-amber">
                   ${item.price}
                 </div>
-                <div className="w-16 shrink-0 text-right text-xs text-cream/45">♥ {item.likes}</div>
+                <div className="flex w-16 shrink-0 items-center justify-end gap-1.5 text-xs text-cream/45">
+                  <Heart className="size-3" />
+                  {item.likes}
+                </div>
                 <div className="flex shrink-0 items-center gap-2">
                   <button
                     onClick={() => setHidden({ id: item._id, hidden: !item.hidden })}

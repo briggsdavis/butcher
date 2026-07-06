@@ -1,38 +1,22 @@
+import { fetchQuery } from "convex/nextjs"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { EqualWidthStack } from "~/components/equal-width-stack"
+import { FeaturedReviews } from "~/components/featured-reviews"
 import { HeroCarousel } from "~/components/hero-carousel"
 import { InfiniteCarousel } from "~/components/infinite-carousel"
 import { OpenTableWidget } from "~/components/opentable-widget"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { SectionDivider } from "~/components/section-divider"
 import { TiltCard } from "~/components/tilt-card"
+import { resolveCommonValues } from "~/lib/common-values"
+import { resolveSiteContent } from "~/lib/site-content"
+import { api } from "../../convex/_generated/api"
 
-const HOME_HERO_IMAGES = [
-  { src: "/warm-dining-room.jpg", alt: "Butcher and the Rye dining room" },
-  { src: "/hero1.jpg", alt: "Butcher and the Rye" },
-  { src: "/hero2.jpg", alt: "Butcher and the Rye" },
-]
-
-const COCKTAILS = [
+const FRAME_META = [
   {
-    name: "The Old Fashioned",
-    description: "Buffalo Trace, demerara, Angostura, expressed orange peel",
-  },
-  {
-    name: "Smoke & Rye",
-    description: "Rittenhouse rye, mezcal rinse, maple, black walnut bitters",
-  },
-  {
-    name: "The Butcher's Manhattan",
-    description: "Woodford Reserve, Carpano Antica, brandied cherry",
-  },
-]
-
-const FRAMES = [
-  {
-    src: "/entree-frame.png",
+    key: "gallery.frame.1",
     alt: "Plated dish",
     w: 1652,
     h: 1924,
@@ -40,7 +24,7 @@ const FRAMES = [
     delay: "130",
   },
   {
-    src: "/glow-frame.png",
+    key: "gallery.frame.2",
     alt: "The bar",
     w: 1803,
     h: 2003,
@@ -48,7 +32,7 @@ const FRAMES = [
     delay: "285",
   },
   {
-    src: "/whiskey-frame.png",
+    key: "gallery.frame.3",
     alt: "Whiskey pour",
     w: 1579,
     h: 1996,
@@ -56,7 +40,7 @@ const FRAMES = [
     delay: "440",
   },
   {
-    src: "/bartender-frame.png",
+    key: "gallery.frame.4",
     alt: "Bartender",
     w: 1208,
     h: 1662,
@@ -65,12 +49,40 @@ const FRAMES = [
   },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const [savedContent, savedCommonValues, featuredReviews] = await Promise.all([
+    fetchQuery(api.site.getPage, { key: "home" }),
+    fetchQuery(api.site.getCommonValues, {}),
+    fetchQuery(api.menu.listFeaturedReviews, {}),
+  ])
+  const content = resolveSiteContent("home", savedContent)
+  const common = resolveCommonValues(savedCommonValues)
+  const f = content.fields
+  const img = content.images
+  const reservationHref = common["reservation.href"]
+  const heroImages = [
+    { src: img["hero.image.1"], alt: "Butcher and the Rye dining room" },
+    { src: img["hero.image.2"], alt: "Butcher and the Rye" },
+    { src: img["hero.image.3"], alt: "Butcher and the Rye" },
+  ]
+  const cocktails = [1, 2, 3].map((n) => ({
+    name: f[`cocktail.${n}.name`],
+    description: f[`cocktail.${n}.description`],
+  }))
+  const frames = FRAME_META.map((frame) => ({ ...frame, src: img[frame.key] }))
+  const carouselImages = Array.from({ length: 10 }, (_, index) => {
+    const n = index + 1
+    return {
+      src: img[`carousel.image.${n}`],
+      alt: `Butcher and the Rye carousel image ${n}`,
+    }
+  })
+
   return (
     <>
       {/* ── Hero ── */}
       <section className="hero-section relative flex h-screen items-end justify-center overflow-hidden bg-oxblood">
-        <HeroCarousel images={HOME_HERO_IMAGES} />
+        <HeroCarousel images={heroImages} />
         {/* Top vignette — darkens top half for atmosphere */}
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
         {/* Bottom gradient — fades into the next section */}
@@ -88,19 +100,27 @@ export default function Home() {
         <div className="relative z-10 flex flex-col items-center px-8 pb-24 text-center md:px-16">
           <div className="fade-in-up-3 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
             <Link
-              href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+              href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+              className="inline-block border border-amber px-10 py-4 font-display text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
-              Reserve a Table
+              {f["hero.reserveLabel"]}
             </Link>
-            <Link
-              href="/food"
-              className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
-            >
-              View Menu
-            </Link>
+            <div className="flex items-center gap-4 sm:contents">
+              <Link
+                href="/food"
+                className="inline-block border border-amber px-8 py-4 font-display text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] sm:px-10"
+              >
+                {f["hero.menuLabel"]}
+              </Link>
+              <Link
+                href="/beverages"
+                className="hidden border border-amber px-8 py-4 font-display text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] max-sm:inline-block"
+              >
+                {f["hero.beveragesLabel"]}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -128,7 +148,7 @@ export default function Home() {
             >
               <div className="img-inset-shadow relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/craft-old-fashioned.jpg"
+                  src={img["cocktails.image"]}
                   alt="Craft cocktail"
                   fill
                   className="img-zoom object-cover"
@@ -136,7 +156,7 @@ export default function Home() {
               </div>
               <div className="flex h-16 items-center justify-center md:h-24">
                 <p className="font-handwritten text-3xl text-charcoal md:text-4xl">
-                  The Old Fashioned
+                  {f["cocktails.caption"]}
                 </p>
               </div>
             </TiltCard>
@@ -144,7 +164,7 @@ export default function Home() {
           <div className="flex flex-col justify-center">
             <div data-animate="" className="flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs text-amber uppercase">Cocktails & Spirits</span>
+              <span className="text-sm text-amber uppercase">{f["cocktails.eyebrow"]}</span>
             </div>
             <h2
               data-animate=""
@@ -154,21 +174,21 @@ export default function Home() {
               <EqualWidthStack className="inline-block text-center">
                 <span className="invisible block">
                   <span data-equal-word="" className="inline-block">
-                    Crafted
+                    {f["cocktails.titleTop"]}
                   </span>
                 </span>
                 <span className="-mt-[0.4em] -mb-[0.65em] block font-cursive text-amber">
-                  never
+                  {f["cocktails.titleScript"]}
                 </span>
                 <span className="invisible block text-cream">
                   <span data-equal-word="" className="inline-block">
-                    mixed
+                    {f["cocktails.titleBottom"]}
                   </span>
                 </span>
               </EqualWidthStack>
             </h2>
             <div className="mt-16 space-y-10">
-              {COCKTAILS.map((drink, i) => (
+              {cocktails.map((drink, i) => (
                 <div key={drink.name} data-animate="" data-delay={String(260 + i * 130)}>
                   <h3 className="font-subhead text-2xl text-cream">{drink.name}</h3>
                   <p className="mt-2 text-tan">{drink.description}</p>
@@ -213,33 +233,31 @@ export default function Home() {
           <div className="flex flex-col justify-center">
             <div data-animate="" className="flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs text-amber uppercase">Our Story</span>
+              <span className="text-sm text-amber uppercase">{f["story.eyebrow"]}</span>
             </div>
             <h2
               data-animate=""
               data-delay="130"
               className="heading-emboss mt-4 font-display text-5xl text-cream md:text-7xl"
             >
-              Where every
+              {f["story.heading.1"]}
               <br />
-              glass has a<br />
-              <span className="text-tan italic">history</span>
+              {f["story.heading.2"]}
+              <br />
+              <span className="text-tan italic">{f["story.heading.3"]}</span>
             </h2>
             <p data-animate="" data-delay="260" className="mt-8 text-lg text-tan">
-              Butcher and the Rye was born from a reverence for the craft: the slow char of a
-              barrel, the patience of a dry-aged cut, the conversation that only happens around a
-              well-set table.
+              {f["story.body.1"]}
             </p>
             <p data-animate="" data-delay="390" className="mt-6 text-lg text-tan">
-              We are a place for those who understand that a great evening is not rushed. It is
-              savored, one pour at a time.
+              {f["story.body.2"]}
             </p>
             <span data-animate="" data-delay="520" className="mt-10 inline-block">
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-cream"
+                className="group inline-flex items-center gap-3 text-base text-amber uppercase transition-colors duration-500 hover:text-cream"
               >
-                Read more
+                {f["story.linkLabel"]}
                 <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
               </Link>
             </span>
@@ -253,7 +271,7 @@ export default function Home() {
               className="img-inset-shadow relative h-[26rem] rotate-[-1.2deg] overflow-hidden shadow-2xl"
             >
               <Image
-                src="/barmood.jpg"
+                src={img["story.image.1"]}
                 alt="The bar at Butcher and the Rye"
                 fill
                 className="img-zoom object-cover"
@@ -267,7 +285,7 @@ export default function Home() {
               className="absolute -right-6 -bottom-8 z-10 h-44 w-32 shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
               <div className="relative h-full w-full overflow-hidden">
-                <Image src="/glow-frame.png" alt="Bar glow" fill className="object-cover" />
+                <Image src={img["story.image.2"]} alt="Bar glow" fill className="object-cover" />
               </div>
             </TiltCard>
             {/* Spinning text ring */}
@@ -304,21 +322,21 @@ export default function Home() {
               <div>
                 <div data-animate="" className="flex items-center gap-4">
                   <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                  <span className="text-xs text-amber uppercase">From the Kitchen</span>
+                  <span className="text-sm text-amber uppercase">{f["menu.eyebrow"]}</span>
                 </div>
                 <h2
                   data-animate=""
                   data-delay="130"
                   className="heading-emboss mt-4 font-display text-5xl text-cream md:text-7xl"
                 >
-                  The menu
+                  {f["menu.heading"]}
                 </h2>
                 <span data-animate="" data-delay="220" className="mt-8 inline-block">
                   <Link
                     href="/food"
                     className="border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
                   >
-                    Full Menu
+                    {f["menu.buttonLabel"]}
                   </Link>
                 </span>
               </div>
@@ -328,7 +346,7 @@ export default function Home() {
                 className="img-inset-shadow relative aspect-[5/4] w-full overflow-hidden shadow-xl"
               >
                 <Image
-                  src="/meat-board.jpg"
+                  src={img["menu.image.1"]}
                   alt="Meat Board"
                   fill
                   className="img-zoom object-cover"
@@ -342,7 +360,7 @@ export default function Home() {
               className="img-inset-shadow relative aspect-[3/4] w-full overflow-hidden shadow-xl"
             >
               <Image
-                src="/plated-entree.jpg"
+                src={img["menu.image.2"]}
                 alt="Signature plated dish"
                 fill
                 className="img-zoom object-cover"
@@ -355,18 +373,22 @@ export default function Home() {
                 data-delay="460"
                 className="img-inset-shadow relative aspect-[5/4] w-full overflow-hidden shadow-xl"
               >
-                <Image src="/steak.jpg" alt="Steak" fill className="img-zoom object-cover" />
+                <Image
+                  src={img["menu.image.3"]}
+                  alt="Steak"
+                  fill
+                  className="img-zoom object-cover"
+                />
               </div>
               <div data-animate="" data-delay="560" className="mt-8">
-                <p className="max-w-xs text-sm text-tan">
-                  Sourced from heritage farms and shaped by old-world technique. Every plate is a
-                  reflection of place, season, and craft.
-                </p>
+                <p className="max-w-xs text-sm text-tan">{f["menu.body"]}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <FeaturedReviews reviews={featuredReviews} />
 
       {/* ── Parallax Banner ── */}
       <section
@@ -378,16 +400,15 @@ export default function Home() {
           data-parallax-speed="0.2"
           className="absolute inset-x-0 top-[-20%] bottom-[-20%]"
         >
-          <Image src="/parallax-wide.jpg" alt="Butcher and the Rye" fill className="object-cover" />
+          <Image src={img["quote.image"]} alt="Butcher and the Rye" fill className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-charcoal/65" />
         <blockquote data-animate="" className="relative z-10 max-w-2xl px-8 text-center">
           <p className="heading-emboss font-display text-2xl text-cream md:text-4xl">
-            &ldquo;The best meals are the ones you{" "}
-            <span className="text-amber italic">never forget.</span>&rdquo;
+            &ldquo;{f["quote.text"]}&rdquo;
           </p>
           <cite className="mt-6 block text-xs text-tan/70 uppercase not-italic">
-            Butcher &amp; the Rye · Est. 2013
+            {f["quote.cite"]}
           </cite>
         </blockquote>
       </section>
@@ -397,11 +418,11 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-14 flex items-center gap-6">
             <span className="block h-px flex-1 bg-amber/25" />
-            <span className="shrink-0 text-xs text-amber uppercase">On the Wall</span>
+            <span className="shrink-0 text-sm text-amber uppercase">{f["gallery.eyebrow"]}</span>
             <span className="block h-px flex-1 bg-amber/25" />
           </div>
           <div className="flex flex-wrap items-end justify-center gap-8 md:gap-12">
-            {FRAMES.map((frame) => (
+            {frames.map((frame) => (
               <TiltCard
                 key={frame.src}
                 data-animate=""
@@ -424,7 +445,7 @@ export default function Home() {
       </section>
 
       {/* ── Infinite Carousel ── */}
-      <InfiniteCarousel />
+      <InfiniteCarousel images={carouselImages} eyebrow={f["carousel.eyebrow"]} />
 
       {/* ── Reservations ── */}
       <section
@@ -440,7 +461,7 @@ export default function Home() {
         <div className="relative z-10 text-center">
           <div data-animate="" className="flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
-            <span className="text-xs text-amber uppercase">Join Us</span>
+            <span className="text-sm text-amber uppercase">{f["reservations.eyebrow"]}</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
           </div>
           <h2
@@ -448,25 +469,24 @@ export default function Home() {
             data-delay="130"
             className="heading-emboss mt-4 font-display text-5xl text-cream md:text-8xl"
           >
-            Reserve your
+            {f["reservations.heading.1"]}
             <br />
-            <span className="text-tan italic">evening</span>
+            <span className="text-tan italic">{f["reservations.heading.2"]}</span>
           </h2>
           <p data-animate="" data-delay="285" className="mx-auto mt-8 max-w-md text-lg text-tan">
-            Whether it's a quiet dinner for two or a gathering worth remembering, we'll set the
-            table.
+            {f["reservations.body"]}
           </p>
 
           <SectionDivider className="my-4" />
 
           <span data-animate="" data-delay="470" className="mt-4 inline-block">
             <Link
-              href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+              href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
             >
-              Book a Table
+              {f["reservations.buttonLabel"]}
             </Link>
           </span>
         </div>

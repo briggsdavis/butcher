@@ -6,61 +6,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound, useRouter } from "next/navigation"
 import { useEffect, useMemo, useRef, useState } from "react"
+import { resolveCommonValues } from "~/lib/common-values"
 import { api } from "../../convex/_generated/api"
 import type { Doc, Id } from "../../convex/_generated/dataModel"
 
 type Kind = "food" | "spirit" | "beverage"
-
-const ADJECTIVES = [
-  "Quick",
-  "Velvet",
-  "Midnight",
-  "Copper",
-  "Smoky",
-  "Restless",
-  "Gilded",
-  "Quiet",
-  "Wandering",
-  "Salted",
-  "Crimson",
-  "Hushed",
-  "Bramble",
-  "Lantern",
-  "Marble",
-  "Ember",
-  "Dusky",
-  "Hollow",
-  "Polished",
-  "Rye",
-]
-const ANIMALS = [
-  "Turtle",
-  "Fox",
-  "Heron",
-  "Stag",
-  "Otter",
-  "Magpie",
-  "Wolf",
-  "Hare",
-  "Falcon",
-  "Raven",
-  "Bison",
-  "Lynx",
-  "Mole",
-  "Crane",
-  "Boar",
-  "Marten",
-  "Owl",
-  "Bear",
-  "Pheasant",
-  "Badger",
-]
-
-function randomAlias() {
-  const a = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)]
-  const b = ANIMALS[Math.floor(Math.random() * ANIMALS.length)]
-  return `${a} ${b}`
-}
 
 function formatTs(ts: number) {
   return new Date(ts).toLocaleDateString(undefined, {
@@ -85,7 +35,7 @@ export function MenuDetail({
   basePath,
   backLabel,
   priceLabel = "Price",
-  notePlaceholder = "Leave a note about this…",
+  notePlaceholder = "Leave a review about this…",
 }: Config) {
   const router = useRouter()
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -93,6 +43,7 @@ export function MenuDetail({
 
   const item = useQuery(api.menu.getBySlug, { kind, slug })
   const allItems = useQuery(api.menu.list, { kind })
+  const savedValues = useQuery(api.site.getCommonValues)
 
   if (item === null) notFound()
 
@@ -129,6 +80,8 @@ export function MenuDetail({
   }
 
   const exitClass = exitDir === "next" ? "food-exit" : exitDir === "prev" ? "food-exit-prev" : ""
+  const common = resolveCommonValues(savedValues)
+  const reservationHref = common["reservation.href"]
 
   if (item === undefined) {
     return <div className="min-h-screen bg-charcoal" />
@@ -199,7 +152,7 @@ export function MenuDetail({
 
             <div className="mt-10">
               <Link
-                href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+                href={reservationHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex w-fit items-center gap-3 border border-amber px-8 py-3.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
@@ -289,17 +242,22 @@ function LikeRow({
 function Guestbook({ itemId, placeholder }: { itemId: Id<"menuItems">; placeholder: string }) {
   const comments = useQuery(api.menu.listComments, { itemId })
   const addComment = useMutation(api.menu.addComment)
+  const [name, setName] = useState("")
   const [body, setBody] = useState("")
   const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
+    const trimmedName = name.trim()
     const trimmed = body.trim()
-    if (!trimmed || submitting) return
+    if (!trimmedName || !trimmed || submitting) return
     setSubmitting(true)
     try {
-      await addComment({ itemId, name: randomAlias(), body: trimmed })
+      await addComment({ itemId, name: trimmedName, body: trimmed })
+      setName("")
       setBody("")
+      setSubmitted(true)
     } finally {
       setSubmitting(false)
     }
@@ -310,28 +268,40 @@ function Guestbook({ itemId, placeholder }: { itemId: Id<"menuItems">; placehold
   return (
     <div className="mx-auto mt-24 w-full max-w-3xl md:mt-32">
       <div className="mb-10 flex items-baseline justify-between border-b border-cream/10 pb-4">
-        <h2 className="font-display text-2xl text-cream md:text-3xl">Guestbook</h2>
+        <h2 className="font-display text-2xl text-cream md:text-3xl">Reviews</h2>
         <span className="text-xs text-cream/30 uppercase">
-          {rows.length} {rows.length === 1 ? "Note" : "Notes"}
+          {rows.length} {rows.length === 1 ? "Review" : "Reviews"}
         </span>
       </div>
 
       <form onSubmit={onSubmit} className="mb-12 space-y-4">
+        <input
+          aria-label="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Your name"
+          className="w-full border-b border-cream/15 bg-transparent py-3 text-sm text-cream placeholder-cream/25 focus:border-amber focus:outline-none"
+        />
         <textarea
-          aria-label="Leave a note"
+          aria-label="Leave a review"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           placeholder={placeholder}
           rows={3}
           className="w-full resize-none border-b border-cream/15 bg-transparent py-3 text-sm text-cream placeholder-cream/25 focus:border-amber focus:outline-none"
         />
-        <div className="flex justify-end">
+        <div className="flex items-center justify-between gap-4">
+          <span className="text-xs text-cream/35 uppercase">
+            {submitted
+              ? "Thanks. Your review is pending approval."
+              : "Reviews appear after approval."}
+          </span>
           <button
             type="submit"
-            disabled={!body.trim() || submitting}
+            disabled={!name.trim() || !body.trim() || submitting}
             className="border border-amber px-6 py-2.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:translate-y-0 disabled:hover:border-amber disabled:hover:text-amber disabled:hover:shadow-none"
           >
-            {submitting ? "Posting…" : "Post Note"}
+            {submitting ? "Submitting…" : "Submit Review"}
           </button>
         </div>
       </form>
@@ -339,7 +309,7 @@ function Guestbook({ itemId, placeholder }: { itemId: Id<"menuItems">; placehold
       <ul className="space-y-8">
         {rows.length === 0 ? (
           <li className="text-center text-xs text-cream/25 uppercase">
-            Be the first to leave a note
+            Be the first to leave a review
           </li>
         ) : (
           rows.map((c) => (

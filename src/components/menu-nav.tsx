@@ -3,11 +3,10 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-// Hiding spirits/beverages entries for now
 const MENU_PAGES = [
   { href: "/food", label: "Food" },
+  { href: "/beverages", label: "Beverages" },
   // { href: "/spirits", label: "Spirits" },
-  // { href: "/beverages", label: "Beverages" },
 ]
 
 export function MenuNav() {

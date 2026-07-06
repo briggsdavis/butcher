@@ -2,7 +2,9 @@
 
 import Image from "next/image"
 
-const IMAGES = [
+type CarouselImage = { src: string; alt: string }
+
+const IMAGES: CarouselImage[] = [
   { src: "/decor12.jpg", alt: "Bar atmosphere" },
   { src: "/decor14.jpg", alt: "Bar decor" },
   { src: "/bartender-at-work.jpg", alt: "Bartender at work" },
@@ -15,20 +17,24 @@ const IMAGES = [
   { src: "/parallax-wide.jpg", alt: "The restaurant" },
 ]
 
-export function InfiniteCarousel() {
+export function InfiniteCarousel({
+  images = IMAGES,
+  eyebrow = "A Taste of the Experience",
+}: {
+  images?: CarouselImage[]
+  eyebrow?: string
+}) {
   return (
     <section data-wipe className="overflow-hidden bg-charcoal py-24 md:py-32">
       <div data-animate="" className="mb-12 flex items-center justify-center gap-6 px-8">
         <span className="block h-px w-16 bg-amber/25" />
-        <span className="shrink-0 font-subhead text-xs text-amber uppercase italic">
-          A Taste of the Experience
-        </span>
+        <span className="shrink-0 font-subhead text-sm text-amber uppercase italic">{eyebrow}</span>
         <span className="block h-px w-16 bg-amber/25" />
       </div>
       {/* Outer wrapper masks overflow while inner track animates */}
       <div className="overflow-hidden">
         <div className="carousel-track">
-          {[...IMAGES, ...IMAGES].map((img, i) => (
+          {[...images, ...images].map((img, i) => (
             // Static doubled list for an infinite marquee — order is the identity.
             // oxlint-disable-next-line react/no-array-index-key
             <div key={i} className="carousel-item group">

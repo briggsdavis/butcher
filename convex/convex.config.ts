@@ -1,7 +1,10 @@
-import betterAuth from "@convex-dev/better-auth/convex.config"
 import { defineApp } from "convex/server"
+import { v } from "convex/values"
 
-const app = defineApp()
-app.use(betterAuth)
+const app = defineApp({
+  env: {
+    ADMIN_EMAILS: v.optional(v.string()),
+  },
+})
 
 export default app

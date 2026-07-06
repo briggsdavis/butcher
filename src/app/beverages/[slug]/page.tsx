@@ -29,7 +29,7 @@ export default async function BeverageDetailPage({
         slug={slug}
         basePath="/beverages"
         backLabel="Back to beverages"
-        notePlaceholder="Leave a note about this pour…"
+        notePlaceholder="Leave a review about this pour…"
       />
     </Suspense>
   )

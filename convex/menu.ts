@@ -95,11 +95,64 @@ export const setHidden = mutation({
 export const listComments = query({
   args: { itemId: v.id("menuItems") },
   handler: async (ctx, { itemId }) => {
-    return await ctx.db
+    const comments = await ctx.db
       .query("menuComments")
       .withIndex("by_item", (q) => q.eq("itemId", itemId))
       .order("desc")
       .take(200)
+    return comments
+      .filter((comment) => comment.status === "approved" || comment.status === undefined)
+      .sort((a, b) => Number(b.featured ?? false) - Number(a.featured ?? false))
+  },
+})
+
+export const listReviewsForAdmin = query({
+  args: {},
+  handler: async (ctx) => {
+    await assertAdmin(ctx)
+    const comments = await ctx.db.query("menuComments").order("desc").take(500)
+    const rows = await Promise.all(
+      comments.map(async (comment) => {
+        const item = await ctx.db.get(comment.itemId)
+        return {
+          ...comment,
+          status: comment.status ?? "approved",
+          featured: comment.featured ?? false,
+          itemName: item?.name ?? "Deleted item",
+          itemKind: item?.kind ?? null,
+          itemSlug: item?.slug ?? null,
+        }
+      }),
+    )
+    return rows
+  },
+})
+
+export const listFeaturedReviews = query({
+  args: {},
+  handler: async (ctx) => {
+    const comments = await ctx.db
+      .query("menuComments")
+      .withIndex("by_featured", (q) => q.eq("featured", true))
+      .order("desc")
+      .take(5)
+    const approved = comments.filter(
+      (comment) => comment.status === "approved" || comment.status === undefined,
+    )
+    return await Promise.all(
+      approved.map(async (comment) => {
+        const item = await ctx.db.get(comment.itemId)
+        return {
+          _id: comment._id,
+          _creationTime: comment._creationTime,
+          name: comment.name,
+          body: comment.body,
+          itemName: item?.name ?? null,
+          itemKind: item?.kind ?? null,
+          itemSlug: item?.slug ?? null,
+        }
+      }),
+    )
   },
 })
 
@@ -121,7 +174,53 @@ export const addComment = mutation({
       itemId,
       name: trimmedName,
       body: trimmedBody,
+      status: "pending",
+      featured: false,
     })
+  },
+})
+
+export const approveReview = mutation({
+  args: { id: v.id("menuComments") },
+  handler: async (ctx, { id }) => {
+    await assertAdmin(ctx)
+    const review = await ctx.db.get(id)
+    if (!review) throw new Error("Review not found.")
+    await ctx.db.patch(id, {
+      status: "approved",
+      approvedAt: Date.now(),
+    })
+  },
+})
+
+export const setReviewFeatured = mutation({
+  args: { id: v.id("menuComments"), featured: v.boolean() },
+  handler: async (ctx, { id, featured }) => {
+    await assertAdmin(ctx)
+    const review = await ctx.db.get(id)
+    if (!review) throw new Error("Review not found.")
+    if (featured && review.status !== "approved" && review.status !== undefined) {
+      throw new Error("Only approved reviews can be featured.")
+    }
+    if (featured) {
+      const featuredReviews = await ctx.db
+        .query("menuComments")
+        .withIndex("by_featured", (q) => q.eq("featured", true))
+        .take(6)
+      const otherFeatured = featuredReviews.filter((comment) => comment._id !== id)
+      if (otherFeatured.length >= 5) {
+        throw new Error("Only five reviews can be featured.")
+      }
+    }
+    await ctx.db.patch(id, { featured })
+  },
+})
+
+export const removeReview = mutation({
+  args: { id: v.id("menuComments") },
+  handler: async (ctx, { id }) => {
+    await assertAdmin(ctx)
+    await ctx.db.delete(id)
   },
 })
 

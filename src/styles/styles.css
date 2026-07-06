@@ -239,6 +239,11 @@ footer::before {
   z-index: -1;
 }
 
+[data-admin] section:not(.hero-section)::before,
+[data-admin] footer::before {
+  content: none;
+}
+
 /* ── Custom Cursor ── */
 @media (hover: hover) and (pointer: fine) {
   *,
@@ -252,6 +257,20 @@ footer::before {
   [data-admin] *::before,
   [data-admin] *::after {
     cursor: auto !important;
+  }
+
+  [data-admin] a,
+  [data-admin] a *,
+  [data-admin] button,
+  [data-admin] button *,
+  [data-admin] label:has(input[type="file"]) {
+    cursor: pointer !important;
+    user-select: none;
+  }
+
+  [data-admin] button:disabled,
+  [data-admin] button:disabled * {
+    cursor: not-allowed !important;
   }
 }
 

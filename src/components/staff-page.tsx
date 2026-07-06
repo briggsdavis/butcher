@@ -2,13 +2,34 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { STAFF } from "~/data/staff"
+import type { ResolvedSiteContent } from "~/lib/site-content"
 
-export function StaffPage() {
+export function StaffPage({
+  content,
+  reservationHref,
+}: {
+  content: ResolvedSiteContent
+  reservationHref: string
+}) {
+  const staff = useMemo(
+    () =>
+      STAFF.map((member, index) => {
+        const n = index + 1
+        return {
+          ...member,
+          name: content.fields[`staff.${n}.name`] || member.name,
+          role: content.fields[`staff.${n}.role`] || member.role,
+          years: content.fields[`staff.${n}.years`] || member.years,
+          headshot: content.images[`staff.${n}.headshot`] || member.headshot,
+        }
+      }),
+    [content],
+  )
   const [activeIndex, setActiveIndex] = useState(0)
   const [revealed, setRevealed] = useState<boolean[]>(() =>
-    Array.from({ length: STAFF.length }, () => false),
+    Array.from({ length: staff.length }, () => false),
   )
   const sectionRefs = useRef<(HTMLElement | null)[]>([])
 
@@ -40,7 +61,7 @@ export function StaffPage() {
     }
   }, [])
 
-  const activeMember = STAFF[activeIndex]
+  const activeMember = staff[activeIndex]
 
   return (
     <>
@@ -55,35 +76,31 @@ export function StaffPage() {
           <div className="relative z-10">
             <div className="mb-6 flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs text-amber uppercase">Our Staff</span>
+              <span className="text-sm text-amber uppercase">
+                {content.fields["intro.eyebrow"]}
+              </span>
             </div>
 
             <h1 className="font-display text-4xl text-cream md:text-5xl">
-              The People
+              {content.fields["intro.heading.1"]}
               <br />
-              <span className="font-cursive text-3xl text-amber md:text-4xl">Behind</span>
+              <span className="font-cursive text-3xl text-amber md:text-4xl">
+                {content.fields["intro.heading.2"]}
+              </span>
               <br />
-              the Craft
+              {content.fields["intro.heading.3"]}
             </h1>
 
             <div className="draw-line mt-2 h-px w-14 bg-amber/35" />
 
-            <p className="mt-8 text-sm text-tan">
-              Every dish, cocktail, and evening at Butcher and the Rye is shaped by people who have
-              devoted their lives to their craft. Rigorously trained, endlessly inspired, and driven
-              by one goal: to give you something extraordinary.
-            </p>
-            <p className="mt-3 text-sm text-tan">
-              From our Executive Chef to our floor staff, everyone here shares the same relentless
-              commitment to excellence. We don't settle for good. We pursue perfect, every single
-              night.
-            </p>
+            <p className="mt-8 text-sm text-tan">{content.fields["intro.body.1"]}</p>
+            <p className="mt-3 text-sm text-tan">{content.fields["intro.body.2"]}</p>
           </div>
 
           {/* Progress indicator — desktop only */}
           <div className="relative z-10 mt-12 hidden items-end gap-6 md:flex">
             <div className="flex flex-col items-center gap-[5px]">
-              {STAFF.map((member, i) => (
+              {staff.map((member, i) => (
                 <div
                   key={member.name}
                   className={`rounded-full transition-all duration-500 ease-out ${
@@ -102,7 +119,7 @@ export function StaffPage() {
                   {String(activeIndex + 1).padStart(2, "0")}
                 </span>
                 <span className="ml-2 text-xs text-cream/30">
-                  / {String(STAFF.length).padStart(2, "0")}
+                  / {String(staff.length).padStart(2, "0")}
                 </span>
               </p>
               <p className="mt-1 text-xs text-tan/60 uppercase">{activeMember.role}</p>
@@ -112,7 +129,7 @@ export function StaffPage() {
 
         {/* ── RIGHT SCROLLABLE PANEL ── */}
         <div className="flex-1 bg-charcoal">
-          {STAFF.map((member, i) => (
+          {staff.map((member, i) => (
             <section
               key={member.name}
               ref={(el) => {
@@ -202,24 +219,26 @@ export function StaffPage() {
         <div className="max-w-xl px-8 md:px-16">
           <div className="mb-8 flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-oxblood/20" />
-            <span className="text-xs text-oxblood/50 uppercase">Join Us</span>
+            <span className="text-sm text-oxblood/50 uppercase">
+              {content.fields["cta.eyebrow"]}
+            </span>
             <span className="block h-px w-12 shrink-0 bg-oxblood/20" />
           </div>
           <h2 className="font-display text-5xl text-charcoal md:text-7xl">
-            Reserve your
+            {content.fields["cta.heading.1"]}
             <br />
-            <span className="text-oxblood italic">evening</span>
+            <span className="text-oxblood italic">{content.fields["cta.heading.2"]}</span>
           </h2>
           <p className="mx-auto mt-8 max-w-md text-lg text-charcoal/60">
-            Our team is ready to welcome you. Book your table at Butcher and the Rye.
+            {content.fields["cta.body"]}
           </p>
           <Link
-            href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+            href={reservationHref}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-12 inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
           >
-            Reserve Now
+            {content.fields["cta.buttonLabel"]}
           </Link>
         </div>
       </section>

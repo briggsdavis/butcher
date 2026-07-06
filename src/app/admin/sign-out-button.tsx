@@ -1,20 +1,24 @@
 "use client"
 
+import { useAuthActions } from "@convex-dev/auth/react"
+import { LogOut } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { authClient } from "~/lib/auth-client"
 
 export function SignOutButton() {
   const router = useRouter()
+  const { signOut } = useAuthActions()
+
   return (
     <button
       type="button"
       onClick={async () => {
-        await authClient.signOut()
+        await signOut()
         router.push("/admin/login")
         router.refresh()
       }}
-      className="border border-amber px-8 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+      className="flex w-full cursor-pointer items-center justify-center gap-2 border border-amber px-6 py-3 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream"
     >
+      <LogOut className="size-3.5" />
       Sign out
     </button>
   )

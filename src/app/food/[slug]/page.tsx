@@ -25,7 +25,7 @@ export default async function FoodDetailPage({ params }: { params: Promise<{ slu
         slug={slug}
         basePath="/food"
         backLabel="Back to food"
-        notePlaceholder="Leave a note about this dish…"
+        notePlaceholder="Leave a review about this dish…"
       />
     </Suspense>
   )

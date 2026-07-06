@@ -26,7 +26,7 @@ export default async function SpiritDetailPage({ params }: { params: Promise<{ s
         basePath="/spirits"
         backLabel="Back to spirits"
         priceLabel="Pour"
-        notePlaceholder="Leave a note about this pour…"
+        notePlaceholder="Leave a review about this pour…"
       />
     </Suspense>
   )

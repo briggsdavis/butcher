@@ -1,31 +1,38 @@
 "use client"
 
+import { useQuery } from "convex/react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
+import { resolveCommonValues } from "~/lib/common-values"
+import { api } from "../../convex/_generated/api"
 
 type MenuLink = {
+  key: string
   href: string
   label: string
 }
 
 const MENU_LINKS: MenuLink[] = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  {
-    href: "https://www.opentable.com/r/butcher-and-the-rye-pittsburgh",
-    label: "Reserve",
-  },
+  { key: "home", href: "/", label: "Home" },
+  { key: "about", href: "/about", label: "About" },
+  { key: "reserve", href: "", label: "Reserve" },
   // { href: "/our-staff", label: "Our Staff" },
-  { href: "/food", label: "Food" },
-  { href: "/contact", label: "Contact" },
+  { key: "food", href: "/food", label: "Food" },
+  { key: "beverages", href: "/beverages", label: "Beverages" },
+  { key: "contact", href: "/contact", label: "Contact" },
   // { href: "/spirits", label: "Spirits" },
-  // { href: "/beverages", label: "Beverages" },
 ]
 
 export function Nav() {
   const pathname = usePathname()
+  const savedValues = useQuery(api.site.getCommonValues)
+  const common = resolveCommonValues(savedValues)
+  const reservationHref = common["reservation.href"]
+  const menuLinks = MENU_LINKS.map((link) =>
+    link.key === "reserve" ? { ...link, href: reservationHref } : link,
+  )
   const isHome = pathname === "/"
   const [open, setOpen] = useState(false)
   const [closing, setClosing] = useState(false)
@@ -97,18 +104,18 @@ export function Nav() {
             >
               Food
             </Link>
-            {/* Hiding spirits/beverages links for now */}
-            {/* <Link
-              href="/spirits"
-              className="text-sm text-white uppercase transition-colors hover:text-amber"
-            >
-              Spirits
-            </Link>
             <Link
               href="/beverages"
               className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
               Beverages
+            </Link>
+            {/* Hiding spirits link for now */}
+            {/* <Link
+              href="/spirits"
+              className="text-sm text-white uppercase transition-colors hover:text-amber"
+            >
+              Spirits
             </Link> */}
           </div>
         </div>
@@ -126,7 +133,7 @@ export function Nav() {
 
         {/* Reserve — top right */}
         <Link
-          href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"
+          href={reservationHref}
           target="_blank"
           rel="noopener noreferrer"
           className="relative z-10 ml-auto hidden border border-amber px-5 py-2 text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] md:block"
@@ -152,7 +159,7 @@ export function Nav() {
 
           {/* Menu items — right-aligned, numbered, slide left on hover */}
           <div className="flex flex-1 flex-col justify-center pr-12 md:pr-28 lg:pr-40">
-            {MENU_LINKS.map((link, i) => {
+            {menuLinks.map((link, i) => {
               const external = link.href.startsWith("http")
               const num = String(i + 1).padStart(2, "0")
               const style = {
