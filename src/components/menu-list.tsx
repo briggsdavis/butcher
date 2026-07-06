@@ -29,12 +29,7 @@ function pickRandom<T>(arr: readonly T[], n: number): T[] {
   return out
 }
 
-export function MenuList({
-  kind,
-  basePath,
-  categoryLabels,
-  inlinePdf,
-}: Config) {
+export function MenuList({ kind, basePath, categoryLabels, inlinePdf }: Config) {
   const items = useQuery(api.menu.list, { kind })
   const menuPdfUrl = useQuery(api.site.getMenuPdfUrl, { kind })
 
@@ -128,9 +123,7 @@ export function MenuList({
                     <span
                       className={`block h-px w-8 shrink-0 ${dark ? "bg-oxblood/30" : "bg-amber/50"}`}
                     />
-                    <span
-                      className={`text-xs uppercase ${dark ? "text-oxblood" : "text-amber"}`}
-                    >
+                    <span className={`text-xs uppercase ${dark ? "text-oxblood" : "text-amber"}`}>
                       {label}
                     </span>
                   </div>

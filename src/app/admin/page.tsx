@@ -25,9 +25,7 @@ export default async function AdminPage() {
           <span className="block h-px w-10 shrink-0 bg-amber/50" />
           <span className="text-xs text-amber uppercase">Back of House</span>
         </div>
-        <h1 className="heading-emboss mt-4 font-display text-6xl text-cream md:text-7xl">
-          Admin
-        </h1>
+        <h1 className="heading-emboss mt-4 font-display text-6xl text-cream md:text-7xl">Admin</h1>
 
         <p className="mt-6 font-subhead text-tan">
           Signed in as <span className="text-cream">{user?.email}</span>
@@ -39,21 +37,15 @@ export default async function AdminPage() {
             className="group block border border-amber/30 p-8 transition-colors hover:border-amber"
           >
             <p className="text-xs text-amber uppercase">Menu</p>
-            <p className="mt-3 font-display text-3xl text-cream group-hover:text-amber">
-              Food
-            </p>
-            <p className="mt-2 text-sm text-tan">
-              Add, edit, or remove dishes.
-            </p>
+            <p className="mt-3 font-display text-3xl text-cream group-hover:text-amber">Food</p>
+            <p className="mt-2 text-sm text-tan">Add, edit, or remove dishes.</p>
           </Link>
           <Link
             href="/admin/spirits"
             className="group block border border-amber/30 p-8 transition-colors hover:border-amber"
           >
             <p className="text-xs text-amber uppercase">Bar</p>
-            <p className="mt-3 font-display text-3xl text-cream group-hover:text-amber">
-              Spirits
-            </p>
+            <p className="mt-3 font-display text-3xl text-cream group-hover:text-amber">Spirits</p>
             <p className="mt-2 text-sm text-tan">
               Manage whiskey, gin, and the rest of the back bar.
             </p>
@@ -66,9 +58,7 @@ export default async function AdminPage() {
             <p className="mt-3 font-display text-3xl text-cream group-hover:text-amber">
               Beverages
             </p>
-            <p className="mt-2 text-sm text-tan">
-              Cocktails, wine, and non-alcoholic offerings.
-            </p>
+            <p className="mt-2 text-sm text-tan">Cocktails, wine, and non-alcoholic offerings.</p>
           </Link>
         </div>
 

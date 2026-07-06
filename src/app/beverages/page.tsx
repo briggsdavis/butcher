@@ -13,11 +13,5 @@ const CATEGORY_LABELS: Record<string, string> = {
 }
 
 export default function Beverages() {
-  return (
-    <MenuList
-      kind="beverage"
-      basePath="/beverages"
-      categoryLabels={CATEGORY_LABELS}
-    />
-  )
+  return <MenuList kind="beverage" basePath="/beverages" categoryLabels={CATEGORY_LABELS} />
 }

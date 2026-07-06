@@ -25,13 +25,10 @@ export default function NotFound() {
             <span className="block h-px w-10 shrink-0 bg-amber/40" />
           </div>
 
-          <h1 className="mt-4 font-display text-3xl text-cream md:text-5xl">
-            Table not found
-          </h1>
+          <h1 className="mt-4 font-display text-3xl text-cream md:text-5xl">Table not found</h1>
 
           <p className="mt-5 max-w-sm text-base text-tan">
-            This seat doesn&rsquo;t exist. Let us guide you back to where the
-            evening begins.
+            This seat doesn&rsquo;t exist. Let us guide you back to where the evening begins.
           </p>
 
           <Link

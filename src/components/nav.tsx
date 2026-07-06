@@ -114,10 +114,7 @@ export function Nav() {
         </div>
 
         {/* Centered title */}
-        <Link
-          href="/"
-          className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-        >
+        <Link href="/" className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
           <Image
             src="/logo.png"
             alt="Butcher & the Rye"
@@ -173,9 +170,7 @@ export function Nav() {
                 >
                   {/* Slide both number + label together on hover */}
                   <div className="flex items-baseline gap-3 transition-transform duration-300 ease-out group-hover:-translate-x-4">
-                    <span className="font-sans text-xs text-cream/25">
-                      {num}
-                    </span>
+                    <span className="font-sans text-xs text-cream/25">{num}</span>
                     <span
                       className={`font-display text-3xl md:text-5xl lg:text-6xl ${link.label === "Reserve" ? "font-bold text-amber" : "text-cream"}`}
                     >

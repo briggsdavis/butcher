@@ -24,8 +24,7 @@
 
 @theme inline {
   --font-cursive: "Vegan Style", var(--font-courier-prime), monospace;
-  --font-handwritten:
-    var(--font-reenie-beanie), var(--font-courier-prime), cursive;
+  --font-handwritten: var(--font-reenie-beanie), var(--font-courier-prime), cursive;
   --font-display: "Ocean Beach", var(--font-courier-prime), monospace;
   --font-subhead: "March Rough", var(--font-courier-prime), monospace;
   --font-sans: var(--font-courier-prime), ui-monospace, monospace;
@@ -431,11 +430,7 @@ footer::before {
   background: radial-gradient(circle, var(--color-amber), transparent 70%);
 }
 .glow-oxblood {
-  background: radial-gradient(
-    ellipse at center,
-    var(--color-oxblood),
-    transparent 65%
-  );
+  background: radial-gradient(ellipse at center, var(--color-oxblood), transparent 65%);
 }
 
 /* ── Spin used for badge rings ── */

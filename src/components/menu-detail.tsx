@@ -101,8 +101,7 @@ export function MenuDetail({
     const idx = allItems.findIndex((i) => i._id === item._id)
     return {
       prevSlug: idx > 0 ? allItems[idx - 1].slug : null,
-      nextSlug:
-        idx >= 0 && idx < allItems.length - 1 ? allItems[idx + 1].slug : null,
+      nextSlug: idx >= 0 && idx < allItems.length - 1 ? allItems[idx + 1].slug : null,
     }
   }, [item, allItems])
 
@@ -129,12 +128,7 @@ export function MenuDetail({
     setTimeout(() => router.push(`${basePath}/${prevSlug}?dir=prev`), 350)
   }
 
-  const exitClass =
-    exitDir === "next"
-      ? "food-exit"
-      : exitDir === "prev"
-        ? "food-exit-prev"
-        : ""
+  const exitClass = exitDir === "next" ? "food-exit" : exitDir === "prev" ? "food-exit-prev" : ""
 
   if (item === undefined) {
     return <div className="min-h-screen bg-charcoal" />
@@ -276,9 +270,7 @@ function LikeRow({
       <span className="flex items-center gap-3 text-xs text-cream/45 uppercase transition-colors group-hover:text-cream/70">
         <Heart
           className={`size-3.5 transition-all duration-300 ${
-            liked
-              ? "fill-amber stroke-amber"
-              : "stroke-cream/45 group-hover:stroke-amber"
+            liked ? "fill-amber stroke-amber" : "stroke-cream/45 group-hover:stroke-amber"
           } ${pulse ? "scale-125" : "scale-100"}`}
         />
         {liked ? "You liked this" : "Tap to like"}
@@ -294,13 +286,7 @@ function LikeRow({
   )
 }
 
-function Guestbook({
-  itemId,
-  placeholder,
-}: {
-  itemId: Id<"menuItems">
-  placeholder: string
-}) {
+function Guestbook({ itemId, placeholder }: { itemId: Id<"menuItems">; placeholder: string }) {
   const comments = useQuery(api.menu.listComments, { itemId })
   const addComment = useMutation(api.menu.addComment)
   const [body, setBody] = useState("")
@@ -324,9 +310,7 @@ function Guestbook({
   return (
     <div className="mx-auto mt-24 w-full max-w-3xl md:mt-32">
       <div className="mb-10 flex items-baseline justify-between border-b border-cream/10 pb-4">
-        <h2 className="font-display text-2xl text-cream md:text-3xl">
-          Guestbook
-        </h2>
+        <h2 className="font-display text-2xl text-cream md:text-3xl">Guestbook</h2>
         <span className="text-xs text-cream/30 uppercase">
           {rows.length} {rows.length === 1 ? "Note" : "Notes"}
         </span>
@@ -359,17 +343,10 @@ function Guestbook({
           </li>
         ) : (
           rows.map((c) => (
-            <li
-              key={c._id}
-              className="border-b border-cream/[0.06] pb-8 last:border-0"
-            >
+            <li key={c._id} className="border-b border-cream/[0.06] pb-8 last:border-0">
               <div className="mb-2 flex items-baseline justify-between gap-4">
-                <span className="text-xs text-cream/80 uppercase">
-                  {c.name}
-                </span>
-                <span className="text-xs text-cream/30 uppercase">
-                  {formatTs(c._creationTime)}
-                </span>
+                <span className="text-xs text-cream/80 uppercase">{c.name}</span>
+                <span className="text-xs text-cream/30 uppercase">{formatTs(c._creationTime)}</span>
               </div>
               <p className="text-sm text-tan">{c.body}</p>
             </li>

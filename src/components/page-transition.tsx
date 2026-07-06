@@ -60,10 +60,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
   }, [leaving, router])
 
   return (
-    <div
-      key={pathname}
-      className={leaving ? "page-transition-out" : "page-transition"}
-    >
+    <div key={pathname} className={leaving ? "page-transition-out" : "page-transition"}>
       {children}
     </div>
   )

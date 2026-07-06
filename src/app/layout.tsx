@@ -42,10 +42,7 @@ export const metadata: Metadata = {
 export default async function Layout({ children }: { children: ReactNode }) {
   const initialToken = await getToken()
   return (
-    <html
-      lang="en"
-      className={`${courierPrime.variable} ${caveat.variable} antialiased`}
-    >
+    <html lang="en" className={`${courierPrime.variable} ${caveat.variable} antialiased`}>
       <body className="bg-charcoal font-sans text-cream">
         <ConvexClientProvider initialToken={initialToken}>
           <SiteChrome>{children}</SiteChrome>

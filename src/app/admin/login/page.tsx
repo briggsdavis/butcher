@@ -32,9 +32,7 @@ export default function AdminLoginPage() {
           <span className="block h-px w-10 shrink-0 bg-amber/50" />
           <span className="text-xs text-amber uppercase">Staff Entrance</span>
         </div>
-        <h1 className="heading-emboss mt-4 font-display text-5xl text-cream">
-          Sign in
-        </h1>
+        <h1 className="heading-emboss mt-4 font-display text-5xl text-cream">Sign in</h1>
 
         <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-6">
           <label className="flex flex-col gap-2">

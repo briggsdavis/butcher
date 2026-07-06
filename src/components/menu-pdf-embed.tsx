@@ -26,11 +26,7 @@ export function MenuPdfEmbed({ url }: { url: string }) {
   return (
     <div ref={containerRef} className="w-full">
       {width > 0 && (
-        <Document
-          file={url}
-          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          loading={null}
-        >
+        <Document file={url} onLoadSuccess={({ numPages }) => setNumPages(numPages)} loading={null}>
           {Array.from({ length: numPages }, (_, i) => (
             <Page
               key={i}

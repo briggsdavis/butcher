@@ -45,9 +45,7 @@ export function PageEffects() {
     mutationObserver.observe(document.body, { childList: true, subtree: true })
 
     // ── Parallax on scroll ─────────────────────────────────────────────────
-    const parallaxEls = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-parallax]"),
-    )
+    const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"))
 
     const onScroll = () => {
       const viewMid = window.innerHeight / 2
@@ -56,8 +54,7 @@ export function PageEffects() {
         const speed = parseFloat(el.dataset.parallaxSpeed ?? "0.15")
 
         if (el.dataset.parallax === "hero-bg") {
-          const rotate =
-            "parallaxNoRotate" in el.dataset ? "" : "rotate(5deg) scale(1.1) "
+          const rotate = "parallaxNoRotate" in el.dataset ? "" : "rotate(5deg) scale(1.1) "
           el.style.transform = `${rotate}translateY(${window.scrollY * speed}px)`
         } else {
           const rect = el.getBoundingClientRect()

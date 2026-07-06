@@ -91,18 +91,14 @@ export default function About() {
             <span className="text-amber italic">Meets</span> Tradition
           </h1>
           <p className="fade-in-up-4 mt-6 max-w-md text-lg text-tan">
-            A storied table in Pittsburgh&rsquo;s Penn Avenue corridor, built on
-            the belief that extraordinary evenings begin with extraordinary
-            people and uncompromising craft.
+            A storied table in Pittsburgh&rsquo;s Penn Avenue corridor, built on the belief that
+            extraordinary evenings begin with extraordinary people and uncompromising craft.
           </p>
         </div>
       </section>
 
       {/* ── 2. THE STORY ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
-      >
+      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div className="grid items-start gap-20 md:grid-cols-[1.2fr_1fr] md:gap-16">
             {/* Left: copy */}
@@ -122,25 +118,16 @@ export default function About() {
                 <br />
                 <span className="text-tan italic">the fire</span>
               </h2>
-              <p
-                data-animate=""
-                data-delay="285"
-                className="mt-10 text-lg text-tan"
-              >
-                Our Executive Chef came up the long way: years on the line in
-                some of the country&rsquo;s most demanding kitchens, training
-                under butchers who measured aging in months and chefs who
-                measured stocks in days. Every technique here is one he learned
-                by hand.
+              <p data-animate="" data-delay="285" className="mt-10 text-lg text-tan">
+                Our Executive Chef came up the long way: years on the line in some of the
+                country&rsquo;s most demanding kitchens, training under butchers who measured aging
+                in months and chefs who measured stocks in days. Every technique here is one he
+                learned by hand.
               </p>
-              <p
-                data-animate=""
-                data-delay="440"
-                className="mt-6 text-lg text-tan"
-              >
-                His philosophy is simple: source honestly, cook patiently, and
-                trust the ingredient. The menu changes with what the farms and
-                seasons offer, but the discipline behind every plate never does.
+              <p data-animate="" data-delay="440" className="mt-6 text-lg text-tan">
+                His philosophy is simple: source honestly, cook patiently, and trust the ingredient.
+                The menu changes with what the farms and seasons offer, but the discipline behind
+                every plate never does.
               </p>
               <blockquote
                 data-animate=""
@@ -148,8 +135,8 @@ export default function About() {
                 className="mt-10 border-l-2 border-amber/30 pl-6"
               >
                 <p className="font-cursive text-2xl text-cream/70">
-                  &ldquo;The fire teaches you patience. The cut teaches you
-                  respect. The rest is just paying attention.&rdquo;
+                  &ldquo;The fire teaches you patience. The cut teaches you respect. The rest is
+                  just paying attention.&rdquo;
                 </p>
               </blockquote>
             </div>
@@ -197,9 +184,7 @@ export default function About() {
                     fill="none"
                   />
                   <text fontSize="8.5" fill="currentColor" letterSpacing="3.2">
-                    <textPath href="#storyRing">
-                      BUTCHER &amp; THE RYE · EST 2013 ·
-                    </textPath>
+                    <textPath href="#storyRing">BUTCHER &amp; THE RYE · EST 2013 ·</textPath>
                   </text>
                 </svg>
               </div>
@@ -211,10 +196,7 @@ export default function About() {
       {/* ── THE TEAM ── */}
       {/* Hiding "People behind the craft" section for now */}
       {SHOW_TEAM_SECTION && (
-        <section
-          data-wipe
-          className="relative overflow-hidden bg-charcoal py-32 md:py-48"
-        >
+        <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
           <div
             data-parallax="content"
             data-parallax-speed="0.06"
@@ -224,9 +206,7 @@ export default function About() {
               <div className="flex flex-col justify-center">
                 <div data-animate="" className="flex items-center gap-4">
                   <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                  <span className="text-xs text-amber uppercase">
-                    The People
-                  </span>
+                  <span className="text-xs text-amber uppercase">The People</span>
                 </div>
                 <h2
                   data-animate=""
@@ -239,15 +219,10 @@ export default function About() {
                   <br />
                   <span className="text-tan italic">the craft</span>
                 </h2>
-                <p
-                  data-animate=""
-                  data-delay="285"
-                  className="mt-8 text-lg text-tan"
-                >
-                  Our team brings decades of combined experience from some of
-                  the country&rsquo;s finest kitchens, bars, and dining rooms.
-                  They are passionate, rigorously trained, and united by one
-                  shared devotion: excellence at every table, every night.
+                <p data-animate="" data-delay="285" className="mt-8 text-lg text-tan">
+                  Our team brings decades of combined experience from some of the country&rsquo;s
+                  finest kitchens, bars, and dining rooms. They are passionate, rigorously trained,
+                  and united by one shared devotion: excellence at every table, every night.
                 </p>
                 {/* Hiding our-staff link for now */}
                 {/* <span
@@ -274,24 +249,15 @@ export default function About() {
                     className="flex flex-col items-center text-center"
                   >
                     <div className="relative mb-4 h-24 w-24 overflow-hidden rounded-full border border-amber/20">
-                      <Image
-                        src={member.img}
-                        alt={member.name}
-                        fill
-                        className="object-cover"
-                      />
+                      <Image src={member.img} alt={member.name} fill className="object-cover" />
                       <div className="absolute inset-0 bg-charcoal/55" />
                       <span className="absolute inset-0 flex items-center justify-center font-subhead text-2xl text-amber/70 select-none">
                         {member.initials}
                       </span>
                       <div className="absolute inset-0 rounded-full ring-1 ring-amber/10 ring-inset" />
                     </div>
-                    <p className="font-subhead text-xl text-cream">
-                      {member.name}
-                    </p>
-                    <p className="mt-1 text-xs text-amber uppercase">
-                      {member.role}
-                    </p>
+                    <p className="font-subhead text-xl text-cream">{member.name}</p>
+                    <p className="mt-1 text-xs text-amber uppercase">{member.role}</p>
                   </div>
                 ))}
               </div>
@@ -301,10 +267,7 @@ export default function About() {
       )}
 
       {/* ── 3. OUR VALUES ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-oxblood py-32 md:py-48"
-      >
+      <section data-wipe className="relative overflow-hidden bg-oxblood py-32 md:py-48">
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-20 flex items-center gap-4">
             <span className="block h-px w-10 shrink-0 bg-amber/50" />
@@ -320,9 +283,7 @@ export default function About() {
               >
                 <div
                   className={`grid items-center gap-8 md:gap-16 ${
-                    reversed
-                      ? "md:grid-cols-[0.75fr_1fr]"
-                      : "md:grid-cols-[1fr_0.75fr]"
+                    reversed ? "md:grid-cols-[0.75fr_1fr]" : "md:grid-cols-[1fr_0.75fr]"
                   }`}
                 >
                   <div className={`relative ${reversed ? "md:order-2" : ""}`}>
@@ -340,20 +301,12 @@ export default function About() {
                       >
                         {value.title}
                       </h3>
-                      <p
-                        data-animate=""
-                        data-delay="130"
-                        className="mt-6 text-lg text-tan"
-                      >
+                      <p data-animate="" data-delay="130" className="mt-6 text-lg text-tan">
                         {value.body}
                       </p>
                     </div>
                   </div>
-                  <div
-                    data-animate=""
-                    data-delay="260"
-                    className={reversed ? "md:order-1" : ""}
-                  >
+                  <div data-animate="" data-delay="260" className={reversed ? "md:order-1" : ""}>
                     <TiltCard
                       initialRotate={i % 2 === 0 ? -2 : 2}
                       maxTilt={5}
@@ -377,10 +330,7 @@ export default function About() {
       </section>
 
       {/* ── 4. FULL-WIDTH IMAGE BREAK ── */}
-      <section
-        data-wipe
-        className="relative min-h-[80vh] overflow-hidden bg-charcoal"
-      >
+      <section data-wipe className="relative min-h-[80vh] overflow-hidden bg-charcoal">
         <div
           data-parallax="image-break"
           data-parallax-speed="0.1"
@@ -405,10 +355,7 @@ export default function About() {
       </section>
 
       {/* ── 6. PULL QUOTE ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-cream py-32 md:py-48"
-      >
+      <section data-wipe className="relative overflow-hidden bg-cream py-32 md:py-48">
         <div
           data-parallax="content"
           data-parallax-speed="0.05"
@@ -422,8 +369,7 @@ export default function About() {
             data-delay="130"
             className="font-display text-3xl text-oxblood md:text-5xl lg:text-6xl"
           >
-            &ldquo;The pursuit of extraordinary starts with refusing to accept
-            ordinary.&rdquo;
+            &ldquo;The pursuit of extraordinary starts with refusing to accept ordinary.&rdquo;
           </blockquote>
           <span data-animate="" data-delay="365" className="mt-12 inline-block">
             <Link
@@ -450,10 +396,7 @@ export default function About() {
           <div className="h-full w-full bg-[radial-gradient(ellipse_at_center,_var(--color-charcoal)_0%,_transparent_70%)]" />
         </div>
         <div className="relative z-10 text-center">
-          <div
-            data-animate=""
-            className="flex items-center justify-center gap-6"
-          >
+          <div data-animate="" className="flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
             <span className="text-xs text-amber uppercase">Join Us</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
@@ -467,13 +410,9 @@ export default function About() {
             <br />
             <span className="text-tan italic">evening</span>
           </h2>
-          <p
-            data-animate=""
-            data-delay="285"
-            className="mx-auto mt-8 max-w-md text-lg text-tan"
-          >
-            Whether it&rsquo;s a quiet dinner for two or a gathering worth
-            remembering, we&rsquo;ll set the table.
+          <p data-animate="" data-delay="285" className="mx-auto mt-8 max-w-md text-lg text-tan">
+            Whether it&rsquo;s a quiet dinner for two or a gathering worth remembering, we&rsquo;ll
+            set the table.
           </p>
           <span data-animate="" data-delay="470" className="mt-12 inline-block">
             <Link

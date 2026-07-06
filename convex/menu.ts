@@ -1,12 +1,6 @@
 import slugify from "@sindresorhus/slugify"
 import { Infer, v } from "convex/values"
-import type { Id } from "./_generated/dataModel"
-import {
-  mutation,
-  query,
-  type MutationCtx,
-  type QueryCtx,
-} from "./_generated/server"
+import { mutation, query, type MutationCtx, type QueryCtx } from "./_generated/server"
 import { assertAdmin } from "./auth"
 import { menuKind } from "./schema"
 
@@ -25,12 +19,7 @@ function categoryRank(kind: Kind, category: string) {
   return idx === -1 ? order.length + category.charCodeAt(0) / 1000 : idx
 }
 
-async function uniqueSlug(
-  ctx: QueryCtx,
-  kind: Kind,
-  name: string,
-  ignoreId?: string,
-) {
+async function uniqueSlug(ctx: QueryCtx, kind: Kind, name: string, ignoreId?: string) {
   const base = slugify(name)
   let slug = base
   let n = 2
@@ -44,10 +33,7 @@ async function uniqueSlug(
   }
 }
 
-async function withImageUrl<T extends { imageId?: string }>(
-  ctx: QueryCtx,
-  doc: T,
-) {
+async function withImageUrl<T extends { imageId?: string }>(ctx: QueryCtx, doc: T) {
   const { imageId, ...rest } = doc
   const imageUrl = imageId ? await ctx.storage.getUrl(imageId as never) : null
   return { ...rest, imageId, imageUrl }
@@ -82,9 +68,7 @@ export const listCategories = query({
       .take(500)
     const seen = new Set<string>()
     for (const it of items) if (!it.hidden) seen.add(it.category)
-    return [...seen].sort(
-      (a, b) => categoryRank(kind, a) - categoryRank(kind, b),
-    )
+    return [...seen].sort((a, b) => categoryRank(kind, a) - categoryRank(kind, b))
   },
 })
 
@@ -160,10 +144,7 @@ export const generateUploadUrl = mutation({
   },
 })
 
-async function deleteImageIfPresent(
-  ctx: MutationCtx,
-  imageId: string | undefined,
-) {
+async function deleteImageIfPresent(ctx: MutationCtx, imageId: string | undefined) {
   if (!imageId) return
   try {
     await ctx.storage.delete(imageId as never)
@@ -215,14 +196,9 @@ export const update = mutation({
     description: v.string(),
     price: v.string(),
     category: v.string(),
-    imageUpdate: v.optional(
-      v.union(v.null(), v.object({ imageId: v.id("_storage") })),
-    ),
+    imageUpdate: v.optional(v.union(v.null(), v.object({ imageId: v.id("_storage") }))),
   },
-  handler: async (
-    ctx,
-    { id, name, description, price, category, imageUpdate },
-  ) => {
+  handler: async (ctx, { id, name, description, price, category, imageUpdate }) => {
     await assertAdmin(ctx)
     const trimmedName = name.trim()
     if (!trimmedName) throw new Error("Name is required.")

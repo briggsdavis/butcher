@@ -1,22 +1,16 @@
 import { Infer, v } from "convex/values"
 import type { Id } from "./_generated/dataModel"
-import {
-  mutation,
-  query,
-  type MutationCtx,
-  type QueryCtx,
-} from "./_generated/server"
+import { mutation, query, type MutationCtx, type QueryCtx } from "./_generated/server"
 import { assertAdmin } from "./auth"
 import { menuKind } from "./schema"
 
 type Kind = Infer<typeof menuKind>
 
-const PDF_FIELD: Record<Kind, "foodPdfId" | "spiritsPdfId" | "beveragesPdfId"> =
-  {
-    food: "foodPdfId",
-    spirit: "spiritsPdfId",
-    beverage: "beveragesPdfId",
-  }
+const PDF_FIELD: Record<Kind, "foodPdfId" | "spiritsPdfId" | "beveragesPdfId"> = {
+  food: "foodPdfId",
+  spirit: "spiritsPdfId",
+  beverage: "beveragesPdfId",
+}
 
 async function getConfig(ctx: QueryCtx | MutationCtx) {
   return await ctx.db
@@ -43,11 +37,7 @@ export const generatePdfUploadUrl = mutation({
   },
 })
 
-async function setPdf(
-  ctx: MutationCtx,
-  kind: Kind,
-  storageId: Id<"_storage"> | undefined,
-) {
+async function setPdf(ctx: MutationCtx, kind: Kind, storageId: Id<"_storage"> | undefined) {
   const field = PDF_FIELD[kind]
   const cfg = await getConfig(ctx)
   if (cfg?.[field]) {

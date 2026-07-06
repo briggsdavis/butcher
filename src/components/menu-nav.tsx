@@ -17,19 +17,13 @@ export function MenuNav() {
       {MENU_PAGES.map(({ href, label }, i) => {
         const active = pathname === href
         const align =
-          i === 0
-            ? "justify-self-end"
-            : i === 2
-              ? "justify-self-start"
-              : "justify-self-center"
+          i === 0 ? "justify-self-end" : i === 2 ? "justify-self-start" : "justify-self-center"
         return (
           <Link
             key={href}
             href={href}
             className={`${align} border-b-2 pb-0.5 text-xs uppercase transition-colors ${
-              active
-                ? "border-amber text-cream"
-                : "border-transparent text-tan/50 hover:text-cream"
+              active ? "border-amber text-cream" : "border-transparent text-tan/50 hover:text-cream"
             }`}
           >
             <span className="-mr-[0.25em]">{label}</span>

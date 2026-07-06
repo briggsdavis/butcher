@@ -70,9 +70,7 @@ const restaurants = [
   },
 ]
 
-const ROTATIONS = [
-  -2.5, 1.8, 2.2, -1.4, 1.6, 2.4, -1.9, 0.8, -1.1, -2.0, 1.4, -0.7,
-]
+const ROTATIONS = [-2.5, 1.8, 2.2, -1.4, 1.6, 2.4, -1.9, 0.8, -1.1, -2.0, 1.4, -0.7]
 
 export function RestaurantGroupSection() {
   return (
@@ -96,9 +94,7 @@ export function RestaurantGroupSection() {
             </Link>{" "}
             Restaurant Group
           </h2>
-          <p className="mt-4 text-tan">
-            Explore our other restaurants across Pittsburgh
-          </p>
+          <p className="mt-4 text-tan">Explore our other restaurants across Pittsburgh</p>
         </div>
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4 md:gap-10">

@@ -38,10 +38,7 @@ export function ContactForm() {
     } catch (error) {
       setStatus({
         kind: "error",
-        message:
-          error instanceof Error
-            ? error.message
-            : "Something went wrong. Please try again.",
+        message: error instanceof Error ? error.message : "Something went wrong. Please try again.",
       })
     } finally {
       setSubmitting(false)
@@ -49,21 +46,10 @@ export function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      data-animate=""
-      data-delay="340"
-      className="mt-12 grid gap-5"
-    >
+    <form onSubmit={onSubmit} data-animate="" data-delay="340" className="mt-12 grid gap-5">
       <div className="grid gap-5 md:grid-cols-2">
         <Field label="Name" name="name" autoComplete="name" required />
-        <Field
-          label="Email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-        />
+        <Field label="Email" name="email" type="email" autoComplete="email" required />
       </div>
       <Field label="Phone" name="phone" type="tel" autoComplete="tel" />
       <label className="block">
@@ -86,11 +72,7 @@ export function ContactForm() {
           {submitting ? "Sending" : "Send Message"}
         </button>
         {status.kind !== "idle" && (
-          <p
-            className={`text-sm ${
-              status.kind === "success" ? "text-amber" : "text-tan"
-            }`}
-          >
+          <p className={`text-sm ${status.kind === "success" ? "text-amber" : "text-tan"}`}>
             {status.message}
           </p>
         )}

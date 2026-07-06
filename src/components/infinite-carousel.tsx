@@ -18,10 +18,7 @@ const IMAGES = [
 export function InfiniteCarousel() {
   return (
     <section data-wipe className="overflow-hidden bg-charcoal py-24 md:py-32">
-      <div
-        data-animate=""
-        className="mb-12 flex items-center justify-center gap-6 px-8"
-      >
+      <div data-animate="" className="mb-12 flex items-center justify-center gap-6 px-8">
         <span className="block h-px w-16 bg-amber/25" />
         <span className="shrink-0 font-subhead text-xs text-amber uppercase italic">
           A Taste of the Experience

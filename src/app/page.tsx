@@ -113,10 +113,7 @@ export default function Home() {
       </section>
 
       {/* ── Cocktails & Spirits ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
-      >
+      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
         {/* Ambient glow blob — lower-left, warm */}
         <div
           aria-hidden="true"
@@ -147,9 +144,7 @@ export default function Home() {
           <div className="flex flex-col justify-center">
             <div data-animate="" className="flex items-center gap-4">
               <span className="block h-px w-10 shrink-0 bg-amber/50" />
-              <span className="text-xs text-amber uppercase">
-                Cocktails & Spirits
-              </span>
+              <span className="text-xs text-amber uppercase">Cocktails & Spirits</span>
             </div>
             <h2
               data-animate=""
@@ -174,14 +169,8 @@ export default function Home() {
             </h2>
             <div className="mt-16 space-y-10">
               {COCKTAILS.map((drink, i) => (
-                <div
-                  key={drink.name}
-                  data-animate=""
-                  data-delay={String(260 + i * 130)}
-                >
-                  <h3 className="font-subhead text-2xl text-cream">
-                    {drink.name}
-                  </h3>
+                <div key={drink.name} data-animate="" data-delay={String(260 + i * 130)}>
+                  <h3 className="font-subhead text-2xl text-cream">{drink.name}</h3>
                   <p className="mt-2 text-tan">{drink.description}</p>
                 </div>
               ))}
@@ -209,10 +198,7 @@ export default function Home() {
       </section>
 
       {/* ── About ── */}
-      <section
-        data-wipe
-        className="relative overflow-hidden bg-charcoal py-32 md:py-48"
-      >
+      <section data-wipe className="relative overflow-hidden bg-charcoal py-32 md:py-48">
         {/* Ambient glow blob */}
         <div
           aria-hidden="true"
@@ -239,28 +225,16 @@ export default function Home() {
               glass has a<br />
               <span className="text-tan italic">history</span>
             </h2>
-            <p
-              data-animate=""
-              data-delay="260"
-              className="mt-8 text-lg text-tan"
-            >
-              Butcher and the Rye was born from a reverence for the craft: the
-              slow char of a barrel, the patience of a dry-aged cut, the
-              conversation that only happens around a well-set table.
+            <p data-animate="" data-delay="260" className="mt-8 text-lg text-tan">
+              Butcher and the Rye was born from a reverence for the craft: the slow char of a
+              barrel, the patience of a dry-aged cut, the conversation that only happens around a
+              well-set table.
             </p>
-            <p
-              data-animate=""
-              data-delay="390"
-              className="mt-6 text-lg text-tan"
-            >
-              We are a place for those who understand that a great evening is
-              not rushed. It is savored, one pour at a time.
+            <p data-animate="" data-delay="390" className="mt-6 text-lg text-tan">
+              We are a place for those who understand that a great evening is not rushed. It is
+              savored, one pour at a time.
             </p>
-            <span
-              data-animate=""
-              data-delay="520"
-              className="mt-10 inline-block"
-            >
+            <span data-animate="" data-delay="520" className="mt-10 inline-block">
               <Link
                 href="/about"
                 className="group inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-cream"
@@ -293,12 +267,7 @@ export default function Home() {
               className="absolute -right-6 -bottom-8 z-10 h-44 w-32 shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
               <div className="relative h-full w-full overflow-hidden">
-                <Image
-                  src="/glow-frame.png"
-                  alt="Bar glow"
-                  fill
-                  className="object-cover"
-                />
+                <Image src="/glow-frame.png" alt="Bar glow" fill className="object-cover" />
               </div>
             </TiltCard>
             {/* Spinning text ring */}
@@ -315,9 +284,7 @@ export default function Home() {
                   fill="none"
                 />
                 <text fontSize="8.5" fill="currentColor" letterSpacing="3.2">
-                  <textPath href="#aboutRing">
-                    BUTCHER &amp; THE RYE · EST 2013 ·
-                  </textPath>
+                  <textPath href="#aboutRing">BUTCHER &amp; THE RYE · EST 2013 ·</textPath>
                 </text>
               </svg>
             </div>
@@ -337,9 +304,7 @@ export default function Home() {
               <div>
                 <div data-animate="" className="flex items-center gap-4">
                   <span className="block h-px w-10 shrink-0 bg-amber/50" />
-                  <span className="text-xs text-amber uppercase">
-                    From the Kitchen
-                  </span>
+                  <span className="text-xs text-amber uppercase">From the Kitchen</span>
                 </div>
                 <h2
                   data-animate=""
@@ -348,11 +313,7 @@ export default function Home() {
                 >
                   The menu
                 </h2>
-                <span
-                  data-animate=""
-                  data-delay="220"
-                  className="mt-8 inline-block"
-                >
+                <span data-animate="" data-delay="220" className="mt-8 inline-block">
                   <Link
                     href="/food"
                     className="border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
@@ -394,17 +355,12 @@ export default function Home() {
                 data-delay="460"
                 className="img-inset-shadow relative aspect-[5/4] w-full overflow-hidden shadow-xl"
               >
-                <Image
-                  src="/steak.jpg"
-                  alt="Steak"
-                  fill
-                  className="img-zoom object-cover"
-                />
+                <Image src="/steak.jpg" alt="Steak" fill className="img-zoom object-cover" />
               </div>
               <div data-animate="" data-delay="560" className="mt-8">
                 <p className="max-w-xs text-sm text-tan">
-                  Sourced from heritage farms and shaped by old-world technique.
-                  Every plate is a reflection of place, season, and craft.
+                  Sourced from heritage farms and shaped by old-world technique. Every plate is a
+                  reflection of place, season, and craft.
                 </p>
               </div>
             </div>
@@ -422,18 +378,10 @@ export default function Home() {
           data-parallax-speed="0.2"
           className="absolute inset-x-0 top-[-20%] bottom-[-20%]"
         >
-          <Image
-            src="/parallax-wide.jpg"
-            alt="Butcher and the Rye"
-            fill
-            className="object-cover"
-          />
+          <Image src="/parallax-wide.jpg" alt="Butcher and the Rye" fill className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-charcoal/65" />
-        <blockquote
-          data-animate=""
-          className="relative z-10 max-w-2xl px-8 text-center"
-        >
+        <blockquote data-animate="" className="relative z-10 max-w-2xl px-8 text-center">
           <p className="heading-emboss font-display text-2xl text-cream md:text-4xl">
             &ldquo;The best meals are the ones you{" "}
             <span className="text-amber italic">never forget.</span>&rdquo;
@@ -449,9 +397,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-8 md:px-16">
           <div data-animate="" className="mb-14 flex items-center gap-6">
             <span className="block h-px flex-1 bg-amber/25" />
-            <span className="shrink-0 text-xs text-amber uppercase">
-              On the Wall
-            </span>
+            <span className="shrink-0 text-xs text-amber uppercase">On the Wall</span>
             <span className="block h-px flex-1 bg-amber/25" />
           </div>
           <div className="flex flex-wrap items-end justify-center gap-8 md:gap-12">
@@ -492,10 +438,7 @@ export default function Home() {
           className="glow-oxblood pointer-events-none absolute inset-0 opacity-[0.08]"
         />
         <div className="relative z-10 text-center">
-          <div
-            data-animate=""
-            className="flex items-center justify-center gap-6"
-          >
+          <div data-animate="" className="flex items-center justify-center gap-6">
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
             <span className="text-xs text-amber uppercase">Join Us</span>
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
@@ -509,13 +452,9 @@ export default function Home() {
             <br />
             <span className="text-tan italic">evening</span>
           </h2>
-          <p
-            data-animate=""
-            data-delay="285"
-            className="mx-auto mt-8 max-w-md text-lg text-tan"
-          >
-            Whether it's a quiet dinner for two or a gathering worth
-            remembering, we'll set the table.
+          <p data-animate="" data-delay="285" className="mx-auto mt-8 max-w-md text-lg text-tan">
+            Whether it's a quiet dinner for two or a gathering worth remembering, we'll set the
+            table.
           </p>
 
           <SectionDivider className="my-4" />

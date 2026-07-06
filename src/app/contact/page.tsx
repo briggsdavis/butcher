@@ -54,8 +54,7 @@ export default function Contact() {
             <span className="text-amber italic">the rye</span>
           </h1>
           <p className="fade-in-up-4 mt-6 max-w-md text-lg text-tan">
-            Reach the host stand, plan a gathering, or find your way to our
-            table on 6th Street.
+            Reach the host stand, plan a gathering, or find your way to our table on 6th Street.
           </p>
         </div>
       </section>
@@ -83,14 +82,8 @@ export default function Contact() {
                   <Link
                     key={detail.label}
                     href={detail.href}
-                    target={
-                      detail.href.startsWith("http") ? "_blank" : undefined
-                    }
-                    rel={
-                      detail.href.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
+                    target={detail.href.startsWith("http") ? "_blank" : undefined}
+                    rel={detail.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     data-animate=""
                     data-delay={String(220 + i * 90)}
                     className="group flex items-center gap-5 py-6"
@@ -99,9 +92,7 @@ export default function Contact() {
                       <Icon className="size-4" />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-xs text-tan/50 uppercase">
-                        {detail.label}
-                      </span>
+                      <span className="block text-xs text-tan/50 uppercase">{detail.label}</span>
                       <span className="mt-1 block text-sm text-cream transition-colors duration-500 group-hover:text-amber md:text-base">
                         {detail.value}
                       </span>

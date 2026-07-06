@@ -61,9 +61,7 @@ export function StaffPage() {
             <h1 className="font-display text-4xl text-cream md:text-5xl">
               The People
               <br />
-              <span className="font-cursive text-3xl text-amber md:text-4xl">
-                Behind
-              </span>
+              <span className="font-cursive text-3xl text-amber md:text-4xl">Behind</span>
               <br />
               the Craft
             </h1>
@@ -71,15 +69,14 @@ export function StaffPage() {
             <div className="draw-line mt-2 h-px w-14 bg-amber/35" />
 
             <p className="mt-8 text-sm text-tan">
-              Every dish, cocktail, and evening at Butcher and the Rye is shaped
-              by people who have devoted their lives to their craft. Rigorously
-              trained, endlessly inspired, and driven by one goal: to give you
-              something extraordinary.
+              Every dish, cocktail, and evening at Butcher and the Rye is shaped by people who have
+              devoted their lives to their craft. Rigorously trained, endlessly inspired, and driven
+              by one goal: to give you something extraordinary.
             </p>
             <p className="mt-3 text-sm text-tan">
-              From our Executive Chef to our floor staff, everyone here shares
-              the same relentless commitment to excellence. We don't settle for
-              good. We pursue perfect, every single night.
+              From our Executive Chef to our floor staff, everyone here shares the same relentless
+              commitment to excellence. We don't settle for good. We pursue perfect, every single
+              night.
             </p>
           </div>
 
@@ -108,9 +105,7 @@ export function StaffPage() {
                   / {String(STAFF.length).padStart(2, "0")}
                 </span>
               </p>
-              <p className="mt-1 text-xs text-tan/60 uppercase">
-                {activeMember.role}
-              </p>
+              <p className="mt-1 text-xs text-tan/60 uppercase">{activeMember.role}</p>
             </div>
           </div>
         </aside>
@@ -128,27 +123,21 @@ export function StaffPage() {
               {/* Top rule */}
               <div
                 className={`mb-8 h-px w-14 origin-left bg-amber/30 transition-all duration-700 ${
-                  revealed[i]
-                    ? "scale-x-100 opacity-100"
-                    : "scale-x-0 opacity-0"
+                  revealed[i] ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
                 }`}
               />
 
               {/* Headshot — 20% larger than original (h-72 w-56 → h-[22rem] w-[17rem]) */}
               <div
                 className={`transition-all delay-[80ms] duration-700 ${
-                  revealed[i]
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-10 opacity-0"
+                  revealed[i] ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
                 }`}
               >
                 <div className="relative mx-auto mb-8 h-[22rem] w-[17rem] md:h-96 md:w-[19rem]">
                   {/* Outer accent border */}
                   <div
                     className={`absolute -inset-[7px] rounded-sm border border-amber/20 transition-all delay-[320ms] duration-700 ${
-                      revealed[i]
-                        ? "scale-100 opacity-100"
-                        : "scale-95 opacity-0"
+                      revealed[i] ? "scale-100 opacity-100" : "scale-95 opacity-0"
                     }`}
                   />
                   {/* Ambient glow */}
@@ -174,9 +163,7 @@ export function StaffPage() {
               {/* Name — 20% smaller than original text-4xl md:text-5xl */}
               <div
                 className={`transition-all delay-200 duration-700 ${
-                  revealed[i]
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0"
+                  revealed[i] ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                 }`}
               >
                 <h2 className="text-center font-display text-3xl text-cream md:text-4xl">
@@ -187,14 +174,10 @@ export function StaffPage() {
               {/* Role */}
               <div
                 className={`transition-all delay-[320ms] duration-700 ${
-                  revealed[i]
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0"
+                  revealed[i] ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                 }`}
               >
-                <p className="mt-3 text-center text-xs text-amber uppercase">
-                  {member.role}
-                </p>
+                <p className="mt-3 text-center text-xs text-amber uppercase">{member.role}</p>
               </div>
 
               {/* Experience badge */}
@@ -204,9 +187,7 @@ export function StaffPage() {
                 }`}
               >
                 <div className="inline-flex items-center gap-3 border border-cream/10 px-5 py-2">
-                  <span className="text-xs text-cream/30 uppercase">
-                    Experience
-                  </span>
+                  <span className="text-xs text-cream/30 uppercase">Experience</span>
                   <span className="h-3 w-px bg-cream/10" />
                   <span className="text-xs text-amber/70">{member.years}</span>
                 </div>
@@ -230,8 +211,7 @@ export function StaffPage() {
             <span className="text-oxblood italic">evening</span>
           </h2>
           <p className="mx-auto mt-8 max-w-md text-lg text-charcoal/60">
-            Our team is ready to welcome you. Book your table at Butcher and the
-            Rye.
+            Our team is ready to welcome you. Book your table at Butcher and the Rye.
           </p>
           <Link
             href="https://www.opentable.com/r/butcher-and-the-rye-pittsburgh"

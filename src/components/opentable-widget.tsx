@@ -22,7 +22,5 @@ export function OpenTableWidget() {
     }
   }, [])
 
-  return (
-    <div ref={containerRef} className="flex justify-center overflow-hidden" />
-  )
+  return <div ref={containerRef} className="flex justify-center overflow-hidden" />
 }

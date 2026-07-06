@@ -1,17 +1,7 @@
 "use client"
 
 import { useMutation, useQuery } from "convex/react"
-import {
-  ArrowLeft,
-  Eye,
-  EyeOff,
-  FileText,
-  Pencil,
-  Plus,
-  Trash2,
-  Upload,
-  X,
-} from "lucide-react"
+import { ArrowLeft, Eye, EyeOff, FileText, Pencil, Plus, Trash2, Upload, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef, useState } from "react"
@@ -106,37 +96,23 @@ export function MenuAdmin({ kind, title, eyebrow, basePath }: Props) {
                     </div>
                   )}
                 </div>
-                <div className="w-32 shrink-0 text-xs text-amber/70 uppercase">
-                  {item.category}
-                </div>
+                <div className="w-32 shrink-0 text-xs text-amber/70 uppercase">{item.category}</div>
                 <div className="flex-1">
                   <div className="font-subhead text-base">{item.name}</div>
-                  <div className="mt-1 text-xs text-tan/60">
-                    {item.description || "—"}
-                  </div>
+                  <div className="mt-1 text-xs text-tan/60">{item.description || "—"}</div>
                 </div>
                 <div className="w-16 shrink-0 text-right font-subhead text-amber">
                   ${item.price}
                 </div>
-                <div className="w-16 shrink-0 text-right text-xs text-cream/45">
-                  ♥ {item.likes}
-                </div>
+                <div className="w-16 shrink-0 text-right text-xs text-cream/45">♥ {item.likes}</div>
                 <div className="flex shrink-0 items-center gap-2">
                   <button
-                    onClick={() =>
-                      setHidden({ id: item._id, hidden: !item.hidden })
-                    }
+                    onClick={() => setHidden({ id: item._id, hidden: !item.hidden })}
                     className="border border-amber/40 p-2 text-amber transition-colors hover:border-amber hover:text-cream"
-                    aria-label={
-                      item.hidden ? `Show ${item.name}` : `Hide ${item.name}`
-                    }
+                    aria-label={item.hidden ? `Show ${item.name}` : `Hide ${item.name}`}
                     title={item.hidden ? "Show on site" : "Hide from site"}
                   >
-                    {item.hidden ? (
-                      <EyeOff className="size-3.5" />
-                    ) : (
-                      <Eye className="size-3.5" />
-                    )}
+                    {item.hidden ? <EyeOff className="size-3.5" /> : <Eye className="size-3.5" />}
                   </button>
                   <Link
                     href={`${basePath}/${item._id}`}

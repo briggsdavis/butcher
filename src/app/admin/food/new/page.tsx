@@ -6,12 +6,5 @@ export const metadata: Metadata = { title: "New item · Food · Admin" }
 
 export default async function NewFoodItemPage() {
   await requireAdminPage()
-  return (
-    <MenuForm
-      mode="create"
-      kind="food"
-      basePath="/admin/food"
-      titleLabel="Food"
-    />
-  )
+  return <MenuForm mode="create" kind="food" basePath="/admin/food" titleLabel="Food" />
 }

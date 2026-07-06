@@ -4,8 +4,7 @@ import { v } from "convex/values"
 import { Resend } from "resend"
 import { action } from "./_generated/server"
 
-const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL ?? "Butcher and the Rye <onboarding@resend.dev>"
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "Butcher and the Rye <onboarding@resend.dev>"
 
 function escapeHtml(value: string) {
   return value

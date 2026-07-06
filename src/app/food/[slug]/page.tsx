@@ -16,11 +16,7 @@ export function generateMetadata({
   })
 }
 
-export default async function FoodDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export default async function FoodDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   return (
     <Suspense>

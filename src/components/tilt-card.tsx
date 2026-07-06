@@ -25,22 +25,15 @@ export function TiltCard({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const rest = `rotate(${initialRotate}deg)`
-  const mergedStyle = useMemo(
-    () => ({ ...style, transform: rest }),
-    [style, rest],
-  )
+  const mergedStyle = useMemo(() => ({ ...style, transform: rest }), [style, rest])
   const effectiveMaxTilt = subtle ? Math.min(maxTilt, 4) : maxTilt
   const hoverScale = subtle ? 1.015 : 1.04
-  const springCurve = subtle
-    ? "cubic-bezier(0.16,1,0.3,1)"
-    : "cubic-bezier(0.34,1.56,0.64,1)"
+  const springCurve = subtle ? "cubic-bezier(0.16,1,0.3,1)" : "cubic-bezier(0.34,1.56,0.64,1)"
 
   function handleEnter(e: MouseEvent<HTMLDivElement>) {
     const el = ref.current
     if (el) {
-      el.style.transition = subtle
-        ? "transform 220ms ease, filter 0.3s ease"
-        : "filter 0.3s ease"
+      el.style.transition = subtle ? "transform 220ms ease, filter 0.3s ease" : "filter 0.3s ease"
       el.style.filter = "drop-shadow(0 20px 40px rgba(0,0,0,0.6))"
     }
     onMouseEnter?.(e)

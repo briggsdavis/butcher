@@ -1,11 +1,7 @@
 import { defineSchema, defineTable } from "convex/server"
 import { v } from "convex/values"
 
-export const menuKind = v.union(
-  v.literal("food"),
-  v.literal("spirit"),
-  v.literal("beverage"),
-)
+export const menuKind = v.union(v.literal("food"), v.literal("spirit"), v.literal("beverage"))
 
 export default defineSchema({
   menuItems: defineTable({
@@ -21,11 +17,7 @@ export default defineSchema({
     hidden: v.optional(v.boolean()),
   })
     .index("by_kind_and_slug", ["kind", "slug"])
-    .index("by_kind_and_category_and_sortOrder", [
-      "kind",
-      "category",
-      "sortOrder",
-    ])
+    .index("by_kind_and_category_and_sortOrder", ["kind", "category", "sortOrder"])
     .index("by_kind", ["kind"]),
 
   menuComments: defineTable({

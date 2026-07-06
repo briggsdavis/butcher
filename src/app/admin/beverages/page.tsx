@@ -6,12 +6,5 @@ export const metadata: Metadata = { title: "Beverages · Admin" }
 
 export default async function AdminBeveragesPage() {
   await requireAdminPage()
-  return (
-    <MenuAdmin
-      kind="beverage"
-      title="Beverages"
-      eyebrow="Bar"
-      basePath="/admin/beverages"
-    />
-  )
+  return <MenuAdmin kind="beverage" title="Beverages" eyebrow="Bar" basePath="/admin/beverages" />
 }

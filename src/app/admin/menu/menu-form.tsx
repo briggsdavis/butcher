@@ -45,10 +45,7 @@ export function MenuForm(props: Props) {
   const knownCategories = useQuery(api.menu.listCategories, {
     kind: props.kind,
   })
-  const editing =
-    props.mode === "edit"
-      ? existing?.find((i) => i._id === props.id)
-      : undefined
+  const editing = props.mode === "edit" ? existing?.find((i) => i._id === props.id) : undefined
 
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
@@ -207,11 +204,7 @@ export function MenuForm(props: Props) {
                     className="flex items-center gap-2 border border-amber px-4 py-2 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream disabled:opacity-50"
                   >
                     <ImagePlus className="size-3.5" />
-                    {uploading
-                      ? "Uploading…"
-                      : previewUrl
-                        ? "Replace"
-                        : "Upload"}
+                    {uploading ? "Uploading…" : previewUrl ? "Replace" : "Upload"}
                   </button>
                   {previewUrl && (
                     <button
@@ -277,9 +270,7 @@ export function MenuForm(props: Props) {
               </Field>
             </div>
 
-            {error && (
-              <p className="font-subhead text-sm text-amber">{error}</p>
-            )}
+            {error && <p className="font-subhead text-sm text-amber">{error}</p>}
 
             <div className="mt-2 flex items-center gap-4">
               <button
@@ -287,11 +278,7 @@ export function MenuForm(props: Props) {
                 disabled={pending || uploading}
                 className="border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] disabled:opacity-50"
               >
-                {pending
-                  ? "Saving…"
-                  : props.mode === "create"
-                    ? "Create item"
-                    : "Save changes"}
+                {pending ? "Saving…" : props.mode === "create" ? "Create item" : "Save changes"}
               </button>
               <Link
                 href={props.basePath}
@@ -307,13 +294,7 @@ export function MenuForm(props: Props) {
   )
 }
 
-function Field({
-  label,
-  children,
-}: {
-  label: string
-  children: React.ReactNode
-}) {
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-2">
       <span className="text-xs text-amber uppercase">{label}</span>

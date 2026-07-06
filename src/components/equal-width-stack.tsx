@@ -19,9 +19,7 @@ export function EqualWidthStack({
 
     const equalize = () => {
       if (cancelled) return
-      const els = Array.from(
-        container.querySelectorAll<HTMLElement>("[data-equal-word]"),
-      )
+      const els = Array.from(container.querySelectorAll<HTMLElement>("[data-equal-word]"))
       if (els.length === 0) return
 
       for (const el of els) el.style.fontSize = ""

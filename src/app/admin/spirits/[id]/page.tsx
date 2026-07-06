@@ -5,11 +5,7 @@ import { requireAdminPage } from "../../require-admin"
 
 export const metadata: Metadata = { title: "Edit item · Spirits · Admin" }
 
-export default async function EditSpiritItemPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
+export default async function EditSpiritItemPage({ params }: { params: Promise<{ id: string }> }) {
   await requireAdminPage()
   const { id } = await params
   return (

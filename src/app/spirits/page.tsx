@@ -13,11 +13,5 @@ const CATEGORY_LABELS: Record<string, string> = {
 }
 
 export default function Spirits() {
-  return (
-    <MenuList
-      kind="spirit"
-      basePath="/spirits"
-      categoryLabels={CATEGORY_LABELS}
-    />
-  )
+  return <MenuList kind="spirit" basePath="/spirits" categoryLabels={CATEGORY_LABELS} />
 }

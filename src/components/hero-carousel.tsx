@@ -10,18 +10,12 @@ interface HeroCarouselProps {
   parallaxSpeed?: number
 }
 
-export function HeroCarousel({
-  images,
-  parallaxSpeed = 0.15,
-}: HeroCarouselProps) {
+export function HeroCarousel({ images, parallaxSpeed = 0.15 }: HeroCarouselProps) {
   const [active, setActive] = useState(0)
   const layerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const id = setInterval(
-      () => setActive((p) => (p + 1) % images.length),
-      8000,
-    )
+    const id = setInterval(() => setActive((p) => (p + 1) % images.length), 8000)
     return () => clearInterval(id)
   }, [images.length])
 
@@ -56,13 +50,7 @@ export function HeroCarousel({
             key={img.src}
             className={`absolute inset-0 transition-opacity duration-1000 ${active === i ? "opacity-100" : "opacity-0"}`}
           >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              fill
-              priority
-              className="object-cover"
-            />
+            <Image src={img.src} alt={img.alt} fill priority className="object-cover" />
           </div>
         ))}
       </div>
@@ -73,9 +61,7 @@ export function HeroCarousel({
             onClick={() => setActive(i)}
             aria-label={`Go to slide ${i + 1}`}
             className={`rounded-full transition-all duration-500 ${
-              active === i
-                ? "h-1.5 w-6 bg-amber"
-                : "h-1.5 w-1.5 bg-cream/40 hover:bg-cream/70"
+              active === i ? "h-1.5 w-6 bg-amber" : "h-1.5 w-1.5 bg-cream/40 hover:bg-cream/70"
             }`}
           />
         ))}
