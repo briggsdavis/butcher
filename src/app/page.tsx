@@ -70,11 +70,25 @@ export default async function Home() {
     description: f[`cocktail.${n}.description`],
   }))
   const frames = FRAME_META.map((frame) => ({ ...frame, src: img[frame.key] }))
+  // Descriptive, non-redundant alt text per carousel scene — avoids the word
+  // "image"/"photo" which trips Lighthouse's redundant-alt accessibility audit.
+  const carouselAlts = [
+    "Bar atmosphere",
+    "Bar decor",
+    "Bartender at work",
+    "Candlelit tables",
+    "A craft cocktail",
+    "Fondue spread",
+    "Charcuterie board",
+    "Mussels in cream sauce",
+    "Steak tartare",
+    "The dining room",
+  ]
   const carouselImages = Array.from({ length: 10 }, (_, index) => {
     const n = index + 1
     return {
       src: img[`carousel.image.${n}`],
-      alt: `Butcher and the Rye carousel image ${n}`,
+      alt: carouselAlts[index] ?? "Butcher and the Rye",
     }
   })
 
@@ -95,6 +109,7 @@ export default async function Home() {
           width={1200}
           height={1200}
           priority
+          quality={30}
           sizes="100vmin"
           className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] mix-blend-screen"
         />
@@ -257,7 +272,7 @@ export default async function Home() {
             <span data-animate="" data-delay="520" className="mt-10 inline-block">
               <Link
                 href="/about"
-                aria-label="Read more about Butcher and the Rye"
+                aria-label="Read our story about Butcher and the Rye"
                 className="group inline-flex items-center gap-3 text-base text-amber uppercase transition-colors duration-500 hover:text-cream"
               >
                 {f["story.linkLabel"]}
