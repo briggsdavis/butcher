@@ -29,5 +29,12 @@
     "oxlint": "1.72.0",
     "tailwindcss": "4.3.2",
     "typescript": "6.0.3"
-  }
+  },
+  "browserslist": [
+    "Chrome >= 105",
+    "Edge >= 105",
+    "Firefox >= 104",
+    "Safari >= 16",
+    "iOS >= 16"
+  ]
 }

@@ -54,16 +54,20 @@ export function HeroCarousel({ images, parallaxSpeed = 0.15 }: HeroCarouselProps
           </div>
         ))}
       </div>
-      <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+      <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2">
         {images.map((img, i) => (
           <button
             key={img.src}
             onClick={() => setActive(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`rounded-full transition-all duration-500 ${
-              active === i ? "h-1.5 w-6 bg-amber" : "h-1.5 w-1.5 bg-cream/40 hover:bg-cream/70"
-            }`}
-          />
+            className="grid place-items-center p-2.5"
+          >
+            <span
+              className={`block rounded-full transition-all duration-500 ${
+                active === i ? "h-1.5 w-6 bg-amber" : "h-1.5 w-1.5 bg-cream/40 hover:bg-cream/70"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </>

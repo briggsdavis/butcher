@@ -27,6 +27,8 @@ export const metadata: Metadata = {
     default: "Butcher and the Rye",
     template: "%s · Butcher and the Rye",
   },
+  description:
+    "Butcher and the Rye is a Pittsburgh restaurant and whiskey bar serving dry-aged cuts, craft cocktails, and an unhurried evening around a well-set table. Reserve a table today.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

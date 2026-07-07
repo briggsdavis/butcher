@@ -2,17 +2,17 @@
 
 @font-face {
   font-family: "Ocean Beach";
-  src: url("/fonts/ocean-beach-minor-vintage.ttf") format("truetype");
+  src: url("/fonts/ocean-beach-minor-vintage.woff2") format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "March Rough";
-  src: url("/fonts/march-rough.ttf") format("truetype");
+  src: url("/fonts/march-rough.woff2") format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Vegan Style";
-  src: url("/fonts/vegan-style.ttf") format("truetype");
+  src: url("/fonts/vegan-style.woff2") format("woff2");
   font-display: swap;
 }
 

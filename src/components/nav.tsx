@@ -81,7 +81,15 @@ export function Nav() {
       <nav
         className={`nav-shell ${introClass} ${hidden ? "-translate-y-full" : "translate-y-0"} fixed inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16`}
       >
-        <Image src="/wood.jpg" alt="" fill className="object-cover" priority />
+        <Image
+          src="/wood.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={50}
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-oxblood/70" />
         <div className="absolute inset-0 bg-amber/20" />
 

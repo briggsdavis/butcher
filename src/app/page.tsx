@@ -151,6 +151,7 @@ export default async function Home() {
                   src={img["cocktails.image"]}
                   alt="Craft cocktail"
                   fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
                   className="img-zoom object-cover"
                 />
               </div>
@@ -255,6 +256,7 @@ export default async function Home() {
             <span data-animate="" data-delay="520" className="mt-10 inline-block">
               <Link
                 href="/about"
+                aria-label="Read more about Butcher and the Rye"
                 className="group inline-flex items-center gap-3 text-base text-amber uppercase transition-colors duration-500 hover:text-cream"
               >
                 {f["story.linkLabel"]}
@@ -274,6 +276,7 @@ export default async function Home() {
                 src={img["story.image.1"]}
                 alt="The bar at Butcher and the Rye"
                 fill
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="img-zoom object-cover"
               />
             </div>
@@ -285,7 +288,13 @@ export default async function Home() {
               className="absolute -right-6 -bottom-8 z-10 h-44 w-32 shadow-2xl md:-right-10 md:h-52 md:w-40"
             >
               <div className="relative h-full w-full overflow-hidden">
-                <Image src={img["story.image.2"]} alt="Bar glow" fill className="object-cover" />
+                <Image
+                  src={img["story.image.2"]}
+                  alt="Bar glow"
+                  fill
+                  sizes="(min-width: 768px) 160px, 128px"
+                  className="object-cover"
+                />
               </div>
             </TiltCard>
             {/* Spinning text ring */}
@@ -349,6 +358,7 @@ export default async function Home() {
                   src={img["menu.image.1"]}
                   alt="Meat Board"
                   fill
+                  sizes="(min-width: 1024px) 380px, 100vw"
                   className="img-zoom object-cover"
                 />
               </div>
@@ -363,6 +373,7 @@ export default async function Home() {
                 src={img["menu.image.2"]}
                 alt="Signature plated dish"
                 fill
+                sizes="(min-width: 1024px) 380px, 100vw"
                 className="img-zoom object-cover"
               />
             </div>
@@ -377,6 +388,7 @@ export default async function Home() {
                   src={img["menu.image.3"]}
                   alt="Steak"
                   fill
+                  sizes="(min-width: 1024px) 380px, 100vw"
                   className="img-zoom object-cover"
                 />
               </div>
@@ -436,6 +448,7 @@ export default async function Home() {
                   alt={frame.alt}
                   width={frame.w}
                   height={frame.h}
+                  sizes="(min-width: 768px) 288px, 208px"
                   className="h-52 w-auto object-contain md:h-72"
                 />
               </TiltCard>
