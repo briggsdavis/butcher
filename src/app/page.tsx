@@ -102,14 +102,17 @@ export default async function Home() {
         {/* Bottom gradient — fades into the next section */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/65 to-transparent" />
         {/* Watermark logo */}
+        {/* Faint decorative watermark. It must NOT preload/eager-load: doing so
+            competes with the hero LCP image for bandwidth on slow connections.
+            At 5% opacity a heavily-compressed, lazily-loaded copy is invisible. */}
         <Image
           aria-hidden="true"
           src="/logo.png"
           alt=""
           width={1200}
           height={1200}
-          priority
           quality={30}
+          loading="lazy"
           sizes="100vmin"
           className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] mix-blend-screen"
         />
@@ -308,6 +311,7 @@ export default async function Home() {
                   src={img["story.image.2"]}
                   alt="Bar glow"
                   fill
+                  quality={50}
                   sizes="(min-width: 768px) 160px, 128px"
                   className="object-cover"
                 />

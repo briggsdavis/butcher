@@ -1,16 +1,15 @@
 "use client"
 
 import { useMutation, useQuery } from "convex/react"
+import type { FunctionReturnType } from "convex/server"
 import { ArrowLeft, ArrowRight, Heart } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { notFound, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { resolveCommonValues } from "~/lib/common-values"
 import { api } from "../../convex/_generated/api"
 import type { Doc, Id } from "../../convex/_generated/dataModel"
-
-type Kind = "food" | "spirit" | "beverage"
 
 function formatTs(ts: number) {
   return new Date(ts).toLocaleDateString(undefined, {
@@ -21,31 +20,32 @@ function formatTs(ts: number) {
 }
 
 type Config = {
-  kind: Kind
   slug: string
   basePath: string
   backLabel: string
   priceLabel?: string
   notePlaceholder?: string
+  // Fetched on the server (see food/[slug]/page.tsx) so the dish/drink renders
+  // in the initial HTML rather than replacing a blank min-h-screen placeholder
+  // after hydration — that swap shifted layout (CLS) and delayed LCP.
+  item: NonNullable<FunctionReturnType<typeof api.menu.getBySlug>>
+  allItems: FunctionReturnType<typeof api.menu.list>
+  savedValues: FunctionReturnType<typeof api.site.getCommonValues>
 }
 
 export function MenuDetail({
-  kind,
   slug,
   basePath,
   backLabel,
   priceLabel = "Price",
   notePlaceholder = "Leave a review about this…",
+  item,
+  allItems,
+  savedValues,
 }: Config) {
   const router = useRouter()
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [exitDir, setExitDir] = useState<"next" | "prev" | null>(null)
-
-  const item = useQuery(api.menu.getBySlug, { kind, slug })
-  const allItems = useQuery(api.menu.list, { kind })
-  const savedValues = useQuery(api.site.getCommonValues)
-
-  if (item === null) notFound()
 
   const { prevSlug, nextSlug } = useMemo(() => {
     if (!item || !allItems) return { prevSlug: null, nextSlug: null }
@@ -82,10 +82,6 @@ export function MenuDetail({
   const exitClass = exitDir === "next" ? "food-exit" : exitDir === "prev" ? "food-exit-prev" : ""
   const common = resolveCommonValues(savedValues)
   const reservationHref = common["reservation.href"]
-
-  if (item === undefined) {
-    return <div className="min-h-screen bg-charcoal" />
-  }
 
   return (
     <div ref={wrapperRef} className={exitClass}>

@@ -1,5 +1,7 @@
+import { fetchQuery } from "convex/nextjs"
 import { Metadata } from "next"
 import { MenuList } from "~/components/menu-list"
+import { api } from "../../../convex/_generated/api"
 
 export const metadata: Metadata = {
   title: "Beverages",
@@ -12,6 +14,19 @@ const CATEGORY_LABELS: Record<string, string> = {
   "Non-Alcoholic": "Zero Proof",
 }
 
-export default function Beverages() {
-  return <MenuList kind="beverage" basePath="/beverages" categoryLabels={CATEGORY_LABELS} />
+export default async function Beverages() {
+  // Server-render the menu (see food/page.tsx) to avoid the post-hydration
+  // content pop-in that was causing layout shift.
+  const [items, menuPdfUrl] = await Promise.all([
+    fetchQuery(api.menu.list, { kind: "beverage" }),
+    fetchQuery(api.site.getMenuPdfUrl, { kind: "beverage" }),
+  ])
+  return (
+    <MenuList
+      basePath="/beverages"
+      categoryLabels={CATEGORY_LABELS}
+      items={items}
+      menuPdfUrl={menuPdfUrl}
+    />
+  )
 }
