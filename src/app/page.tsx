@@ -272,7 +272,7 @@ export default async function Home() {
             <span data-animate="" data-delay="520" className="mt-10 inline-block">
               <Link
                 href="/about"
-                aria-label="Read more about Butcher and the Rye"
+                aria-label="Read our story about Butcher and the Rye"
                 className="group inline-flex items-center gap-3 text-base text-amber uppercase transition-colors duration-500 hover:text-cream"
               >
                 {f["story.linkLabel"]}

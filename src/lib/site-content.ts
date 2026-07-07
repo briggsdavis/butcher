@@ -196,7 +196,12 @@ const homeDefinition: SitePageDefinition = {
           defaultValue:
             "We are a place for those who understand that a great evening is not rushed. It is savored, one pour at a time.",
         },
-        { kind: "text", key: "story.linkLabel", label: "Link label", defaultValue: "Read more" },
+        {
+          kind: "text",
+          key: "story.linkLabel",
+          label: "Link label",
+          defaultValue: "Read Our Story",
+        },
         {
           kind: "image",
           key: "story.image.1",
