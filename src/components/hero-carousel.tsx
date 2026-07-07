@@ -55,7 +55,13 @@ export function HeroCarousel({ images, parallaxSpeed = 0.15 }: HeroCarouselProps
               alt={img.alt}
               fill
               sizes="100vw"
-              priority={i === 0}
+              quality={60}
+              // First slide is the LCP element: preload it AND mark the preload
+              // request fetchpriority=high so the browser fetches it ahead of
+              // other resources. `priority` alone (deprecated in Next 16) emits
+              // the preload link without fetchpriority, which Lighthouse flags.
+              preload={i === 0}
+              fetchPriority={i === 0 ? "high" : undefined}
               loading={i === 0 ? "eager" : "lazy"}
               className="object-cover"
             />

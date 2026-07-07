@@ -135,6 +135,7 @@ export function Nav() {
             alt="Butcher & the Rye"
             width={60}
             height={60}
+            quality={50}
             className="h-12 w-12 md:h-15 md:w-15"
           />
         </Link>
