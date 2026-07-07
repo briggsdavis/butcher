@@ -48,6 +48,7 @@ const veganStyle = localFont({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://butcherandtherye.com"),
   title: {
     default: "Butcher and the Rye",
     template: "%s · Butcher and the Rye",
