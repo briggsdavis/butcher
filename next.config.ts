@@ -2,13 +2,12 @@ import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  // Inline the (small, atomic Tailwind) stylesheet into <head> as a <style>
-  // tag instead of a render-blocking <link>. This removes the CSS request from
-  // the critical path, which is the single biggest FCP/LCP win for first-time
-  // mobile visitors on slow connections. Production-only.
-  experimental: {
-    inlineCss: true,
-  },
+  // NOTE: experimental.inlineCss was tried here to remove render-blocking CSS,
+  // but it triggers a Turbopack "module factory is not available" crash on the
+  // server-rendered menu pages (/food, /beverages, /spirits) — a known
+  // limitation of the experimental flag. Eliminating the origin-wide layout
+  // shift on those pages (by server-rendering their content) matters far more
+  // than inlining the stylesheet, so inlineCss stays off.
   images: {
     // Next 16 requires an explicit qualities allowlist; anything not listed is
     // snapped to the nearest allowed value. Without this, our quality={30} /

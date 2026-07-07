@@ -1,40 +1,55 @@
 "use client"
 
-import { useQuery } from "convex/react"
+import type { FunctionReturnType } from "convex/server"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
 import { useMemo } from "react"
 import { api } from "../../convex/_generated/api"
-import { MenuPdfEmbed } from "./menu-pdf-embed"
 import { TiltCard } from "./tilt-card"
+
+// react-pdf touches DOM/worker globals at module load, so it can't be part of
+// the server render. Loading it client-only keeps the rest of this list (the
+// polaroids and menu rows) server-rendered for CLS while the PDF hydrates.
+const MenuPdfEmbed = dynamic(() => import("./menu-pdf-embed").then((m) => m.MenuPdfEmbed), {
+  ssr: false,
+})
 
 const POLAROID_ROTATIONS = [-2.5, 1.5, -1.5, 2.5]
 
-type Kind = "food" | "spirit" | "beverage"
+type MenuItems = FunctionReturnType<typeof api.menu.list>
 
 type Config = {
-  kind: Kind
   basePath: string
   categoryLabels?: Record<string, string>
   inlinePdf?: boolean
+  // Fetched on the server and passed in as plain data so the menu is part of
+  // the initial HTML. This is what removes the post-hydration content pop-in
+  // (CLS); it mirrors the homepage's server fetchQuery pattern.
+  items: MenuItems
+  menuPdfUrl: FunctionReturnType<typeof api.site.getMenuPdfUrl>
 }
 
-function pickRandom<T>(arr: readonly T[], n: number): T[] {
-  const pool = [...arr]
-  const out: T[] = []
-  while (out.length < n && pool.length > 0) {
-    const i = Math.floor(Math.random() * pool.length)
-    out.push(pool.splice(i, 1)[0])
+// Deterministic 32-bit hash so the featured "polaroid" picks are stable. A
+// Math.random() shuffle would diverge between the SSR render and hydration,
+// causing both a React hydration mismatch and a layout shift as the client
+// re-picked — the very thing we're removing here.
+function hashId(id: string): number {
+  let h = 2166136261
+  for (let i = 0; i < id.length; i++) {
+    h ^= id.charCodeAt(i)
+    h = Math.imul(h, 16777619)
   }
-  return out
+  return h >>> 0
 }
 
-export function MenuList({ kind, basePath, categoryLabels, inlinePdf }: Config) {
-  const items = useQuery(api.menu.list, { kind })
-  const menuPdfUrl = useQuery(api.site.getMenuPdfUrl, { kind })
+function pickFeatured<T extends { _id: string }>(arr: readonly T[], n: number): T[] {
+  return [...arr].sort((a, b) => hashId(a._id) - hashId(b._id)).slice(0, n)
+}
 
+export function MenuList({ basePath, categoryLabels, inlinePdf, items, menuPdfUrl }: Config) {
   const grouped = useMemo(() => {
-    const map = new Map<string, typeof items>()
+    const map = new Map<string, MenuItems>()
     for (const it of items ?? []) {
       const arr = map.get(it.category) ?? []
       arr.push(it)
@@ -49,7 +64,7 @@ export function MenuList({ kind, basePath, categoryLabels, inlinePdf }: Config) 
 
   const polaroids = useMemo(() => {
     const withImages = (items ?? []).filter((it) => it.imageUrl)
-    return pickRandom(withImages, 4)
+    return pickFeatured(withImages, 4)
   }, [items])
 
   return (
