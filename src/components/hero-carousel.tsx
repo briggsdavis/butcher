@@ -50,7 +50,15 @@ export function HeroCarousel({ images, parallaxSpeed = 0.15 }: HeroCarouselProps
             key={img.src}
             className={`absolute inset-0 transition-opacity duration-1000 ${active === i ? "opacity-100" : "opacity-0"}`}
           >
-            <Image src={img.src} alt={img.alt} fill priority className="object-cover" />
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              sizes="100vw"
+              priority={i === 0}
+              loading={i === 0 ? "eager" : "lazy"}
+              className="object-cover"
+            />
           </div>
         ))}
       </div>

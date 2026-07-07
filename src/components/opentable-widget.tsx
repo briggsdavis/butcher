@@ -27,5 +27,12 @@ export function OpenTableWidget() {
     }
   }, [])
 
-  return <div ref={containerRef} className="flex justify-center overflow-hidden" />
+  // Reserve vertical space up front so the injected reservation iframe
+  // doesn't shift the sections below it once it loads (reduces CLS).
+  return (
+    <div
+      ref={containerRef}
+      className="flex min-h-[236px] items-center justify-center overflow-hidden sm:min-h-[112px]"
+    />
+  )
 }

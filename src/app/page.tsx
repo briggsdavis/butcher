@@ -95,6 +95,7 @@ export default async function Home() {
           width={1200}
           height={1200}
           priority
+          sizes="100vmin"
           className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] mix-blend-screen"
         />
         <div className="relative z-10 flex flex-col items-center px-8 pb-24 text-center md:px-16">
