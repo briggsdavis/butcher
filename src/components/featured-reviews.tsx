@@ -50,10 +50,7 @@ export function FeaturedReviews({ reviews }: { reviews: FeaturedReview[] }) {
         </div>
 
         {reviews.length > 1 && (
-          <div
-            className="mt-12 flex items-center justify-center gap-2"
-            aria-label="Featured review"
-          >
+          <div className="mt-10 flex items-center justify-center" aria-label="Featured review">
             {reviews.map((review, index) => (
               <button
                 key={review._id}
@@ -64,10 +61,14 @@ export function FeaturedReviews({ reviews }: { reviews: FeaturedReview[] }) {
                   setActiveIndex(index)
                   setTimerResetKey((key) => key + 1)
                 }}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  index === activeIndex ? "w-8 bg-amber" : "w-1.5 bg-tan/35 hover:bg-tan/60"
-                }`}
-              />
+                className="grid place-items-center p-2.5"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-500 ${
+                    index === activeIndex ? "w-8 bg-amber" : "w-1.5 bg-tan/35 hover:bg-tan/60"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         )}
