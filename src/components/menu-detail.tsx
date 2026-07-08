@@ -151,7 +151,7 @@ export function MenuDetail({
                 href={reservationHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-fit items-center gap-3 border border-amber px-8 py-3.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+                className="btn-plaque flex w-fit items-center gap-3 px-8 py-3.5 text-xs uppercase"
               >
                 Reserve a Table
               </Link>
@@ -295,7 +295,7 @@ function Guestbook({ itemId, placeholder }: { itemId: Id<"menuItems">; placehold
           <button
             type="submit"
             disabled={!name.trim() || !body.trim() || submitting}
-            className="border border-amber px-6 py-2.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:translate-y-0 disabled:hover:border-amber disabled:hover:text-amber disabled:hover:shadow-none"
+            className="btn-plaque px-6 py-2.5 text-xs uppercase disabled:cursor-not-allowed disabled:opacity-30"
           >
             {submitting ? "Submitting…" : "Submit Review"}
           </button>

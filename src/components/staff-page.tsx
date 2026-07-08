@@ -236,7 +236,7 @@ export function StaffPage({
             href={reservationHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-12 inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+            className="btn-plaque mt-12 inline-block px-12 py-5 text-xs font-medium uppercase"
           >
             {content.fields["cta.buttonLabel"]}
           </Link>

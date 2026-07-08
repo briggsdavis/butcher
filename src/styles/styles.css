@@ -298,6 +298,45 @@ footer::before {
   }
 }
 
+/* ── Plaque button — the button.png frame with the label sitting on top ──
+ * The frame stretches to each button's natural text width (background-size
+ * 100% 100%). The label is dark so it reads against the light plaque center.
+ */
+.btn-plaque {
+  position: relative;
+  background-image: url("/button.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* The plaque frame has a transparent centre, so the label shows against
+     whatever section sits behind it. Amber reads on every section here and
+     matches the buttons' original colour. */
+  color: var(--color-amber);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  transition:
+    transform 0.5s cubic-bezier(0, 0, 0.2, 1),
+    filter 0.5s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.btn-plaque:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05) drop-shadow(0 6px 20px rgba(213, 137, 54, 0.3));
+}
+
+.btn-plaque:disabled,
+.btn-plaque[aria-disabled="true"] {
+  transform: none;
+  filter: none;
+}
+
+/* ── Decorative illustrations that lean toward the cursor ──
+ * PageEffects updates the rotation on mousemove; the transition smooths it.
+ */
+.decor-tilt {
+  transition: transform 0.35s cubic-bezier(0, 0, 0.2, 1);
+  will-change: transform;
+}
+
 /* ── Inset shadow on image containers ── */
 .img-inset-shadow::after {
   content: "";
@@ -447,9 +486,13 @@ footer::before {
   transform-origin: left;
 }
 
-/* ── Nav slide / state ── */
+/* ── Nav slide / state ──
+ * Tailwind v4 drives `-translate-y-full` / `translate-y-0` through the CSS
+ * `translate` property (not `transform`), so the transition must target
+ * `translate` for the bar to slide out of view instead of snapping.
+ */
 .nav-shell {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: translate 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-intro {
   animation: navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards;

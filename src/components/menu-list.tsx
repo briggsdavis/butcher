@@ -112,7 +112,7 @@ export function MenuList({ basePath, categoryLabels, inlinePdf, items, menuPdfUr
                   href={menuPdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+                  className="btn-plaque inline-block px-10 py-4 text-xs uppercase"
                 >
                   View Menu PDF
                 </a>

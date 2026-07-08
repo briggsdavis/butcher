@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { DecorTilt } from "~/components/decor-tilt"
 import { HeroCarousel } from "~/components/hero-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { TiltCard } from "~/components/tilt-card"
@@ -23,16 +24,40 @@ const VALUE_META = [
     numeral: "01",
     numeralClass: "right-0 bottom-0",
     key: "value.1",
+    // Excellence → meat grinder, bottom-right of the photo
+    decor: {
+      src: "/pipe.png",
+      width: 488,
+      height: 961,
+      className: "-right-3 -bottom-6",
+      baseRotate: -8,
+    },
   },
   {
     numeral: "02",
     numeralClass: "bottom-0 left-1/2 -translate-x-1/2",
     key: "value.2",
+    // Craft → cocktail glass, bottom-left of the photo
+    decor: {
+      src: "/glass.png",
+      width: 423,
+      height: 781,
+      className: "-left-3 -bottom-6",
+      baseRotate: 6,
+    },
   },
   {
     numeral: "03",
     numeralClass: "bottom-0 -left-4",
     key: "value.3",
+    // Hospitality → whiskey bottle, top-left of the photo
+    decor: {
+      src: "/bottle.png",
+      width: 429,
+      height: 844,
+      className: "-top-8 -left-3",
+      baseRotate: -6,
+    },
   },
 ]
 
@@ -190,6 +215,15 @@ export default async function About() {
                   </text>
                 </svg>
               </div>
+              <DecorTilt
+                src="/old.png"
+                width={590}
+                height={982}
+                baseRotate={6}
+                tiltMax={11}
+                className="right-1 bottom-0 md:right-2"
+                imgClassName="h-[190px] w-auto opacity-90"
+              />
             </div>
           </div>
         </div>
@@ -308,7 +342,11 @@ export default async function About() {
                       </p>
                     </div>
                   </div>
-                  <div data-animate="" data-delay="260" className={reversed ? "md:order-1" : ""}>
+                  <div
+                    data-animate=""
+                    data-delay="260"
+                    className={`relative ${reversed ? "md:order-1" : ""}`}
+                  >
                     <TiltCard
                       initialRotate={i % 2 === 0 ? -2 : 2}
                       maxTilt={5}
@@ -323,6 +361,15 @@ export default async function About() {
                         />
                       </div>
                     </TiltCard>
+                    <DecorTilt
+                      src={value.decor.src}
+                      width={value.decor.width}
+                      height={value.decor.height}
+                      baseRotate={value.decor.baseRotate}
+                      tiltMax={11}
+                      className={value.decor.className}
+                      imgClassName="h-[150px] w-auto opacity-90 md:h-[190px]"
+                    />
                   </div>
                 </div>
               </div>
@@ -420,12 +467,21 @@ export default async function About() {
               href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+              className="btn-plaque inline-block px-12 py-5 text-xs font-medium uppercase"
             >
               {f["cta.buttonLabel"]}
             </Link>
           </span>
         </div>
+        <DecorTilt
+          src="/old.png"
+          width={590}
+          height={982}
+          baseRotate={7}
+          tiltMax={11}
+          className="right-2 bottom-4 md:right-10 md:bottom-8"
+          imgClassName="h-[190px] w-auto opacity-90 md:h-[300px]"
+        />
       </section>
 
       <RestaurantGroupSection />

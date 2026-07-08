@@ -87,6 +87,22 @@ export function PageEffects() {
     ].join(";")
     document.body.appendChild(glow)
 
+    // ── Decorative illustrations that lean toward the cursor ──────────────
+    const tiltEls = Array.from(document.querySelectorAll<HTMLElement>("[data-cursor-tilt]"))
+
+    const tiltToCursor = (clientX: number) => {
+      const vw = window.innerWidth
+      tiltEls.forEach((el) => {
+        const rect = el.getBoundingClientRect()
+        const cx = rect.left + rect.width / 2
+        // Lean based on where the cursor sits horizontally relative to centre.
+        const t = Math.max(-1, Math.min(1, (clientX - cx) / (vw * 0.4)))
+        const base = parseFloat(el.dataset.baseRotate ?? "0")
+        const max = parseFloat(el.dataset.tiltMax ?? "14")
+        el.style.transform = `rotate(${base + t * max}deg)`
+      })
+    }
+
     const onMouseMove = (e: MouseEvent) => {
       glow.style.left = `${e.clientX}px`
       glow.style.top = `${e.clientY}px`
@@ -96,7 +112,15 @@ export function PageEffects() {
         (target.matches(TEXT_SELECTORS) || target.closest(TEXT_SELECTORS))
       )
       glow.style.opacity = overText ? "1" : "0"
+      tiltToCursor(e.clientX)
     }
+
+    // Touch devices have no hover cursor — let a tap/drag still nudge the tilt.
+    const onTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0]
+      if (touch) tiltToCursor(touch.clientX)
+    }
+    document.addEventListener("touchmove", onTouchMove, { passive: true })
 
     document.addEventListener("mousemove", onMouseMove)
 
@@ -105,6 +129,7 @@ export function PageEffects() {
       mutationObserver.disconnect()
       window.removeEventListener("scroll", onScroll)
       document.removeEventListener("mousemove", onMouseMove)
+      document.removeEventListener("touchmove", onTouchMove)
       glow.remove()
     }
   }, [pathname])

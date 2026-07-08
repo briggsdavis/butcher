@@ -33,7 +33,7 @@ export default function NotFound() {
 
           <Link
             href="/"
-            className="mt-10 inline-block border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+            className="btn-plaque mt-10 inline-block px-10 py-4 text-xs uppercase"
           >
             Return Home
           </Link>
