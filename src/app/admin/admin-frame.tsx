@@ -1,5 +1,6 @@
 "use client"
 
+import { Authenticated, AuthLoading, Unauthenticated } from "convex/react"
 import {
   ArrowLeft,
   ExternalLink,
@@ -7,6 +8,7 @@ import {
   Home,
   Info,
   LayoutDashboard,
+  Loader2,
   Mail,
   MessageSquareText,
   Settings,
@@ -100,7 +102,44 @@ export function AdminFrame({ children }: { children: ReactNode }) {
         </div>
       </aside>
 
-      <div className="min-w-0 flex-1">{children}</div>
+      <div className="min-w-0 flex-1">
+        {/* Admin pages call admin-gated Convex queries that throw
+            "Not authenticated." until the client auth token has attached. Only
+            mount them once the client is authenticated so that transient
+            unauthenticated windows (initial load, token refresh, websocket
+            reconnect) can't crash the route. The middleware still guards access
+            server-side; this guards the client render. */}
+        <Authenticated>{children}</Authenticated>
+        <AuthLoading>
+          <AdminAuthPending />
+        </AuthLoading>
+        <Unauthenticated>
+          <AdminSignInPrompt />
+        </Unauthenticated>
+      </div>
+    </div>
+  )
+}
+
+function AdminAuthPending() {
+  return (
+    <div className="flex min-h-screen items-center justify-center text-sm text-tan/60">
+      <Loader2 className="mr-2 size-4 animate-spin" />
+      Loading…
+    </div>
+  )
+}
+
+function AdminSignInPrompt() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-8 text-center">
+      <p className="text-sm text-tan/70">Your admin session has ended.</p>
+      <Link
+        href="/admin/login"
+        className="rounded-full bg-amber px-6 py-3 text-sm font-medium text-charcoal transition-opacity hover:opacity-90"
+      >
+        Sign in again
+      </Link>
     </div>
   )
 }
