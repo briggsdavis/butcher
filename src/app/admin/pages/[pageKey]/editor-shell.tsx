@@ -71,14 +71,24 @@ export function EditorShell({
   useEffect(() => {
     if (savedPage === undefined || initializedRef.current) return
     initializedRef.current = true
+    // `getPageForAdmin` returns a default object for a page with no saved doc,
+    // but older deployments returned `null` in that case. Tolerate both so a
+    // page that has never been saved loads with defaults instead of crashing
+    // the editor with "Cannot read properties of null (reading 'fields')".
+    const page = savedPage ?? {
+      fields: {},
+      images: {},
+      imageUrls: {},
+      hasUnpublishedChanges: false,
+    }
     const next: Working = {
-      fields: { ...defaultFields, ...savedPage.fields },
-      imageIds: savedPage.images ?? {},
-      imageUrls: nonNullUrls(savedPage.imageUrls),
+      fields: { ...defaultFields, ...page.fields },
+      imageIds: page.images ?? {},
+      imageUrls: nonNullUrls(page.imageUrls),
     }
     workingRef.current = next
     setWorkingState(next)
-    setUnpublished(savedPage.hasUnpublishedChanges)
+    setUnpublished(page.hasUnpublishedChanges)
     setSaveStatus("saved")
     setReady(true)
   }, [savedPage, defaultFields])
