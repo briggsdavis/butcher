@@ -2,6 +2,7 @@ import { fetchQuery } from "convex/nextjs"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { DecorTilt } from "~/components/decor-tilt"
 import { EqualWidthStack } from "~/components/equal-width-stack"
 import { FeaturedReviews } from "~/components/featured-reviews"
 import { HeroCarousel } from "~/components/hero-carousel"
@@ -126,20 +127,20 @@ export default async function Home() {
               href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block border border-amber px-10 py-4 font-display text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+              className="btn-plaque inline-block px-10 py-4 font-display text-sm uppercase"
             >
               {f["hero.reserveLabel"]}
             </Link>
             <div className="flex items-center gap-4 sm:contents">
               <Link
                 href="/food"
-                className="inline-block border border-amber px-8 py-4 font-display text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] sm:px-10"
+                className="btn-plaque inline-block px-8 py-4 font-display text-sm uppercase sm:px-10"
               >
                 {f["hero.menuLabel"]}
               </Link>
               <Link
                 href="/beverages"
-                className="hidden border border-amber px-8 py-4 font-display text-sm text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] max-sm:inline-block"
+                className="btn-plaque hidden px-8 py-4 font-display text-sm uppercase max-sm:inline-block"
               >
                 {f["hero.beveragesLabel"]}
               </Link>
@@ -367,7 +368,7 @@ export default async function Home() {
                 <span data-animate="" data-delay="220" className="mt-8 inline-block">
                   <Link
                     href="/food"
-                    className="border border-amber px-10 py-4 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+                    className="btn-plaque inline-block px-10 py-4 text-xs uppercase"
                   >
                     {f["menu.buttonLabel"]}
                   </Link>
@@ -422,6 +423,15 @@ export default async function Home() {
             </div>
           </div>
         </div>
+        <DecorTilt
+          src="/old.png"
+          width={590}
+          height={982}
+          baseRotate={7}
+          tiltMax={11}
+          className="right-2 bottom-4 md:right-10 md:bottom-8"
+          imgClassName="h-[190px] w-auto opacity-90 md:h-[300px]"
+        />
       </section>
 
       <FeaturedReviews reviews={featuredReviews} />
@@ -479,6 +489,24 @@ export default async function Home() {
             ))}
           </div>
         </div>
+        <DecorTilt
+          src="/bottle.png"
+          width={429}
+          height={844}
+          baseRotate={-6}
+          tiltMax={12}
+          className="bottom-0 left-2 md:bottom-2 md:left-10"
+          imgClassName="h-[200px] w-auto opacity-90 md:h-[300px]"
+        />
+        <DecorTilt
+          src="/glass.png"
+          width={423}
+          height={781}
+          baseRotate={6}
+          tiltMax={12}
+          className="right-2 bottom-0 md:right-10 md:bottom-2"
+          imgClassName="h-[190px] w-auto opacity-90 md:h-[290px]"
+        />
       </section>
 
       {/* ── Infinite Carousel ── */}
@@ -521,12 +549,21 @@ export default async function Home() {
               href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block border border-amber px-12 py-5 text-xs font-medium text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)]"
+              className="btn-plaque inline-block px-12 py-5 text-xs font-medium uppercase"
             >
               {f["reservations.buttonLabel"]}
             </Link>
           </span>
         </div>
+        <DecorTilt
+          src="/pipe.png"
+          width={488}
+          height={961}
+          baseRotate={-8}
+          tiltMax={12}
+          className="bottom-0 left-0 md:bottom-6 md:left-16"
+          imgClassName="h-[230px] w-auto opacity-90 md:h-[480px]"
+        />
       </section>
 
       <RestaurantGroupSection />

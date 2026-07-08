@@ -66,7 +66,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="inline-flex w-fit items-center gap-3 border border-amber px-8 py-3.5 text-xs text-amber uppercase transition-all duration-500 hover:-translate-y-0.5 hover:border-cream hover:text-cream hover:shadow-[0_4px_24px_rgba(213,137,54,0.35)] disabled:pointer-events-none disabled:opacity-50"
+          className="btn-plaque inline-flex w-fit items-center gap-3 px-8 py-3.5 text-xs uppercase disabled:pointer-events-none disabled:opacity-50"
         >
           <Send className="size-4" />
           {submitting ? "Sending" : "Send Message"}
