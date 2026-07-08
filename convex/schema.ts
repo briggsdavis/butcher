@@ -52,8 +52,14 @@ export default defineSchema({
 
   sitePages: defineTable({
     key: sitePageKey,
+    // Published content — what the public site renders.
     fields: v.record(v.string(), v.string()),
     images: v.optional(v.record(v.string(), v.id("_storage"))),
     updatedAt: v.number(),
+    // Private working draft — auto-saved from the editor, never shown publicly
+    // until it is published (copied onto fields/images).
+    draftFields: v.optional(v.record(v.string(), v.string())),
+    draftImages: v.optional(v.record(v.string(), v.id("_storage"))),
+    draftUpdatedAt: v.optional(v.number()),
   }).index("by_key", ["key"]),
 })
