@@ -6,6 +6,7 @@ import Link from "next/link"
 import { DecorTilt } from "~/components/decor-tilt"
 import { HeroCarousel } from "~/components/hero-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
+import { SectionDivider } from "~/components/section-divider"
 import { TiltCard } from "~/components/tilt-card"
 import { resolveCommonValues } from "~/lib/common-values"
 import { resolveSiteContent } from "~/lib/site-content"
@@ -429,6 +430,7 @@ export default async function About() {
               <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
             </Link>
           </span>
+          <SectionDivider className="mt-12" />
         </div>
       </section>
 
@@ -472,6 +474,7 @@ export default async function About() {
               {f["cta.buttonLabel"]}
             </Link>
           </span>
+          <SectionDivider className="mt-12" />
         </div>
         <DecorTilt
           src="/old.png"

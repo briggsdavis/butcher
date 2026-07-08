@@ -488,6 +488,7 @@ export default async function Home() {
               </TiltCard>
             ))}
           </div>
+          <SectionDivider className="mt-14 md:mt-16" />
         </div>
         <DecorTilt
           src="/bottle.png"
