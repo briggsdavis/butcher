@@ -486,9 +486,13 @@ footer::before {
   transform-origin: left;
 }
 
-/* ── Nav slide / state ── */
+/* ── Nav slide / state ──
+ * Tailwind v4 drives `-translate-y-full` / `translate-y-0` through the CSS
+ * `translate` property (not `transform`), so the transition must target
+ * `translate` for the bar to slide out of view instead of snapping.
+ */
 .nav-shell {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: translate 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-intro {
   animation: navSlideDown 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards;

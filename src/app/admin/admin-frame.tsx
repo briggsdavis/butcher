@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  ArrowLeft,
   ExternalLink,
   GlassWater,
   Home,
@@ -75,6 +76,13 @@ export function AdminFrame({ children }: { children: ReactNode }) {
             className="inline-block cursor-pointer font-display text-2xl text-cream"
           >
             Admin
+          </Link>
+          <Link
+            href="/"
+            className="mt-4 flex items-center gap-2 border border-amber/40 px-3 py-2 text-sm text-amber uppercase transition-colors hover:border-amber hover:bg-amber/10 hover:text-cream"
+          >
+            <ArrowLeft className="size-4 shrink-0" />
+            Back to Site
           </Link>
           <div className="mt-5">
             <AdminNavLink link={DASHBOARD_LINK} active={isActive(pathname, DASHBOARD_LINK.href)} />
