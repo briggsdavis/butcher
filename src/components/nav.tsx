@@ -149,7 +149,7 @@ export function Nav() {
           href={reservationHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-plaque relative z-10 ml-auto hidden px-5 py-2 text-sm uppercase md:block"
+          className="btn-plaque relative z-10 ml-auto hidden origin-right scale-[1.15] px-5 py-2 text-sm uppercase md:block"
         >
           Reserve
         </Link>
