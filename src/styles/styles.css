@@ -6,6 +6,30 @@
   }
 }
 
+/* ── Admin WYSIWYG click-to-edit text ── */
+.editable-text {
+  cursor: text;
+  border-radius: 3px;
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+  transition:
+    outline-color 0.15s ease,
+    background-color 0.15s ease;
+}
+.editable-text:hover {
+  outline-color: color-mix(in srgb, var(--color-amber) 45%, transparent);
+  background-color: color-mix(in srgb, var(--color-amber) 8%, transparent);
+}
+.editable-text:focus {
+  outline: 2px solid var(--color-amber);
+  background-color: color-mix(in srgb, var(--color-amber) 10%, transparent);
+}
+.editable-text[data-empty="true"]::before {
+  content: attr(data-placeholder);
+  opacity: 0.4;
+  font-style: italic;
+}
+
 @theme inline {
   --font-cursive: var(--font-vegan-style), var(--font-courier-prime), monospace;
   --font-handwritten: var(--font-reenie-beanie), var(--font-courier-prime), cursive;

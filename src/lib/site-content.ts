@@ -46,6 +46,82 @@ export type ResolvedSiteContent = {
   images: Record<string, string>
 }
 
+export type StaffMember = {
+  id: string
+  name: string
+  role: string
+  years: string
+  hidden: boolean
+  headshot: string
+}
+
+// Seed roster used as the default content of the Our Staff page. Ids are the
+// legacy 1-based slot numbers so any staff content saved under the old fixed
+// slots (`staff.1.name`, uploaded `staff.1.headshot`, …) carries over cleanly.
+export const DEFAULT_STAFF = STAFF.map((member, index) => ({
+  id: String(index + 1),
+  name: member.name,
+  role: member.role,
+  years: member.years,
+  headshotUrl: member.headshot,
+}))
+
+export function getDefaultStaffFields(): TextField[] {
+  const fields: TextField[] = [
+    {
+      kind: "text",
+      key: "staff.order",
+      label: "Staff order",
+      defaultValue: DEFAULT_STAFF.map((member) => member.id).join(","),
+    },
+  ]
+  for (const member of DEFAULT_STAFF) {
+    fields.push(
+      { kind: "text", key: `staff.${member.id}.name`, label: "Name", defaultValue: member.name },
+      { kind: "text", key: `staff.${member.id}.role`, label: "Role", defaultValue: member.role },
+      {
+        kind: "text",
+        key: `staff.${member.id}.years`,
+        label: "Experience",
+        defaultValue: member.years,
+      },
+      { kind: "text", key: `staff.${member.id}.hidden`, label: "Hidden", defaultValue: "" },
+      {
+        kind: "text",
+        key: `staff.${member.id}.headshotUrl`,
+        label: "Headshot URL",
+        defaultValue: member.headshotUrl,
+      },
+    )
+  }
+  return fields
+}
+
+export function parseStaffOrder(order: string | undefined): string[] {
+  if (!order) return []
+  return order
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean)
+}
+
+// A member's headshot is either an uploaded image (in the images map) or, for
+// seed/default members that were never re-uploaded, an external URL field.
+export function resolveStaffHeadshot(content: ResolvedSiteContent, id: string): string {
+  return content.images[`staff.${id}.headshot`] ?? content.fields[`staff.${id}.headshotUrl`] ?? ""
+}
+
+export function resolveStaffMembers(content: ResolvedSiteContent): StaffMember[] {
+  return parseStaffOrder(content.fields["staff.order"]).map((id) => ({
+    id,
+    name: content.fields[`staff.${id}.name`] ?? "",
+    role: content.fields[`staff.${id}.role`] ?? "",
+    years: content.fields[`staff.${id}.years`] ?? "",
+    hidden: (content.fields[`staff.${id}.hidden`] ?? "") === "1",
+    headshot: resolveStaffHeadshot(content, id),
+  }))
+}
+
 const homeDefinition: SitePageDefinition = {
   key: "home",
   label: "Home",
@@ -739,37 +815,11 @@ const staffDefinition: SitePageDefinition = {
     },
     {
       title: "Team",
-      fields: Array.from({ length: 8 }, (_, index) => {
-        const n = index + 1
-        const member = STAFF[index]
-        return [
-          {
-            kind: "text" as const,
-            key: `staff.${n}.name`,
-            label: `Staff ${n} name`,
-            defaultValue: member?.name ?? "",
-          },
-          {
-            kind: "text" as const,
-            key: `staff.${n}.role`,
-            label: `Staff ${n} role`,
-            defaultValue: member?.role ?? "",
-          },
-          {
-            kind: "text" as const,
-            key: `staff.${n}.years`,
-            label: `Staff ${n} experience`,
-            defaultValue: member?.years ?? "",
-          },
-          {
-            kind: "image" as const,
-            key: `staff.${n}.headshot`,
-            label: `Staff ${n} headshot`,
-            defaultSrc: member?.headshot ?? "",
-            alt: `Staff ${n} headshot`,
-          },
-        ]
-      }).flat(),
+      // Staff are managed as a dynamic roster (add / remove / hide / reorder)
+      // rather than fixed slots. They live in the page content as `staff.order`
+      // plus per-member `staff.<id>.*` fields so they ride the same
+      // draft/publish + image machinery as everything else. See DEFAULT_STAFF.
+      fields: getDefaultStaffFields(),
     },
     {
       title: "Reservation CTA",
@@ -845,16 +895,21 @@ export function resolveSiteContent(
   const defaults = getDefaultTextFields(definition)
   const imageDefaults = getDefaultImageFields(definition)
 
+  const images: Record<string, string> = {}
+  for (const [imageKey, fallback] of Object.entries(imageDefaults)) {
+    images[imageKey] = storedContent?.imageUrls?.[imageKey] ?? fallback
+  }
+  // Carry through dynamically-keyed images (e.g. staff headshots) that have no
+  // static image-field default but were uploaded and stored.
+  for (const [imageKey, url] of Object.entries(storedContent?.imageUrls ?? {})) {
+    if (url) images[imageKey] = url
+  }
+
   return {
     fields: {
       ...defaults,
       ...storedContent?.fields,
     },
-    images: Object.fromEntries(
-      Object.entries(imageDefaults).map(([imageKey, fallback]) => [
-        imageKey,
-        storedContent?.imageUrls?.[imageKey] ?? fallback,
-      ]),
-    ),
+    images,
   }
 }

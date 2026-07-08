@@ -3,8 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useMemo, useRef, useState } from "react"
-import { STAFF } from "~/data/staff"
-import type { ResolvedSiteContent } from "~/lib/site-content"
+import { resolveStaffMembers, type ResolvedSiteContent } from "~/lib/site-content"
 
 export function StaffPage({
   content,
@@ -14,17 +13,7 @@ export function StaffPage({
   reservationHref: string
 }) {
   const staff = useMemo(
-    () =>
-      STAFF.map((member, index) => {
-        const n = index + 1
-        return {
-          ...member,
-          name: content.fields[`staff.${n}.name`] || member.name,
-          role: content.fields[`staff.${n}.role`] || member.role,
-          years: content.fields[`staff.${n}.years`] || member.years,
-          headshot: content.images[`staff.${n}.headshot`] || member.headshot,
-        }
-      }),
+    () => resolveStaffMembers(content).filter((member) => !member.hidden),
     [content],
   )
   const [activeIndex, setActiveIndex] = useState(0)
@@ -102,7 +91,7 @@ export function StaffPage({
             <div className="flex flex-col items-center gap-[5px]">
               {staff.map((member, i) => (
                 <div
-                  key={member.name}
+                  key={member.id}
                   className={`rounded-full transition-all duration-500 ease-out ${
                     i === activeIndex
                       ? "h-7 w-[3px] bg-amber"
@@ -122,7 +111,7 @@ export function StaffPage({
                   / {String(staff.length).padStart(2, "0")}
                 </span>
               </p>
-              <p className="mt-1 text-xs text-tan/60 uppercase">{activeMember.role}</p>
+              <p className="mt-1 text-xs text-tan/60 uppercase">{activeMember?.role}</p>
             </div>
           </div>
         </aside>
@@ -131,7 +120,7 @@ export function StaffPage({
         <div className="flex-1 bg-charcoal">
           {staff.map((member, i) => (
             <section
-              key={member.name}
+              key={member.id}
               ref={(el) => {
                 sectionRefs.current[i] = el
               }}

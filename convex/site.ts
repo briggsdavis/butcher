@@ -27,9 +27,9 @@ async function getPageDoc(ctx: QueryCtx | MutationCtx, key: PageKey) {
     .unique()
 }
 
-async function getPageImageUrls(ctx: QueryCtx, page: { images?: Record<string, Id<"_storage">> }) {
+async function resolveImageUrls(ctx: QueryCtx, images: Record<string, Id<"_storage">>) {
   const imageUrls: Record<string, string | null> = {}
-  for (const [key, imageId] of Object.entries(page.images ?? {})) {
+  for (const [key, imageId] of Object.entries(images)) {
     imageUrls[key] = await ctx.storage.getUrl(imageId)
   }
   return imageUrls
@@ -40,6 +40,37 @@ async function deleteFileIfPresent(ctx: MutationCtx, storageId: Id<"_storage"> |
   try {
     await ctx.storage.delete(storageId)
   } catch {}
+}
+
+// Delete every storage id that used to be referenced but no longer is, so that
+// replaced draft/published images don't leak. An id stays alive as long as it
+// is referenced by either the published set or the draft set.
+async function cleanupUnreferencedImages(
+  ctx: MutationCtx,
+  previous: Record<string, Id<"_storage">>[],
+  next: Record<string, Id<"_storage">>[],
+) {
+  const stillReferenced = new Set(next.flatMap((map) => Object.values(map)))
+  const wasReferenced = new Set(previous.flatMap((map) => Object.values(map)))
+  for (const id of wasReferenced) {
+    if (!stillReferenced.has(id)) await deleteFileIfPresent(ctx, id)
+  }
+}
+
+function recordsEqual(a: Record<string, string>, b: Record<string, string>) {
+  const keys = new Set([...Object.keys(a), ...Object.keys(b)])
+  for (const key of keys) {
+    if (a[key] !== b[key]) return false
+  }
+  return true
+}
+
+function imageMapsEqual(a: Record<string, Id<"_storage">>, b: Record<string, Id<"_storage">>) {
+  const keys = new Set([...Object.keys(a), ...Object.keys(b)])
+  for (const key of keys) {
+    if (a[key] !== b[key]) return false
+  }
+  return true
 }
 
 function commonValuesResult(fields: Record<string, string>, updatedAt: number | undefined) {
@@ -107,19 +138,49 @@ export const getPage = query({
     return {
       key: page.key,
       fields: page.fields,
-      imageUrls: await getPageImageUrls(ctx, page),
+      imageUrls: await resolveImageUrls(ctx, page.images ?? {}),
       updatedAt: page.updatedAt,
     }
   },
 })
 
+// Returns the current working state for the editor: the private draft if one
+// exists, otherwise the published content. `hasUnpublishedChanges` tells the
+// editor whether the working draft differs from what the public site shows.
 export const getPageForAdmin = query({
   args: { key: sitePageKey },
   handler: async (ctx, { key }) => {
     await assertAdmin(ctx)
     const page = await getPageDoc(ctx, key)
-    if (!page) return null
-    return { ...page, imageUrls: await getPageImageUrls(ctx, page) }
+    if (!page) {
+      return {
+        key,
+        fields: {},
+        images: {},
+        imageUrls: {},
+        hasUnpublishedChanges: false,
+        updatedAt: null,
+        draftUpdatedAt: null,
+      }
+    }
+
+    const hasDraft = page.draftFields !== undefined
+    const workingFields = hasDraft ? page.draftFields! : page.fields
+    const workingImages = hasDraft ? (page.draftImages ?? {}) : (page.images ?? {})
+    const hasUnpublishedChanges =
+      hasDraft &&
+      (!recordsEqual(workingFields, page.fields) ||
+        !imageMapsEqual(workingImages, page.images ?? {}))
+
+    return {
+      key: page.key,
+      fields: workingFields,
+      images: workingImages,
+      imageUrls: await resolveImageUrls(ctx, workingImages),
+      hasUnpublishedChanges,
+      updatedAt: page.updatedAt,
+      draftUpdatedAt: page.draftUpdatedAt ?? null,
+    }
   },
 })
 
@@ -169,7 +230,9 @@ export const generatePageImageUploadUrl = mutation({
   },
 })
 
-export const savePage = mutation({
+// Auto-save: persist the editor's working state as a private draft. Never
+// touches the published fields/images, so the public site is unaffected.
+export const savePageDraft = mutation({
   args: {
     key: sitePageKey,
     fields: v.record(v.string(), v.string()),
@@ -178,25 +241,86 @@ export const savePage = mutation({
   handler: async (ctx, { key, fields, images }) => {
     await assertAdmin(ctx)
     const existing = await getPageDoc(ctx, key)
-    const previousImages = existing?.images ?? {}
-
-    for (const [imageKey, previousId] of Object.entries(previousImages)) {
-      if (images[imageKey] !== previousId) {
-        await deleteFileIfPresent(ctx, previousId)
-      }
-    }
-
-    const nextPage = {
-      key,
-      fields,
-      images,
-      updatedAt: Date.now(),
-    }
+    const draftUpdatedAt = Date.now()
 
     if (existing) {
-      await ctx.db.replace(existing._id, nextPage)
+      // Old draft images that are neither in the new draft nor published are orphaned.
+      await cleanupUnreferencedImages(
+        ctx,
+        [existing.draftImages ?? {}],
+        [images, existing.images ?? {}],
+      )
+      await ctx.db.patch(existing._id, {
+        draftFields: fields,
+        draftImages: images,
+        draftUpdatedAt,
+      })
     } else {
-      await ctx.db.insert("sitePages", nextPage)
+      await ctx.db.insert("sitePages", {
+        key,
+        fields: {},
+        images: {},
+        updatedAt: draftUpdatedAt,
+        draftFields: fields,
+        draftImages: images,
+        draftUpdatedAt,
+      })
+    }
+  },
+})
+
+// Publish: promote the working state onto the published fields/images so it
+// goes live, then clear the draft. Accepts the latest working state so a final
+// in-flight edit is captured even if auto-save hasn't flushed yet.
+export const publishPage = mutation({
+  args: {
+    key: sitePageKey,
+    fields: v.record(v.string(), v.string()),
+    images: v.record(v.string(), v.id("_storage")),
+  },
+  handler: async (ctx, { key, fields, images }) => {
+    await assertAdmin(ctx)
+    const existing = await getPageDoc(ctx, key)
+    const updatedAt = Date.now()
+
+    if (existing) {
+      // The new published set is authoritative; drop any image no longer used.
+      await cleanupUnreferencedImages(
+        ctx,
+        [existing.images ?? {}, existing.draftImages ?? {}],
+        [images],
+      )
+      await ctx.db.replace(existing._id, { key, fields, images, updatedAt })
+    } else {
+      await ctx.db.insert("sitePages", { key, fields, images, updatedAt })
+    }
+  },
+})
+
+// Discard: throw away the working draft and revert to the published content.
+// Returns the published state so the editor can reset its local buffer.
+export const discardPageDraft = mutation({
+  args: { key: sitePageKey },
+  handler: async (ctx, { key }) => {
+    await assertAdmin(ctx)
+    const existing = await getPageDoc(ctx, key)
+    if (!existing) return { fields: {}, images: {}, imageUrls: {} }
+
+    if (existing.draftFields !== undefined) {
+      // Draft-only images (not referenced by the published set) are orphaned.
+      await cleanupUnreferencedImages(ctx, [existing.draftImages ?? {}], [existing.images ?? {}])
+      await ctx.db.replace(existing._id, {
+        key: existing.key,
+        fields: existing.fields,
+        images: existing.images,
+        updatedAt: existing.updatedAt,
+      })
+    }
+
+    return {
+      fields: existing.fields,
+      images: existing.images ?? {},
+      imageUrls: await resolveImageUrls(ctx, existing.images ?? {}),
     }
   },
 })
