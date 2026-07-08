@@ -81,12 +81,16 @@ export function Nav() {
       <nav
         className={`nav-shell ${introClass} ${hidden ? "-translate-y-full" : "translate-y-0"} fixed inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16`}
       >
+        {/* Preloaded (priority) because the nav is above the fold, so it shares
+            the critical path with the hero LCP image. It sits behind an
+            oxblood/70 + amber/20 double overlay, so the wood texture is heavily
+            tinted — q30 is imperceptible here and frees bandwidth for the LCP. */}
         <Image
           src="/wood.jpg"
           alt=""
           fill
           sizes="100vw"
-          quality={50}
+          quality={30}
           priority
           className="object-cover"
         />

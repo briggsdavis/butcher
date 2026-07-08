@@ -55,7 +55,10 @@ export function HeroCarousel({ images, parallaxSpeed = 0.15 }: HeroCarouselProps
               alt={img.alt}
               fill
               sizes="100vw"
-              quality={60}
+              // The first slide is the LCP element on a 7.8s-LCP page, so trim
+              // its bytes: q50 on these dim, warm-toned room photos is visually
+              // indistinguishable from q60 but meaningfully lighter on Slow 4G.
+              quality={50}
               // First slide is the LCP element: preload it AND mark the preload
               // request fetchpriority=high so the browser fetches it ahead of
               // other resources. `priority` alone (deprecated in Next 16) emits

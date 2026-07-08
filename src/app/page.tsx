@@ -104,7 +104,11 @@ export default async function Home() {
         {/* Watermark logo */}
         {/* Faint decorative watermark. It must NOT preload/eager-load: doing so
             competes with the hero LCP image for bandwidth on slow connections.
-            At 5% opacity a heavily-compressed, lazily-loaded copy is invisible. */}
+            At 5% opacity a heavily-compressed, lazily-loaded copy is invisible.
+            `sizes` deliberately under-requests (≈40% of the rendered box): at 5%
+            opacity mix-blend-screen the softness is imperceptible, but it keeps
+            the fetched file well under Lighthouse's "displayed dimensions"
+            threshold (was serving a 750px/44 KiB copy for a ~720px box). */}
         <Image
           aria-hidden="true"
           src="/logo.png"
@@ -113,7 +117,7 @@ export default async function Home() {
           height={1200}
           quality={30}
           loading="lazy"
-          sizes="100vmin"
+          sizes="40vmin"
           className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] mix-blend-screen"
         />
         <div className="relative z-10 flex flex-col items-center px-8 pb-16 text-center md:px-16 md:pb-24">
@@ -311,7 +315,7 @@ export default async function Home() {
                   src={img["story.image.2"]}
                   alt="Bar glow"
                   fill
-                  quality={50}
+                  quality={30}
                   sizes="(min-width: 768px) 160px, 128px"
                   className="object-cover"
                 />
