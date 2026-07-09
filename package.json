@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "convex dev --start 'next dev'",
-    "build": "convex deploy --cmd 'next build'",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
@@ -29,12 +29,5 @@
     "oxlint": "1.73.0",
     "tailwindcss": "4.3.2",
     "typescript": "7.0.2"
-  },
-  "browserslist": [
-    "Chrome >= 105",
-    "Edge >= 105",
-    "Firefox >= 104",
-    "Safari >= 16",
-    "iOS >= 16"
-  ]
+  }
 }
