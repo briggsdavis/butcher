@@ -25,6 +25,7 @@ export default async function Beverages() {
     <MenuList
       basePath="/beverages"
       categoryLabels={CATEGORY_LABELS}
+      inlinePdf
       items={items}
       menuPdfUrl={menuPdfUrl}
     />
