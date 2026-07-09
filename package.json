@@ -12,23 +12,23 @@
     "@sindresorhus/slugify": "3.0.0",
     "convex": "1.42.1",
     "lenis": "1.3.25",
-    "lucide-react": "1.23.0",
+    "lucide-react": "1.24.0",
     "next": "16.2.10",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-pdf": "10.4.1",
-    "resend": "6.17.1"
+    "resend": "6.17.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.2",
-    "@types/node": "26.1.0",
+    "@types/node": "26.1.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
     "oxfmt": "0.58.0",
     "oxlint": "1.73.0",
     "tailwindcss": "4.3.2",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "browserslist": [
     "Chrome >= 105",

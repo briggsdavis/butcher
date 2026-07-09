@@ -31,10 +31,7 @@ export default function NotFound() {
             This seat doesn&rsquo;t exist. Let us guide you back to where the evening begins.
           </p>
 
-          <Link
-            href="/"
-            className="btn-plaque mt-10 inline-block px-10 py-4 text-xs uppercase"
-          >
+          <Link href="/" className="btn-plaque mt-10 inline-block px-10 py-4 text-xs uppercase">
             Return Home
           </Link>
         </div>

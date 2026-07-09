@@ -12,13 +12,7 @@ export function SectionDivider({ className = "" }: { className?: string }) {
       aria-hidden="true"
     >
       <div className="flex w-full max-w-lg items-center">
-        <Image
-          src="/flair.png"
-          alt=""
-          width={1600}
-          height={181}
-          className="h-auto w-1/2"
-        />
+        <Image src="/flair.png" alt="" width={1600} height={181} className="h-auto w-1/2" />
         <Image
           src="/flair.png"
           alt=""
