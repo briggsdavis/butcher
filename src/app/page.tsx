@@ -149,9 +149,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── OpenTable Reservation Widget ── */}
-      <section className="bg-oxblood px-8 py-12 md:px-16 md:py-16">
-        <div className="mx-auto max-w-4xl">
+      {/* ── OpenTable Reservation Form ── */}
+      <section className="bg-oxblood px-8 py-10 md:px-16 md:py-12">
+        <div className="mx-auto max-w-5xl">
           <OpenTableWidget />
         </div>
       </section>
