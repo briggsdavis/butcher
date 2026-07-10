@@ -112,13 +112,13 @@ export function Nav() {
           <div className="hidden items-center gap-6 md:flex">
             <Link
               href="/food"
-              className="text-sm text-white uppercase transition-colors hover:text-amber"
+              className="font-display text-xl text-white uppercase transition-colors hover:text-amber"
             >
               Food
             </Link>
             <Link
               href="/beverages"
-              className="text-sm text-white uppercase transition-colors hover:text-amber"
+              className="font-display text-xl text-white uppercase transition-colors hover:text-amber"
             >
               Beverages
             </Link>
@@ -149,7 +149,7 @@ export function Nav() {
           href={reservationHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-plaque relative z-10 ml-auto hidden origin-right scale-[1.15] px-5 py-2 text-sm uppercase md:block"
+          className="btn-plaque relative z-10 ml-auto hidden origin-right scale-[1.15] px-5 py-2 text-base uppercase md:block"
         >
           Reserve
         </Link>

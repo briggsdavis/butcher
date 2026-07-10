@@ -155,7 +155,7 @@ const homeDefinition: SitePageDefinition = {
           kind: "text",
           key: "hero.reserveLabel",
           label: "Reserve button",
-          defaultValue: "Reserve a Table",
+          defaultValue: "Reserve",
         },
         { kind: "text", key: "hero.menuLabel", label: "Menu button", defaultValue: "View Menu" },
         {

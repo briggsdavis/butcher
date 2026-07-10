@@ -347,6 +347,23 @@ footer::before {
   filter: brightness(1.05) drop-shadow(0 6px 20px rgba(213, 137, 54, 0.3));
 }
 
+.btn-plaque::before {
+  position: absolute;
+  inset: 0;
+  background-image: url("/button-cream.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.btn-plaque:not(:disabled):not([aria-disabled="true"]):hover::before {
+  opacity: 1;
+}
+
 .btn-plaque:disabled,
 .btn-plaque[aria-disabled="true"] {
   transform: none;

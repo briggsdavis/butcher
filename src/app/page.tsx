@@ -110,7 +110,7 @@ export default async function Home() {
             opacity mix-blend-screen the softness is imperceptible, but it keeps
             the fetched file well under Lighthouse's "displayed dimensions"
             threshold (was serving a 750px/44 KiB copy for a ~720px box). */}
-        <Image
+        {/* <Image
           aria-hidden="true"
           src="/logo.png"
           alt=""
@@ -120,27 +120,27 @@ export default async function Home() {
           loading="lazy"
           sizes="40vmin"
           className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] mix-blend-screen"
-        />
+        /> */}
         <div className="relative z-10 flex flex-col items-center px-8 pb-16 text-center md:px-16 md:pb-24">
           <div className="fade-in-up-3 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
             <Link
               href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-plaque inline-block px-10 py-4 font-display text-sm uppercase"
+              className="btn-plaque btn-plaque-cream-hover inline-block px-12 py-5 font-display text-xl uppercase"
             >
               {f["hero.reserveLabel"]}
             </Link>
             <div className="flex items-center gap-4 sm:contents">
               <Link
                 href="/food"
-                className="btn-plaque inline-block px-8 py-4 font-display text-sm uppercase sm:px-10"
+                className="btn-plaque btn-plaque-cream-hover inline-block px-10 py-5 font-display text-xl uppercase sm:px-12"
               >
                 {f["hero.menuLabel"]}
               </Link>
               <Link
                 href="/beverages"
-                className="btn-plaque hidden px-8 py-4 font-display text-sm uppercase max-sm:inline-block"
+                className="btn-plaque btn-plaque-cream-hover hidden px-10 py-5 font-display text-xl uppercase max-sm:inline-block"
               >
                 {f["hero.beveragesLabel"]}
               </Link>
