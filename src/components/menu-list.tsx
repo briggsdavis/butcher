@@ -23,6 +23,7 @@ type Config = {
   basePath: string
   categoryLabels?: Record<string, string>
   inlinePdf?: boolean
+  showItemImages?: boolean
   // Fetched on the server and passed in as plain data so the menu is part of
   // the initial HTML. This is what removes the post-hydration content pop-in
   // (CLS); it mirrors the homepage's server fetchQuery pattern.
@@ -47,7 +48,14 @@ function pickFeatured<T extends { _id: string }>(arr: readonly T[], n: number): 
   return [...arr].sort((a, b) => hashId(a._id) - hashId(b._id)).slice(0, n)
 }
 
-export function MenuList({ basePath, categoryLabels, inlinePdf, items, menuPdfUrl }: Config) {
+export function MenuList({
+  basePath,
+  categoryLabels,
+  inlinePdf,
+  items,
+  menuPdfUrl,
+  showItemImages = true,
+}: Config) {
   const grouped = useMemo(() => {
     const map = new Map<string, MenuItems>()
     for (const it of items ?? []) {
@@ -158,19 +166,21 @@ export function MenuList({ basePath, categoryLabels, inlinePdf, items, menuPdfUr
                     data-delay={String(180 + i * 60)}
                     className="group flex items-center gap-5 py-4"
                   >
-                    <div
-                      className={`relative size-14 shrink-0 overflow-hidden transition-all duration-700 ease-in-out group-hover:size-36 ${dark ? "bg-charcoal/10" : "bg-cream/5"}`}
-                    >
-                      {item.imageUrl && (
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.name}
-                          fill
-                          sizes="144px"
-                          className="object-cover"
-                        />
-                      )}
-                    </div>
+                    {showItemImages && (
+                      <div
+                        className={`relative size-14 shrink-0 overflow-hidden transition-all duration-700 ease-in-out group-hover:size-36 ${dark ? "bg-charcoal/10" : "bg-cream/5"}`}
+                      >
+                        {item.imageUrl && (
+                          <Image
+                            src={item.imageUrl}
+                            alt={item.name}
+                            fill
+                            sizes="144px"
+                            className="object-cover"
+                          />
+                        )}
+                      </div>
+                    )}
 
                     <div className="flex flex-1 items-baseline justify-between">
                       <div>

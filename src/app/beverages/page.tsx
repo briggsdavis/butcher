@@ -28,6 +28,7 @@ export default async function Beverages() {
       inlinePdf
       items={items}
       menuPdfUrl={menuPdfUrl}
+      showItemImages={false}
     />
   )
 }
