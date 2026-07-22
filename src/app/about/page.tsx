@@ -4,12 +4,13 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { DecorTilt } from "~/components/decor-tilt"
+import { FramedImage } from "~/components/framed-image"
 import { HeroCarousel } from "~/components/hero-carousel"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { SectionDivider } from "~/components/section-divider"
 import { TiltCard } from "~/components/tilt-card"
 import { resolveCommonValues } from "~/lib/common-values"
-import { resolveSiteContent } from "~/lib/site-content"
+import { requireBackendImage, resolveSiteContent } from "~/lib/site-content"
 import { api } from "../../../convex/_generated/api"
 
 const SHOW_TEAM_SECTION = false
@@ -99,6 +100,7 @@ export default async function About() {
   const f = content.fields
   const img = content.images
   const reservationHref = common["reservation.href"]
+  const storyInsetImage = requireBackendImage(savedContent, "story.image.2")
   const heroImages = [
     { src: img["hero.image.1"], alt: "Butcher and the Rye dining room" },
     { src: img["hero.image.2"], alt: "Butcher and the Rye" },
@@ -188,16 +190,16 @@ export default async function About() {
                 data-delay="340"
                 initialRotate={-3}
                 maxTilt={5}
-                className="absolute -bottom-10 -left-6 z-10 h-44 w-32 shadow-2xl md:-left-10 md:h-52 md:w-40"
+                className="absolute -bottom-10 -left-6 z-10 shadow-2xl md:-left-10"
               >
-                <div className="relative h-full w-full overflow-hidden">
-                  <Image
-                    src={img["story.image.2"]}
-                    alt="A plated entrée"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                <FramedImage
+                  src={storyInsetImage}
+                  alt="A plated entrée"
+                  variant="two"
+                  sizes="(min-width: 768px) 120px, 96px"
+                  frameSizes="(min-width: 768px) 180px, 152px"
+                  className="h-44 md:h-52"
+                />
               </TiltCard>
               <div
                 data-animate=""

@@ -9,6 +9,15 @@ export type StoredSitePageContent = {
   imageUrls?: Record<string, string | null> | null
 }
 
+export function requireBackendImage(
+  storedContent: StoredSitePageContent | null | undefined,
+  key: string,
+) {
+  const src = storedContent?.imageUrls?.[key]
+  if (!src) throw new Error(`Missing required backend image: ${key}`)
+  return src
+}
+
 type BaseField = {
   key: string
   label: string
@@ -23,9 +32,11 @@ export type TextField = BaseField & {
 
 export type ImageField = BaseField & {
   kind: "image"
-  defaultSrc: string
   alt: string
-}
+} & (
+    | { defaultSrc: string; requiredFromBackend?: false }
+    | { defaultSrc?: never; requiredFromBackend: true }
+  )
 
 export type ContentField = TextField | ImageField
 
@@ -289,7 +300,7 @@ const homeDefinition: SitePageDefinition = {
           kind: "image",
           key: "story.image.2",
           label: "Small image",
-          defaultSrc: "/glow-frame.png",
+          requiredFromBackend: true,
           alt: "Bar glow",
         },
       ],
@@ -362,28 +373,28 @@ const homeDefinition: SitePageDefinition = {
           kind: "image",
           key: "gallery.frame.1",
           label: "Gallery frame 1",
-          defaultSrc: "/entree-frame.png",
+          requiredFromBackend: true,
           alt: "Plated dish",
         },
         {
           kind: "image",
           key: "gallery.frame.2",
           label: "Gallery frame 2",
-          defaultSrc: "/glow-frame.png",
+          requiredFromBackend: true,
           alt: "The bar",
         },
         {
           kind: "image",
           key: "gallery.frame.3",
           label: "Gallery frame 3",
-          defaultSrc: "/whiskey-frame.png",
+          requiredFromBackend: true,
           alt: "Whiskey pour",
         },
         {
           kind: "image",
           key: "gallery.frame.4",
           label: "Gallery frame 4",
-          defaultSrc: "/bartender-frame.png",
+          requiredFromBackend: true,
           alt: "Bartender",
         },
         {
@@ -589,7 +600,7 @@ const aboutDefinition: SitePageDefinition = {
           kind: "image",
           key: "story.image.2",
           label: "Small image",
-          defaultSrc: "/entree-frame.png",
+          requiredFromBackend: true,
           alt: "A plated entree",
         },
       ],
@@ -880,11 +891,13 @@ export function getDefaultTextFields(definition: SitePageDefinition) {
 }
 
 export function getDefaultImageFields(definition: SitePageDefinition) {
-  return Object.fromEntries(
-    getContentFields(definition)
-      .filter((field): field is ImageField => field.kind === "image")
-      .map((field) => [field.key, field.defaultSrc]),
-  )
+  const defaults: Record<string, string> = {}
+  for (const field of getContentFields(definition)) {
+    if (field.kind === "image" && field.defaultSrc !== undefined) {
+      defaults[field.key] = field.defaultSrc
+    }
+  }
+  return defaults
 }
 
 export function resolveSiteContent(

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { DecorTilt } from "~/components/decor-tilt"
 import { EqualWidthStack } from "~/components/equal-width-stack"
 import { FeaturedReviews } from "~/components/featured-reviews"
+import { FramedImage } from "~/components/framed-image"
 // import { HeroCarousel } from "~/components/hero-carousel"
 import { HeroVideo } from "~/components/hero-video"
 import { InfiniteCarousel } from "~/components/infinite-carousel"
@@ -13,43 +14,39 @@ import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { SectionDivider } from "~/components/section-divider"
 import { TiltCard } from "~/components/tilt-card"
 import { resolveCommonValues } from "~/lib/common-values"
-import { resolveSiteContent } from "~/lib/site-content"
+import { requireBackendImage, resolveSiteContent } from "~/lib/site-content"
 import { api } from "../../convex/_generated/api"
 
 const FRAME_META = [
   {
     key: "gallery.frame.1",
+    variant: "two",
     alt: "Plated dish",
-    w: 1652,
-    h: 1924,
     rotate: -2.5,
     delay: "130",
   },
   {
     key: "gallery.frame.2",
+    variant: "one",
     alt: "The bar",
-    w: 1803,
-    h: 2003,
     rotate: 1.5,
     delay: "285",
   },
   {
     key: "gallery.frame.3",
+    variant: "three",
     alt: "Whiskey pour",
-    w: 1579,
-    h: 1996,
     rotate: -1.0,
     delay: "440",
   },
   {
     key: "gallery.frame.4",
+    variant: "four",
     alt: "Bartender",
-    w: 1208,
-    h: 1662,
     rotate: 2.5,
     delay: "365",
   },
-]
+] as const
 
 export default async function Home() {
   const [savedContent, savedCommonValues, featuredReviews] = await Promise.all([
@@ -71,7 +68,10 @@ export default async function Home() {
     name: f[`cocktail.${n}.name`],
     description: f[`cocktail.${n}.description`],
   }))
-  const frames = FRAME_META.map((frame) => ({ ...frame, src: img[frame.key] }))
+  const storyInsetImage = requireBackendImage(savedContent, "story.image.2")
+  const frames = FRAME_META.map((frame) => {
+    return { ...frame, imageSrc: requireBackendImage(savedContent, frame.key) }
+  })
   // Descriptive, non-redundant alt text per carousel scene — avoids the word
   // "image"/"photo" which trips Lighthouse's redundant-alt accessibility audit.
   const carouselAlts = [
@@ -124,25 +124,29 @@ export default async function Home() {
           className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 opacity-[0.05] mix-blend-screen"
         /> */}
         <div className="relative z-10 flex flex-col items-center px-8 pb-16 text-center md:px-16 md:pb-24">
-          <div className="fade-in-up-3 flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+          <div className="fade-in-up-3 relative isolate flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-6 -z-10 rounded-full bg-black/30 blur-xl"
+            />
             <Link
               href={reservationHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-plaque btn-plaque-cream-hover inline-block px-12 py-5 font-display text-xl uppercase"
+              className="btn-plaque btn-plaque-cream-hover inline-block px-10 py-4 font-display text-lg uppercase"
             >
               {f["hero.reserveLabel"]}
             </Link>
             <div className="flex items-center gap-4 sm:contents">
               <Link
                 href="/food"
-                className="btn-plaque btn-plaque-cream-hover inline-block px-10 py-5 font-display text-xl uppercase sm:px-12"
+                className="btn-plaque btn-plaque-cream-hover inline-block px-8 py-4 font-display text-lg uppercase sm:px-10"
               >
                 {f["hero.menuLabel"]}
               </Link>
               <Link
                 href="/beverages"
-                className="btn-plaque btn-plaque-cream-hover hidden px-10 py-5 font-display text-xl uppercase max-sm:inline-block"
+                className="btn-plaque btn-plaque-cream-hover hidden px-8 py-4 font-display text-lg uppercase max-sm:inline-block"
               >
                 {f["hero.beveragesLabel"]}
               </Link>
@@ -311,18 +315,17 @@ export default async function Home() {
               data-delay="365"
               initialRotate={2}
               maxTilt={5}
-              className="absolute -right-6 -bottom-8 z-10 h-44 w-32 shadow-2xl md:-right-10 md:h-52 md:w-40"
+              className="absolute -right-6 -bottom-8 z-10 shadow-2xl md:-right-10"
             >
-              <div className="relative h-full w-full overflow-hidden">
-                <Image
-                  src={img["story.image.2"]}
-                  alt="Bar glow"
-                  fill
-                  quality={30}
-                  sizes="(min-width: 768px) 160px, 128px"
-                  className="object-cover"
-                />
-              </div>
+              <FramedImage
+                src={storyInsetImage}
+                alt="Bar glow"
+                variant="one"
+                quality={30}
+                sizes="(min-width: 768px) 112px, 88px"
+                frameSizes="(min-width: 768px) 166px, 140px"
+                className="h-44 md:h-52"
+              />
             </TiltCard>
             {/* Spinning text ring */}
             <div
@@ -472,20 +475,20 @@ export default async function Home() {
           <div className="flex flex-wrap items-end justify-center gap-8 md:gap-12">
             {frames.map((frame) => (
               <TiltCard
-                key={frame.src}
+                key={frame.key}
                 data-animate=""
                 data-delay={frame.delay}
                 initialRotate={frame.rotate}
                 className="frame-tilt drop-shadow-2xl"
                 subtle
               >
-                <Image
-                  src={frame.src}
+                <FramedImage
+                  src={frame.imageSrc}
                   alt={frame.alt}
-                  width={frame.w}
-                  height={frame.h}
-                  sizes="(min-width: 768px) 288px, 208px"
-                  className="h-52 w-auto object-contain md:h-72"
+                  variant={frame.variant}
+                  sizes="(min-width: 768px) 208px, 144px"
+                  frameSizes="(min-width: 768px) 288px, 208px"
+                  className="h-52 md:h-72"
                 />
               </TiltCard>
             ))}
