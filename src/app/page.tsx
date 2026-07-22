@@ -5,7 +5,8 @@ import Link from "next/link"
 import { DecorTilt } from "~/components/decor-tilt"
 import { EqualWidthStack } from "~/components/equal-width-stack"
 import { FeaturedReviews } from "~/components/featured-reviews"
-import { HeroCarousel } from "~/components/hero-carousel"
+// import { HeroCarousel } from "~/components/hero-carousel"
+import { HeroVideo } from "~/components/hero-video"
 import { InfiniteCarousel } from "~/components/infinite-carousel"
 import { OpenTableWidget } from "~/components/opentable-widget"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
@@ -61,11 +62,11 @@ export default async function Home() {
   const f = content.fields
   const img = content.images
   const reservationHref = common["reservation.href"]
-  const heroImages = [
-    { src: img["hero.image.1"], alt: "Butcher and the Rye dining room" },
-    { src: img["hero.image.2"], alt: "Butcher and the Rye" },
-    { src: img["hero.image.3"], alt: "Butcher and the Rye" },
-  ]
+  // const heroImages = [
+  //   { src: img["hero.image.1"], alt: "Butcher and the Rye dining room" },
+  //   { src: img["hero.image.2"], alt: "Butcher and the Rye" },
+  //   { src: img["hero.image.3"], alt: "Butcher and the Rye" },
+  // ]
   const cocktails = [1, 2, 3].map((n) => ({
     name: f[`cocktail.${n}.name`],
     description: f[`cocktail.${n}.description`],
@@ -97,11 +98,12 @@ export default async function Home() {
     <>
       {/* ── Hero ── */}
       <section className="hero-section relative flex h-[70svh] items-end justify-center overflow-hidden bg-oxblood md:h-screen">
-        <HeroCarousel images={heroImages} />
+        {/* <HeroCarousel images={heroImages} /> */}
+        <HeroVideo />
         {/* Top vignette — darkens top half for atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/10 to-transparent" /> */}
         {/* Bottom gradient — fades into the next section */}
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/65 to-transparent" />
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/65 to-transparent" /> */}
         {/* Watermark logo */}
         {/* Faint decorative watermark. It must NOT preload/eager-load: doing so
             competes with the hero LCP image for bandwidth on slow connections.
