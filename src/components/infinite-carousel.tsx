@@ -31,12 +31,9 @@ export function InfiniteCarousel({
         <span className="shrink-0 font-subhead text-sm text-amber uppercase italic">{eyebrow}</span>
         <span className="block h-px w-16 bg-amber/25" />
       </div>
-      {/* Outer wrapper masks overflow while inner track animates */}
       <div className="overflow-hidden">
         <div className="carousel-track">
           {[...images, ...images].map((img, i) => (
-            // Static doubled list for an infinite marquee — order is the identity.
-            // oxlint-disable-next-line react/no-array-index-key
             <div key={i} className="carousel-item group">
               <Image
                 src={img.src}
@@ -45,7 +42,7 @@ export function InfiniteCarousel({
                 sizes="340px"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-linear-to-t from-charcoal/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </div>
           ))}
         </div>

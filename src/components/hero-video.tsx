@@ -29,6 +29,13 @@ export function HeroVideo() {
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src="/butcher-video-optimized.mp4" type="video/mp4" />
+        <track
+          default
+          kind="captions"
+          src="/butcher-video-captions.vtt"
+          srcLang="en"
+          label="English"
+        />
         Your browser does not support the video tag.
       </video>
       <button
