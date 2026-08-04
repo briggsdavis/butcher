@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { DecorTilt } from "~/components/decor-tilt"
 import { EqualWidthStack } from "~/components/equal-width-stack"
+import { FaqList } from "~/components/faq-list"
 import { FeaturedReviews } from "~/components/featured-reviews"
 import { FramedImage } from "~/components/framed-image"
 // import { HeroCarousel } from "~/components/hero-carousel"
@@ -13,6 +14,7 @@ import { OpenTableWidget } from "~/components/opentable-widget"
 import { RestaurantGroupSection } from "~/components/restaurant-group-section"
 import { SectionDivider } from "~/components/section-divider"
 import { TiltCard } from "~/components/tilt-card"
+import { HOME_FAQS } from "~/data/faqs"
 import { resolveCommonValues } from "~/lib/common-values"
 import { requireBackendImage, resolveSiteContent } from "~/lib/site-content"
 import { api } from "../../convex/_generated/api"
@@ -570,6 +572,45 @@ export default async function Home() {
           className="bottom-0 left-0 md:bottom-6 md:left-16"
           imgClassName="h-[230px] w-auto opacity-90 md:h-[480px]"
         />
+      </section>
+
+      {/* ── FAQ Teaser ── */}
+      <section data-wipe className="relative overflow-hidden bg-oxblood py-24 md:py-32">
+        <div
+          aria-hidden="true"
+          className="glow-amber-wide pointer-events-none absolute -top-48 -right-48 h-[600px] w-[600px] rounded-full opacity-[0.05]"
+        />
+        <div className="relative mx-auto max-w-5xl px-8 md:px-16">
+          <div data-animate="" className="text-center">
+            <div className="flex items-center justify-center gap-6">
+              <span className="block h-px w-12 shrink-0 bg-amber/30" />
+              <span className="text-sm text-amber uppercase">Butcher and the Rye</span>
+              <span className="block h-px w-12 shrink-0 bg-amber/30" />
+            </div>
+            <h2 className="heading-emboss mt-4 font-display text-5xl text-cream md:text-7xl">
+              A Few Things
+              <br />
+              <span className="text-tan italic">To Know</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-tan">
+              Whiskey Bar &amp; Rustic Americana · Downtown Pittsburgh
+            </p>
+          </div>
+
+          <div className="mt-14">
+            <FaqList faqs={HOME_FAQS} />
+          </div>
+
+          <div data-animate="" className="mt-12 text-center">
+            <Link
+              href="/contact#faq"
+              className="group inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-cream"
+            >
+              See All Frequently Asked Questions
+              <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-1.5" />
+            </Link>
+          </div>
+        </div>
       </section>
 
       <RestaurantGroupSection />

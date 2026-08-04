@@ -4,6 +4,9 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ContactForm } from "~/components/contact-form"
+import { FaqList } from "~/components/faq-list"
+import { SectionDivider } from "~/components/section-divider"
+import { FAQS } from "~/data/faqs"
 import {
   getCommonAddressDisplay,
   getCommonEmailHref,
@@ -135,6 +138,29 @@ export default async function Contact() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="faq" data-wipe className="scroll-mt-24 bg-oxblood py-24 md:py-32">
+        <div className="mx-auto max-w-5xl px-8 md:px-16">
+          <div data-animate="" className="text-center">
+            <div className="flex items-center justify-center gap-6">
+              <span className="block h-px w-12 shrink-0 bg-amber/30" />
+              <span className="text-sm text-amber uppercase">Frequently Asked Questions</span>
+              <span className="block h-px w-12 shrink-0 bg-amber/30" />
+            </div>
+            <h2 className="heading-emboss mt-4 font-display text-5xl text-cream md:text-7xl">
+              Before
+              <br />
+              <span className="text-tan italic">You Visit</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-tan">
+              Whiskey Bar &amp; Rustic Americana · Downtown Pittsburgh
+            </p>
+          </div>
+
+          <SectionDivider className="my-4" />
+          <FaqList faqs={FAQS} />
         </div>
       </section>
     </>
