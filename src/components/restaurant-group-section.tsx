@@ -68,6 +68,11 @@ const restaurants = [
     image: "/logo-vieux-carre.png",
     href: "https://www.seamonkeypgh.com/vieux-carre",
   },
+  {
+    name: "Aberdeen",
+    image: "/aberdeen.png",
+    href: "https://coopdevillepgh.com/",
+  },
 ]
 
 const ROTATIONS = [-2.5, 1.8, 2.2, -1.4, 1.6, 2.4, -1.9, 0.8, -1.1, -2.0, 1.4, -0.7]
