@@ -313,6 +313,19 @@ export function HomePreview() {
             className="mt-4 inline-block bg-amber px-6 py-2.5 text-xs font-medium text-charcoal uppercase"
             placeholder="Button"
           />
+          <div className="mt-6 border-t border-cream/15 pt-5">
+            <EditableText
+              fieldKey="events.heading"
+              block
+              className="font-display text-xl text-cream uppercase"
+              placeholder="Event heading"
+            />
+            <EditableText
+              fieldKey="events.buttonLabel"
+              className="mt-3 inline-block text-xs text-amber uppercase"
+              placeholder="Event button"
+            />
+          </div>
         </div>
       </Section>
     </>

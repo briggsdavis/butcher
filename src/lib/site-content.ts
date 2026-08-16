@@ -501,6 +501,23 @@ const homeDefinition: SitePageDefinition = {
         },
       ],
     },
+    {
+      title: "Events",
+      fields: [
+        {
+          kind: "text",
+          key: "events.heading",
+          label: "Heading",
+          defaultValue: "Groups of 13 or More",
+        },
+        {
+          kind: "text",
+          key: "events.buttonLabel",
+          label: "Button label",
+          defaultValue: "Plan an Event",
+        },
+      ],
+    },
   ],
 }
 

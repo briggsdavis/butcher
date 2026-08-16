@@ -61,6 +61,7 @@ export default async function Home() {
   const f = content.fields
   const img = content.images
   const reservationHref = common["reservation.href"]
+  const eventsHref = common["events.href"]
   // const heroImages = [
   //   { src: img["hero.image.1"], alt: "Butcher and the Rye dining room" },
   //   { src: img["hero.image.2"], alt: "Butcher and the Rye" },
@@ -562,6 +563,19 @@ export default async function Home() {
               {f["reservations.buttonLabel"]}
             </Link>
           </span>
+
+          <div data-animate="" data-delay="600" className="mt-10 border-t border-cream/15 pt-8">
+            <h3 className="font-display text-2xl text-cream uppercase">{f["events.heading"]}</h3>
+            <Link
+              href={eventsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-3 text-sm text-amber uppercase transition-colors duration-500 hover:text-cream"
+            >
+              {f["events.buttonLabel"]}
+              <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </div>
         <DecorTilt
           src="/pipe.png"

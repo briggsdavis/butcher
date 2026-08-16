@@ -31,6 +31,12 @@ export const COMMON_VALUE_SECTIONS: CommonValueSection[] = [
         label: "Reservation link",
         defaultValue: "https://www.opentable.com/r/butcher-and-the-rye-pittsburgh",
       },
+      {
+        kind: "text",
+        key: "events.href",
+        label: "Event inquiry link",
+        defaultValue: "https://richarddeshantzrestaurantgroup.tripleseat.com/party_request/36628",
+      },
     ],
   },
   {

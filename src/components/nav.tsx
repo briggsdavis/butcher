@@ -18,6 +18,7 @@ const MENU_LINKS: MenuLink[] = [
   { key: "home", href: "/", label: "Home" },
   { key: "about", href: "/about", label: "About" },
   { key: "reserve", href: "", label: "Reserve" },
+  { key: "events", href: "", label: "Events" },
   // { href: "/our-staff", label: "Our Staff" },
   { key: "food", href: "/food", label: "Food" },
   { key: "beverages", href: "/beverages", label: "Beverages" },
@@ -30,9 +31,7 @@ export function Nav() {
   const savedValues = useQuery(api.site.getCommonValues)
   const common = resolveCommonValues(savedValues)
   const reservationHref = common["reservation.href"]
-  const menuLinks = MENU_LINKS.map((link) =>
-    link.key === "reserve" ? { ...link, href: reservationHref } : link,
-  )
+  const eventsHref = common["events.href"]
   const isHome = pathname === "/"
   const [open, setOpen] = useState(false)
   const [closing, setClosing] = useState(false)
@@ -172,16 +171,22 @@ export function Nav() {
 
           {/* Menu items — right-aligned, numbered, slide left on hover */}
           <div className="flex flex-1 flex-col justify-center pr-12 md:pr-28 lg:pr-40">
-            {menuLinks.map((link, i) => {
-              const external = link.href.startsWith("http")
+            {MENU_LINKS.map((link, i) => {
+              const href =
+                link.key === "reserve"
+                  ? reservationHref
+                  : link.key === "events"
+                    ? eventsHref
+                    : link.href
+              const external = href.startsWith("http")
               const num = String(i + 1).padStart(2, "0")
               const style = {
                 "--menu-delay": `${0.06 + i * 0.07}s`,
               } as React.CSSProperties
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  key={link.key}
+                  href={href}
                   onClick={closeMenu}
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
