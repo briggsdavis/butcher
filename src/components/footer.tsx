@@ -87,17 +87,26 @@ export function Footer() {
       </div>
 
       <div className="border-t border-cream/10 px-8 py-6 md:px-16">
-        <div className="flex flex-col items-center gap-3 text-center text-xs text-tan/40 md:flex-row md:justify-between md:gap-0 md:text-left">
+        <div className="flex flex-col items-center gap-4 text-center text-xs text-tan/40 md:flex-row md:justify-between md:text-left">
           <p>
             © {new Date().getFullYear()} {common["business.name"]}. All rights reserved.
           </p>
-          <Link
-            href="https://socialsatisfaction.agency/"
-            target="_blank"
-            className="transition-colors hover:text-cream"
-          >
-            Made by Social Satisfaction
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-end">
+            <Link href="/privacy-policy" className="transition-colors hover:text-cream">
+              Privacy Policy
+            </Link>
+            <Link href="/butcher-and-the-rye-guide" className="transition-colors hover:text-cream">
+              Butcher and the Rye Guide
+            </Link>
+            <Link
+              href="https://socialsatisfaction.agency/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-cream"
+            >
+              Made by Social Satisfaction
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
