@@ -49,11 +49,6 @@ const restaurants = [
     href: "https://ribroompgh.com/",
   },
   {
-    name: "Tako Torta",
-    image: "/logo-tako-torta.webp",
-    href: "https://takotorta.com/",
-  },
-  {
     name: "Gi-Jin",
     image: "/logo-gi-jin.webp",
     href: "https://gi-jin.com/",
