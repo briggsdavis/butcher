@@ -57,9 +57,11 @@ export function EditorShell({
   const [error, setError] = useState<string | null>(null)
 
   const autoSaveRef = useRef(autoSave)
-  autoSaveRef.current = autoSave
   const saveStatusRef = useRef(saveStatus)
-  saveStatusRef.current = saveStatus
+  useEffect(() => {
+    autoSaveRef.current = autoSave
+    saveStatusRef.current = saveStatus
+  }, [autoSave, saveStatus])
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const initializedRef = useRef(false)
 

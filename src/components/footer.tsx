@@ -2,6 +2,7 @@
 
 import { useQuery } from "convex/react"
 import Link from "next/link"
+import { useState } from "react"
 import {
   getCommonAddressDisplay,
   getCommonEmailHref,
@@ -11,6 +12,7 @@ import {
 import { api } from "../../convex/_generated/api"
 
 export function Footer() {
+  const [year] = useState(() => new Date().getFullYear())
   const savedValues = useQuery(api.site.getCommonValues)
   const common = resolveCommonValues(savedValues)
   const socialLinks = [
@@ -89,7 +91,7 @@ export function Footer() {
       <div className="border-t border-cream/10 px-8 py-6 md:px-16">
         <div className="flex flex-col items-center gap-4 text-center text-xs text-tan/40 md:flex-row md:justify-between md:text-left">
           <p>
-            © {new Date().getFullYear()} {common["business.name"]}. All rights reserved.
+            © {year} {common["business.name"]}. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-end">
             <Link href="/privacy-policy" className="transition-colors hover:text-cream">

@@ -5,7 +5,7 @@ import { ArrowLeft, ImagePlus, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useEffect, useId, useRef, useState } from "react"
+import { useId, useRef, useState } from "react"
 import { api } from "../../../../convex/_generated/api"
 import type { Id } from "../../../../convex/_generated/dataModel"
 
@@ -58,14 +58,16 @@ export function MenuForm(props: Props) {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const datalistId = useId()
 
-  useEffect(() => {
+  const [previousEditing, setPreviousEditing] = useState<typeof editing>(undefined)
+  if (editing !== previousEditing) {
+    setPreviousEditing(editing)
     if (editing) {
       setName(editing.name)
       setDescription(editing.description)
       setPrice(editing.price)
       setCategory(editing.category)
     }
-  }, [editing])
+  }
 
   async function onPickFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]

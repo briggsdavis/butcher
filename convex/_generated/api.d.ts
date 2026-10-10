@@ -12,6 +12,7 @@ import type * as auth from "../auth.js";
 import type * as contact from "../contact.js";
 import type * as http from "../http.js";
 import type * as menu from "../menu.js";
+import type * as popup from "../popup.js";
 import type * as site from "../site.js";
 
 import type {
@@ -25,6 +26,7 @@ declare const fullApi: ApiFromModules<{
   contact: typeof contact;
   http: typeof http;
   menu: typeof menu;
+  popup: typeof popup;
   site: typeof site;
 }>;
 

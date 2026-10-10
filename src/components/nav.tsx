@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
+import { AnnouncementBar } from "~/components/announcement-bar"
 import { resolveCommonValues } from "~/lib/common-values"
 import { api } from "../../convex/_generated/api"
 
@@ -29,6 +30,7 @@ const MENU_LINKS: MenuLink[] = [
 export function Nav() {
   const pathname = usePathname()
   const savedValues = useQuery(api.site.getCommonValues)
+  const announcement = useQuery(api.site.getAnnouncement, {})
   const common = resolveCommonValues(savedValues)
   const reservationHref = common["reservation.href"]
   const eventsHref = common["events.href"]
@@ -77,82 +79,88 @@ export function Nav() {
 
   return (
     <>
-      <nav
-        className={`nav-shell ${introClass} ${hidden ? "-translate-y-full" : "translate-y-0"} fixed inset-x-0 top-0 z-50 flex items-center overflow-hidden px-4 py-6 md:px-16`}
+      <div
+        className={`nav-shell ${introClass} ${hidden ? "-translate-y-full" : "translate-y-0"} fixed inset-x-0 top-0 z-50`}
       >
-        {/* Preloaded (priority) because the nav is above the fold, so it shares
+        {announcement && <AnnouncementBar content={announcement} />}
+        <nav className="relative flex items-center overflow-hidden px-4 py-6 md:px-16">
+          {/* Preloaded (priority) because the nav is above the fold, so it shares
             the critical path with the hero LCP image. It sits behind an
             oxblood/70 + amber/20 double overlay, so the wood texture is heavily
             tinted — q30 is imperceptible here and frees bandwidth for the LCP. */}
-        <Image
-          src="/wood.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          quality={30}
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-oxblood/70" />
-        <div className="absolute inset-0 bg-amber/20" />
+          <Image
+            src="/wood.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            quality={30}
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-oxblood/70" />
+          <div className="absolute inset-0 bg-amber/20" />
 
-        {/* Hamburger — top left */}
-        <div className="relative z-10 flex items-center gap-8">
-          <button
-            onClick={() => setOpen(true)}
-            aria-label="Open navigation"
-            className="flex flex-col gap-[5px]"
-          >
-            <span className="block h-px w-6 bg-white" />
-            <span className="block h-px w-6 bg-white" />
-            <span className="block h-px w-3.5 bg-white" />
-          </button>
+          {/* Hamburger — top left */}
+          <div className="relative z-10 flex items-center gap-8">
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open navigation"
+              className="flex flex-col gap-[5px]"
+            >
+              <span className="block h-px w-6 bg-white" />
+              <span className="block h-px w-6 bg-white" />
+              <span className="block h-px w-3.5 bg-white" />
+            </button>
 
-          <div className="hidden items-center gap-6 md:flex">
-            <Link
-              href="/food"
-              className="font-display text-xl text-white uppercase transition-colors hover:text-amber"
-            >
-              Food
-            </Link>
-            <Link
-              href="/beverages"
-              className="font-display text-xl text-white uppercase transition-colors hover:text-amber"
-            >
-              Beverages
-            </Link>
-            {/* Hiding spirits link for now */}
-            {/* <Link
+            <div className="hidden items-center gap-6 md:flex">
+              <Link
+                href="/food"
+                className="font-display text-xl text-white uppercase transition-colors hover:text-amber"
+              >
+                Food
+              </Link>
+              <Link
+                href="/beverages"
+                className="font-display text-xl text-white uppercase transition-colors hover:text-amber"
+              >
+                Beverages
+              </Link>
+              {/* Hiding spirits link for now */}
+              {/* <Link
               href="/spirits"
               className="text-sm text-white uppercase transition-colors hover:text-amber"
             >
               Spirits
             </Link> */}
+            </div>
           </div>
-        </div>
 
-        {/* Centered title */}
-        <Link href="/" className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-          <Image
-            src="/logo.png"
-            alt="Butcher & the Rye"
-            width={60}
-            height={60}
-            quality={50}
-            className="h-12 w-12 md:h-15 md:w-15"
-          />
-        </Link>
+          {/* Centered title */}
+          <Link
+            href="/"
+            className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
+          >
+            <Image
+              src="/logo.png"
+              alt="Butcher & the Rye"
+              width={60}
+              height={60}
+              quality={50}
+              className="h-12 w-12 md:h-15 md:w-15"
+            />
+          </Link>
 
-        {/* Reserve — top right */}
-        <Link
-          href={reservationHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-plaque relative z-10 ml-auto hidden origin-right scale-[1.15] px-5 py-2 text-base uppercase md:block"
-        >
-          Reserve
-        </Link>
-      </nav>
+          {/* Reserve — top right */}
+          <Link
+            href={reservationHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-plaque relative z-10 ml-auto hidden origin-right scale-[1.15] px-5 py-2 text-base uppercase md:block"
+          >
+            Reserve
+          </Link>
+        </nav>
+      </div>
 
       {/* Full-screen overlay menu */}
       {open && (

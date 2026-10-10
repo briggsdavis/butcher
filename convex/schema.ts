@@ -10,6 +10,33 @@ export const sitePageKey = v.union(
   v.literal("our-staff"),
 )
 
+export const popupFrequency = v.union(v.literal("once"), v.literal("session"), v.literal("always"))
+export const popupPages = v.union(v.literal("all"), v.literal("home"))
+
+export const popupSettings = v.object({
+  heading: v.string(),
+  body: v.string(),
+  imageId: v.optional(v.id("_storage")),
+  imageAlt: v.string(),
+  buttonEnabled: v.boolean(),
+  buttonLabel: v.string(),
+  buttonUrl: v.string(),
+  buttonNewTab: v.boolean(),
+  frequency: popupFrequency,
+  delaySeconds: v.number(),
+  pages: popupPages,
+  startsAt: v.optional(v.number()),
+  endsAt: v.optional(v.number()),
+})
+
+export const announcementSettings = v.object({
+  enabled: v.boolean(),
+  dismissible: v.optional(v.boolean()),
+  text: v.string(),
+  linkLabel: v.string(),
+  linkUrl: v.string(),
+})
+
 export default defineSchema({
   ...authTables,
 
@@ -48,7 +75,17 @@ export default defineSchema({
     beveragesPdfId: v.optional(v.id("_storage")),
     commonFields: v.optional(v.record(v.string(), v.string())),
     commonUpdatedAt: v.optional(v.number()),
+    announcement: v.optional(announcementSettings),
   }).index("by_key", ["key"]),
+
+  // Only one popup may be enabled at a time; enabling one disables the rest.
+  popups: defineTable({
+    ...popupSettings.fields,
+    // Compatibility with existing documents; new saves omit this legacy field.
+    name: v.optional(v.string()),
+    enabled: v.boolean(),
+    updatedAt: v.number(),
+  }).index("by_enabled", ["enabled"]),
 
   sitePages: defineTable({
     key: sitePageKey,

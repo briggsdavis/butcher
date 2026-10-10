@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   Loader2,
   Mail,
+  Megaphone,
   MessageSquareText,
   Settings,
   Users,
@@ -57,6 +58,8 @@ const MENU_LINKS: AdminLink[] = [
 
 const SETTINGS_LINKS: AdminLink[] = [
   { href: "/admin/common", label: "Common Values", icon: Settings },
+  { href: "/admin/popup", label: "Popups", icon: Megaphone },
+  { href: "/admin/announcement", label: "Announcement Bar", icon: Megaphone },
   { href: "/admin/reviews", label: "Reviews", icon: MessageSquareText },
 ]
 

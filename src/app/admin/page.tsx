@@ -27,6 +27,29 @@ export default function AdminPage() {
               </p>
             </Link>
             <Link
+              href="/admin/popup"
+              className="group block cursor-pointer select-none border border-amber/30 p-6 transition-colors hover:border-amber"
+            >
+              <p className="cursor-pointer text-xs text-amber uppercase">Announcement</p>
+              <p className="mt-3 cursor-pointer font-display text-3xl text-cream group-hover:text-amber">
+                Popups
+              </p>
+              <p className="mt-2 cursor-pointer text-sm text-tan">
+                Announcements shown to visitors. One can be on at a time.
+              </p>
+            </Link>
+            <Link
+              href="/admin/announcement"
+              className="group block cursor-pointer select-none border border-amber/30 p-6 transition-colors hover:border-amber"
+            >
+              <p className="cursor-pointer font-display text-3xl text-cream group-hover:text-amber">
+                Announcement Bar
+              </p>
+              <p className="mt-2 cursor-pointer text-sm text-tan">
+                A message and underlined link above the navigation.
+              </p>
+            </Link>
+            <Link
               href="/admin/reviews"
               className="group block cursor-pointer select-none border border-amber/30 p-6 transition-colors hover:border-amber"
             >

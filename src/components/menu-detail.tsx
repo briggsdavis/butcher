@@ -193,6 +193,7 @@ function LikeRow({
 
   useEffect(() => {
     try {
+      // eslint-disable-next-line react/set-state-in-effect -- Hydrate browser storage after SSR.
       setLiked(localStorage.getItem(likedKey) === "1")
     } catch {}
   }, [likedKey])

@@ -7,6 +7,7 @@ import { Footer } from "~/components/footer"
 import { Nav } from "~/components/nav"
 import { PageEffects } from "~/components/page-effects"
 import { PageTransition } from "~/components/page-transition"
+import { SitePopup } from "~/components/site-popup"
 import { SmoothScroll } from "~/components/smooth-scroll"
 
 export function SiteChrome({ children }: { children: ReactNode }) {
@@ -24,6 +25,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <Nav />
       <PageTransition>{children}</PageTransition>
       <Footer />
+      <SitePopup />
     </div>
   )
 }

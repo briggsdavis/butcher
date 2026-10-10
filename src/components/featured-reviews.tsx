@@ -22,9 +22,7 @@ export function FeaturedReviews({ reviews }: { reviews: FeaturedReview[] }) {
     return () => window.clearInterval(timer)
   }, [reviews.length, timerResetKey])
 
-  useEffect(() => {
-    if (activeIndex >= reviews.length) setActiveIndex(0)
-  }, [activeIndex, reviews.length])
+  if (activeIndex >= reviews.length && activeIndex !== 0) setActiveIndex(0)
 
   if (!active) return null
 

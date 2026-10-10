@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowRight, CalendarDays, Clock3, UsersRound } from "lucide-react"
-import type { FormEvent } from "react"
+import { useState, type FormEvent } from "react"
 
 const BOOKING_URL = "https://www.opentable.com/booking/restref/availability"
 const RESTAURANT_ID = "104590"
@@ -26,7 +26,7 @@ const TIME_OPTIONS = Array.from({ length: 14 }, (_, index) => {
 })
 
 export function OpenTableWidget() {
-  const now = new Date()
+  const [now] = useState(() => new Date())
   const today = getRestaurantDate(now)
   const defaultTime = getDefaultTime(now)
 

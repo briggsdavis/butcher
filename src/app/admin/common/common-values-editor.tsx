@@ -3,7 +3,7 @@
 import { useMutation, useQuery } from "convex/react"
 import { RotateCcw, Save } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import {
   COMMON_VALUE_SECTIONS,
   getCommonValueFields,
@@ -30,10 +30,11 @@ export function CommonValuesEditor() {
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (savedValues === undefined) return
-    setFields({ ...defaultFields, ...savedValues?.fields })
-  }, [defaultFields, savedValues])
+  const [previousValues, setPreviousValues] = useState<typeof savedValues>(undefined)
+  if (savedValues !== previousValues) {
+    setPreviousValues(savedValues)
+    if (savedValues !== undefined) setFields({ ...defaultFields, ...savedValues?.fields })
+  }
 
   function updateField(field: CommonValueField, value: string) {
     setFields((current) => ({ ...current, [field.key]: value }))

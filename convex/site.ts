@@ -2,7 +2,7 @@ import { Infer, v } from "convex/values"
 import type { Id } from "./_generated/dataModel"
 import { mutation, query, type MutationCtx, type QueryCtx } from "./_generated/server"
 import { assertAdmin } from "./auth"
-import { menuKind, sitePageKey } from "./schema"
+import { announcementSettings, menuKind, sitePageKey } from "./schema"
 
 type Kind = Infer<typeof menuKind>
 type PageKey = Infer<typeof sitePageKey>
@@ -77,6 +77,52 @@ function commonValuesResult(fields: Record<string, string>, updatedAt: number | 
   if (updatedAt === undefined) return { fields }
   return { fields, updatedAt }
 }
+
+export const getAnnouncement = query({
+  args: {},
+  handler: async (ctx) => {
+    const cfg = await getConfig(ctx)
+    return cfg?.announcement?.enabled ? cfg.announcement : null
+  },
+})
+
+export const getAnnouncementForAdmin = query({
+  args: {},
+  handler: async (ctx) => {
+    await assertAdmin(ctx)
+    const cfg = await getConfig(ctx)
+    return cfg?.announcement ?? null
+  },
+})
+
+export const saveAnnouncement = mutation({
+  args: { announcement: announcementSettings },
+  handler: async (ctx, { announcement }) => {
+    await assertAdmin(ctx)
+    const next = {
+      ...announcement,
+      text: announcement.text.trim(),
+      linkLabel: announcement.linkLabel.trim(),
+      linkUrl: announcement.linkUrl.trim(),
+    }
+    if (next.enabled && !next.text) throw new Error("Add announcement text.")
+    if (Boolean(next.linkLabel) !== Boolean(next.linkUrl)) {
+      throw new Error("Add both a link label and URL, or leave both blank.")
+    }
+    if (next.linkUrl) {
+      const internal = next.linkUrl.startsWith("/") && !next.linkUrl.startsWith("//")
+      let external = false
+      try {
+        const url = new URL(next.linkUrl)
+        external = url.protocol === "https:" || url.protocol === "http:"
+      } catch {}
+      if (!internal && !external) throw new Error("Use a /page path or an https:// URL.")
+    }
+    const cfg = await getConfig(ctx)
+    if (cfg) await ctx.db.patch(cfg._id, { announcement: next })
+    else await ctx.db.insert("siteConfig", { key: "singleton", announcement: next })
+  },
+})
 
 export const getMenuPdfUrl = query({
   args: { kind: menuKind },
