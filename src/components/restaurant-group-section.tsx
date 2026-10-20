@@ -19,11 +19,6 @@ const restaurants = [
     href: "https://www.pouletbleupgh.com/",
   },
   {
-    name: "Fish nor Fowl",
-    image: "/logo-fish-nor-fowl.webp",
-    href: "https://fishnorfowlpgh.com/",
-  },
-  {
     name: "Coop de Ville",
     image: "/logo-coop-de-ville.webp",
     href: "https://coopdevillepgh.com/",
