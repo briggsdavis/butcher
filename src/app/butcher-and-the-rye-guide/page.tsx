@@ -172,8 +172,8 @@ export default async function ButcherAndTheRyeGuide() {
           </GuideHeading>
           <div className="mt-8 space-y-5 text-base leading-8 text-tan md:text-lg">
             <p>
-              Established in Pittsburgh in 2013, Butcher and the Rye is part of Richard DeShantz
-              Restaurant Group. Its identity has been shaped by the relationship between patient
+              Established in Pittsburgh in 2013, Butcher and the Rye is part of a family of Pittsburgh
+              restaurants. Its identity has been shaped by the relationship between patient
               cooking, dry-aged meat, whiskey expertise, and hospitality in a memorable dining room.
             </p>
             <p>

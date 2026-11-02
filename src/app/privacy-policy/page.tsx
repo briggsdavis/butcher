@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
           <h1 className="heading-emboss mt-5 font-display text-5xl md:text-7xl">Privacy Policy</h1>
           <p className="mt-6 text-sm text-tan/70">Effective September 15, 2026</p>
           <p className="mt-8 max-w-2xl text-lg leading-8 text-tan">
-            This policy explains how Butcher and the Rye and Richard DeShantz Restaurant Group
+            This policy explains how Butcher and the Rye and its parent restaurant group
             collect, use, and share information when you use butcherandtherye.com or contact us
             through the website.
           </p>

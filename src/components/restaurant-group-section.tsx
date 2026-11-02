@@ -78,16 +78,15 @@ export function RestaurantGroupSection() {
             <span className="block h-px w-12 shrink-0 bg-amber/30" />
           </div>
           <h2 className="mt-4 font-display text-4xl text-cream md:text-5xl">
-            Part of the{" "}
+            Part of Our{" "}
             <Link
               href="https://richarddeshantz.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-amber italic transition-colors hover:text-cream"
             >
-              Richard DeShantz
-            </Link>{" "}
-            Restaurant Group
+              Restaurant Group
+            </Link>
           </h2>
           <p className="mt-4 text-tan">Explore our other restaurants across Pittsburgh</p>
         </div>

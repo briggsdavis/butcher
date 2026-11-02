@@ -7,7 +7,7 @@ export const FAQS: readonly Faq[] = [
   {
     question: "Who are we?",
     answer:
-      "Butcher and the Rye is Richard DeShantz Restaurant Group's whiskey-forward flagship in the heart of Downtown Pittsburgh's Cultural District, built around a reverence for dry-aged meats, old-world technique, and an unhurried evening at the table.",
+      "Butcher and the Rye is our restaurant group's whiskey-forward flagship in the heart of Downtown Pittsburgh's Cultural District, built around a reverence for dry-aged meats, old-world technique, and an unhurried evening at the table.",
   },
   {
     question: "What is Butcher and the Rye best known for?",
