@@ -4,6 +4,11 @@ import { TiltCard } from "~/components/tilt-card"
 
 const restaurants = [
   {
+    name: "Butcher and the Rye",
+    image: "/logo-butcher-and-the-rye.webp",
+    href: "https://butcherandtherye.com/",
+  },
+  {
     name: "Meat & Potatoes",
     image: "/logo-meat-and-potatoes.webp",
     href: "https://meatandpotatoespgh.com/",
@@ -57,11 +62,6 @@ const restaurants = [
     name: "Vieux Carré",
     image: "/logo-vieux-carre.png",
     href: "https://www.seamonkeypgh.com/vieux-carre",
-  },
-  {
-    name: "Aberdeen",
-    image: "/aberdeen.png",
-    href: "https://coopdevillepgh.com/",
   },
 ]
 
