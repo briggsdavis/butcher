@@ -1,6 +1,7 @@
 "use client"
 
 import { useQuery } from "convex/react"
+import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import {
@@ -10,6 +11,58 @@ import {
   resolveCommonValues,
 } from "~/lib/common-values"
 import { api } from "../../convex/_generated/api"
+
+const HOLIDAY_CLOSURES = [
+  {
+    year: "2026",
+    dates: [
+      "Labor Day: Monday, September 7",
+      "Thanksgiving: Thursday, November 26",
+      "Christmas Eve: Thursday, December 24",
+      "Christmas: Friday, December 25",
+    ],
+  },
+  {
+    year: "2027",
+    dates: [
+      "New Year's Day: Friday, January 1",
+      "Easter: Sunday, March 28",
+      "Memorial Day: Monday, May 31",
+      "Fourth of July: Sunday, July 4",
+      "Thanksgiving: Thursday, November 25",
+      "Christmas Eve: Friday, December 24",
+      "Christmas: Saturday, December 25",
+    ],
+  },
+]
+
+function HolidayClosures() {
+  return (
+    <div className="border-b border-cream/10 px-8 py-8 md:px-16">
+      <details className="group mx-auto max-w-3xl text-center">
+        <summary className="mx-auto flex w-fit cursor-pointer list-none items-center gap-3 font-display text-2xl text-cream transition-colors hover:text-amber md:text-3xl [&::-webkit-details-marker]:hidden">
+          Holiday Closures
+          <ChevronDown
+            aria-hidden="true"
+            className="size-6 text-amber transition-transform duration-300 group-open:rotate-180"
+          />
+        </summary>
+        <div className="mt-8 grid gap-10 sm:grid-cols-2">
+          {HOLIDAY_CLOSURES.map((group) => (
+            <div key={group.year}>
+              <span className="text-sm text-amber uppercase">{group.year}</span>
+              <ul className="mt-3 space-y-2 text-tan">
+                {group.dates.map((date) => (
+                  <li key={date}>{date}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </details>
+    </div>
+  )
+}
 
 export function Footer() {
   const [year] = useState(() => new Date().getFullYear())
@@ -26,6 +79,7 @@ export function Footer() {
 
   return (
     <footer className="bg-oxblood">
+      <HolidayClosures />
       <div className="px-8 py-16 md:px-16 md:py-24">
         <div className="grid md:grid-cols-3 md:divide-x md:divide-cream/10">
           <div className="pb-12 md:pr-16 md:pb-0">
