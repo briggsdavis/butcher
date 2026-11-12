@@ -82,7 +82,7 @@ export function createRestaurantJsonLd(common: CommonValues) {
     award: RESTAURANT_FACTS.award,
     parentOrganization: {
       "@type": "Organization",
-      url: "https://richarddeshantz.com/",
+      url: "https://violetdoorhospitalitygroup.com",
     },
     potentialAction: {
       "@type": "ReserveAction",

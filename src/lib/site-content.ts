@@ -590,14 +590,14 @@ const aboutDefinition: SitePageDefinition = {
           key: "story.body.1",
           label: "Body 1",
           defaultValue:
-            "Our Executive Chef came up the long way: years on the line in some of the country's most demanding kitchens, training under butchers who measured aging in months and chefs who measured stocks in days. Every technique here is one he learned by hand.",
+            "Our Executive Chef came up the long way: years on the line in some of the country's most demanding kitchens, training under butchers who measured aging in months and chefs who measured stocks in days. Every technique here was learned by hand.",
         },
         {
           kind: "textarea",
           key: "story.body.2",
           label: "Body 2",
           defaultValue:
-            "His philosophy is simple: source honestly, cook patiently, and trust the ingredient. The menu changes with what the farms and seasons offer, but the discipline behind every plate never does.",
+            "The philosophy is simple: source honestly, cook patiently, and trust the ingredient. The menu changes with what the farms and seasons offer, but the discipline behind every plate never does.",
         },
         {
           kind: "textarea",

@@ -47,7 +47,7 @@ export const COMMON_VALUE_SECTIONS: CommonValueSection[] = [
         kind: "text",
         key: "email.display",
         label: "Email",
-        defaultValue: "info@richardeshantz.com",
+        defaultValue: "info@violetdoorhospitalitygroup.com",
       },
     ],
   },

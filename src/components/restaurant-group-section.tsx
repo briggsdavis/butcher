@@ -80,7 +80,7 @@ export function RestaurantGroupSection() {
           <h2 className="mt-4 font-display text-4xl text-cream md:text-5xl">
             Part of Our{" "}
             <Link
-              href="https://richarddeshantz.com/"
+              href="https://violetdoorhospitalitygroup.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-amber italic transition-colors hover:text-cream"
