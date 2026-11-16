@@ -2,6 +2,15 @@ import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  async redirects() {
+    return [
+      {
+        source: "/butcher-video.mp4",
+        destination: "/butcher-video-optimized.mp4",
+        permanent: false,
+      },
+    ]
+  },
   // NOTE: experimental.inlineCss was tried here to remove render-blocking CSS,
   // but it triggers a Turbopack "module factory is not available" crash on the
   // server-rendered menu pages (/food, /beverages, /spirits) — a known

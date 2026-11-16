@@ -1,5 +1,6 @@
 import { fetchQuery } from "convex/nextjs"
 import { Metadata } from "next"
+import { redirect } from "next/navigation"
 import { MenuList } from "~/components/menu-list"
 import { api } from "../../../convex/_generated/api"
 
@@ -21,6 +22,7 @@ export default async function Spirits() {
     fetchQuery(api.menu.list, { kind: "spirit" }),
     fetchQuery(api.site.getMenuPdfUrl, { kind: "spirit" }),
   ])
+  if (items.length === 0 && !menuPdfUrl) redirect("/beverages")
   return (
     <MenuList
       basePath="/spirits"
