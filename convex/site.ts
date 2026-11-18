@@ -3,6 +3,7 @@ import type { Id } from "./_generated/dataModel"
 import { mutation, query, type MutationCtx, type QueryCtx } from "./_generated/server"
 import { assertAdmin } from "./auth"
 import { announcementSettings, menuKind, sitePageKey } from "./schema"
+import { mediaUrl } from "./mediaUrl"
 
 type Kind = Infer<typeof menuKind>
 type PageKey = Infer<typeof sitePageKey>
@@ -30,7 +31,7 @@ async function getPageDoc(ctx: QueryCtx | MutationCtx, key: PageKey) {
 async function resolveImageUrls(ctx: QueryCtx, images: Record<string, Id<"_storage">>) {
   const imageUrls: Record<string, string | null> = {}
   for (const [key, imageId] of Object.entries(images)) {
-    imageUrls[key] = await ctx.storage.getUrl(imageId)
+    imageUrls[key] = await mediaUrl(ctx, imageId)
   }
   return imageUrls
 }
@@ -130,7 +131,7 @@ export const getMenuPdfUrl = query({
     const cfg = await getConfig(ctx)
     const id = cfg?.[PDF_FIELD[kind]]
     if (!id) return null
-    return await ctx.storage.getUrl(id)
+    return await mediaUrl(ctx, id)
   },
 })
 

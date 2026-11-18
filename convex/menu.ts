@@ -3,6 +3,7 @@ import { Infer, v } from "convex/values"
 import { mutation, query, type MutationCtx, type QueryCtx } from "./_generated/server"
 import { assertAdmin } from "./auth"
 import { menuKind } from "./schema"
+import { mediaUrl } from "./mediaUrl"
 
 type Kind = Infer<typeof menuKind>
 
@@ -35,7 +36,7 @@ async function uniqueSlug(ctx: QueryCtx, kind: Kind, name: string, ignoreId?: st
 
 async function withImageUrl<T extends { imageId?: string }>(ctx: QueryCtx, doc: T) {
   const { imageId, ...rest } = doc
-  const imageUrl = imageId ? await ctx.storage.getUrl(imageId as never) : null
+  const imageUrl = imageId ? await mediaUrl(ctx, imageId as never) : null
   return { ...rest, imageId, imageUrl }
 }
 

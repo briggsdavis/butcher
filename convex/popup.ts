@@ -3,6 +3,7 @@ import type { Id } from "./_generated/dataModel"
 import { mutation, query, type MutationCtx } from "./_generated/server"
 import { assertAdmin } from "./auth"
 import { popupSettings } from "./schema"
+import { mediaUrl } from "./mediaUrl"
 
 async function deleteFileIfPresent(ctx: MutationCtx, id: Id<"_storage"> | undefined) {
   if (!id) return
@@ -34,7 +35,7 @@ export const getActive = query({
     const { imageId, _creationTime, enabled: _enabled, name: _name, ...rest } = popup
     return {
       ...rest,
-      imageUrl: imageId ? await ctx.storage.getUrl(imageId) : null,
+      imageUrl: imageId ? await mediaUrl(ctx, imageId) : null,
       version: `${popup._id}:${popup.updatedAt}`,
     }
   },
@@ -53,7 +54,7 @@ export const list = query({
         startsAt: popup.startsAt,
         endsAt: popup.endsAt,
         updatedAt: popup.updatedAt,
-        imageUrl: popup.imageId ? await ctx.storage.getUrl(popup.imageId) : null,
+        imageUrl: popup.imageId ? await mediaUrl(ctx, popup.imageId) : null,
       })),
     )
   },
@@ -67,7 +68,7 @@ export const getForAdmin = query({
     if (!popup) return null
     return {
       popup,
-      imageUrl: popup.imageId ? await ctx.storage.getUrl(popup.imageId) : null,
+      imageUrl: popup.imageId ? await mediaUrl(ctx, popup.imageId) : null,
     }
   },
 })
